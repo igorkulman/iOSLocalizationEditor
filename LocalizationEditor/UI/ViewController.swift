@@ -86,7 +86,7 @@ extension ViewController: NSTableViewDelegate {
         guard let identifier = tableColumn?.identifier else {
             return nil
         }
-        
+
         switch identifier.rawValue {
         case "key":
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: KeyCell.identifier), owner: self)! as! KeyCell

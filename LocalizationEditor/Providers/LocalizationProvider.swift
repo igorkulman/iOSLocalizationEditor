@@ -6,8 +6,8 @@
 //  Copyright © 2018 Teamwire. All rights reserved.
 //
 
-import Foundation
 import Files
+import Foundation
 
 class LocalizationProvider {
     func getLocalizations(url: URL) -> [Localization] {

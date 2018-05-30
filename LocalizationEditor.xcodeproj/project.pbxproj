@@ -90,9 +90,9 @@
 		F3D9C94420BEC7460081830A /* LocalizationEditor */ = {
 			isa = PBXGroup;
 			children = (
-				F3D9C96C20BEEA2F0081830A /* UI */,
-				F3D9C95A20BECDB20081830A /* Providers */,
 				F3D9C95520BEC9E30081830A /* Models */,
+				F3D9C95A20BECDB20081830A /* Providers */,
+				F3D9C96C20BEEA2F0081830A /* UI */,
 				F3D9C94520BEC7460081830A /* AppDelegate.swift */,
 				F3D9C94920BEC7460081830A /* Assets.xcassets */,
 				F3D9C94E20BEC7460081830A /* Info.plist */,
