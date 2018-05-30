@@ -7,6 +7,7 @@
 //
 
 import Foundation
+import Files
 
 class LocalizationProvider {
     func getLocalizations(url: URL) -> [Localization] {

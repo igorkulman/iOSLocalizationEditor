@@ -14,13 +14,28 @@
 		F3D9C95720BEC9F10081830A /* LocalizationString.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C95620BEC9F10081830A /* LocalizationString.swift */; };
 		F3D9C95920BECA270081830A /* Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C95820BECA270081830A /* Localization.swift */; };
 		F3D9C95C20BECDBF0081830A /* LocalizationProvider.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C95B20BECDBF0081830A /* LocalizationProvider.swift */; };
-		F3D9C95E20BED04E0081830A /* Files.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C95D20BED04E0081830A /* Files.swift */; };
 		F3D9C96120BEDD0B0081830A /* LocalizationCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C96020BEDD0B0081830A /* LocalizationCell.swift */; };
 		F3D9C96320BEDDE20081830A /* LocalizationCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C96220BEDDE20081830A /* LocalizationCell.xib */; };
 		F3D9C96520BEDF580081830A /* KeyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C96420BEDF580081830A /* KeyCell.xib */; };
 		F3D9C96720BEDF640081830A /* KeyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C96620BEDF640081830A /* KeyCell.swift */; };
 		F3D9C96E20BEEAA10081830A /* LocalizationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */; };
+		F3D9C97320BEF0A50081830A /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97220BEF0A50081830A /* Files.framework */; };
+		F3D9C97420BEF0A50081830A /* Files.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97220BEF0A50081830A /* Files.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
+
+/* Begin PBXCopyFilesBuildPhase section */
+		F3D9C97520BEF0A50081830A /* Embed Frameworks */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 10;
+			files = (
+				F3D9C97420BEF0A50081830A /* Files.framework in Embed Frameworks */,
+			);
+			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+/* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
 		F3D9C94220BEC7460081830A /* LocalizationEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -33,12 +48,13 @@
 		F3D9C95620BEC9F10081830A /* LocalizationString.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationString.swift; sourceTree = "<group>"; };
 		F3D9C95820BECA270081830A /* Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Localization.swift; sourceTree = "<group>"; };
 		F3D9C95B20BECDBF0081830A /* LocalizationProvider.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProvider.swift; sourceTree = "<group>"; };
-		F3D9C95D20BED04E0081830A /* Files.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Files.swift; sourceTree = "<group>"; };
 		F3D9C96020BEDD0B0081830A /* LocalizationCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationCell.swift; sourceTree = "<group>"; };
 		F3D9C96220BEDDE20081830A /* LocalizationCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = LocalizationCell.xib; sourceTree = "<group>"; };
 		F3D9C96420BEDF580081830A /* KeyCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = KeyCell.xib; sourceTree = "<group>"; };
 		F3D9C96620BEDF640081830A /* KeyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCell.swift; sourceTree = "<group>"; };
 		F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationsDataSource.swift; sourceTree = "<group>"; };
+		F3D9C97020BEF0740081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
+		F3D9C97220BEF0A50081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -46,6 +62,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				F3D9C97320BEF0A50081830A /* Files.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -55,8 +72,10 @@
 		F3D9C93920BEC7460081830A = {
 			isa = PBXGroup;
 			children = (
+				F3D9C97220BEF0A50081830A /* Files.framework */,
 				F3D9C94420BEC7460081830A /* LocalizationEditor */,
 				F3D9C94320BEC7460081830A /* Products */,
+				F3D9C96F20BEF0730081830A /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -78,7 +97,6 @@
 				F3D9C94920BEC7460081830A /* Assets.xcassets */,
 				F3D9C94E20BEC7460081830A /* Info.plist */,
 				F3D9C94F20BEC7460081830A /* LocalizationEditor.entitlements */,
-				F3D9C95D20BED04E0081830A /* Files.swift */,
 			);
 			path = LocalizationEditor;
 			sourceTree = "<group>";
@@ -122,6 +140,14 @@
 			path = UI;
 			sourceTree = "<group>";
 		};
+		F3D9C96F20BEF0730081830A /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				F3D9C97020BEF0740081830A /* Files.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -132,6 +158,7 @@
 				F3D9C93E20BEC7460081830A /* Sources */,
 				F3D9C93F20BEC7460081830A /* Frameworks */,
 				F3D9C94020BEC7460081830A /* Resources */,
+				F3D9C97520BEF0A50081830A /* Embed Frameworks */,
 			);
 			buildRules = (
 			);
@@ -203,7 +230,6 @@
 				F3D9C95920BECA270081830A /* Localization.swift in Sources */,
 				F3D9C96120BEDD0B0081830A /* LocalizationCell.swift in Sources */,
 				F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */,
-				F3D9C95E20BED04E0081830A /* Files.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -335,6 +361,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S6EJ3ZVM4G;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = LocalizationEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sk.kulman.LocalizationEditor;
@@ -351,6 +381,10 @@
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
 				DEVELOPMENT_TEAM = S6EJ3ZVM4G;
+				FRAMEWORK_SEARCH_PATHS = (
+					"$(inherited)",
+					"$(PROJECT_DIR)/Carthage/Build/Mac",
+				);
 				INFOPLIST_FILE = LocalizationEditor/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sk.kulman.LocalizationEditor;
