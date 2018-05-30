@@ -21,6 +21,8 @@
 		F3D9C96E20BEEAA10081830A /* LocalizationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */; };
 		F3D9C97320BEF0A50081830A /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97220BEF0A50081830A /* Files.framework */; };
 		F3D9C97420BEF0A50081830A /* Files.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97220BEF0A50081830A /* Files.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3D9C97720BEFF230081830A /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97620BEFF220081830A /* CleanroomLogger.framework */; };
+		F3D9C97820BEFF230081830A /* CleanroomLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97620BEFF220081830A /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -31,6 +33,7 @@
 			dstSubfolderSpec = 10;
 			files = (
 				F3D9C97420BEF0A50081830A /* Files.framework in Embed Frameworks */,
+				F3D9C97820BEFF230081830A /* CleanroomLogger.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
 			runOnlyForDeploymentPostprocessing = 0;
@@ -55,6 +58,7 @@
 		F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationsDataSource.swift; sourceTree = "<group>"; };
 		F3D9C97020BEF0740081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
 		F3D9C97220BEF0A50081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
+		F3D9C97620BEFF220081830A /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = Carthage/Build/Mac/CleanroomLogger.framework; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -63,6 +67,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				F3D9C97320BEF0A50081830A /* Files.framework in Frameworks */,
+				F3D9C97720BEFF230081830A /* CleanroomLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -72,6 +77,7 @@
 		F3D9C93920BEC7460081830A = {
 			isa = PBXGroup;
 			children = (
+				F3D9C97620BEFF220081830A /* CleanroomLogger.framework */,
 				F3D9C97220BEF0A50081830A /* Files.framework */,
 				F3D9C94420BEC7460081830A /* LocalizationEditor */,
 				F3D9C94320BEC7460081830A /* Products */,

@@ -81,6 +81,8 @@ class ViewController: NSViewController {
     }
 }
 
+// MARK: - Delegate
+
 extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
         guard let identifier = tableColumn?.identifier else {
@@ -93,10 +95,18 @@ extension ViewController: NSTableViewDelegate {
             cell.key = dataSource.getKey(row: row)
             return cell
         default:
+            let language = identifier.rawValue
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: LocalizationCell.identifier), owner: self)! as! LocalizationCell
-            let value = dataSource.getLocalization(language: identifier.rawValue, row: row)
-            cell.value = value
+            cell.delegate = self
+            cell.language = language
+            cell.value = dataSource.getLocalization(language: language, row: row)
             return cell
         }
+    }
+}
+
+extension ViewController: LocalizationCellDelegate {
+    func userDidUpdateLocalizationString(language: String, string: LocalizationString) {
+        dataSource.updateLocalization(language: language, string: string)
     }
 }

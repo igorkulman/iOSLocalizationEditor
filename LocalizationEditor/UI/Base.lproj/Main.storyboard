@@ -58,9 +58,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="Open folder" id="pXV-BH-hD6">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
+                                        <menuItem title="Open folder" keyEquivalent="o" id="pXV-BH-hD6"/>
                                     </items>
                                 </menu>
                             </menuItem>
@@ -115,7 +113,7 @@
                                     <rect key="frame" x="1" y="0.0" width="656" height="415"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
-                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" emptySelection="NO" autosaveColumns="NO" typeSelect="NO" usesAutomaticRowHeights="YES" headerView="Bry-MY-OIY" id="ByO-mI-RPv">
+                                        <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" columnAutoresizingStyle="lastColumnOnly" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" usesAutomaticRowHeights="YES" headerView="Bry-MY-OIY" id="ByO-mI-RPv">
                                             <rect key="frame" x="0.0" y="0.0" width="656" height="392"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>

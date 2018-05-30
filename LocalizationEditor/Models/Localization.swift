@@ -11,4 +11,11 @@ import Foundation
 struct Localization {
     let language: String
     let translations: [LocalizationString]
+    let path: String
+}
+
+extension Localization: CustomStringConvertible {
+    var description: String {
+        return language.uppercased()
+    }
 }
