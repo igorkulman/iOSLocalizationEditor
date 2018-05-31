@@ -31,11 +31,11 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
         return masterLocalization?.translations[row].key
     }
 
-    func getLocalization(language: String, row: Int) -> LocalizationString? {
+    func getLocalization(language: String, row: Int) -> LocalizationString {
         guard let localization = localizations.first(where: { $0.language == language }), let masterLocalization = masterLocalization else {
-            return nil
+            fatalError()
         }
-        return localization.translations.first(where: { $0.key == masterLocalization.translations[row].key })
+        return localization.translations.first(where: { $0.key == masterLocalization.translations[row].key }) ?? LocalizationString(key: masterLocalization.translations[row].key, value: "")
     }
 
     func updateLocalization(language: String, string: LocalizationString, with value: String) {
