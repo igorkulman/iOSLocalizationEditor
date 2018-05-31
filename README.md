@@ -9,7 +9,7 @@ Managing localization files (`Localizable.strings`) is a pain, there is no tooli
 
 ## What does this tool do?
 
-Start the Localization Editor, choose File | Open folder with localization files and point it to the folder where your localization files are stored. The tool find all the `Localizable.strings`, detects their language and displays your strings side by side as shown on the screenshot above. 
+Start the Localization Editor, choose File | Open folder with localization files and point it to the folder where your localization files are stored. The tool find all the `Localizable.strings`, detects their language and displays your strings side by side as shown on the screenshot above. You can point it to the root of your project but it will take longer to process. 
 
 All the translations are sorted by their key (shown as first column) and you cansee and compare them quickly, you can also see missing translations in any language. 
 
