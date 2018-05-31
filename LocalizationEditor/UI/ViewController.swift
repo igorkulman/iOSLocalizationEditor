@@ -43,7 +43,7 @@ class ViewController: NSViewController {
         tableView.dataSource = dataSource
     }
 
-    func reloadData(with languages: [String]) {
+    private func reloadData(with languages: [String]) {
         let columns = tableView.tableColumns
         columns.forEach {
             self.tableView.removeTableColumn($0)
@@ -56,12 +56,23 @@ class ViewController: NSViewController {
 
         languages.forEach { language in
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(language))
-            column.title = language.uppercased()
+            column.title = language == "Base" ? language : "\(emojiFlag(countryCode: language)) \(language.uppercased())"
             column.width = (self.view.bounds.width - 200.0) / CGFloat(languages.count)
             self.tableView.addTableColumn(column)
         }
 
         tableView.reloadData()
+    }
+
+    private func emojiFlag(countryCode: String) -> String {
+        var string = ""
+        var country = countryCode.uppercased()
+        for uS in country.unicodeScalars {
+            if let scalar = UnicodeScalar(127_397 + uS.value) {
+                string.append(String(scalar))
+            }
+        }
+        return string
     }
 
     @objc func openAction(sender _: NSMenuItem) {
