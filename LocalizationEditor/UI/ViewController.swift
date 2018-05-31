@@ -52,13 +52,11 @@ class ViewController: NSViewController {
 
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("key"))
         column.title = ""
-        column.width = 200
         tableView.addTableColumn(column)
 
         languages.forEach { language in
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(language))
             column.title = language == "Base" ? language : "\(emojiFlag(countryCode: language)) \(language.uppercased())"
-            column.width = (self.view.bounds.width - 200.0) / CGFloat(languages.count)
             self.tableView.addTableColumn(column)
         }
 
