@@ -85,7 +85,6 @@ class ViewController: NSViewController {
         openPanel.begin { [unowned self] (result) -> Void in
             if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
                 if let url = openPanel.url {
-                    self.progressIndicator.isHidden = false
                     self.progressIndicator.startAnimation(self)
                     self.dataSource.load(folder: url) { [unowned self] languages in
                         self.reloadData(with: languages)
