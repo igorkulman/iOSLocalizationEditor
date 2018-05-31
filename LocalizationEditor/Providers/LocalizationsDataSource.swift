@@ -13,18 +13,18 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
 
     // MARK: - Properties
 
-    private(set) var localizations: [Localization] = []
-
+    private var localizations: [Localization] = []
     private var masterLocalization: Localization?
     private let localizationProvider = LocalizationProvider()
     private var numberOfKeys = 0
 
     // MARK: - Action
 
-    func load(folder: URL) {
+    func load(folder: URL) -> [String] {
         localizations = localizationProvider.getLocalizations(url: folder)
         numberOfKeys = localizations.map({ $0.translations.count }).max() ?? 0
         masterLocalization = localizations.first(where: { $0.translations.count == numberOfKeys })
+        return localizations.map({ $0.language })
     }
 
     func getKey(row: Int) -> String? {

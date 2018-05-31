@@ -53,17 +53,17 @@ class LocalizationProvider {
             Log.debug?.message("Same value provided for \(string)")
             return
         }
-        
+
         Log.debug?.message("Updating \(string) with \(value) in \(localization)")
-        
+
         string.update(value: value)
-       
+
         let data = localization.translations.map { string in
             "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
-            }.reduce("") { (prev, next) in
-                "\(prev)\n\(next)"
+        }.reduce("") { prev, next in
+            "\(prev)\n\(next)"
         }
-        
+
         do {
             try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
             Log.debug?.message("Localization file for \(localization) updated")

@@ -43,7 +43,7 @@ class ViewController: NSViewController {
         tableView.dataSource = dataSource
     }
 
-    func reloadData() {
+    func reloadData(with languages: [String]) {
         let columns = tableView.tableColumns
         columns.forEach {
             self.tableView.removeTableColumn($0)
@@ -54,10 +54,10 @@ class ViewController: NSViewController {
         column.width = 200
         tableView.addTableColumn(column)
 
-        dataSource.localizations.forEach { localization in
-            let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(localization.language))
-            column.title = localization.language.uppercased()
-            column.width = (self.view.bounds.width - 200.0) / CGFloat(self.dataSource.localizations.count)
+        languages.forEach { language in
+            let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(language))
+            column.title = language.uppercased()
+            column.width = (self.view.bounds.width - 200.0) / CGFloat(languages.count)
             self.tableView.addTableColumn(column)
         }
 
@@ -73,8 +73,8 @@ class ViewController: NSViewController {
         openPanel.begin { [unowned self] (result) -> Void in
             if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
                 if let url = openPanel.url {
-                    self.dataSource.load(folder: url)
-                    self.reloadData()
+                    let languages = self.dataSource.load(folder: url)
+                    self.reloadData(with: languages)
                 }
             }
         }
