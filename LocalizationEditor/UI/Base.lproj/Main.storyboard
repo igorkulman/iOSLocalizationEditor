@@ -135,15 +135,21 @@
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
                             </scrollView>
+                            <progressIndicator hidden="YES" wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="orS-Om-jEF">
+                                <rect key="frame" x="321" y="200" width="16" height="16"/>
+                            </progressIndicator>
                         </subviews>
                         <constraints>
                             <constraint firstItem="4ba-Nv-4Q4" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Fcq-O0-4L6"/>
                             <constraint firstAttribute="trailing" secondItem="4ba-Nv-4Q4" secondAttribute="trailing" id="U2K-bp-ktM"/>
                             <constraint firstItem="4ba-Nv-4Q4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="aFu-bj-BOT"/>
+                            <constraint firstItem="orS-Om-jEF" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="cdU-Z2-VjR"/>
                             <constraint firstAttribute="bottom" secondItem="4ba-Nv-4Q4" secondAttribute="bottom" id="m5c-j8-Z7f"/>
+                            <constraint firstItem="orS-Om-jEF" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="p93-Be-Z2I"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="progressIndicator" destination="orS-Om-jEF" id="W9q-Ft-3Pn"/>
                         <outlet property="tableView" destination="ByO-mI-RPv" id="HZj-sq-2j6"/>
                     </connections>
                 </viewController>

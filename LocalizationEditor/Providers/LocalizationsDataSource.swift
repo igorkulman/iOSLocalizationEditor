@@ -20,11 +20,16 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
 
     // MARK: - Action
 
-    func load(folder: URL) -> [String] {
-        localizations = localizationProvider.getLocalizations(url: folder)
-        numberOfKeys = localizations.map({ $0.translations.count }).max() ?? 0
-        masterLocalization = localizations.first(where: { $0.translations.count == numberOfKeys })
-        return localizations.map({ $0.language })
+    func load(folder: URL, onCompletion: @escaping ([String]) -> Void) {
+        DispatchQueue.global(qos: .background).async {
+            self.localizations = self.localizationProvider.getLocalizations(url: folder)
+            self.numberOfKeys = self.localizations.map({ $0.translations.count }).max() ?? 0
+            self.masterLocalization = self.localizations.first(where: { $0.translations.count == self.numberOfKeys })
+
+            DispatchQueue.main.async {
+                onCompletion(self.localizations.map({ $0.language }))
+            }
+        }
     }
 
     func getKey(row: Int) -> String? {
