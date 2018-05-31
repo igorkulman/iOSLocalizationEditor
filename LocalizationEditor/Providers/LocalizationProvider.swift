@@ -6,20 +6,20 @@
 //  Copyright © 2018 Teamwire. All rights reserved.
 //
 
+import CleanroomLogger
 import Files
 import Foundation
-import CleanroomLogger
 
 class LocalizationProvider {
     func getLocalizations(url: URL) -> [Localization] {
         Log.debug?.message("Searching \(url) for Localizable.strings")
-        
+
         guard let folder = try? Folder(path: url.path) else {
             return []
         }
 
         let localizationFiles = folder.makeFileSequence(recursive: true).filter({ $0.name == "Localizable.strings" })
-        
+
         Log.debug?.message("Found \(localizationFiles) localization files")
 
         return localizationFiles.map({ file in
@@ -40,15 +40,35 @@ class LocalizationProvider {
             let s = LocalizationString(key: key, value: value)
             strings.append(s)
         }
-        
+
         Log.debug?.message("Found \(strings.count) keys for in \(path)")
-        
+
         return strings.sorted(by: { (lhs, rhs) -> Bool in
             lhs.key < rhs.key
         })
     }
 
-    func updateLocalization(localization: Localization, string: LocalizationString) {
-        Log.debug?.message("Updating \(localization) with \(string)")
+    func updateLocalization(localization: Localization, string: LocalizationString, with value: String) {
+        guard string.value != value else {
+            Log.debug?.message("Same value provided for \(string)")
+            return
+        }
+        
+        Log.debug?.message("Updating \(string) with \(value) in \(localization)")
+        
+        string.update(value: value)
+       
+        let data = localization.translations.map { string in
+            "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
+            }.reduce("") { (prev, next) in
+                "\(prev)\n\(next)"
+        }
+        
+        do {
+            try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
+            Log.debug?.message("Localization file for \(localization) updated")
+        } catch {
+            Log.error?.message("Writing localization file for \(localization) failed with \(error)")
+        }
     }
 }

@@ -9,7 +9,7 @@
 import Cocoa
 
 protocol LocalizationCellDelegate: class {
-    func userDidUpdateLocalizationString(language: String, string: LocalizationString)
+    func userDidUpdateLocalizationString(language: String, string: LocalizationString, with value: String)
 }
 
 class LocalizationCell: NSTableCellView {
@@ -32,28 +32,14 @@ class LocalizationCell: NSTableCellView {
             valueTextField.delegate = self
         }
     }
-    
-    override init(frame frameRect: NSRect) {
-        super.init(frame: frameRect)
-        setup()
-    }
-    
-    required init?(coder decoder: NSCoder) {
-        super.init(coder: decoder)
-        setup()
-    }
-    
-    private func setup() {
-        
-    }
 }
 
 extension LocalizationCell: NSTextFieldDelegate {
-    override func controlTextDidEndEditing(_ obj: Notification) {
+    override func controlTextDidEndEditing(_: Notification) {
         guard let language = language, let value = value else {
             return
         }
-        
-        delegate?.userDidUpdateLocalizationString(language: language, string: LocalizationString(key: value.key, value: valueTextField.stringValue))
+
+        delegate?.userDidUpdateLocalizationString(language: language, string: value, with: valueTextField.stringValue)
     }
 }

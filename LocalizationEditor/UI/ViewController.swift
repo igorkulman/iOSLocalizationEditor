@@ -106,7 +106,7 @@ extension ViewController: NSTableViewDelegate {
 }
 
 extension ViewController: LocalizationCellDelegate {
-    func userDidUpdateLocalizationString(language: String, string: LocalizationString) {
-        dataSource.updateLocalization(language: language, string: string)
+    func userDidUpdateLocalizationString(language: String, string: LocalizationString, with value: String) {
+        dataSource.updateLocalization(language: language, string: string, with: value)
     }
 }

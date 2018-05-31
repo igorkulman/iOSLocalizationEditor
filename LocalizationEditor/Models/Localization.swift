@@ -8,10 +8,16 @@
 
 import Foundation
 
-struct Localization {
+class Localization {
     let language: String
     let translations: [LocalizationString]
     let path: String
+
+    init(language: String, translations: [LocalizationString], path: String) {
+        self.language = language
+        self.translations = translations
+        self.path = path
+    }
 }
 
 extension Localization: CustomStringConvertible {
