@@ -183,7 +183,7 @@
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
 				LastUpgradeCheck = 0920;
-				ORGANIZATIONNAME = Teamwire;
+				ORGANIZATIONNAME = "Igor Kulman";
 				TargetAttributes = {
 					F3D9C94120BEC7460081830A = {
 						CreatedOnToolsVersion = 9.2;

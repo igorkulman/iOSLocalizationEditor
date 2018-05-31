@@ -3,7 +3,7 @@
 //  LocalizationEditor
 //
 //  Created by Igor Kulman on 30/05/2018.
-//  Copyright © 2018 Teamwire. All rights reserved.
+//  Copyright © 2018 Igor Kulman. All rights reserved.
 //
 
 import Cocoa
