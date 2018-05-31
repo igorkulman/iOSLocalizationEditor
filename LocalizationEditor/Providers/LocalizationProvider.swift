@@ -11,6 +11,8 @@ import Files
 import Foundation
 
 class LocalizationProvider {
+    private let ignoredDirectories = ["Carthage", "build", ".framework"]
+    
     func getLocalizations(url: URL) -> [Localization] {
         Log.debug?.message("Searching \(url) for Localizable.strings")
 
@@ -18,7 +20,9 @@ class LocalizationProvider {
             return []
         }
 
-        let localizationFiles = folder.makeFileSequence(recursive: true).filter({ $0.name == "Localizable.strings" })
+        let localizationFiles = folder.makeFileSequence(recursive: true).filter { file in
+            return file.name == "Localizable.strings" && ignoredDirectories.map({file.path.contains("\($0)/")}).filter({$0}).count == 0
+        }
 
         Log.debug?.message("Found \(localizationFiles) localization files")
 
