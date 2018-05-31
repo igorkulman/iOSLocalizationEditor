@@ -58,7 +58,7 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="Open folder" keyEquivalent="o" id="pXV-BH-hD6"/>
+                                        <menuItem title="Open folder with localization files" keyEquivalent="o" id="pXV-BH-hD6"/>
                                     </items>
                                 </menu>
                             </menuItem>
