@@ -13,23 +13,26 @@ import Foundation
 class LocalizationProvider {
     private let ignoredDirectories = ["Carthage", "build", ".framework"]
     
-    func getLocalizations(url: URL) -> [Localization] {
+    func getLocalizations(url: URL) -> [LocalizationGroup] {
         Log.debug?.message("Searching \(url) for Localizable.strings")
 
         guard let folder = try? Folder(path: url.path) else {
             return []
         }
 
-        let localizationFiles = folder.makeFileSequence(recursive: true).filter { file in
-            return file.name == "Localizable.strings" && ignoredDirectories.map({file.path.contains("\($0)/")}).filter({$0}).count == 0
-        }
-
+        let localizationFiles = Dictionary(grouping: folder.makeFileSequence(recursive: true).filter { file in
+            return file.name.hasSuffix(".strings") && ignoredDirectories.map({file.path.contains("\($0)/")}).filter({$0}).count == 0
+        }, by: {$0.path.components(separatedBy:"/").filter({!$0.hasSuffix(".lproj")}).joined(separator:"/")})
+        
         Log.debug?.message("Found \(localizationFiles) localization files")
-
-        return localizationFiles.map({ file in
-            let parts = file.path.split(separator: "/")
-            let lang = String(parts[parts.count - 2]).replacingOccurrences(of: ".lproj", with: "")
-            return Localization(language: lang, translations: getLocalizationStrings(path: file.path), path: file.path)
+        
+        return localizationFiles.map({ (path, files) in
+            let name = URL(fileURLWithPath: path).lastPathComponent
+            return LocalizationGroup(name: name, localizations: files.map({ file in
+                let parts = file.path.split(separator: "/")
+                let lang = String(parts[parts.count - 2]).replacingOccurrences(of: ".lproj", with: "")
+                return Localization(language: lang, translations: getLocalizationStrings(path: file.path), path: file.path)
+            }), path: path)
         })
     }
 

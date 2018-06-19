@@ -13,6 +13,7 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
 
     // MARK: - Properties
 
+    private var localizationGroup: LocalizationGroup? = nil
     private var localizations: [Localization] = []
     private var masterLocalization: Localization?
     private let localizationProvider = LocalizationProvider()
@@ -22,7 +23,9 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
 
     func load(folder: URL, onCompletion: @escaping ([String]) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            self.localizations = self.localizationProvider.getLocalizations(url: folder)
+            
+            self.localizationGroup = self.localizationProvider.getLocalizations(url: folder).filter({$0.name == "Localizable.strings" }).first
+            self.localizations = self.localizationGroup?.localizations ?? []
             self.numberOfKeys = self.localizations.map({ $0.translations.count }).max() ?? 0
             self.masterLocalization = self.localizations.first(where: { $0.translations.count == self.numberOfKeys })
 
