@@ -31,6 +31,8 @@ class ViewController: NSViewController {
     private func setupMenu() {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         appDelegate.openFolderMenuItem.action = #selector(ViewController.openAction(sender:))
+        appDelegate.selectMenuItem.isHidden = true
+        appDelegate.selectMenuItem.submenu?.removeAllItems();
     }
 
     private func setupData() {
@@ -43,8 +45,18 @@ class ViewController: NSViewController {
         tableView.delegate = self
         tableView.dataSource = dataSource
     }
+    
+    private func setupSetupLocalizsationSelectionMenu(files: [LocalizationGroup]){
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+        appDelegate.selectMenuItem.isHidden = false
+        
+        files.map({NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "")}).forEach({appDelegate.selectMenuItem.submenu?.addItem($0)})
+    }
 
-    private func reloadData(with languages: [String]) {
+    private func reloadData(with languages: [String], title: String?) {
+        let prefix = "LocalizationEditor"
+        self.view.window?.title = title.flatMap({"\(prefix) [\($0)]"}) ?? prefix // TODO
+
         let columns = tableView.tableColumns
         columns.forEach {
             self.tableView.removeTableColumn($0)
@@ -73,6 +85,13 @@ class ViewController: NSViewController {
         }
         return string
     }
+    
+    @objc func selectAction(sender: NSMenuItem) {
+        let title = sender.title
+        let languages = self.dataSource.select(name: title)
+
+        self.reloadData(with: languages, title:title)
+    }
 
     @objc func openAction(sender _: NSMenuItem) {
         let openPanel = NSOpenPanel()
@@ -84,9 +103,12 @@ class ViewController: NSViewController {
             if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
                 if let url = openPanel.url {
                     self.progressIndicator.startAnimation(self)
-                    self.dataSource.load(folder: url) { [unowned self] languages in
-                        self.reloadData(with: languages)
+                    self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
+                        self.reloadData(with: languages, title:title)
                         self.progressIndicator.stopAnimation(self)
+                        if(localizationFiles.count > 1){
+                            self.setupSetupLocalizsationSelectionMenu(files: localizationFiles)
+                        }
                     }
                 }
             }
@@ -112,7 +134,7 @@ extension ViewController: NSTableViewDelegate {
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: LocalizationCell.identifier), owner: self)! as! LocalizationCell
             cell.delegate = self
             cell.language = language
-            cell.value = dataSource.getLocalization(language: language, row: row)
+            cell.value = row < dataSource.numberOfRows(in: tableView) ? dataSource.getLocalization(language: language, row: row) : nil
             return cell
         }
     }
