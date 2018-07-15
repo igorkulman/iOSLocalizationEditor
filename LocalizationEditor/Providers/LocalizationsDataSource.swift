@@ -13,6 +13,8 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
 
     // MARK: - Properties
 
+    private var localizationGroups: [LocalizationGroup] = []
+    private var selectedLocalizationGroup: LocalizationGroup? = nil
     private var localizations: [Localization] = []
     private var masterLocalization: Localization?
     private let localizationProvider = LocalizationProvider()
@@ -20,20 +22,36 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
 
     // MARK: - Action
 
-    func load(folder: URL, onCompletion: @escaping ([String]) -> Void) {
+    func load(folder: URL, onCompletion: @escaping ([String], String?, [LocalizationGroup]) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            self.localizations = self.localizationProvider.getLocalizations(url: folder)
-            self.numberOfKeys = self.localizations.map({ $0.translations.count }).max() ?? 0
-            self.masterLocalization = self.localizations.first(where: { $0.translations.count == self.numberOfKeys })
-
-            DispatchQueue.main.async {
-                onCompletion(self.localizations.map({ $0.language }))
+            
+            self.localizationGroups = self.localizationProvider.getLocalizations(url: folder)
+            if let group = self.localizationGroups.filter({$0.name == "Localizable.strings" }).first ?? self.localizationGroups.first {
+                let languages = self.select(group: group)
+                
+                DispatchQueue.main.async {
+                    onCompletion(languages, self.selectedLocalizationGroup?.name, self.localizationGroups)
+                }
             }
         }
     }
+    
+    func select(name: String) -> [String]{
+        let group = self.localizationGroups.filter({$0.name == name}).first!
+        return select(group: group)
+    }
+    
+    func select(group: LocalizationGroup) -> [String]{
+        self.selectedLocalizationGroup = group
+        self.localizations = self.selectedLocalizationGroup?.localizations ?? []
+        self.numberOfKeys = self.localizations.map({ $0.translations.count }).max() ?? 0
+        self.masterLocalization = self.localizations.first(where: { $0.translations.count == self.numberOfKeys })
+        
+        return self.localizations.map({ $0.language })
+    }
 
     func getKey(row: Int) -> String? {
-        return masterLocalization?.translations[row].key
+        return (row < masterLocalization?.translations.count ?? 0) ? masterLocalization?.translations[row].key : nil
     }
 
     func getLocalization(language: String, row: Int) -> LocalizationString {

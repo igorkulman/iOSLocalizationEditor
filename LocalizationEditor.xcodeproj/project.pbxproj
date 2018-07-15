@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		172274D420D933970036EA4E /* LocalizationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172274D320D933970036EA4E /* LocalizationGroup.swift */; };
 		F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94520BEC7460081830A /* AppDelegate.swift */; };
 		F3D9C94820BEC7460081830A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94720BEC7460081830A /* ViewController.swift */; };
 		F3D9C94A20BEC7460081830A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C94920BEC7460081830A /* Assets.xcassets */; };
@@ -41,6 +42,7 @@
 /* End PBXCopyFilesBuildPhase section */
 
 /* Begin PBXFileReference section */
+		172274D320D933970036EA4E /* LocalizationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationGroup.swift; sourceTree = "<group>"; };
 		F3D9C94220BEC7460081830A /* LocalizationEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D9C94520BEC7460081830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D9C94720BEC7460081830A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -110,6 +112,7 @@
 		F3D9C95520BEC9E30081830A /* Models */ = {
 			isa = PBXGroup;
 			children = (
+				172274D320D933970036EA4E /* LocalizationGroup.swift */,
 				F3D9C95620BEC9F10081830A /* LocalizationString.swift */,
 				F3D9C95820BECA270081830A /* Localization.swift */,
 			);
@@ -231,6 +234,7 @@
 				F3D9C94820BEC7460081830A /* ViewController.swift in Sources */,
 				F3D9C96720BEDF640081830A /* KeyCell.swift in Sources */,
 				F3D9C95720BEC9F10081830A /* LocalizationString.swift in Sources */,
+				172274D420D933970036EA4E /* LocalizationGroup.swift in Sources */,
 				F3D9C95C20BECDBF0081830A /* LocalizationProvider.swift in Sources */,
 				F3D9C96E20BEEAA10081830A /* LocalizationsDataSource.swift in Sources */,
 				F3D9C95920BECA270081830A /* Localization.swift in Sources */,
