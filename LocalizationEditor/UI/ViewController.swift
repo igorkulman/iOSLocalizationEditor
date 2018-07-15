@@ -13,7 +13,9 @@ class ViewController: NSViewController {
     // MARK: - Outlets
 
     @IBOutlet private weak var tableView: NSTableView!
+    @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var progressIndicator: NSProgressIndicator!
+    @IBOutlet private var defaultSelectItem: NSMenuItem!
 
     // MARK: - Properties
 
@@ -31,8 +33,8 @@ class ViewController: NSViewController {
     private func setupMenu() {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         appDelegate.openFolderMenuItem.action = #selector(ViewController.openAction(sender:))
-        appDelegate.selectMenuItem.isHidden = true
-        appDelegate.selectMenuItem.submenu?.removeAllItems();
+        selectButton.menu?.removeAllItems();
+        selectButton.menu?.addItem(defaultSelectItem)
     }
 
     private func setupData() {
@@ -46,11 +48,9 @@ class ViewController: NSViewController {
         tableView.dataSource = dataSource
     }
     
-    private func setupSetupLocalizsationSelectionMenu(files: [LocalizationGroup]){
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        appDelegate.selectMenuItem.isHidden = false
-        
-        files.map({NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "")}).forEach({appDelegate.selectMenuItem.submenu?.addItem($0)})
+    private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]){
+        selectButton.menu?.removeAllItems()
+        files.map({NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "")}).forEach({selectButton.menu?.addItem($0)})
     }
 
     private func reloadData(with languages: [String], title: String?) {
@@ -86,14 +86,14 @@ class ViewController: NSViewController {
         return string
     }
     
-    @objc func selectAction(sender: NSMenuItem) {
+    @IBAction @objc func selectAction(sender: NSMenuItem) {
         let title = sender.title
         let languages = self.dataSource.select(name: title)
 
         self.reloadData(with: languages, title:title)
     }
 
-    @objc func openAction(sender _: NSMenuItem) {
+    @IBAction @objc func openAction(sender _: NSMenuItem) {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = true
@@ -106,8 +106,13 @@ class ViewController: NSViewController {
                     self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
                         self.reloadData(with: languages, title:title)
                         self.progressIndicator.stopAnimation(self)
-                        if(localizationFiles.count > 1){
-                            self.setupSetupLocalizsationSelectionMenu(files: localizationFiles)
+
+                        if let title = title{
+                            self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
+                            self.selectButton.selectItem(at: self.selectButton.indexOfItem(withTitle: title))
+                        }
+                        else {
+                            self.setupMenu()
                         }
                     }
                 }

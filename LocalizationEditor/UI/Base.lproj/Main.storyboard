@@ -64,13 +64,6 @@
                             </menuItem>
                             <menuItem title="Select" id="3lY-JD-VuH">
                                 <modifierMask key="keyEquivalentModifierMask"/>
-                                <menu key="submenu" title="Select" id="mcz-dt-iwt">
-                                    <items>
-                                        <menuItem title="Item" id="rhJ-Q3-oPZ">
-                                            <modifierMask key="keyEquivalentModifierMask"/>
-                                        </menuItem>
-                                    </items>
-                                </menu>
                             </menuItem>
                         </items>
                     </menu>
@@ -81,7 +74,6 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LocalizationEditor" customModuleProvider="target">
                     <connections>
                         <outlet property="openFolderMenuItem" destination="pXV-BH-hD6" id="9EJ-PN-yBL"/>
-                        <outlet property="selectMenuItem" destination="3lY-JD-VuH" id="vyY-or-HeH"/>
                     </connections>
                 </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -119,13 +111,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ba-Nv-4Q4">
-                                <rect key="frame" x="0.0" y="0.0" width="658" height="416"/>
+                                <rect key="frame" x="0.0" y="0.0" width="658" height="392"/>
                                 <clipView key="contentView" id="xNj-vz-MO7">
-                                    <rect key="frame" x="1" y="0.0" width="656" height="415"/>
+                                    <rect key="frame" x="1" y="0.0" width="656" height="391"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" usesAutomaticRowHeights="YES" headerView="Bry-MY-OIY" id="ByO-mI-RPv">
-                                            <rect key="frame" x="0.0" y="0.0" width="656" height="392"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="656" height="368"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -149,18 +141,46 @@
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="orS-Om-jEF">
                                 <rect key="frame" x="321" y="200" width="16" height="16"/>
                             </progressIndicator>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFg-5m-6pC">
+                                <rect key="frame" x="84" y="390" width="577" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="Open folder first" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="NVn-GV-ID4" id="4aK-eh-T5Y">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="5W8-5b-o7R">
+                                        <items>
+                                            <menuItem title="Open folder first" state="on" id="NVn-GV-ID4"/>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="16j-oD-cAE">
+                                <rect key="frame" x="3" y="395" width="75" height="17"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="String table" id="z8U-Ny-4JF">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="4ba-Nv-4Q4" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="Fcq-O0-4L6"/>
+                            <constraint firstItem="ZFg-5m-6pC" firstAttribute="leading" secondItem="16j-oD-cAE" secondAttribute="trailing" constant="10" id="D6G-Vj-vzc"/>
+                            <constraint firstItem="4ba-Nv-4Q4" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="24" id="Fcq-O0-4L6"/>
+                            <constraint firstAttribute="trailing" secondItem="ZFg-5m-6pC" secondAttribute="trailing" id="I29-aq-1Lr"/>
+                            <constraint firstItem="ZFg-5m-6pC" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="2" id="PJB-vg-X9o"/>
                             <constraint firstAttribute="trailing" secondItem="4ba-Nv-4Q4" secondAttribute="trailing" id="U2K-bp-ktM"/>
                             <constraint firstItem="4ba-Nv-4Q4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="aFu-bj-BOT"/>
                             <constraint firstItem="orS-Om-jEF" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="cdU-Z2-VjR"/>
+                            <constraint firstItem="4ba-Nv-4Q4" firstAttribute="top" secondItem="ZFg-5m-6pC" secondAttribute="bottom" constant="1" id="fUC-6L-ChH"/>
                             <constraint firstAttribute="bottom" secondItem="4ba-Nv-4Q4" secondAttribute="bottom" id="m5c-j8-Z7f"/>
+                            <constraint firstItem="16j-oD-cAE" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="5" id="osA-pP-jh6"/>
                             <constraint firstItem="orS-Om-jEF" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="p93-Be-Z2I"/>
+                            <constraint firstItem="16j-oD-cAE" firstAttribute="centerY" secondItem="ZFg-5m-6pC" secondAttribute="centerY" id="rs9-h5-XO3"/>
                         </constraints>
                     </view>
                     <connections>
+                        <outlet property="defaultSelectItem" destination="NVn-GV-ID4" id="Ibj-ZN-bm2"/>
                         <outlet property="progressIndicator" destination="orS-Om-jEF" id="W9q-Ft-3Pn"/>
+                        <outlet property="selectButton" destination="ZFg-5m-6pC" id="uUm-fN-AZO"/>
                         <outlet property="tableView" destination="ByO-mI-RPv" id="HZj-sq-2j6"/>
                     </connections>
                 </viewController>
