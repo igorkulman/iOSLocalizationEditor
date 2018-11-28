@@ -35,7 +35,7 @@ class LocalizationCell: NSTableCellView {
 }
 
 extension LocalizationCell: NSTextFieldDelegate {
-    override func controlTextDidEndEditing(_: Notification) {
+    func controlTextDidEndEditing(_: Notification) {
         guard let language = language, let value = value else {
             return
         }

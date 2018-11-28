@@ -40,7 +40,7 @@ class ViewController: NSViewController {
     private func setupData() {
         let cellIdentifiers = [KeyCell.identifier, LocalizationCell.identifier]
         cellIdentifiers.forEach { identifier in
-            let cell = NSNib(nibNamed: NSNib.Name(rawValue: identifier), bundle: nil)
+            let cell = NSNib(nibNamed: identifier, bundle: nil)
             tableView.register(cell, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: identifier))
         }
 

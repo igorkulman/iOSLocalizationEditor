@@ -24,6 +24,8 @@
 		F3D9C97420BEF0A50081830A /* Files.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97220BEF0A50081830A /* Files.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3D9C97720BEFF230081830A /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97620BEFF220081830A /* CleanroomLogger.framework */; };
 		F3D9C97820BEFF230081830A /* CleanroomLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97620BEFF220081830A /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3EA77C721AEB4DC00337B3B /* CleanroomLogger.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */; };
+		F3EA77C821AEB4DC00337B3B /* Files.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXCopyFilesBuildPhase section */
@@ -37,6 +39,17 @@
 				F3D9C97820BEFF230081830A /* CleanroomLogger.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3EA77C421AEB45000337B3B /* CopyFiles */ = {
+			isa = PBXCopyFilesBuildPhase;
+			buildActionMask = 2147483647;
+			dstPath = "";
+			dstSubfolderSpec = 16;
+			files = (
+				F3EA77C721AEB4DC00337B3B /* CleanroomLogger.framework.dSYM in CopyFiles */,
+				F3EA77C821AEB4DC00337B3B /* Files.framework.dSYM in CopyFiles */,
+			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXCopyFilesBuildPhase section */
@@ -59,8 +72,10 @@
 		F3D9C96620BEDF640081830A /* KeyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCell.swift; sourceTree = "<group>"; };
 		F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationsDataSource.swift; sourceTree = "<group>"; };
 		F3D9C97020BEF0740081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
-		F3D9C97220BEF0A50081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
-		F3D9C97620BEFF220081830A /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = Carthage/Build/Mac/CleanroomLogger.framework; sourceTree = "<group>"; };
+		F3D9C97220BEF0A50081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = ../Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
+		F3D9C97620BEFF220081830A /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = ../Carthage/Build/Mac/CleanroomLogger.framework; sourceTree = "<group>"; };
+		F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CleanroomLogger.framework.dSYM; path = ../Carthage/Build/Mac/CleanroomLogger.framework.dSYM; sourceTree = "<group>"; };
+		F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Files.framework.dSYM; path = ../Carthage/Build/Mac/Files.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -79,8 +94,6 @@
 		F3D9C93920BEC7460081830A = {
 			isa = PBXGroup;
 			children = (
-				F3D9C97620BEFF220081830A /* CleanroomLogger.framework */,
-				F3D9C97220BEF0A50081830A /* Files.framework */,
 				F3D9C94420BEC7460081830A /* LocalizationEditor */,
 				F3D9C94320BEC7460081830A /* Products */,
 				F3D9C96F20BEF0730081830A /* Frameworks */,
@@ -98,6 +111,7 @@
 		F3D9C94420BEC7460081830A /* LocalizationEditor */ = {
 			isa = PBXGroup;
 			children = (
+				F3EA77C921AEB50600337B3B /* Dependencies */,
 				F3D9C95520BEC9E30081830A /* Models */,
 				F3D9C95A20BECDB20081830A /* Providers */,
 				F3D9C96C20BEEA2F0081830A /* UI */,
@@ -157,6 +171,17 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F3EA77C921AEB50600337B3B /* Dependencies */ = {
+			isa = PBXGroup;
+			children = (
+				F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */,
+				F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */,
+				F3D9C97620BEFF220081830A /* CleanroomLogger.framework */,
+				F3D9C97220BEF0A50081830A /* Files.framework */,
+			);
+			name = Dependencies;
+			sourceTree = "<group>";
+		};
 /* End PBXGroup section */
 
 /* Begin PBXNativeTarget section */
@@ -168,6 +193,7 @@
 				F3D9C93F20BEC7460081830A /* Frameworks */,
 				F3D9C94020BEC7460081830A /* Resources */,
 				F3D9C97520BEF0A50081830A /* Embed Frameworks */,
+				F3EA77C421AEB45000337B3B /* CopyFiles */,
 			);
 			buildRules = (
 			);
@@ -185,11 +211,12 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Igor Kulman";
 				TargetAttributes = {
 					F3D9C94120BEC7460081830A = {
 						CreatedOnToolsVersion = 9.2;
+						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
 					};
 				};
@@ -271,6 +298,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -278,6 +306,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -328,6 +357,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -335,6 +365,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -379,7 +410,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sk.kulman.LocalizationEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Debug;
 		};
@@ -399,7 +430,7 @@
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks";
 				PRODUCT_BUNDLE_IDENTIFIER = sk.kulman.LocalizationEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
-				SWIFT_VERSION = 4.0;
+				SWIFT_VERSION = 4.2;
 			};
 			name = Release;
 		};
