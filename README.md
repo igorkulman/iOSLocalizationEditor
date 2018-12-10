@@ -15,11 +15,23 @@ All the translations are sorted by their key (shown as first column) and you can
 
 When you change any of the translation the corresponding `Localizable.strings` gets updated.
 
-## Requirements
+## Getting started
+
+### Prerequisites
 
 - Xcode 10.1+
 - [Carthage](https://github.com/Carthage/Carthage)
 
-## Getting started
+### Bootstraping the project
 
 Run `carthage bootstrap` to download and build all the Carthage dependencies before opening the Xcode project for the first time.
+
+This need to be done **just once** for the initial setup.
+
+## Author
+
+Igor Kulman - igor@kulman.sk
+
+## License
+
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
