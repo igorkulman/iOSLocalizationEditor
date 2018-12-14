@@ -54,8 +54,8 @@ class ViewController: NSViewController {
     }
 
     private func reloadData(with languages: [String], title: String?) {
-        let prefix = "LocalizationEditor"
-        view.window?.title = title.flatMap({ "\(prefix) [\($0)]" }) ?? prefix
+        let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
+        view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
 
         let columns = tableView.tableColumns
         columns.forEach {
