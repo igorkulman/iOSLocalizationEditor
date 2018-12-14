@@ -1,0 +1,84 @@
+included:
+    - LocalizationEditor
+
+disabled_rules:  
+    - line_length    
+    - force_try
+    - force_cast
+
+analyzer_rules:
+    - unused_import
+    - unused_private_declaration
+
+number_separator:
+    minimum_length: 7
+
+opt_in_rules:
+    - anyobject_protocol    
+    - closure_end_indentation
+    - closure_spacing
+    - collection_alignment
+    - contains_over_first_not_nil    
+    - empty_string
+    - empty_xctest_method
+    - explicit_init    
+    - fallthrough
+    - fatal_error_message        
+    - first_where
+    - identical_operands
+    - joined_default_parameter
+    - let_var_whitespace
+    - literal_expression_end_indentation
+    - lower_acl_than_parent
+    - nimble_operator
+    - number_separator
+    - object_literal
+    - operator_usage_whitespace
+    - overridden_super_call
+    - pattern_matching_keywords
+    - private_action
+    - private_outlet
+    - prohibited_interface_builder
+    - prohibited_super_call
+    - quick_discouraged_call
+    - quick_discouraged_focused_test
+    - quick_discouraged_pending_test
+    - redundant_nil_coalescing
+    - redundant_type_annotation
+    - single_test_class
+    - sorted_first_last
+    - sorted_imports
+    - static_operator    
+    - unneeded_parentheses_in_closure_argument    
+    - vertical_parameter_alignment_on_call
+    - yoda_condition    
+
+function_parameter_count:
+    warning: 8
+    error: 10
+
+large_tuple:
+    warning: 3
+custom_rules:
+    double_space: # from https://github.com/IBM-Swift/Package-Builder
+      include: "*.swift"
+      name: "Double space"
+      regex: '([a-z,A-Z] \s+)'
+      message: "Double space between keywords"
+      match_kinds: keyword
+      severity: warning
+    comments_space: # from https://github.com/brandenr/swiftlintconfig
+      name: "Space After Comment"
+      regex: '(^ *//\w+)'
+      message: "There should be a space after //"
+      severity: warning
+    empty_line_after_guard: # from https://github.com/brandenr/swiftlintconfig
+      name: "Empty Line After Guard"
+      regex: '(^ *guard[ a-zA-Z0-9=?.\(\),><!]*\{[ a-zA-Z0-9=?.\(\),><!]*\}\n *(?!(?:return|guard))\S+)'
+      message: "There should be an empty line after a guard"
+      severity: warning
+    unnecessary_type: # from https://github.com/brandenr/swiftlintconfig
+      name: "Unnecessary Type"
+      regex: '[ a-zA-Z0-9]*(?:let|var) [ a-zA-Z0-9]*: ([a-zA-Z0-9]*)[ ]*= \1'
+      message: "Type Definition Not Needed"
+      severity: warning

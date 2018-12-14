@@ -11,8 +11,8 @@ import Foundation
 class LocalizationGroup {
     let name: String
     let path: String
-    let localizations : [Localization]
-    
+    let localizations: [Localization]
+
     init(name: String, localizations: [Localization], path: String) {
         self.name = name
         self.localizations = localizations

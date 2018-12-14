@@ -10,11 +10,10 @@ import Cocoa
 import Foundation
 
 class LocalizationsDataSource: NSObject, NSTableViewDataSource {
-
     // MARK: - Properties
 
     private var localizationGroups: [LocalizationGroup] = []
-    private var selectedLocalizationGroup: LocalizationGroup? = nil
+    private var selectedLocalizationGroup: LocalizationGroup?
     private var localizations: [Localization] = []
     private var masterLocalization: Localization?
     private let localizationProvider = LocalizationProvider()
@@ -24,30 +23,29 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
 
     func load(folder: URL, onCompletion: @escaping ([String], String?, [LocalizationGroup]) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            
             self.localizationGroups = self.localizationProvider.getLocalizations(url: folder)
-            if let group = self.localizationGroups.filter({$0.name == "Localizable.strings" }).first ?? self.localizationGroups.first {
+            if let group = self.localizationGroups.first(where: { $0.name == "Localizable.strings" }) ?? self.localizationGroups.first {
                 let languages = self.select(group: group)
-                
+
                 DispatchQueue.main.async {
                     onCompletion(languages, self.selectedLocalizationGroup?.name, self.localizationGroups)
                 }
             }
         }
     }
-    
-    func select(name: String) -> [String]{
-        let group = self.localizationGroups.filter({$0.name == name}).first!
+
+    func select(name: String) -> [String] {
+        let group = localizationGroups.first(where: { $0.name == name })!
         return select(group: group)
     }
-    
-    func select(group: LocalizationGroup) -> [String]{
-        self.selectedLocalizationGroup = group
-        self.localizations = self.selectedLocalizationGroup?.localizations ?? []
-        self.numberOfKeys = self.localizations.map({ $0.translations.count }).max() ?? 0
-        self.masterLocalization = self.localizations.first(where: { $0.translations.count == self.numberOfKeys })
-        
-        return self.localizations.map({ $0.language })
+
+    func select(group: LocalizationGroup) -> [String] {
+        selectedLocalizationGroup = group
+        localizations = selectedLocalizationGroup?.localizations ?? []
+        numberOfKeys = localizations.map({ $0.translations.count }).max() ?? 0
+        masterLocalization = localizations.first(where: { $0.translations.count == self.numberOfKeys })
+
+        return localizations.map({ $0.language })
     }
 
     func getKey(row: Int) -> String? {
@@ -56,7 +54,7 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
 
     func getLocalization(language: String, row: Int) -> LocalizationString {
         guard let localization = localizations.first(where: { $0.language == language }), let masterLocalization = masterLocalization else {
-            fatalError()
+            fatalError("Could not get localization for \(language) or master localization not present")
         }
         return localization.translations.first(where: { $0.key == masterLocalization.translations[row].key }) ?? LocalizationString(key: masterLocalization.translations[row].key, value: "")
     }

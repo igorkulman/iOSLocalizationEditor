@@ -12,7 +12,7 @@ import Foundation
 
 class LocalizationProvider {
     private let ignoredDirectories = ["Carthage", "build", ".framework"]
-    
+
     func getLocalizations(url: URL) -> [LocalizationGroup] {
         Log.debug?.message("Searching \(url) for Localizable.strings")
 
@@ -21,19 +21,19 @@ class LocalizationProvider {
         }
 
         let localizationFiles = Dictionary(grouping: folder.makeFileSequence(recursive: true).filter { file in
-            return file.name.hasSuffix(".strings") && ignoredDirectories.map({file.path.contains("\($0)/")}).filter({$0}).count == 0
-        }, by: {$0.path.components(separatedBy:"/").filter({!$0.hasSuffix(".lproj")}).joined(separator:"/")})
-        
+            file.name.hasSuffix(".strings") && ignoredDirectories.map({ file.path.contains("\($0)/") }).filter({ $0 }).count == 0
+        }, by: { $0.path.components(separatedBy: "/").filter({ !$0.hasSuffix(".lproj") }).joined(separator: "/") })
+
         Log.debug?.message("Found \(localizationFiles) localization files")
-        
-        return localizationFiles.map({ (path, files) in
+
+        return localizationFiles.map({ path, files in
             let name = URL(fileURLWithPath: path).lastPathComponent
             return LocalizationGroup(name: name, localizations: files.map({ file in
                 let parts = file.path.split(separator: "/")
                 let lang = String(parts[parts.count - 2]).replacingOccurrences(of: ".lproj", with: "")
                 return Localization(language: lang, translations: getLocalizationStrings(path: file.path), path: file.path)
             }), path: path)
-        }).sorted(by: {$0.name < $1.name})
+        }).sorted(by: { $0.name < $1.name })
     }
 
     private func getLocalizationStrings(path: String) -> [LocalizationString] {
@@ -42,15 +42,15 @@ class LocalizationProvider {
             return []
         }
 
-        var strings: [LocalizationString] = []
+        var localizationStrings: [LocalizationString] = []
         for (key, value) in dict {
-            let s = LocalizationString(key: key, value: value)
-            strings.append(s)
+            let localizationString = LocalizationString(key: key, value: value)
+            localizationStrings.append(localizationString)
         }
 
-        Log.debug?.message("Found \(strings.count) keys for in \(path)")
+        Log.debug?.message("Found \(localizationStrings.count) keys for in \(path)")
 
-        return strings.sorted(by: { (lhs, rhs) -> Bool in
+        return localizationStrings.sorted(by: { lhs, rhs -> Bool in
             lhs.key < rhs.key
         })
     }
