@@ -21,16 +21,28 @@ When you change any of the translation the corresponding `Localizable.strings` g
 
 - Xcode 10.1+
 - [Carthage](https://github.com/Carthage/Carthage)
+- [SwiftLint](https://github.com/realm/SwiftLint) (only for contributing)
 
 ### Bootstraping the project
 
-Run `carthage bootstrap` to download and build all the Carthage dependencies before opening the Xcode project for the first time.
+Run 
 
-This need to be done **just once** for the initial setup.
+```bash
+sh ./bootstrap.sh
+```
+
+to download and build all the Carthage dependencies before opening the Xcode project for the first time. This need to be done **just once** for the initial setup.
+
+## Built With
+
+- [Files](https://github.com/JohnSundell/Files) - A nicer way to handle files & folders in Swift 
+- [CleanroomLogger](https://github.com/emaloney/CleanroomLogger) - CleanroomLogger provides an extensible Swift-based logging API that is simple, lightweight and performant 
 
 ## Author
 
-Igor Kulman - igor@kulman.sk
+- **Igor Kulman** - *Initial work* - igor@kulman.sk
+
+See also the list of [contributors](https://github.com/igorkulman/iOSLocalizationEditor/contributors) who participated in this project.
 
 ## License
 
