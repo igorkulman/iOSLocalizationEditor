@@ -6,61 +6,110 @@
 //  Copyright © 2018 Igor Kulman. All rights reserved.
 //
 
+import CleanroomLogger
 import Cocoa
 import Foundation
 
-class LocalizationsDataSource: NSObject, NSTableViewDataSource {
+typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 
+/**
+ Data source for the NSTableView with localizations
+ */
+class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     // MARK: - Properties
 
     private var localizationGroups: [LocalizationGroup] = []
-    private var selectedLocalizationGroup: LocalizationGroup? = nil
+    private var selectedLocalizationGroup: LocalizationGroup?
     private var localizations: [Localization] = []
     private var masterLocalization: Localization?
     private let localizationProvider = LocalizationProvider()
     private var numberOfKeys = 0
 
-    // MARK: - Action
+    // MARK: - Actions
 
-    func load(folder: URL, onCompletion: @escaping ([String], String?, [LocalizationGroup]) -> Void) {
+    /**
+     Loads data for directory at given path
+
+     - Parameter folder: directory path to start the search
+     - Parameter onCompletion: callback with data
+     */
+    func load(folder: URL, onCompletion: @escaping (LocalizationsDataSourceData) -> Void) {
         DispatchQueue.global(qos: .background).async {
-            
-            self.localizationGroups = self.localizationProvider.getLocalizations(url: folder)
-            if let group = self.localizationGroups.filter({$0.name == "Localizable.strings" }).first ?? self.localizationGroups.first {
-                let languages = self.select(group: group)
-                
+            let localizationGroups = self.localizationProvider.getLocalizations(url: folder)
+            guard localizationGroups.count > 0, let group = localizationGroups.first(where: { $0.name == "Localizable.strings" }) ?? localizationGroups.first else {
+                Log.error?.message("No localization data found")
                 DispatchQueue.main.async {
-                    onCompletion(languages, self.selectedLocalizationGroup?.name, self.localizationGroups)
+                    onCompletion(([], nil, []))
                 }
+                return
+            }
+
+            self.localizationGroups = localizationGroups
+            self.selectedLocalizationGroup = group
+            let languages = self.getLanguages(for: group)
+
+            DispatchQueue.main.async {
+                onCompletion((languages, group.name, localizationGroups))
             }
         }
     }
-    
-    func select(name: String) -> [String]{
-        let group = self.localizationGroups.filter({$0.name == name}).first!
-        return select(group: group)
-    }
-    
-    func select(group: LocalizationGroup) -> [String]{
-        self.selectedLocalizationGroup = group
-        self.localizations = self.selectedLocalizationGroup?.localizations ?? []
-        self.numberOfKeys = self.localizations.map({ $0.translations.count }).max() ?? 0
-        self.masterLocalization = self.localizations.first(where: { $0.translations.count == self.numberOfKeys })
-        
-        return self.localizations.map({ $0.language })
+
+    /**
+     Gets available languges for given group
+
+     - Parameter group: group name
+     - Returns: array of languages
+     */
+    func getLanguages(for group: String) -> [String] {
+        let group = localizationGroups.first(where: { $0.name == group })!
+        return getLanguages(for: group)
     }
 
+    /**
+     Gets available languges for given group
+
+     - Parameter group: localization group
+     - Returns: array of languages
+     */
+    private func getLanguages(for group: LocalizationGroup) -> [String] {
+        localizations = selectedLocalizationGroup?.localizations ?? []
+        numberOfKeys = localizations.map({ $0.translations.count }).max() ?? 0
+        masterLocalization = localizations.first(where: { $0.translations.count == numberOfKeys })
+
+        return localizations.map({ $0.language })
+    }
+
+    /**
+     Gets key for speficied row
+
+     - Parameter row: row number
+     - Returns: key if valid
+     */
     func getKey(row: Int) -> String? {
         return (row < masterLocalization?.translations.count ?? 0) ? masterLocalization?.translations[row].key : nil
     }
 
+    /**
+     Gets localization for specified language and row. The language should be always valid. The localization might be missing, returning it with empty value in that case
+
+     - Parameter language: language to get the localization for
+     - Parameter row: row number
+     - Returns: localiyation string
+     */
     func getLocalization(language: String, row: Int) -> LocalizationString {
         guard let localization = localizations.first(where: { $0.language == language }), let masterLocalization = masterLocalization else {
-            fatalError()
+            fatalError("Could not get localization for \(language) or master localization not present")
         }
         return localization.translations.first(where: { $0.key == masterLocalization.translations[row].key }) ?? LocalizationString(key: masterLocalization.translations[row].key, value: "")
     }
 
+    /**
+     Updates given localization values in given language
+
+     - Parameter language: language to update
+     - Parameter string: localization string
+     - Parameter value: new value for the localization string
+     */
     func updateLocalization(language: String, string: LocalizationString, with value: String) {
         guard let localization = localizations.first(where: { $0.language == language }) else {
             return

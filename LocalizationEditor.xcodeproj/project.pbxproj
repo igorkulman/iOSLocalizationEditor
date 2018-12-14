@@ -189,6 +189,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3D9C95220BEC7460081830A /* Build configuration list for PBXNativeTarget "LocalizationEditor" */;
 			buildPhases = (
+				F3BC11A421C40FAC001F396F /* SwiftLint */,
 				F3D9C93E20BEC7460081830A /* Sources */,
 				F3D9C93F20BEC7460081830A /* Frameworks */,
 				F3D9C94020BEC7460081830A /* Resources */,
@@ -252,6 +253,27 @@
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		F3BC11A421C40FAC001F396F /* SwiftLint */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = SwiftLint;
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		F3D9C93E20BEC7460081830A /* Sources */ = {

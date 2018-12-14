@@ -9,7 +9,6 @@
 import Cocoa
 
 class ViewController: NSViewController {
-
     // MARK: - Outlets
 
     @IBOutlet private weak var tableView: NSTableView!
@@ -33,7 +32,7 @@ class ViewController: NSViewController {
     private func setupMenu() {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         appDelegate.openFolderMenuItem.action = #selector(ViewController.openAction(sender:))
-        selectButton.menu?.removeAllItems();
+        selectButton.menu?.removeAllItems()
         selectButton.menu?.addItem(defaultSelectItem)
     }
 
@@ -48,15 +47,15 @@ class ViewController: NSViewController {
         tableView.dataSource = dataSource
         tableView.allowsColumnResizing = true
     }
-    
-    private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]){
+
+    private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
         selectButton.menu?.removeAllItems()
-        files.map({NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "")}).forEach({selectButton.menu?.addItem($0)})
+        files.map({ NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "") }).forEach({ selectButton.menu?.addItem($0) })
     }
 
     private func reloadData(with languages: [String], title: String?) {
-        let prefix = "LocalizationEditor"
-        self.view.window?.title = title.flatMap({"\(prefix) [\($0)]"}) ?? prefix // TODO
+        let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
+        view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
 
         let columns = tableView.tableColumns
         columns.forEach {
@@ -74,7 +73,7 @@ class ViewController: NSViewController {
         }
 
         tableView.reloadData()
-        
+
         // Also resize the columns:
         tableView.sizeToFit()
     }
@@ -82,43 +81,44 @@ class ViewController: NSViewController {
     private func emojiFlag(countryCode: String) -> String {
         var string = ""
         var country = countryCode.uppercased()
-        for uS in country.unicodeScalars {
-            if let scalar = UnicodeScalar(127_397 + uS.value) {
+        for unicodeScalar in country.unicodeScalars {
+            if let scalar = UnicodeScalar(127397 + unicodeScalar.value) {
                 string.append(String(scalar))
             }
         }
         return string
     }
-    
-    @IBAction @objc func selectAction(sender: NSMenuItem) {
-        let title = sender.title
-        let languages = self.dataSource.select(name: title)
 
-        self.reloadData(with: languages, title:title)
+    // MARK: - Actions
+
+    @IBAction @objc private func selectAction(sender: NSMenuItem) {
+        let groupName = sender.title
+        let languages = dataSource.getLanguages(for: groupName)
+
+        reloadData(with: languages, title: title)
     }
 
-    @IBAction @objc func openAction(sender _: NSMenuItem) {
+    @IBAction @objc private func openAction(sender _: NSMenuItem) {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = true
         openPanel.canCreateDirectories = true
         openPanel.canChooseFiles = false
-        openPanel.begin { [unowned self] (result) -> Void in
-            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
-                if let url = openPanel.url {
-                    self.progressIndicator.startAnimation(self)
-                    self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
-                        self.reloadData(with: languages, title:title)
-                        self.progressIndicator.stopAnimation(self)
+        openPanel.begin { [unowned self] result -> Void in
+            guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
+                return
+            }
 
-                        if let title = title{
-                            self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
-                            self.selectButton.selectItem(at: self.selectButton.indexOfItem(withTitle: title))
-                        }
-                        else {
-                            self.setupMenu()
-                        }
-                    }
+            self.progressIndicator.startAnimation(self)
+            self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
+                self.reloadData(with: languages, title: title)
+                self.progressIndicator.stopAnimation(self)
+
+                if let title = title {
+                    self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
+                    self.selectButton.selectItem(at: self.selectButton.indexOfItem(withTitle: title))
+                } else {
+                    self.setupMenu()
                 }
             }
         }

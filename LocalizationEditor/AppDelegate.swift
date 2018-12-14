@@ -17,8 +17,7 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         setupLogging()
     }
 
-    func applicationWillTerminate(_: Notification) {
-    }
+    func applicationWillTerminate(_: Notification) {}
 
     private func setupLogging() {
         var configs = [LogConfiguration]()

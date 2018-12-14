@@ -8,12 +8,11 @@
 
 import Cocoa
 
-protocol LocalizationCellDelegate: class {
+protocol LocalizationCellDelegate: AnyObject {
     func userDidUpdateLocalizationString(language: String, string: LocalizationString, with value: String)
 }
 
 class LocalizationCell: NSTableCellView {
-
     // MARK: - Outlets
 
     @IBOutlet private weak var valueTextField: NSTextField!
@@ -33,6 +32,8 @@ class LocalizationCell: NSTableCellView {
         }
     }
 }
+
+// MARK: - Delegate
 
 extension LocalizationCell: NSTextFieldDelegate {
     func controlTextDidEndEditing(_: Notification) {
