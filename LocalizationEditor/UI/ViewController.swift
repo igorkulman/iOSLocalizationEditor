@@ -46,6 +46,7 @@ class ViewController: NSViewController {
 
         tableView.delegate = self
         tableView.dataSource = dataSource
+        tableView.allowsColumnResizing = true
     }
     
     private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]){
@@ -73,6 +74,9 @@ class ViewController: NSViewController {
         }
 
         tableView.reloadData()
+        
+        // Also resize the columns:
+        tableView.sizeToFit()
     }
 
     private func emojiFlag(countryCode: String) -> String {
