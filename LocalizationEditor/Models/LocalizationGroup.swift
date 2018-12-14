@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Group of localizations, like Localizabe.strings, InfoPlist.strings, etc.
+ */
 class LocalizationGroup {
     let name: String
     let path: String
@@ -19,6 +22,8 @@ class LocalizationGroup {
         self.path = path
     }
 }
+
+// MARK: Description
 
 extension LocalizationGroup: CustomStringConvertible {
     var description: String {

@@ -33,6 +33,8 @@ class LocalizationCell: NSTableCellView {
     }
 }
 
+// MARK: - Delegate
+
 extension LocalizationCell: NSTextFieldDelegate {
     func controlTextDidEndEditing(_: Notification) {
         guard let language = language, let value = value else {

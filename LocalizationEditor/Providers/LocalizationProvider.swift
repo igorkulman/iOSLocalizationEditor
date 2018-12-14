@@ -10,9 +10,54 @@ import CleanroomLogger
 import Files
 import Foundation
 
+/**
+Service for working with the strings files
+ */
 class LocalizationProvider {
+    /**
+     List of folder that should be ignored when searching for localization files
+     */
     private let ignoredDirectories = ["Pods", "Carthage", "build", ".framework"]
 
+    // MARK: Actions
+
+    /**
+     Updates given localization values in given localization file. Basially regenerates the whole localization files chagning the given value
+
+     - Parameter localization: localization to update
+     - Parameter string: localization string
+     - Parameter value: new value for the localization string
+     */
+    func updateLocalization(localization: Localization, string: LocalizationString, with value: String) {
+        guard string.value != value else {
+            Log.debug?.message("Same value provided for \(string)")
+            return
+        }
+
+        Log.debug?.message("Updating \(string) with \(value) in \(localization)")
+
+        string.update(value: value)
+
+        let data = localization.translations.map { string in
+            "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
+        }.reduce("") { prev, next in
+                "\(prev)\n\(next)"
+        }
+
+        do {
+            try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
+            Log.debug?.message("Localization file for \(localization) updated")
+        } catch {
+            Log.error?.message("Writing localization file for \(localization) failed with \(error)")
+        }
+    }
+
+    /**
+     Finds and constructs localiations for given directory path
+
+     - Parameter url: diretcory URL to start the search
+     - Returns: list of localization groups
+     */
     func getLocalizations(url: URL) -> [LocalizationGroup] {
         Log.debug?.message("Searching \(url) for Localizable.strings")
 
@@ -24,7 +69,7 @@ class LocalizationProvider {
             file.name.hasSuffix(".strings") && ignoredDirectories.map({ file.path.contains("\($0)/") }).filter({ $0 }).count == 0
         }, by: { $0.path.components(separatedBy: "/").filter({ !$0.hasSuffix(".lproj") }).joined(separator: "/") })
 
-        Log.debug?.message("Found \(localizationFiles) localization files")
+        Log.debug?.message("Found \(localizationFiles.count) localization files")
 
         return localizationFiles.map({ path, files in
             let name = URL(fileURLWithPath: path).lastPathComponent
@@ -36,6 +81,14 @@ class LocalizationProvider {
         }).sorted(by: { $0.name < $1.name })
     }
 
+    // MARK: Internal implementation
+
+    /**
+     Reads given strings file and constructs an array of localization strings from it
+
+     - Parameter path: strings file path
+     - Returns: array of localization strings
+     */
     private func getLocalizationStrings(path: String) -> [LocalizationString] {
         guard let dict = NSDictionary(contentsOfFile: path) as? [String: String] else {
             Log.error?.message("Could not parse \(path) as dictionary")
@@ -53,29 +106,5 @@ class LocalizationProvider {
         return localizationStrings.sorted(by: { lhs, rhs -> Bool in
             lhs.key < rhs.key
         })
-    }
-
-    func updateLocalization(localization: Localization, string: LocalizationString, with value: String) {
-        guard string.value != value else {
-            Log.debug?.message("Same value provided for \(string)")
-            return
-        }
-
-        Log.debug?.message("Updating \(string) with \(value) in \(localization)")
-
-        string.update(value: value)
-
-        let data = localization.translations.map { string in
-            "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
-        }.reduce("") { prev, next in
-            "\(prev)\n\(next)"
-        }
-
-        do {
-            try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
-            Log.debug?.message("Localization file for \(localization) updated")
-        } catch {
-            Log.error?.message("Writing localization file for \(localization) failed with \(error)")
-        }
     }
 }

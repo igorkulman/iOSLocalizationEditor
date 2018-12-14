@@ -8,6 +8,9 @@
 
 import Foundation
 
+/**
+Complete localization for a single language. Represents a single strings file for a single language
+ */
 class Localization {
     let language: String
     let translations: [LocalizationString]
@@ -19,6 +22,8 @@ class Localization {
         self.path = path
     }
 }
+
+// MARK: Description
 
 extension Localization: CustomStringConvertible {
     var description: String {

@@ -9,6 +9,9 @@
 import Cocoa
 import Foundation
 
+/**
+ Data source for the NSTableView with localizations
+ */
 class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     // MARK: - Properties
 
@@ -19,7 +22,7 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     private let localizationProvider = LocalizationProvider()
     private var numberOfKeys = 0
 
-    // MARK: - Action
+    // MARK: - Actions
 
     func load(folder: URL, onCompletion: @escaping ([String], String?, [LocalizationGroup]) -> Void) {
         DispatchQueue.global(qos: .background).async {
