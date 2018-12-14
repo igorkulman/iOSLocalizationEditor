@@ -22,7 +22,7 @@ class LocalizationProvider {
     // MARK: Actions
 
     /**
-     Updates given localization values in given localization file. Basially regenerates the whole localization files chagning the given value
+     Updates given localization values in given localization file. Basially regenerates the whole localization files changing the given value
 
      - Parameter localization: localization to update
      - Parameter string: localization string
