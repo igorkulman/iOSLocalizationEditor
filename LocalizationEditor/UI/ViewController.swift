@@ -89,6 +89,8 @@ class ViewController: NSViewController {
         return string
     }
 
+    // MARK: - Actions
+
     @IBAction @objc private func selectAction(sender: NSMenuItem) {
         let title = sender.title
         let languages = dataSource.select(name: title)
@@ -103,20 +105,20 @@ class ViewController: NSViewController {
         openPanel.canCreateDirectories = true
         openPanel.canChooseFiles = false
         openPanel.begin { [unowned self] result -> Void in
-            if result.rawValue == NSApplication.ModalResponse.OK.rawValue {
-                if let url = openPanel.url {
-                    self.progressIndicator.startAnimation(self)
-                    self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
-                        self.reloadData(with: languages, title: title)
-                        self.progressIndicator.stopAnimation(self)
+            guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
+                return
+            }
 
-                        if let title = title {
-                            self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
-                            self.selectButton.selectItem(at: self.selectButton.indexOfItem(withTitle: title))
-                        } else {
-                            self.setupMenu()
-                        }
-                    }
+            self.progressIndicator.startAnimation(self)
+            self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
+                self.reloadData(with: languages, title: title)
+                self.progressIndicator.stopAnimation(self)
+
+                if let title = title {
+                    self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
+                    self.selectButton.selectItem(at: self.selectButton.indexOfItem(withTitle: title))
+                } else {
+                    self.setupMenu()
                 }
             }
         }
