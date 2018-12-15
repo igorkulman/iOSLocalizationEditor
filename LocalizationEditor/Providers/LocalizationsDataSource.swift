@@ -88,6 +88,9 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     func getKey(row: Int) -> String? {
         return (row < masterLocalization?.translations.count ?? 0) ? masterLocalization?.translations[row].key : nil
     }
+    func getMessage(row: Int) -> String? {
+        return (row < masterLocalization?.translations.count ?? 0) ? masterLocalization?.translations[row].message : nil
+    }
 
     /**
      Gets localization for specified language and row. The language should be always valid. The localization might be missing, returning it with empty value in that case
@@ -100,7 +103,7 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
         guard let localization = localizations.first(where: { $0.language == language }), let masterLocalization = masterLocalization else {
             fatalError("Could not get localization for \(language) or master localization not present")
         }
-        return localization.translations.first(where: { $0.key == masterLocalization.translations[row].key }) ?? LocalizationString(key: masterLocalization.translations[row].key, value: "")
+        return localization.translations.first(where: { $0.key == masterLocalization.translations[row].key }) ?? LocalizationString(key: masterLocalization.translations[row].key, value: "", message: "message")
     }
 
     /**

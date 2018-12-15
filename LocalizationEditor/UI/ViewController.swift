@@ -46,6 +46,8 @@ class ViewController: NSViewController {
         tableView.delegate = self
         tableView.dataSource = dataSource
         tableView.allowsColumnResizing = true
+        tableView.usesAutomaticRowHeights = true
+        
     }
 
     private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
@@ -69,6 +71,8 @@ class ViewController: NSViewController {
         languages.forEach { language in
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(language))
             column.title = language == "Base" ? language : "\(emojiFlag(countryCode: language)) \(language.uppercased())"
+            column.maxWidth = 460
+            column.minWidth = 50
             self.tableView.addTableColumn(column)
         }
 
@@ -137,6 +141,7 @@ extension ViewController: NSTableViewDelegate {
         case "key":
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: KeyCell.identifier), owner: self)! as! KeyCell
             cell.key = dataSource.getKey(row: row)
+            cell.message = dataSource.getMessage(row: row)
             return cell
         default:
             let language = identifier.rawValue

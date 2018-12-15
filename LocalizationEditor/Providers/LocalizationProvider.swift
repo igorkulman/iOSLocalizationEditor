@@ -90,21 +90,124 @@ class LocalizationProvider {
      - Returns: array of localization strings
      */
     private func getLocalizationStrings(path: String) -> [LocalizationString] {
-        guard let dict = NSDictionary(contentsOfFile: path) as? [String: String] else {
-            Log.error?.message("Could not parse \(path) as dictionary")
+        
+        // Patterns for searching for key, value and message:
+        let patternComments = "\\*([^*]|[\\r\\n]|(\\*+([^*/]|[\\r\\n])))*\\*+"
+        let patternKeyValueMatching = "([\"])(?:(?=(\\\\?))\\2.)*?\\1"
+
+        // Read the input as string in oder to apply regex matching to it.
+        guard let contentOfFileAsString = try? String(contentsOfFile: path) else {
+            Log.error?.message("Could not parse \(path) as String")
             return []
         }
-
-        var localizationStrings: [LocalizationString] = []
-        for (key, value) in dict {
-            let localizationString = LocalizationString(key: key, value: value)
-            localizationStrings.append(localizationString)
+        // Regex for searching messages.
+        let regexMessages = try! NSRegularExpression(pattern: patternComments, options: [.caseInsensitive])
+        // Regex for searching keys and values.
+        let regexKeysAndValues = try! NSRegularExpression(pattern: patternKeyValueMatching, options: [.caseInsensitive])
+        
+        // Executing the regex:
+        let messagesMatching = regexMessages.matches(in: contentOfFileAsString, options: [], range: NSRange(location: 0, length: contentOfFileAsString.count))
+        let keyAndValueMatching = regexKeysAndValues.matches(in: contentOfFileAsString, options: [], range: NSRange(location: 0, length: contentOfFileAsString.count))
+        
+        // Extract the actual keys and comments from the matching regex-range
+        let keysAndComments = keyAndValueMatching.map { (match) -> String in
+            let range = Range(match.range, in: contentOfFileAsString)!
+            return String(contentOfFileAsString[range])
         }
+        
+        // Assuming that the first element (key) corresponds to the second element (value). Therefore, the every other element acts as the value.
+        let keys = keysAndComments.enumerated().filter { (index, _) -> Bool in
+            return index % 2 == 0
+        }
+        let values = keysAndComments.enumerated().filter { (index, _) -> Bool in
+            return index % 2 != 0
+        }
+        
+        // Will store the extraction results as LocalizationString
+        var localizationStrings: [LocalizationString] = []
+        
+        
+        /// This function removes the first and last character that may be still present as an artifact of the regex matching.
+        ///
+        /// - Parameter input: The string which first and last character should be removed.
+        /// - Returns: The input without first and last character.
+        func removeRegexBoundingCharacters(from input: String) -> String {
+            return String(input.dropFirst().dropLast())
+        }
+        
+        
+        /// This function sorts the input according to the contained keys. Apply this function before an array is returned.
+        ///
+        /// - Parameter input: The array that should be sorted.
+        /// - Returns: The sorted array, ready to be returned.
+        func sort(_ input: [LocalizationString]) -> [LocalizationString] {
+            return input.sorted(by: { lhs, rhs -> Bool in
+                lhs.key < rhs.key
+            })
+        }
+        
+        // Check if the number of keys match the number of values:
+        guard keys.count == values.count else {
+            
+            // Oh no, the number of keys and values do not match! Fall back to the old and automatic extraction method:
+            if let dict = NSDictionary(contentsOfFile: path) as? [String: String] {
+                
+                var localizationStrings: [LocalizationString] = []
+                for (key, value) in dict {
+                    let localizationString = LocalizationString(key: key, value: value, message: nil)
+                    localizationStrings.append(localizationString)
+                }
+                Log.debug?.message("Found \(localizationStrings.count) keys for in \(path)")
+                
+                return sort(localizationStrings)
+            }
+            else {
+                Log.error?.message("Could not parse \(path) as String")
+                return []
+            }
+        }
+        
+        // Check if a valid number of comments were extracted. That is the case if the number matches the number of keys.
+        if messagesMatching.count == keys.count {
+            // Comments matching keys
+            
+            // It seems like that every key got one message. We can assume that a comment corresponds to a key.
+            
+            // Will store the extracted messages
+            var messages: [String] = .init()
+            
+            // Extract the message as strings:
+            messages = messagesMatching.map { (match) -> String in
+                let range = Range(match.range, in: contentOfFileAsString)!
+                return String(contentOfFileAsString[range])
+            }
+            
+            // Create the return of the function:
+            // As many keys as values as messages, so one index is enough
+            for i in 0..<keys.count {
+                let key = removeRegexBoundingCharacters(from: keys[i].element)
+                let value = removeRegexBoundingCharacters(from: values[i].element)
+                let message = removeRegexBoundingCharacters(from: messages[i])
+                
+                let localizationString = LocalizationString(key: key, value: value, message: message)
+                localizationStrings.append(localizationString)
+            }
+        }
+        else {
+            
+            //Comments NOT matching keys. Discard messages and only use keys and values.
+            for (key, value) in zip(keys, values) {
 
+                let key = removeRegexBoundingCharacters(from: key.element)
+                let value = removeRegexBoundingCharacters(from: value.element)
+                
+                let localizationString = LocalizationString(key: key, value: value, message: nil)
+                localizationStrings.append(localizationString)
+            }
+        }
+        
         Log.debug?.message("Found \(localizationStrings.count) keys for in \(path)")
 
-        return localizationStrings.sorted(by: { lhs, rhs -> Bool in
-            lhs.key < rhs.key
-        })
+        return sort(localizationStrings)
     }
 }

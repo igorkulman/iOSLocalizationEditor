@@ -14,10 +14,12 @@ import Foundation
 class LocalizationString {
     let key: String
     private(set) var value: String
+    private (set) var message: String?
 
-    init(key: String, value: String) {
+    init(key: String, value: String, message: String?) {
         self.key = key
         self.value = value
+        self.message = message
     }
 
     /**
