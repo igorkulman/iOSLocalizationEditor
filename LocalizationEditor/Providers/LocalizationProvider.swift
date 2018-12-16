@@ -25,20 +25,23 @@ class LocalizationProvider {
      Updates given localization values in given localization file. Basially regenerates the whole localization files changing the given value
 
      - Parameter localization: localization to update
-     - Parameter string: localization string
+     - Parameter key: localization string key
      - Parameter value: new value for the localization string
      */
-    func updateLocalization(localization: Localization, string: LocalizationString, with value: String) {
-        guard string.value != value else {
-            Log.debug?.message("Same value provided for \(string)")
+    func updateLocalization(localization: Localization, key: String, with value: String) {
+        if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value {
+            Log.debug?.message("Same value provided for \(existing), not updating")
             return
         }
 
-        Log.debug?.message("Updating \(string) with \(value) in \(localization)")
+        let unchangedStrings = localization.translations.filter({ $0.key != key })
+        let updatedString = LocalizationString(key: key, value: value)
 
-        string.update(value: value)
+        Log.debug?.message("Updating \(updatedString) in \(localization)")
 
-        let data = localization.translations.map { string in
+        let translations = (unchangedStrings + [updatedString]).sorted(by: { $0.key < $1.key })
+
+        let data = translations.map { string in
             "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
         }.reduce("") { prev, next in
                 "\(prev)\n\(next)"
