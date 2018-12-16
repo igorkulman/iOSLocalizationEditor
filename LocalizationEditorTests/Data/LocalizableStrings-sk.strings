@@ -1,0 +1,26 @@
+/*
+ Localizable.strings
+ iOSSampleApp
+
+ Created by Igor Kulman on 03/10/2017.
+ Copyright © 2017 Igor Kulman. All rights reserved.
+ */
+
+"select_source" = "Vybrať zdroj";
+"done" = "Hotovo";
+"add_custom" = "Pridať vlastný";
+"add_custom_source" = "Pridať vlastný zdroj";
+"url" = "Url";
+"title" = "Názov";
+"logo_url" = "URL loga";
+"rss_url" = "URL RSS";
+"optional" = "Voliteľné";
+"feed" = "Feed";
+"pull_to_refresh" = "Aktualizujte potiahnutím";
+"bad_url" = "Neplatná URL pre RSS";
+"network_problem" = "Chyba pripojenia";
+"back" = "Späť";
+"about" = "O aplikácii";
+"author" = "O autorovi";
+"blog" = "Autorov blog";
+"libraries" = "Použité knižnice";

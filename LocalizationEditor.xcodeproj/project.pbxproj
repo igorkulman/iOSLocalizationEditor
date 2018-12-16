@@ -24,9 +24,26 @@
 		F3D9C97420BEF0A50081830A /* Files.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97220BEF0A50081830A /* Files.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3D9C97720BEFF230081830A /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97620BEFF220081830A /* CleanroomLogger.framework */; };
 		F3D9C97820BEFF230081830A /* CleanroomLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97620BEFF220081830A /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
+		F3DF02CE21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DF02CD21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift */; };
+		F3DF02E021C6633500CEC6B6 /* LocalizableStrings-en.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3DF02DF21C6633500CEC6B6 /* LocalizableStrings-en.strings */; };
+		F3DF02E221C6634B00CEC6B6 /* LocalizableStrings-sk.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3DF02E121C6634B00CEC6B6 /* LocalizableStrings-sk.strings */; };
+		F3DF02E421C6654900CEC6B6 /* TestFile.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DF02E321C6654900CEC6B6 /* TestFile.swift */; };
+		F3DF02E621C6675000CEC6B6 /* LocalizableStrings-sk-missing.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3DF02E521C6675000CEC6B6 /* LocalizableStrings-sk-missing.strings */; };
+		F3DF02E821C668B600CEC6B6 /* InfoPList-en.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3DF02E721C668B600CEC6B6 /* InfoPList-en.strings */; };
+		F3DF02EA21C668C400CEC6B6 /* InfoPList-sk.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3DF02E921C668C400CEC6B6 /* InfoPList-sk.strings */; };
 		F3EA77C721AEB4DC00337B3B /* CleanroomLogger.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */; };
 		F3EA77C821AEB4DC00337B3B /* Files.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */; };
 /* End PBXBuildFile section */
+
+/* Begin PBXContainerItemProxy section */
+		F3DF02D021C65F6800CEC6B6 /* PBXContainerItemProxy */ = {
+			isa = PBXContainerItemProxy;
+			containerPortal = F3D9C93A20BEC7460081830A /* Project object */;
+			proxyType = 1;
+			remoteGlobalIDString = F3D9C94120BEC7460081830A;
+			remoteInfo = LocalizationEditor;
+		};
+/* End PBXContainerItemProxy section */
 
 /* Begin PBXCopyFilesBuildPhase section */
 		F3D9C97520BEF0A50081830A /* Embed Frameworks */ = {
@@ -74,6 +91,15 @@
 		F3D9C97020BEF0740081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
 		F3D9C97220BEF0A50081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = ../Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
 		F3D9C97620BEFF220081830A /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = ../Carthage/Build/Mac/CleanroomLogger.framework; sourceTree = "<group>"; };
+		F3DF02CB21C65F6800CEC6B6 /* LocalizationEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizationEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
+		F3DF02CD21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProviderParsingTests.swift; sourceTree = "<group>"; };
+		F3DF02CF21C65F6800CEC6B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
+		F3DF02DF21C6633500CEC6B6 /* LocalizableStrings-en.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "LocalizableStrings-en.strings"; sourceTree = "<group>"; };
+		F3DF02E121C6634B00CEC6B6 /* LocalizableStrings-sk.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "LocalizableStrings-sk.strings"; sourceTree = "<group>"; };
+		F3DF02E321C6654900CEC6B6 /* TestFile.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = TestFile.swift; sourceTree = "<group>"; };
+		F3DF02E521C6675000CEC6B6 /* LocalizableStrings-sk-missing.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "LocalizableStrings-sk-missing.strings"; sourceTree = "<group>"; };
+		F3DF02E721C668B600CEC6B6 /* InfoPList-en.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "InfoPList-en.strings"; sourceTree = "<group>"; };
+		F3DF02E921C668C400CEC6B6 /* InfoPList-sk.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = "InfoPList-sk.strings"; sourceTree = "<group>"; };
 		F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CleanroomLogger.framework.dSYM; path = ../Carthage/Build/Mac/CleanroomLogger.framework.dSYM; sourceTree = "<group>"; };
 		F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Files.framework.dSYM; path = ../Carthage/Build/Mac/Files.framework.dSYM; sourceTree = "<group>"; };
 /* End PBXFileReference section */
@@ -88,6 +114,13 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F3DF02C821C65F6800CEC6B6 /* Frameworks */ = {
+			isa = PBXFrameworksBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
@@ -95,6 +128,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D9C94420BEC7460081830A /* LocalizationEditor */,
+				F3DF02CC21C65F6800CEC6B6 /* LocalizationEditorTests */,
 				F3D9C94320BEC7460081830A /* Products */,
 				F3D9C96F20BEF0730081830A /* Frameworks */,
 			);
@@ -104,6 +138,7 @@
 			isa = PBXGroup;
 			children = (
 				F3D9C94220BEC7460081830A /* LocalizationEditor.app */,
+				F3DF02CB21C65F6800CEC6B6 /* LocalizationEditorTests.xctest */,
 			);
 			name = Products;
 			sourceTree = "<group>";
@@ -171,6 +206,29 @@
 			name = Frameworks;
 			sourceTree = "<group>";
 		};
+		F3DF02CC21C65F6800CEC6B6 /* LocalizationEditorTests */ = {
+			isa = PBXGroup;
+			children = (
+				F3DF02D621C65F8300CEC6B6 /* Data */,
+				F3DF02CD21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift */,
+				F3DF02CF21C65F6800CEC6B6 /* Info.plist */,
+				F3DF02E321C6654900CEC6B6 /* TestFile.swift */,
+			);
+			path = LocalizationEditorTests;
+			sourceTree = "<group>";
+		};
+		F3DF02D621C65F8300CEC6B6 /* Data */ = {
+			isa = PBXGroup;
+			children = (
+				F3DF02DF21C6633500CEC6B6 /* LocalizableStrings-en.strings */,
+				F3DF02E121C6634B00CEC6B6 /* LocalizableStrings-sk.strings */,
+				F3DF02E521C6675000CEC6B6 /* LocalizableStrings-sk-missing.strings */,
+				F3DF02E721C668B600CEC6B6 /* InfoPList-en.strings */,
+				F3DF02E921C668C400CEC6B6 /* InfoPList-sk.strings */,
+			);
+			path = Data;
+			sourceTree = "<group>";
+		};
 		F3EA77C921AEB50600337B3B /* Dependencies */ = {
 			isa = PBXGroup;
 			children = (
@@ -205,13 +263,31 @@
 			productReference = F3D9C94220BEC7460081830A /* LocalizationEditor.app */;
 			productType = "com.apple.product-type.application";
 		};
+		F3DF02CA21C65F6800CEC6B6 /* LocalizationEditorTests */ = {
+			isa = PBXNativeTarget;
+			buildConfigurationList = F3DF02D421C65F6800CEC6B6 /* Build configuration list for PBXNativeTarget "LocalizationEditorTests" */;
+			buildPhases = (
+				F3DF02C721C65F6800CEC6B6 /* Sources */,
+				F3DF02C821C65F6800CEC6B6 /* Frameworks */,
+				F3DF02C921C65F6800CEC6B6 /* Resources */,
+			);
+			buildRules = (
+			);
+			dependencies = (
+				F3DF02D121C65F6800CEC6B6 /* PBXTargetDependency */,
+			);
+			name = LocalizationEditorTests;
+			productName = LocalizationEditorTests;
+			productReference = F3DF02CB21C65F6800CEC6B6 /* LocalizationEditorTests.xctest */;
+			productType = "com.apple.product-type.bundle.unit-test";
+		};
 /* End PBXNativeTarget section */
 
 /* Begin PBXProject section */
 		F3D9C93A20BEC7460081830A /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
-				LastSwiftUpdateCheck = 0920;
+				LastSwiftUpdateCheck = 1010;
 				LastUpgradeCheck = 1010;
 				ORGANIZATIONNAME = "Igor Kulman";
 				TargetAttributes = {
@@ -219,6 +295,11 @@
 						CreatedOnToolsVersion = 9.2;
 						LastSwiftMigration = 1010;
 						ProvisioningStyle = Automatic;
+					};
+					F3DF02CA21C65F6800CEC6B6 = {
+						CreatedOnToolsVersion = 10.1;
+						ProvisioningStyle = Automatic;
+						TestTargetID = F3D9C94120BEC7460081830A;
 					};
 				};
 			};
@@ -236,6 +317,7 @@
 			projectRoot = "";
 			targets = (
 				F3D9C94120BEC7460081830A /* LocalizationEditor */,
+				F3DF02CA21C65F6800CEC6B6 /* LocalizationEditorTests */,
 			);
 		};
 /* End PBXProject section */
@@ -249,6 +331,18 @@
 				F3D9C96520BEDF580081830A /* KeyCell.xib in Resources */,
 				F3D9C94A20BEC7460081830A /* Assets.xcassets in Resources */,
 				F3D9C94D20BEC7460081830A /* Main.storyboard in Resources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
+		F3DF02C921C65F6800CEC6B6 /* Resources */ = {
+			isa = PBXResourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3DF02EA21C668C400CEC6B6 /* InfoPList-sk.strings in Resources */,
+				F3DF02E821C668B600CEC6B6 /* InfoPList-en.strings in Resources */,
+				F3DF02E621C6675000CEC6B6 /* LocalizableStrings-sk-missing.strings in Resources */,
+				F3DF02E221C6634B00CEC6B6 /* LocalizableStrings-sk.strings in Resources */,
+				F3DF02E021C6633500CEC6B6 /* LocalizableStrings-en.strings in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -292,7 +386,24 @@
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
+		F3DF02C721C65F6800CEC6B6 /* Sources */ = {
+			isa = PBXSourcesBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+				F3DF02CE21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift in Sources */,
+				F3DF02E421C6654900CEC6B6 /* TestFile.swift in Sources */,
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+		};
 /* End PBXSourcesBuildPhase section */
+
+/* Begin PBXTargetDependency section */
+		F3DF02D121C65F6800CEC6B6 /* PBXTargetDependency */ = {
+			isa = PBXTargetDependency;
+			target = F3D9C94120BEC7460081830A /* LocalizationEditor */;
+			targetProxy = F3DF02D021C65F6800CEC6B6 /* PBXContainerItemProxy */;
+		};
+/* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
 		F3D9C94B20BEC7460081830A /* Main.storyboard */ = {
@@ -456,6 +567,43 @@
 			};
 			name = Release;
 		};
+		F3DF02D221C65F6800CEC6B6 /* Debug */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S6EJ3ZVM4G;
+				INFOPLIST_FILE = LocalizationEditorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_ENABLE_DEBUG_INFO = INCLUDE_SOURCE;
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = sk.kulman.LocalizationEditorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocalizationEditor.app/Contents/MacOS/LocalizationEditor";
+			};
+			name = Debug;
+		};
+		F3DF02D321C65F6800CEC6B6 /* Release */ = {
+			isa = XCBuildConfiguration;
+			buildSettings = {
+				BUNDLE_LOADER = "$(TEST_HOST)";
+				CLANG_ENABLE_OBJC_WEAK = YES;
+				CODE_SIGN_STYLE = Automatic;
+				COMBINE_HIDPI_IMAGES = YES;
+				DEVELOPMENT_TEAM = S6EJ3ZVM4G;
+				INFOPLIST_FILE = LocalizationEditorTests/Info.plist;
+				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/../Frameworks @loader_path/../Frameworks";
+				MTL_FAST_MATH = YES;
+				PRODUCT_BUNDLE_IDENTIFIER = sk.kulman.LocalizationEditorTests;
+				PRODUCT_NAME = "$(TARGET_NAME)";
+				SWIFT_VERSION = 4.2;
+				TEST_HOST = "$(BUILT_PRODUCTS_DIR)/LocalizationEditor.app/Contents/MacOS/LocalizationEditor";
+			};
+			name = Release;
+		};
 /* End XCBuildConfiguration section */
 
 /* Begin XCConfigurationList section */
@@ -473,6 +621,15 @@
 			buildConfigurations = (
 				F3D9C95320BEC7460081830A /* Debug */,
 				F3D9C95420BEC7460081830A /* Release */,
+			);
+			defaultConfigurationIsVisible = 0;
+			defaultConfigurationName = Release;
+		};
+		F3DF02D421C65F6800CEC6B6 /* Build configuration list for PBXNativeTarget "LocalizationEditorTests" */ = {
+			isa = XCConfigurationList;
+			buildConfigurations = (
+				F3DF02D221C65F6800CEC6B6 /* Debug */,
+				F3DF02D321C65F6800CEC6B6 /* Release */,
 			);
 			defaultConfigurationIsVisible = 0;
 			defaultConfigurationName = Release;
