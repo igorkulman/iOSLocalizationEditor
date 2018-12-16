@@ -25,20 +25,26 @@ class LocalizationProvider {
      Updates given localization values in given localization file. Basially regenerates the whole localization files changing the given value
 
      - Parameter localization: localization to update
-     - Parameter string: localization string
+     - Parameter key: localization key to update
      - Parameter value: new value for the localization string
      */
-    func updateLocalization(localization: Localization, string: LocalizationString, with value: String) {
-        guard string.value != value else {
-            Log.debug?.message("Same value provided for \(string)")
+    func updateLocalization(localization: Localization, key: String, with value: String) {
+        let existing = localization.translations.first(where: {$0.key == key}) ?? LocalizationString(key: key, value: "")
+        if localization.translations.first(where: {$0.key == key}) == nil {
+            Log.debug?.message("Key missing, creating")
+            //localization.translations.append(existing)
+        }
+
+        guard existing.value != value else {
+            Log.debug?.message("Same value provided for \(existing)")
             return
         }
 
-        Log.debug?.message("Updating \(string) with \(value) in \(localization)")
+        Log.debug?.message("Updating \(existing) with \(value) in \(localization)")
 
-        string.update(value: value)
+        existing.update(value: value)
 
-        let data = localization.translations.map { string in
+        let data = localization.translations.sorted(by: {(lhs, rhs) in lhs.key < rhs.key }).map { string in
             "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
         }.reduce("") { prev, next in
                 "\(prev)\n\(next)"
