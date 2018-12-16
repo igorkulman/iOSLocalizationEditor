@@ -25,26 +25,23 @@ class LocalizationProvider {
      Updates given localization values in given localization file. Basially regenerates the whole localization files changing the given value
 
      - Parameter localization: localization to update
-     - Parameter key: localization key to update
+     - Parameter key: localization string key
      - Parameter value: new value for the localization string
      */
     func updateLocalization(localization: Localization, key: String, with value: String) {
-        let existing = localization.translations.first(where: {$0.key == key}) ?? LocalizationString(key: key, value: "")
-        if localization.translations.first(where: {$0.key == key}) == nil {
-            Log.debug?.message("Key missing, creating")
-            //localization.translations.append(existing)
-        }
-
-        guard existing.value != value else {
-            Log.debug?.message("Same value provided for \(existing)")
+        if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value {
+            Log.debug?.message("Same value provided for \(existing), not updating")
             return
         }
 
-        Log.debug?.message("Updating \(existing) with \(value) in \(localization)")
+        let unchangedStrings = localization.translations.filter({ $0.key != key })
+        let updatedString = LocalizationString(key: key, value: value)
 
-        existing.update(value: value)
+        Log.debug?.message("Updating \(updatedString) in \(localization)")
 
-        let data = localization.translations.sorted(by: {(lhs, rhs) in lhs.key < rhs.key }).map { string in
+        let translations = (unchangedStrings + [updatedString]).sorted(by: { $0.key < $1.key })
+
+        let data = translations.map { string in
             "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
         }.reduce("") { prev, next in
                 "\(prev)\n\(next)"

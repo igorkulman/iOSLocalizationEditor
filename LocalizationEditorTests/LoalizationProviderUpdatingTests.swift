@@ -76,7 +76,9 @@ class LoalizationProviderUpdatingTests: XCTestCase {
                 XCTAssert(baseKeys.count <= updatedKeys.count)
 
                 if let changesForLanguage = changes[base[i].localizations[j].language] {
-                    let existingKeys = updated[i].localizations[j].translations.filter({ changesForLanguage.keys.map({"\($0)"}).contains({$0.key}) })
+                    let existingKeys = updated[i].localizations[j].translations.filter { (string: LocalizationString) -> Bool in
+                        return changesForLanguage.map({$0.key}).contains(string.key)
+                    }
                     XCTAssertEqual(changesForLanguage.count, existingKeys.count)
                 }
 

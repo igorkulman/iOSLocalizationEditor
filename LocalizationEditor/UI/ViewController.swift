@@ -93,7 +93,7 @@ class ViewController: NSViewController {
 
     @IBAction @objc private func selectAction(sender: NSMenuItem) {
         let groupName = sender.title
-        let languages = dataSource.getLanguages(for: groupName)
+        let languages = dataSource.selectGroupAndGetLanguages(for: groupName)
 
         reloadData(with: languages, title: title)
     }

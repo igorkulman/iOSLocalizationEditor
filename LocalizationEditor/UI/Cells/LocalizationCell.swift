@@ -29,7 +29,20 @@ class LocalizationCell: NSTableCellView {
         didSet {
             valueTextField.stringValue = value?.value ?? ""
             valueTextField.delegate = self
+            setStateUI()
         }
+    }
+
+    private func setStateUI() {
+        valueTextField.layer?.borderColor = valueTextField.stringValue.isEmpty ? NSColor.red.cgColor : NSColor.clear.cgColor
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        valueTextField.wantsLayer = true
+        valueTextField.layer?.borderWidth = 1.0
+        valueTextField.layer?.cornerRadius = 0.0
     }
 }
 
@@ -41,6 +54,7 @@ extension LocalizationCell: NSTextFieldDelegate {
             return
         }
 
+        setStateUI()
         delegate?.userDidUpdateLocalizationString(language: language, key: value.key, with: valueTextField.stringValue)
     }
 }

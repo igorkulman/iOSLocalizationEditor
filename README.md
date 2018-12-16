@@ -1,5 +1,5 @@
 # Localization Editor
-Simple macOS editor app to help you manage iOS app localizations by allowing you to edit all the translations side by side
+Simple macOS editor app to help you manage iOS app localizations by allowing you to edit all the translations side by side, highlighting missing translations
 
 ![Localization Editor](https://github.com/igorkulman/iOSLocalizationEditor/raw/master/editor.png)
 

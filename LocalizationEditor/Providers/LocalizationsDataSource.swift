@@ -55,13 +55,14 @@ class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     }
 
     /**
-     Gets available languges for given group
+     Selects given group and gets available languages
 
      - Parameter group: group name
      - Returns: array of languages
      */
-    func getLanguages(for group: String) -> [String] {
+    func selectGroupAndGetLanguages(for group: String) -> [String] {
         let group = localizationGroups.first(where: { $0.name == group })!
+        selectedLocalizationGroup = group
         return getLanguages(for: group)
     }
 
