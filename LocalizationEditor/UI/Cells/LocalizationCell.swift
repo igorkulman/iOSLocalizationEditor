@@ -34,8 +34,13 @@ class LocalizationCell: NSTableCellView {
     }
 
     private func setStateUI() {
-        valueTextField.wantsLayer = true
         valueTextField.layer?.borderColor = valueTextField.stringValue.isEmpty ? NSColor.red.cgColor : NSColor.clear.cgColor
+    }
+
+    override func awakeFromNib() {
+        super.awakeFromNib()
+
+        valueTextField.wantsLayer = true
         valueTextField.layer?.borderWidth = 1.0
         valueTextField.layer?.cornerRadius = 0.0
     }
