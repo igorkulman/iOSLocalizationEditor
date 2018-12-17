@@ -5,6 +5,7 @@ disabled_rules:
     - line_length    
     - force_try
     - force_cast
+    - prohibited_interface_builder
 
 analyzer_rules:
     - unused_import

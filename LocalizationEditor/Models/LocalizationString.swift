@@ -13,19 +13,10 @@ import Foundation
  */
 class LocalizationString {
     let key: String
-    private(set) var value: String
+    let value: String
 
     init(key: String, value: String) {
         self.key = key
-        self.value = value
-    }
-
-    /**
-     Updates the localization string with a new value
-
-     Parameter value: new value
-     */
-    func update(value: String) {
         self.value = value
     }
 }
