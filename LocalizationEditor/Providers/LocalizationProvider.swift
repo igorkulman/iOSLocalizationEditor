@@ -13,7 +13,7 @@ import Foundation
 /**
 Service for working with the strings files
  */
-class LocalizationProvider {
+final class LocalizationProvider {
     /**
      List of folder that should be ignored when searching for localization files
      */
