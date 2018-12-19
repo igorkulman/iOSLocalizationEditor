@@ -12,7 +12,7 @@ protocol LocalizationCellDelegate: AnyObject {
     func userDidUpdateLocalizationString(language: String, key: String, with value: String)
 }
 
-class LocalizationCell: NSTableCellView {
+final class LocalizationCell: NSTableCellView {
     // MARK: - Outlets
 
     @IBOutlet private weak var valueTextField: NSTextField!

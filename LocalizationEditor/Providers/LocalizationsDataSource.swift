@@ -15,7 +15,7 @@ typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 /**
  Data source for the NSTableView with localizations
  */
-class LocalizationsDataSource: NSObject, NSTableViewDataSource {
+final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     // MARK: - Properties
 
     private var localizationGroups: [LocalizationGroup] = []
