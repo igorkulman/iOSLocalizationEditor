@@ -98,11 +98,7 @@ final class LocalizationProvider {
             return []
         }
 
-        var localizationStrings: [LocalizationString] = []
-        for (key, value) in dict {
-            let localizationString = LocalizationString(key: key, value: value)
-            localizationStrings.append(localizationString)
-        }
+        let localizationStrings: [LocalizationString] = dict.map({ LocalizationString(key: $0.key, value: $0.value) })
 
         Log.debug?.message("Found \(localizationStrings.count) keys for in \(path)")
 
