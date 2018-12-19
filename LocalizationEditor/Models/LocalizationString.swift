@@ -28,3 +28,13 @@ extension LocalizationString: CustomStringConvertible {
         return "\(key) = \(value)"
     }
 }
+
+extension LocalizationString: Comparable {
+    static func < (lhs: LocalizationString, rhs: LocalizationString) -> Bool {
+        return lhs.key < rhs.key
+    }
+
+    static func == (lhs: LocalizationString, rhs: LocalizationString) -> Bool {
+        return lhs.key == rhs.key && lhs.value == rhs.value
+    }
+}
