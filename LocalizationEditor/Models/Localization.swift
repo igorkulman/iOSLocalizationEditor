@@ -11,7 +11,7 @@ import Foundation
 /**
 Complete localization for a single language. Represents a single strings file for a single language
  */
-struct Localization {
+class Localization {
     let language: String
     let translations: [LocalizationString]
     let path: String

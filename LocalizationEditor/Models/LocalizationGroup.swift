@@ -11,7 +11,7 @@ import Foundation
 /**
 Group of localizations, like Localizabe.strings, InfoPlist.strings, etc.
  */
-struct LocalizationGroup {
+class LocalizationGroup {
     let name: String
     let path: String
     let localizations: [Localization]

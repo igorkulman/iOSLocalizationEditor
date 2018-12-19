@@ -9,9 +9,9 @@
 import Foundation
 
 /**
- Struct representing single localization string in form of key: "value"; as found in strings files
+ Class representing single localization string in form of key: "value"; as found in strings files
  */
-struct LocalizationString {
+class LocalizationString {
     let key: String
     let value: String
 
