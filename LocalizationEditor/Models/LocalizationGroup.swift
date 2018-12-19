@@ -30,3 +30,13 @@ extension LocalizationGroup: CustomStringConvertible {
         return name
     }
 }
+
+extension LocalizationGroup: Comparable {
+    static func < (lhs: LocalizationGroup, rhs: LocalizationGroup) -> Bool {
+        return lhs.name < rhs.name
+    }
+
+    static func == (lhs: LocalizationGroup, rhs: LocalizationGroup) -> Bool {
+        return lhs.name == rhs.name && lhs.path == rhs.path && lhs.localizations == rhs.localizations
+    }
+}
