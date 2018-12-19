@@ -34,14 +34,11 @@ class LocalizationProvider {
             return
         }
 
-        let unchangedStrings = localization.translations.filter({ $0.key != key })
-        let updatedString = LocalizationString(key: key, value: value)
+        Log.debug?.message("Updating \(key) in \(value)")
 
-        Log.debug?.message("Updating \(updatedString) in \(localization)")
+        localization.update(key: key, value: value)
 
-        let translations = (unchangedStrings + [updatedString]).sorted(by: { $0.key < $1.key })
-
-        let data = translations.map { string in
+        let data = localization.translations.map { string in
             "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
         }.reduce("") { prev, next in
                 "\(prev)\n\(next)"
