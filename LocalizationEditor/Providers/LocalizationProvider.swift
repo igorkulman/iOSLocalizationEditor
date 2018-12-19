@@ -39,7 +39,7 @@ final class LocalizationProvider {
 
         Log.debug?.message("Updating \(updatedString) in \(localization)")
 
-        let translations = (unchangedStrings + [updatedString]).sorted(by: { $0.key < $1.key })
+        let translations = (unchangedStrings + [updatedString]).sorted()
 
         let data = translations.map { string in
             "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
@@ -81,7 +81,7 @@ final class LocalizationProvider {
                 let lang = String(parts[parts.count - 2]).replacingOccurrences(of: ".lproj", with: "")
                 return Localization(language: lang, translations: getLocalizationStrings(path: file.path), path: file.path)
             }), path: path)
-        }).sorted(by: { $0.name < $1.name })
+        }).sorted()
     }
 
     // MARK: Internal implementation
@@ -106,8 +106,6 @@ final class LocalizationProvider {
 
         Log.debug?.message("Found \(localizationStrings.count) keys for in \(path)")
 
-        return localizationStrings.sorted(by: { lhs, rhs -> Bool in
-            lhs.key < rhs.key
-        })
+        return localizationStrings.sorted()
     }
 }
