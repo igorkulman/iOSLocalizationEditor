@@ -17,7 +17,7 @@ final class LocalizationProvider {
     /**
      List of folder that should be ignored when searching for localization files
      */
-    private let ignoredDirectories = ["Pods", "Carthage", "build", ".framework"]
+    private let ignoredDirectories: Set<String> = ["Pods", "Carthage", "build", ".framework"]
 
     // MARK: Actions
 
@@ -34,14 +34,11 @@ final class LocalizationProvider {
             return
         }
 
-        let unchangedStrings = localization.translations.filter({ $0.key != key })
-        let updatedString = LocalizationString(key: key, value: value)
+        Log.debug?.message("Updating \(key) in \(value)")
 
-        Log.debug?.message("Updating \(updatedString) in \(localization)")
+        localization.update(key: key, value: value)
 
-        let translations = (unchangedStrings + [updatedString]).sorted()
-
-        let data = translations.map { string in
+        let data = localization.translations.map { string in
             "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
         }.reduce("") { prev, next in
                 "\(prev)\n\(next)"
@@ -69,7 +66,7 @@ final class LocalizationProvider {
         }
 
         let localizationFiles = Dictionary(grouping: folder.makeFileSequence(recursive: true).filter { file in
-            file.name.hasSuffix(".strings") && ignoredDirectories.map({ file.path.contains("\($0)/") }).filter({ $0 }).count == 0
+            file.name.hasSuffix(".strings") && !ignoredDirectories.contains(where: { file.path.contains($0) })
         }, by: { $0.path.components(separatedBy: "/").filter({ !$0.hasSuffix(".lproj") }).joined(separator: "/") })
 
         Log.debug?.message("Found \(localizationFiles.count) localization files")
@@ -98,11 +95,7 @@ final class LocalizationProvider {
             return []
         }
 
-        var localizationStrings: [LocalizationString] = []
-        for (key, value) in dict {
-            let localizationString = LocalizationString(key: key, value: value)
-            localizationStrings.append(localizationString)
-        }
+        let localizationStrings: [LocalizationString] = dict.map({ LocalizationString(key: $0.key, value: $0.value) })
 
         Log.debug?.message("Found \(localizationStrings.count) keys for in \(path)")
 

@@ -13,13 +13,23 @@ Complete localization for a single language. Represents a single strings file fo
  */
 class Localization {
     let language: String
-    let translations: [LocalizationString]
+    private(set) var translations: [LocalizationString]
     let path: String
 
     init(language: String, translations: [LocalizationString], path: String) {
         self.language = language
         self.translations = translations
         self.path = path
+    }
+
+    func update(key: String, value: String) {
+        if let existing = translations.first(where: { $0.key == key }) {
+            existing.update(newValue: value)
+            return
+        }
+
+        let newTranslation = LocalizationString(key: key, value: value)
+        translations = (translations + [newTranslation]).sorted()
     }
 }
 
