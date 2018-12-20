@@ -17,7 +17,7 @@ final class LocalizationProvider {
     /**
      List of folder that should be ignored when searching for localization files
      */
-    private let ignoredDirectories = ["Pods", "Carthage", "build", ".framework"]
+    private let ignoredDirectories: Set<String> = ["Pods", "Carthage", "build", ".framework"]
 
     // MARK: Actions
 
@@ -66,7 +66,7 @@ final class LocalizationProvider {
         }
 
         let localizationFiles = Dictionary(grouping: folder.makeFileSequence(recursive: true).filter { file in
-            file.name.hasSuffix(".strings") && ignoredDirectories.map({ file.path.contains("\($0)/") }).filter({ $0 }).count == 0
+            file.name.hasSuffix(".strings") && !ignoredDirectories.contains(where: { file.path.contains($0) })
         }, by: { $0.path.components(separatedBy: "/").filter({ !$0.hasSuffix(".lproj") }).joined(separator: "/") })
 
         Log.debug?.message("Found \(localizationFiles.count) localization files")
