@@ -29,7 +29,7 @@ class Localization {
         }
 
         let newTranslation = LocalizationString(key: key, value: value)
-        translations = (translations + [newTranslation]).sorted(by: { $0.key < $1.key })
+        translations = (translations + [newTranslation]).sorted()
     }
 }
 
@@ -38,5 +38,11 @@ class Localization {
 extension Localization: CustomStringConvertible {
     var description: String {
         return language.uppercased()
+    }
+}
+
+extension Localization: Equatable {
+    static func == (lhs: Localization, rhs: Localization) -> Bool {
+        return lhs.language == rhs.language && lhs.translations == rhs.translations && lhs.path == rhs.path
     }
 }
