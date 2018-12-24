@@ -1,4 +1,11 @@
 # Localization Editor
+
+[![Travis CI](https://api.travis-ci.com/igorkulman/iOSLocalizationEditor.svg?branch=master)](https://travis-ci.com/igorkulman/iOSLocalizationEditor)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Platforms](https://img.shields.io/badge/platform-macOS-lightgrey.svg)
+[![Swift Version](https://img.shields.io/badge/Swift-4.2-F16D39.svg?style=flat)](https://developer.apple.com/swift)
+[![Twitter](https://img.shields.io/badge/twitter-@igorkulman-blue.svg)](http://twitter.com/igorkulman)
+
 Simple macOS editor app to help you manage iOS app localizations by allowing you to edit all the translations side by side, highlighting missing translations
 
 ![Localization Editor](https://github.com/igorkulman/iOSLocalizationEditor/raw/master/editor.png)
