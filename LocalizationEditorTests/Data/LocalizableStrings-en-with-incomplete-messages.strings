@@ -1,0 +1,55 @@
+/*
+ Localizable.strings
+ iOSSampleApp
+ 
+ Created by Igor Kulman on 03/10/2017.
+ Copyright © 2017 Igor Kulman. All rights reserved.
+ */
+
+/* Commenting Message for About */
+"about" = "About";
+
+/* Commenting Message */
+"add_custom" = "Add custom";
+
+/* Commenting Message */
+"add_custom_source" = "Add custom source";
+
+/* Commenting Message for About Author */
+"author" = "About author";
+
+"back" = "Back";
+
+/* Commenting Message for Feed URL */
+"bad_url" = "Invalid RSS feed URL";
+
+/* Commenting Message for Author's blog */
+"blog" = "Author's blog";
+
+"done" = "Done";
+
+/* Commenting Message for Feed */
+"feed" = "Feed";
+
+"libraries" = "Used libraries";
+
+/* Commenting Message for Logo URL */
+"logo_url" = "Logo URL";
+
+/* Commenting Message for Network Problems */
+"network_problem" = "Network problem has occured";
+
+"optional" = "Optional";
+
+/* Commenting Message for Pull to Refresh */
+"pull_to_refresh" = "Pull to refresh";
+
+/* Commenting Message for RSS URL */
+"rss_url" = "RSS URL";
+
+"select_source" = "Select source";
+
+"title" = "Title";
+
+/* Commenting Message for URL */
+"url" = "Url";

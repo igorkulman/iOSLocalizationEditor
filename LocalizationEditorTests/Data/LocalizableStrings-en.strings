@@ -6,56 +6,21 @@
  Copyright © 2017 Igor Kulman. All rights reserved.
  */
 
-/* Commenting Message for About */
-"about" = "About Me";
-
-/* Commenting Message */
-"add_custom" = "Add custom";
-
-/* Commenting Message */
-"add_custom_source" = "Add custom source";
-
-/* Commenting Message for About Author */
-"author" = "About author";
-
-/* Commenting Message for Back */
-"back" = "Back";
-
-/* Commenting Message for Feed URL */
-"bad_url" = "Invalid RSS feed URL";
-
-/* Commenting Message for Author's blog */
-"blog" = "Author's blog";
-
-/* Commenting Message */
-"done" = "Done";
-
-/* Commenting Message for Feed */
-"feed" = "Feed";
-
-/* Commenting Message for Used Libraries */
-"libraries" = "Used libraries";
-
-/* Commenting Message for Logo URL */
-"logo_url" = "Logo URL";
-
-/* Commenting Message for Network Problems */
-"network_problem" = "Network problem has occured";
-
-/* Commenting Message for Optional */
-"optional" = "Optional";
-
-/* Commenting Message for Pull to Refresh */
-"pull_to_refresh" = "Pull to refresh";
-
-/* Commenting Message for RSS URL */
-"rss_url" = "RSS URL";
-
-/* Commenting Message */
 "select_source" = "Select source";
-
-/* Commenting Message for Title */
-"title" = "Title";
-
-/* Commenting Message for URL */
+"done" = "Done";
+"add_custom" = "Add custom";
+"add_custom_source" = "Add custom source";
 "url" = "Url";
+"title" = "Title";
+"logo_url" = "Logo URL";
+"rss_url" = "RSS URL";
+"optional" = "Optional";
+"feed" = "Feed";
+"pull_to_refresh" = "Pull to refresh";
+"bad_url" = "Invalid RSS feed URL";
+"network_problem" = "Network problem has occured";
+"back" = "Back";
+"about" = "About";
+"author" = "About author";
+"blog" = "Author's blog";
+"libraries" = "Used libraries";
