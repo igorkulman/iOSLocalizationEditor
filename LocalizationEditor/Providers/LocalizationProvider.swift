@@ -13,11 +13,11 @@ import Foundation
 /**
 Service for working with the strings files
  */
-class LocalizationProvider {
+final class LocalizationProvider {
     /**
      List of folder that should be ignored when searching for localization files
      */
-    private let ignoredDirectories = ["Pods", "Carthage", "build", ".framework"]
+    private let ignoredDirectories: Set<String> = ["Pods", "Carthage", "build", ".framework"]
 
     // MARK: Actions
 
@@ -25,18 +25,18 @@ class LocalizationProvider {
      Updates given localization values in given localization file. Basially regenerates the whole localization files changing the given value
 
      - Parameter localization: localization to update
-     - Parameter string: localization string
+     - Parameter key: localization string key
      - Parameter value: new value for the localization string
      */
-    func updateLocalization(localization: Localization, string: LocalizationString, with value: String) {
-        guard string.value != value else {
-            Log.debug?.message("Same value provided for \(string)")
+    func updateLocalization(localization: Localization, key: String, with value: String) {
+        if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value {
+            Log.debug?.message("Same value provided for \(existing), not updating")
             return
         }
 
-        Log.debug?.message("Updating \(string) with \(value) in \(localization)")
+        Log.debug?.message("Updating \(key) in \(value)")
 
-        string.update(value: value)
+        localization.update(key: key, value: value)
 
         let data = localization.translations.map { string in
             "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
@@ -66,7 +66,7 @@ class LocalizationProvider {
         }
 
         let localizationFiles = Dictionary(grouping: folder.makeFileSequence(recursive: true).filter { file in
-            file.name.hasSuffix(".strings") && ignoredDirectories.map({ file.path.contains("\($0)/") }).filter({ $0 }).count == 0
+            file.name.hasSuffix(".strings") && !ignoredDirectories.contains(where: { file.path.contains($0) })
         }, by: { $0.path.components(separatedBy: "/").filter({ !$0.hasSuffix(".lproj") }).joined(separator: "/") })
 
         Log.debug?.message("Found \(localizationFiles.count) localization files")
@@ -78,7 +78,7 @@ class LocalizationProvider {
                 let lang = String(parts[parts.count - 2]).replacingOccurrences(of: ".lproj", with: "")
                 return Localization(language: lang, translations: getLocalizationStrings(path: file.path), path: file.path)
             }), path: path)
-        }).sorted(by: { $0.name < $1.name })
+        }).sorted()
     }
 
     // MARK: Internal implementation
@@ -208,6 +208,6 @@ class LocalizationProvider {
         
         Log.debug?.message("Found \(localizationStrings.count) keys for in \(path)")
 
-        return sort(localizationStrings)
+        return localizationStrings.sorted()
     }
 }

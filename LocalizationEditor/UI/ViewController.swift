@@ -8,7 +8,7 @@
 
 import Cocoa
 
-class ViewController: NSViewController {
+final class ViewController: NSViewController {
     // MARK: - Outlets
 
     @IBOutlet private weak var tableView: NSTableView!
@@ -97,7 +97,7 @@ class ViewController: NSViewController {
 
     @IBAction @objc private func selectAction(sender: NSMenuItem) {
         let groupName = sender.title
-        let languages = dataSource.getLanguages(for: groupName)
+        let languages = dataSource.selectGroupAndGetLanguages(for: groupName)
 
         reloadData(with: languages, title: title)
     }
@@ -155,7 +155,7 @@ extension ViewController: NSTableViewDelegate {
 }
 
 extension ViewController: LocalizationCellDelegate {
-    func userDidUpdateLocalizationString(language: String, string: LocalizationString, with value: String) {
-        dataSource.updateLocalization(language: language, string: string, with: value)
+    func userDidUpdateLocalizationString(language: String, key: String, with value: String) {
+        dataSource.updateLocalization(language: language, key: key, with: value)
     }
 }

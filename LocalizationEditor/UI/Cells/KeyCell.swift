@@ -9,7 +9,7 @@
 import Cocoa
 import Foundation
 
-class KeyCell: NSTableCellView {
+final class KeyCell: NSTableCellView {
     // MARK: - Outlets
 
     @IBOutlet private weak var keyLabel: NSTextField!
