@@ -114,11 +114,11 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
      - Parameter key: localization string key
      - Parameter value: new value for the localization string
      */
-    func updateLocalization(language: String, key: String, with value: String) {
+    func updateLocalization(language: String, key: String, with value: String, message: String?) {
         guard let localization = localizations.first(where: { $0.language == language }) else {
             return
         }
-        localizationProvider.updateLocalization(localization: localization, key: key, with: value)
+        localizationProvider.updateLocalization(localization: localization, key: key, with: value, message: message)
     }
 
     // MARK: - Delegate

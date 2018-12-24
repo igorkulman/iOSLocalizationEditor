@@ -18,7 +18,7 @@ class LoalizationProviderUpdatingTests: XCTestCase {
         let groups = provider.getLocalizations(url: directoryUrl)
 
         let baseLocalization = groups[0].localizations[0]
-        provider.updateLocalization(localization: baseLocalization, key: baseLocalization.translations[2].key, with: "New value line 2")
+        provider.updateLocalization(localization: baseLocalization, key: baseLocalization.translations[2].key, with: "New value line 2", message: baseLocalization.translations[2].message)
         let updated = provider.getLocalizations(url: directoryUrl)
 
         let changes: [String: [String: String]] = ["Base": [baseLocalization.translations[2].key : "New value line 2"]]
@@ -31,7 +31,7 @@ class LoalizationProviderUpdatingTests: XCTestCase {
         let groups = provider.getLocalizations(url: directoryUrl)
 
         let baseLocalization = groups[0].localizations[0]
-        provider.updateLocalization(localization: baseLocalization, key: baseLocalization.translations[2].key, with: "New value line 2")
+        provider.updateLocalization(localization: baseLocalization, key: baseLocalization.translations[2].key, with: "New value line 2", message: baseLocalization.translations[2].message)
         let updated = provider.getLocalizations(url: directoryUrl)
 
         let changes: [String: [String: String]] = ["Base": [baseLocalization.translations[2].key : "New value line 2"]]
@@ -44,7 +44,7 @@ class LoalizationProviderUpdatingTests: XCTestCase {
         let groups = provider.getLocalizations(url: directoryUrl)
 
         let skLocalization = groups[0].localizations[1]
-        provider.updateLocalization(localization: skLocalization, key: skLocalization.translations[2].key, with: "New value line 2 SK")
+        provider.updateLocalization(localization: skLocalization, key: skLocalization.translations[2].key, with: "New value line 2 SK", message: skLocalization.translations[2].message)
         let updated = provider.getLocalizations(url: directoryUrl)
 
         let changes: [String: [String: String]] = ["sk": [skLocalization.translations[2].key : "New value line 2 SK"]]
@@ -57,7 +57,7 @@ class LoalizationProviderUpdatingTests: XCTestCase {
         let groups = provider.getLocalizations(url: directoryUrl)
 
         let skLocalization = groups[0].localizations[1]
-        provider.updateLocalization(localization: skLocalization, key: "about", with: "O aplikácií")
+        provider.updateLocalization(localization: skLocalization, key: "about", with: "O aplikácií", message: nil)
         let updated = provider.getLocalizations(url: directoryUrl)
 
         let changes: [String: [String: String]] = ["sk": ["about" : "O aplikácií"]]
@@ -87,9 +87,14 @@ class LoalizationProviderUpdatingTests: XCTestCase {
                     let updatedValue = updated[i].localizations[j].translations.first(where: { $0.key == key })?.value
 
                     XCTAssertFalse(originalValue == nil)
+                    
+                    let originalMessage = base[i].localizations[j].translations.first(where: { $0.key == key })?.message
+                    let updatedMessage = updated[i].localizations[j].translations.first(where: { $0.key == key })?.message
+                    
 
                     if let lang = changes[base[i].localizations[j].language], let newValue = lang[key] {
                         XCTAssertEqual(updatedValue, newValue)
+                        XCTAssertEqual(originalMessage, updatedMessage)
                     } else {
                          XCTAssertEqual(originalValue, updatedValue)
                     }

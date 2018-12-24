@@ -28,18 +28,27 @@ final class LocalizationProvider {
      - Parameter key: localization string key
      - Parameter value: new value for the localization string
      */
-    func updateLocalization(localization: Localization, key: String, with value: String) {
+    func updateLocalization(localization: Localization, key: String, with value: String, message: String?) {
         if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value {
             Log.debug?.message("Same value provided for \(existing), not updating")
             return
         }
 
-        Log.debug?.message("Updating \(key) in \(value)")
+        Log.debug?.message("Updating \(key) in \(value) with Message: \(message ?? "No Message.")")
 
-        localization.update(key: key, value: value)
+        localization.update(key: key, value: value, message: message)
 
-        let data = localization.translations.map { string in
-            "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
+        let data = localization.translations.map { string -> String in
+            let stringForMessage: String
+            if let message = string.message {
+                stringForMessage = "/* \(message) */"
+            } else {
+                stringForMessage = ""
+            }
+            return """
+            \(stringForMessage)
+            \"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";\n
+            """
         }.reduce("") { prev, next in
                 "\(prev)\n\(next)"
         }
@@ -184,10 +193,10 @@ final class LocalizationProvider {
             
             // Create the return of the function:
             // As many keys as values as messages, so one index is enough
-            for i in 0..<keys.count {
-                let key = removeRegexBoundingCharacters(from: keys[i].element)
-                let value = removeRegexBoundingCharacters(from: values[i].element)
-                let message = removeRegexBoundingCharacters(from: messages[i])
+            for index in 0..<keys.count {
+                let key = removeRegexBoundingCharacters(from: keys[index].element)
+                let value = removeRegexBoundingCharacters(from: values[index].element)
+                let message = removeRegexBoundingCharacters(from: messages[index])
                 
                 let localizationString = LocalizationString(key: key, value: value, message: message)
                 localizationStrings.append(localizationString)
