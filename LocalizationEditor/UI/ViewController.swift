@@ -47,7 +47,6 @@ final class ViewController: NSViewController {
         tableView.dataSource = dataSource
         tableView.allowsColumnResizing = true
         tableView.usesAutomaticRowHeights = true
-        
     }
 
     private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {

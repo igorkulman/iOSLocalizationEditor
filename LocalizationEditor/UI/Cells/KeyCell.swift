@@ -14,7 +14,6 @@ final class KeyCell: NSTableCellView {
 
     @IBOutlet private weak var keyLabel: NSTextField!
     @IBOutlet private weak var messageLabel: NSTextField!
-    
     // MARK: - Properties
 
     static let identifier = "KeyCell"
