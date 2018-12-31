@@ -42,7 +42,7 @@ enum EnclosingControlCharacters: String, EnclosingType, CaseIterable {
     case messageBoundaryOpen = "/*"
     case messageBoundaryClose = "*/"
     case quote = "\""
-    
+
     var skippingLength: Int {
         switch self {
         case .messageBoundaryOpen:
@@ -67,7 +67,7 @@ enum SeperatingControlCharacters: String, SeperatingType, CaseIterable {
             return SeperatingControlCharacters.semicolon.rawValue.count
         }
     }
-    
+
     case equal = "="
     case semicolon = ";"
     // TODO: Swift 5.0 and its String literal functions may allow to manually escape characters by exposing the bachskash. We might look into this.

@@ -365,9 +365,9 @@ extension Parser {
         // Else: key follows.
         if let valueBefore = tokens.last {
             switch valueBefore {
-            case .key(_):
+            case .key:
                 state = .readingKey
-            case .value(_):
+            case .value:
                 state = .readingValue
             case .equal:
                 state = .readingValue
