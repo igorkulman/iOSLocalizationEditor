@@ -12,6 +12,7 @@
 		A117B6AF21D10060008F10E4 /* LocalizableStrings-en-with-incomplete-messages.strings in Resources */ = {isa = PBXBuildFile; fileRef = A117B6AE21D10060008F10E4 /* LocalizableStrings-en-with-incomplete-messages.strings */; };
 		A15A5A4221D908C400D3C791 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4121D908C400D3C791 /* Parser.swift */; };
 		A15A5A4721D90AC600D3C791 /* ParserIsolationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */; };
+		A15A5A4921DA249400D3C791 /* ParserTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4821DA249400D3C791 /* ParserTypes.swift */; };
 		F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94520BEC7460081830A /* AppDelegate.swift */; };
 		F3D9C94820BEC7460081830A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94720BEC7460081830A /* ViewController.swift */; };
 		F3D9C94A20BEC7460081830A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C94920BEC7460081830A /* Assets.xcassets */; };
@@ -83,6 +84,7 @@
 		A117B6AE21D10060008F10E4 /* LocalizableStrings-en-with-incomplete-messages.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = "LocalizableStrings-en-with-incomplete-messages.strings"; sourceTree = "<group>"; };
 		A15A5A4121D908C400D3C791 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserIsolationTests.swift; sourceTree = "<group>"; };
+		A15A5A4821DA249400D3C791 /* ParserTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTypes.swift; sourceTree = "<group>"; };
 		F3D9C94220BEC7460081830A /* LocalizationEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D9C94520BEC7460081830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D9C94720BEC7460081830A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -186,6 +188,7 @@
 				F3D9C95B20BECDBF0081830A /* LocalizationProvider.swift */,
 				F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */,
 				A15A5A4121D908C400D3C791 /* Parser.swift */,
+				A15A5A4821DA249400D3C791 /* ParserTypes.swift */,
 			);
 			path = Providers;
 			sourceTree = "<group>";
@@ -402,6 +405,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				A15A5A4921DA249400D3C791 /* ParserTypes.swift in Sources */,
 				F3D9C94820BEC7460081830A /* ViewController.swift in Sources */,
 				F3D9C96720BEDF640081830A /* KeyCell.swift in Sources */,
 				A15A5A4221D908C400D3C791 /* Parser.swift in Sources */,
