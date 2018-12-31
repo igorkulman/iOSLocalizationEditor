@@ -85,9 +85,9 @@ class LocalizationEditor: XCTestCase {
         XCTAssertEqual(result[1].value, "Zurück")
         XCTAssertEqual(result[2].value, "Bitte wähle deinen Geburtstag aus")
         
-        XCTAssertEqual(result[0].message, " The string for \"the art and culture category ")
-        XCTAssertEqual(result[1].message, " String for back operation ")
-        XCTAssertEqual(result[2].message, " Select your birhtday ")
+        XCTAssertEqual(result[0].message, "The string for \"the art and culture category")
+        XCTAssertEqual(result[1].message, "String for back operation")
+        XCTAssertEqual(result[2].message, "Select your birhtday")
     }
     
     func testInputValidWithMessageContainingGarbage() {
@@ -117,9 +117,9 @@ garbage garbage...
         XCTAssertEqual(result[1].value, "Zurück")
         XCTAssertEqual(result[2].value, "Bitte wähle deinen Geburtstag aus")
         
-        XCTAssertEqual(result[0].message, " The string for \"the art and culture category ")
-        XCTAssertEqual(result[1].message, " String for back operation ")
-        XCTAssertEqual(result[2].message, " Select your birhtday ")
+        XCTAssertEqual(result[0].message, "The string for \"the art and culture category")
+        XCTAssertEqual(result[1].message, "String for back operation")
+        XCTAssertEqual(result[2].message, "Select your birhtday")
     }
     
     func testInputValidWithMessageContainingLicenseHeader() {
@@ -155,9 +155,9 @@ garbage garbage...
         XCTAssertEqual(result[1].value, "Zurück")
         XCTAssertEqual(result[2].value, "Bitte wähle deinen Geburtstag aus")
         
-        XCTAssertEqual(result[0].message, " The string for \"the art and culture category ")
-        XCTAssertEqual(result[1].message, " String for back operation ")
-        XCTAssertEqual(result[2].message, " Select your birhtday ")
+        XCTAssertEqual(result[0].message, "The string for \"the art and culture category")
+        XCTAssertEqual(result[1].message, "String for back operation")
+        XCTAssertEqual(result[2].message, "Select your birhtday")
     }
     
     func testMalformattedInput() {
