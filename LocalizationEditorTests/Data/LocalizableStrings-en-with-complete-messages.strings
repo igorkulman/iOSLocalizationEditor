@@ -33,7 +33,7 @@
 /* Commenting Message for Feed */
 "feed" = "Feed";
 
-/* Commenting Message for Used Libraries */
+/* Commenting Message for Used Libraries. Long message is long. Longer message is even longer! */
 "libraries" = "Used libraries";
 
 /* Commenting Message for Logo URL */
