@@ -29,7 +29,7 @@ final class LocalizationProvider {
      - Parameter value: new value for the localization string
      */
     func updateLocalization(localization: Localization, key: String, with value: String, message: String?) {
-        if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value {
+        if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value, existing.message == message {
             Log.debug?.message("Same value provided for \(existing), not updating")
             return
         }
@@ -40,8 +40,8 @@ final class LocalizationProvider {
 
         let data = localization.translations.map { string -> String in
             let stringForMessage: String
-            if let message = string.message {
-                stringForMessage = "/* \(message) */"
+            if let newMessage = message {
+                stringForMessage = "/* \(newMessage) */"
             } else {
                 stringForMessage = ""
             }

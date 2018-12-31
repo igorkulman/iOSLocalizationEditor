@@ -128,7 +128,8 @@ class Parser {
                 guard let key = currentKey, let value = currentValue else {
                     throw ParserError.malformattedInput
                 }
-                let entry = LocalizationString(key: key, value: value, message: currentMessage)
+                let correctedMessage = removeLeadingTrailingSpaces(from: currentMessage)
+                let entry = LocalizationString(key: key, value: value, message: correctedMessage)
                 results.append(entry)
                 // Reset the properties to be ready for the next line.
                 currentValue = nil
@@ -143,6 +144,16 @@ class Parser {
             throw ParserError.malformattedInput
         }
         return results
+    }
+    /// This function removes leading and trailing spaces from the input.
+    ///
+    /// - Parameter input: The string whose leading and trailing spaces should be removed.
+    /// - Returns: The input string without leading or trailing spaces or nil when the input was also nil.
+    private func removeLeadingTrailingSpaces(from input: String?) -> String? {
+        if let cleanedAndReversed = input?.drop(while: { $0 == " " }).reversed().drop(while: { $0 == " " }) {
+            return String(cleanedAndReversed.reversed())
+        }
+        return nil
     }
     /// This function finds the index where a given enclosing control character can be found. This index determies where this token may be terminated.
     ///
