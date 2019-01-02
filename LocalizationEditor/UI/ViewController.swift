@@ -154,3 +154,17 @@ extension ViewController: LocalizationCellDelegate {
         dataSource.updateLocalization(language: language, key: key, with: value)
     }
 }
+
+extension ViewController: NSTableViewClickableDelegate {
+    @nonobjc func tableView(_ tableView: NSTableView, didClickRow row: Int, didClickColumn column: Int) {
+        guard column > 0 else { // ignore click on the key label
+            return
+        }
+
+        guard let cell = tableView.view(atColumn: column, row: row, makeIfNecessary: false) as? LocalizationCell else {
+            return
+        }
+
+        cell.focus()
+    }
+}
