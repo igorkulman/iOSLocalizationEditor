@@ -22,13 +22,21 @@ All the translations are sorted by their key (shown as first column) and you can
 
 When you change any of the translations the corresponding `Localizable.strings` gets updated.
 
-## Getting started
+## Running the app
+
+To download and run the app
+
+- Go to [Releases](https://github.com/igorkulman/iOSLocalizationEditor/releases) and download the built app archive **LocalizationEditor.app.zip** from the latest release
+- Unzip **LocalizationEditor.app.zip**
+- Right click on the extracted **LocalizationEditor.app** and choose Open (just a double-clicking will show a warning because the app is only signed with a development certificate)
+
+## Contributing
 
 ### Prerequisites
 
 - Xcode 10.1+
 - [Carthage](https://github.com/Carthage/Carthage)
-- [SwiftLint](https://github.com/realm/SwiftLint) (only for contributing)
+- [SwiftLint](https://github.com/realm/SwiftLint)
 
 ### Bootstraping the project
 
