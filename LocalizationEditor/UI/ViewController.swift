@@ -68,7 +68,11 @@ final class ViewController: NSViewController {
 
         languages.forEach { language in
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(language))
-            column.title = language == "Base" ? language : "\(emojiFlag(countryCode: language)) \(language.uppercased())"
+            if language.count == 2 || (language.count == 4 && language.contains("-")) { // country code
+                column.title = "\(emojiFlag(countryCode: language)) \(language.uppercased())"
+            } else {
+                column.title = language
+            }
             self.tableView.addTableColumn(column)
         }
 
