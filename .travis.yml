@@ -1,0 +1,16 @@
+language: objective-c
+osx_image: xcode10.1
+cache:
+  directories:
+  - Carthage
+before_install:    
+  - gem install xcpretty
+  - gem install xcpretty-travis-formatter
+  - brew install carthage
+  - brew install swiftlint
+  - carthage bootstrap --platform macOS --no-use-binaries
+script:
+  - xcodebuild test -project LocalizationEditor.xcodeproj -scheme LocalizationEditor -destination 'platform=OS X,arch=x86_64' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -f `xcpretty-travis-formatter`
+notifications:
+  email:
+    on_success: never

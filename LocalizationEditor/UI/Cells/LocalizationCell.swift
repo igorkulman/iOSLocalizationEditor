@@ -44,6 +44,15 @@ final class LocalizationCell: NSTableCellView {
         valueTextField.layer?.borderWidth = 1.0
         valueTextField.layer?.cornerRadius = 0.0
     }
+
+    /**
+     Focues the cell by activating the NSTextField, making sure there is no selection and cursor is moved to the end
+     */
+    func focus() {
+        valueTextField?.becomeFirstResponder()
+        valueTextField?.currentEditor()?.selectedRange = NSRange(location: 0, length: 0)
+        valueTextField?.currentEditor()?.moveToEndOfDocument(nil)
+    }
 }
 
 // MARK: - Delegate

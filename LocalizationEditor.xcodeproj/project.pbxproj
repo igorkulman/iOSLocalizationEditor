@@ -40,6 +40,7 @@
 		F3DF02EF21C66C3800CEC6B6 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DF02EE21C66C3800CEC6B6 /* XCTestCase+Extensions.swift */; };
 		F3EA77C721AEB4DC00337B3B /* CleanroomLogger.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */; };
 		F3EA77C821AEB4DC00337B3B /* Files.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */; };
+		F3FC1F9021DCB9B700C936E8 /* NSTableView+Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -116,6 +117,7 @@
 		F3DF02EE21C66C3800CEC6B6 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CleanroomLogger.framework.dSYM; path = ../Carthage/Build/Mac/CleanroomLogger.framework.dSYM; sourceTree = "<group>"; };
 		F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Files.framework.dSYM; path = ../Carthage/Build/Mac/Files.framework.dSYM; sourceTree = "<group>"; };
+		F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Click.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -161,6 +163,7 @@
 			isa = PBXGroup;
 			children = (
 				F3EA77C921AEB50600337B3B /* Dependencies */,
+				F3FC1F8E21DCB9AA00C936E8 /* Extensions */,
 				F3D9C95520BEC9E30081830A /* Models */,
 				F3D9C95A20BECDB20081830A /* Providers */,
 				F3D9C96C20BEEA2F0081830A /* UI */,
@@ -267,6 +270,14 @@
 				F3D9C97220BEF0A50081830A /* Files.framework */,
 			);
 			name = Dependencies;
+			sourceTree = "<group>";
+		};
+		F3FC1F8E21DCB9AA00C936E8 /* Extensions */ = {
+			isa = PBXGroup;
+			children = (
+				F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */,
+			);
+			path = Extensions;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -411,6 +422,7 @@
 				A15A5A4221D908C400D3C791 /* Parser.swift in Sources */,
 				F3D9C95720BEC9F10081830A /* LocalizationString.swift in Sources */,
 				172274D420D933970036EA4E /* LocalizationGroup.swift in Sources */,
+				F3FC1F9021DCB9B700C936E8 /* NSTableView+Click.swift in Sources */,
 				F3D9C95C20BECDBF0081830A /* LocalizationProvider.swift in Sources */,
 				F3D9C96E20BEEAA10081830A /* LocalizationsDataSource.swift in Sources */,
 				F3D9C95920BECA270081830A /* Localization.swift in Sources */,

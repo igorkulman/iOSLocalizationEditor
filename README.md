@@ -1,4 +1,11 @@
 # Localization Editor
+
+[![Travis CI](https://api.travis-ci.com/igorkulman/iOSLocalizationEditor.svg?branch=master)](https://travis-ci.com/igorkulman/iOSLocalizationEditor)
+[![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
+![Platforms](https://img.shields.io/badge/platform-macOS-lightgrey.svg)
+[![Swift Version](https://img.shields.io/badge/Swift-4.2-F16D39.svg?style=flat)](https://developer.apple.com/swift)
+[![Twitter](https://img.shields.io/badge/twitter-@igorkulman-blue.svg)](http://twitter.com/igorkulman)
+
 Simple macOS editor app to help you manage iOS app localizations by allowing you to edit all the translations side by side, highlighting missing translations
 
 ![Localization Editor](https://github.com/igorkulman/iOSLocalizationEditor/raw/master/editor.png)
@@ -15,13 +22,21 @@ All the translations are sorted by their key (shown as first column) and you can
 
 When you change any of the translations the corresponding `Localizable.strings` gets updated.
 
-## Getting started
+## Running the app
+
+To download and run the app
+
+- Go to [Releases](https://github.com/igorkulman/iOSLocalizationEditor/releases) and download the built app archive **LocalizationEditor.app.zip** from the latest release
+- Unzip **LocalizationEditor.app.zip**
+- Right click on the extracted **LocalizationEditor.app** and choose Open (just a double-clicking will show a warning because the app is only signed with a development certificate)
+
+## Contributing
 
 ### Prerequisites
 
 - Xcode 10.1+
 - [Carthage](https://github.com/Carthage/Carthage)
-- [SwiftLint](https://github.com/realm/SwiftLint) (only for contributing)
+- [SwiftLint](https://github.com/realm/SwiftLint)
 
 ### Bootstraping the project
 

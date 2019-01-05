@@ -69,7 +69,11 @@ final class ViewController: NSViewController {
 
         languages.forEach { language in
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(language))
-            column.title = language == "Base" ? language : "\(emojiFlag(countryCode: language)) \(language.uppercased())"
+            if language.count == 2 || (language.count == 4 && language.contains("-")) { // country code
+                column.title = "\(emojiFlag(countryCode: language)) \(language.uppercased())"
+            } else {
+                column.title = language
+            }
             column.maxWidth = 460
             column.minWidth = 50
             self.tableView.addTableColumn(column)
@@ -156,5 +160,19 @@ extension ViewController: NSTableViewDelegate {
 extension ViewController: LocalizationCellDelegate {
     func userDidUpdateLocalizationString(language: String, key: String, with value: String, message: String?) {
         dataSource.updateLocalization(language: language, key: key, with: value, message: message)
+    }
+}
+
+extension ViewController: NSTableViewClickableDelegate {
+    @nonobjc func tableView(_ tableView: NSTableView, didClickRow row: Int, didClickColumn column: Int) {
+        guard column > 0 else { // ignore click on the key label
+            return
+        }
+
+        guard let cell = tableView.view(atColumn: column, row: row, makeIfNecessary: false) as? LocalizationCell else {
+            return
+        }
+
+        cell.focus()
     }
 }
