@@ -147,11 +147,10 @@ class LoalizationProviderUpdatingTests: XCTestCase {
                     
                     let originalMessage = base[i].localizations[j].translations.first(where: { $0.key == key })?.message
                     let updatedMessage = updated[i].localizations[j].translations.first(where: { $0.key == key })?.message
+                    XCTAssertEqual(originalMessage, updatedMessage)
                     
-
                     if let lang = changes[base[i].localizations[j].language], let newValue = lang[key] {
                         XCTAssertEqual(updatedValue, newValue)
-                        XCTAssertEqual(originalMessage, updatedMessage)
                     } else {
                          XCTAssertEqual(originalValue, updatedValue)
                     }

@@ -40,7 +40,7 @@ final class LocalizationProvider {
 
         let data = localization.translations.map { string -> String in
             let stringForMessage: String
-            if let newMessage = message {
+            if let newMessage = string.message {
                 stringForMessage = "/* \(newMessage) */"
             } else {
                 stringForMessage = ""
