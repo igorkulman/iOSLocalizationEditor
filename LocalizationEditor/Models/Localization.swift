@@ -22,13 +22,13 @@ class Localization {
         self.path = path
     }
 
-    func update(key: String, value: String) {
+    func update(key: String, value: String, message: String?) {
         if let existing = translations.first(where: { $0.key == key }) {
             existing.update(newValue: value)
             return
         }
 
-        let newTranslation = LocalizationString(key: key, value: value)
+        let newTranslation = LocalizationString(key: key, value: value, message: message)
         translations = (translations + [newTranslation]).sorted()
     }
 }

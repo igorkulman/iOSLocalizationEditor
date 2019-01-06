@@ -28,18 +28,27 @@ final class LocalizationProvider {
      - Parameter key: localization string key
      - Parameter value: new value for the localization string
      */
-    func updateLocalization(localization: Localization, key: String, with value: String) {
-        if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value {
+    func updateLocalization(localization: Localization, key: String, with value: String, message: String?) {
+        if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value, existing.message == message {
             Log.debug?.message("Same value provided for \(existing), not updating")
             return
         }
 
-        Log.debug?.message("Updating \(key) in \(value)")
+        Log.debug?.message("Updating \(key) in \(value) with Message: \(message ?? "No Message.")")
 
-        localization.update(key: key, value: value)
+        localization.update(key: key, value: value, message: message)
 
-        let data = localization.translations.map { string in
-            "\"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";"
+        let data = localization.translations.map { string -> String in
+            let stringForMessage: String
+            if let newMessage = string.message {
+                stringForMessage = "/* \(newMessage) */"
+            } else {
+                stringForMessage = ""
+            }
+            return """
+            \(stringForMessage)
+            \"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";\n
+            """
         }.reduce("") { prev, next in
                 "\(prev)\n\(next)"
         }
@@ -90,15 +99,27 @@ final class LocalizationProvider {
      - Returns: array of localization strings
      */
     private func getLocalizationStrings(path: String) -> [LocalizationString] {
-        guard let dict = NSDictionary(contentsOfFile: path) as? [String: String] else {
-            Log.error?.message("Could not parse \(path) as dictionary")
-            return []
+        do {
+            let contentOfFileAsString = try String(contentsOfFile: path)
+            let parser = Parser(input: contentOfFileAsString)
+            let localizationStrings = try parser.parse()
+            Log.debug?.message("Found \(localizationStrings.count) keys for in \(path) using build in parser.")
+            return localizationStrings.sorted()
+        } catch {
+            // The parser could not parse the input. Fallback to NSDictionary
+            Log.error?.message("Could not parse \(path) as String")
+            if let dict = NSDictionary(contentsOfFile: path) as? [String: String] {
+                var localizationStrings: [LocalizationString] = []
+                for (key, value) in dict {
+                    let localizationString = LocalizationString(key: key, value: value, message: nil)
+                    localizationStrings.append(localizationString)
+                }
+                Log.debug?.message("Found \(localizationStrings.count) keys for in \(path).")
+                return localizationStrings.sorted()
+            } else {
+                Log.error?.message("Could not parse \(path) as dictionary.")
+                return []
+            }
         }
-
-        let localizationStrings: [LocalizationString] = dict.map({ LocalizationString(key: $0.key, value: $0.value) })
-
-        Log.debug?.message("Found \(localizationStrings.count) keys for in \(path)")
-
-        return localizationStrings.sorted()
     }
 }
