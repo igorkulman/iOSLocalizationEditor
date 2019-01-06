@@ -211,17 +211,17 @@ class Parser {
         if let priorToken = tokens.last {
             // When the prior token and the new token are of the same type, combine their values. Otherwise just return the new token.
             switch (priorToken, inputToken) {
-            case (.key(let oldText), .key(let newText)):
+            case let (.key(oldText), .key(newText)):
                 let combinedText = oldText + seperatingString + newText
                 // Also remove the token that is now included in the new token.
                 tokens.removeLast()
                 return .key(combinedText)
-            case (.value(let oldText), .value(let newText)):
+            case let (.value(oldText), .value(newText)):
                 let combinedText = oldText + seperatingString + newText
                 // Also remove the token that is now included in the new token.
                 tokens.removeLast()
                 return .value(combinedText)
-            case (.message(let oldText), .message(let newText)):
+            case let (.message( oldText), .message(newText)):
                 let combinedText = oldText + seperatingString + newText
                 // Also remove the token that is now included in the new token.
                 tokens.removeLast()
@@ -289,7 +289,7 @@ class Parser {
         case (.some(let smallEnclosing), .none):
             nextControlCharacter = smallEnclosing.key
             nextControlCharacterIndex = smallEnclosing.value
-        case (.some(let smallEnclosing), .some(let smallSeperating)):
+        case let (.some(smallEnclosing), .some(smallSeperating)):
             if smallSeperating.value < smallEnclosing.value {
                 nextControlCharacter = smallSeperating.key
                 nextControlCharacterIndex = smallSeperating.value
