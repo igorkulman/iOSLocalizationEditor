@@ -13,6 +13,7 @@
 		A15A5A4221D908C400D3C791 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4121D908C400D3C791 /* Parser.swift */; };
 		A15A5A4721D90AC600D3C791 /* ParserIsolationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */; };
 		A15A5A4921DA249400D3C791 /* ParserTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4821DA249400D3C791 /* ParserTypes.swift */; };
+		F3642CC421F715CB006C8685 /* EditableNSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3642CC321F715CB006C8685 /* EditableNSTextField.swift */; };
 		F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94520BEC7460081830A /* AppDelegate.swift */; };
 		F3D9C94820BEC7460081830A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94720BEC7460081830A /* ViewController.swift */; };
 		F3D9C94A20BEC7460081830A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C94920BEC7460081830A /* Assets.xcassets */; };
@@ -86,6 +87,7 @@
 		A15A5A4121D908C400D3C791 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserIsolationTests.swift; sourceTree = "<group>"; };
 		A15A5A4821DA249400D3C791 /* ParserTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTypes.swift; sourceTree = "<group>"; };
+		F3642CC321F715CB006C8685 /* EditableNSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableNSTextField.swift; sourceTree = "<group>"; };
 		F3D9C94220BEC7460081830A /* LocalizationEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D9C94520BEC7460081830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D9C94720BEC7460081830A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -140,6 +142,14 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3642CC221F715BD006C8685 /* Controls */ = {
+			isa = PBXGroup;
+			children = (
+				F3642CC321F715CB006C8685 /* EditableNSTextField.swift */,
+			);
+			path = Controls;
+			sourceTree = "<group>";
+		};
 		F3D9C93920BEC7460081830A = {
 			isa = PBXGroup;
 			children = (
@@ -162,6 +172,7 @@
 		F3D9C94420BEC7460081830A /* LocalizationEditor */ = {
 			isa = PBXGroup;
 			children = (
+				F3642CC221F715BD006C8685 /* Controls */,
 				F3EA77C921AEB50600337B3B /* Dependencies */,
 				F3FC1F8E21DCB9AA00C936E8 /* Extensions */,
 				F3D9C95520BEC9E30081830A /* Models */,
@@ -418,6 +429,7 @@
 			files = (
 				A15A5A4921DA249400D3C791 /* ParserTypes.swift in Sources */,
 				F3D9C94820BEC7460081830A /* ViewController.swift in Sources */,
+				F3642CC421F715CB006C8685 /* EditableNSTextField.swift in Sources */,
 				F3D9C96720BEDF640081830A /* KeyCell.swift in Sources */,
 				A15A5A4221D908C400D3C791 /* Parser.swift in Sources */,
 				F3D9C95720BEC9F10081830A /* LocalizationString.swift in Sources */,
