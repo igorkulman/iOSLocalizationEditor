@@ -14,6 +14,7 @@
 		A15A5A4721D90AC600D3C791 /* ParserIsolationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */; };
 		A15A5A4921DA249400D3C791 /* ParserTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4821DA249400D3C791 /* ParserTypes.swift */; };
 		F3642CC421F715CB006C8685 /* EditableNSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3642CC321F715CB006C8685 /* EditableNSTextField.swift */; };
+		F3A5ABB8220448690077460D /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5ABB7220448690077460D /* FileManager+Extension.swift */; };
 		F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94520BEC7460081830A /* AppDelegate.swift */; };
 		F3D9C94820BEC7460081830A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94720BEC7460081830A /* ViewController.swift */; };
 		F3D9C94A20BEC7460081830A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C94920BEC7460081830A /* Assets.xcassets */; };
@@ -26,8 +27,6 @@
 		F3D9C96520BEDF580081830A /* KeyCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C96420BEDF580081830A /* KeyCell.xib */; };
 		F3D9C96720BEDF640081830A /* KeyCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C96620BEDF640081830A /* KeyCell.swift */; };
 		F3D9C96E20BEEAA10081830A /* LocalizationsDataSource.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */; };
-		F3D9C97320BEF0A50081830A /* Files.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97220BEF0A50081830A /* Files.framework */; };
-		F3D9C97420BEF0A50081830A /* Files.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97220BEF0A50081830A /* Files.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3D9C97720BEFF230081830A /* CleanroomLogger.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97620BEFF220081830A /* CleanroomLogger.framework */; };
 		F3D9C97820BEFF230081830A /* CleanroomLogger.framework in Embed Frameworks */ = {isa = PBXBuildFile; fileRef = F3D9C97620BEFF220081830A /* CleanroomLogger.framework */; settings = {ATTRIBUTES = (CodeSignOnCopy, RemoveHeadersOnCopy, ); }; };
 		F3DF02CE21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DF02CD21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift */; };
@@ -40,7 +39,6 @@
 		F3DF02EC21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DF02EB21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift */; };
 		F3DF02EF21C66C3800CEC6B6 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DF02EE21C66C3800CEC6B6 /* XCTestCase+Extensions.swift */; };
 		F3EA77C721AEB4DC00337B3B /* CleanroomLogger.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */; };
-		F3EA77C821AEB4DC00337B3B /* Files.framework.dSYM in CopyFiles */ = {isa = PBXBuildFile; fileRef = F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */; };
 		F3FC1F9021DCB9B700C936E8 /* NSTableView+Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */; };
 /* End PBXBuildFile section */
 
@@ -61,7 +59,6 @@
 			dstPath = "";
 			dstSubfolderSpec = 10;
 			files = (
-				F3D9C97420BEF0A50081830A /* Files.framework in Embed Frameworks */,
 				F3D9C97820BEFF230081830A /* CleanroomLogger.framework in Embed Frameworks */,
 			);
 			name = "Embed Frameworks";
@@ -74,7 +71,6 @@
 			dstSubfolderSpec = 16;
 			files = (
 				F3EA77C721AEB4DC00337B3B /* CleanroomLogger.framework.dSYM in CopyFiles */,
-				F3EA77C821AEB4DC00337B3B /* Files.framework.dSYM in CopyFiles */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
@@ -88,6 +84,7 @@
 		A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserIsolationTests.swift; sourceTree = "<group>"; };
 		A15A5A4821DA249400D3C791 /* ParserTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTypes.swift; sourceTree = "<group>"; };
 		F3642CC321F715CB006C8685 /* EditableNSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableNSTextField.swift; sourceTree = "<group>"; };
+		F3A5ABB7220448690077460D /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		F3D9C94220BEC7460081830A /* LocalizationEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D9C94520BEC7460081830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D9C94720BEC7460081830A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -104,7 +101,6 @@
 		F3D9C96620BEDF640081830A /* KeyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCell.swift; sourceTree = "<group>"; };
 		F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationsDataSource.swift; sourceTree = "<group>"; };
 		F3D9C97020BEF0740081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
-		F3D9C97220BEF0A50081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = ../Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
 		F3D9C97620BEFF220081830A /* CleanroomLogger.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = CleanroomLogger.framework; path = ../Carthage/Build/Mac/CleanroomLogger.framework; sourceTree = "<group>"; };
 		F3DF02CB21C65F6800CEC6B6 /* LocalizationEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizationEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3DF02CD21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProviderParsingTests.swift; sourceTree = "<group>"; };
@@ -118,7 +114,6 @@
 		F3DF02EB21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoalizationProviderUpdatingTests.swift; sourceTree = "<group>"; };
 		F3DF02EE21C66C3800CEC6B6 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = CleanroomLogger.framework.dSYM; path = ../Carthage/Build/Mac/CleanroomLogger.framework.dSYM; sourceTree = "<group>"; };
-		F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */ = {isa = PBXFileReference; lastKnownFileType = wrapper.dsym; name = Files.framework.dSYM; path = ../Carthage/Build/Mac/Files.framework.dSYM; sourceTree = "<group>"; };
 		F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Click.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -127,7 +122,6 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
-				F3D9C97320BEF0A50081830A /* Files.framework in Frameworks */,
 				F3D9C97720BEFF230081830A /* CleanroomLogger.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -276,9 +270,7 @@
 			isa = PBXGroup;
 			children = (
 				F3EA77C521AEB4DC00337B3B /* CleanroomLogger.framework.dSYM */,
-				F3EA77C621AEB4DC00337B3B /* Files.framework.dSYM */,
 				F3D9C97620BEFF220081830A /* CleanroomLogger.framework */,
-				F3D9C97220BEF0A50081830A /* Files.framework */,
 			);
 			name = Dependencies;
 			sourceTree = "<group>";
@@ -286,6 +278,7 @@
 		F3FC1F8E21DCB9AA00C936E8 /* Extensions */ = {
 			isa = PBXGroup;
 			children = (
+				F3A5ABB7220448690077460D /* FileManager+Extension.swift */,
 				F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */,
 			);
 			path = Extensions;
@@ -432,6 +425,7 @@
 				F3642CC421F715CB006C8685 /* EditableNSTextField.swift in Sources */,
 				F3D9C96720BEDF640081830A /* KeyCell.swift in Sources */,
 				A15A5A4221D908C400D3C791 /* Parser.swift in Sources */,
+				F3A5ABB8220448690077460D /* FileManager+Extension.swift in Sources */,
 				F3D9C95720BEC9F10081830A /* LocalizationString.swift in Sources */,
 				172274D420D933970036EA4E /* LocalizationGroup.swift in Sources */,
 				F3FC1F9021DCB9B700C936E8 /* NSTableView+Click.swift in Sources */,

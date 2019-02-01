@@ -50,7 +50,6 @@ to download and build all the Carthage dependencies before opening the Xcode pro
 
 ## Built With
 
-- [Files](https://github.com/JohnSundell/Files) - A nicer way to handle files & folders in Swift 
 - [CleanroomLogger](https://github.com/emaloney/CleanroomLogger) - CleanroomLogger provides an extensible Swift-based logging API that is simple, lightweight and performant 
 
 ## Author

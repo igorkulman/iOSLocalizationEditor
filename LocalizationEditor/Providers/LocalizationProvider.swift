@@ -7,7 +7,6 @@
 //
 
 import CleanroomLogger
-import Files
 import Foundation
 
 /**
@@ -64,18 +63,14 @@ final class LocalizationProvider {
     /**
      Finds and constructs localiations for given directory path
 
-     - Parameter url: diretcory URL to start the search
+     - Parameter url: directory URL to start the search
      - Returns: list of localization groups
      */
     func getLocalizations(url: URL) -> [LocalizationGroup] {
         Log.debug?.message("Searching \(url) for Localizable.strings")
 
-        guard let folder = try? Folder(path: url.path) else {
-            return []
-        }
-
-        let localizationFiles = Dictionary(grouping: folder.makeFileSequence(recursive: true).filter { file in
-            file.name.hasSuffix(".strings") && !ignoredDirectories.contains(where: { file.path.contains($0) })
+        let localizationFiles = Dictionary(grouping: FileManager.default.getAllFilesRecursively(url: url).filter { file in
+            file.pathExtension == "strings" && !ignoredDirectories.contains(where: { file.path.contains($0) })
         }, by: { $0.path.components(separatedBy: "/").filter({ !$0.hasSuffix(".lproj") }).joined(separator: "/") })
 
         Log.debug?.message("Found \(localizationFiles.count) localization files")
