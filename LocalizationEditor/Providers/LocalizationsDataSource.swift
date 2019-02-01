@@ -6,9 +6,9 @@
 //  Copyright © 2018 Igor Kulman. All rights reserved.
 //
 
-import CleanroomLogger
 import Cocoa
 import Foundation
+import os
 
 typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 
@@ -37,7 +37,7 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
         DispatchQueue.global(qos: .background).async {
             let localizationGroups = self.localizationProvider.getLocalizations(url: folder)
             guard localizationGroups.count > 0, let group = localizationGroups.first(where: { $0.name == "Localizable.strings" }) ?? localizationGroups.first else {
-                Log.error?.message("No localization data found")
+                os_log("No localization data found", type: OSLogType.error)
                 DispatchQueue.main.async {
                     onCompletion(([], nil, []))
                 }

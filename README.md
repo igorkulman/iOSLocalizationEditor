@@ -35,22 +35,7 @@ To download and run the app
 ### Prerequisites
 
 - Xcode 10.1+
-- [Carthage](https://github.com/Carthage/Carthage)
 - [SwiftLint](https://github.com/realm/SwiftLint)
-
-### Bootstraping the project
-
-Run 
-
-```bash
-sh ./bootstrap.sh
-```
-
-to download and build all the Carthage dependencies before opening the Xcode project for the first time. This need to be done **just once** for the initial setup.
-
-## Built With
-
-- [CleanroomLogger](https://github.com/emaloney/CleanroomLogger) - CleanroomLogger provides an extensible Swift-based logging API that is simple, lightweight and performant 
 
 ## Author
 

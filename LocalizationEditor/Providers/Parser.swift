@@ -59,7 +59,7 @@ class Parser {
      */
     private func tokenize() throws {
         // Iterate through the input until it is cleared.
-        iterateThroughInput: while !input.isEmpty {
+        while !input.isEmpty {
             // Actions depend on the current state.
             switch state {
             case .other:

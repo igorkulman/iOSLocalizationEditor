@@ -6,8 +6,8 @@
 //  Copyright © 2018 Igor Kulman. All rights reserved.
 //
 
-import CleanroomLogger
 import Foundation
+import os
 
 /**
 Service for working with the strings files
@@ -29,11 +29,11 @@ final class LocalizationProvider {
      */
     func updateLocalization(localization: Localization, key: String, with value: String, message: String?) {
         if let existing = localization.translations.first(where: { $0.key == key }), existing.value == value, existing.message == message {
-            Log.debug?.message("Same value provided for \(existing), not updating")
+            os_log("Same value provided for %@, not updating", type: OSLogType.debug, existing.description)
             return
         }
 
-        Log.debug?.message("Updating \(key) in \(value) with Message: \(message ?? "No Message.")")
+        os_log("Updating %@ in %@ with Message: %@)", type: OSLogType.debug, key, value, message ?? "No Message.")
 
         localization.update(key: key, value: value, message: message)
 
@@ -54,9 +54,9 @@ final class LocalizationProvider {
 
         do {
             try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
-            Log.debug?.message("Localization file for \(localization) updated")
+            os_log("Localization file for %@ updated", type: OSLogType.debug, localization.description)
         } catch {
-            Log.error?.message("Writing localization file for \(localization) failed with \(error)")
+            os_log("Writing localization file for %@ failed with %@", type: OSLogType.error, localization.description, error.localizedDescription)
         }
     }
 
@@ -67,13 +67,13 @@ final class LocalizationProvider {
      - Returns: list of localization groups
      */
     func getLocalizations(url: URL) -> [LocalizationGroup] {
-        Log.debug?.message("Searching \(url) for Localizable.strings")
+        os_log("Searching %@ for Localizable.strings", type: OSLogType.debug, url.description)
 
         let localizationFiles = Dictionary(grouping: FileManager.default.getAllFilesRecursively(url: url).filter { file in
             file.pathExtension == "strings" && !ignoredDirectories.contains(where: { file.path.contains($0) })
         }, by: { $0.path.components(separatedBy: "/").filter({ !$0.hasSuffix(".lproj") }).joined(separator: "/") })
 
-        Log.debug?.message("Found \(localizationFiles.count) localization files")
+        os_log("Found %d localization files", type: OSLogType.info, localizationFiles.count)
 
         return localizationFiles.map({ path, files in
             let name = URL(fileURLWithPath: path).lastPathComponent
@@ -98,21 +98,21 @@ final class LocalizationProvider {
             let contentOfFileAsString = try String(contentsOfFile: path)
             let parser = Parser(input: contentOfFileAsString)
             let localizationStrings = try parser.parse()
-            Log.debug?.message("Found \(localizationStrings.count) keys for in \(path) using build in parser.")
+            os_log("Found %d keys for in %@ using build in parser.", type: OSLogType.debug, localizationStrings.count, path.description)
             return localizationStrings.sorted()
         } catch {
             // The parser could not parse the input. Fallback to NSDictionary
-            Log.error?.message("Could not parse \(path) as String")
+            os_log("Could not parse %@ as String", type: OSLogType.error, path.description)
             if let dict = NSDictionary(contentsOfFile: path) as? [String: String] {
                 var localizationStrings: [LocalizationString] = []
                 for (key, value) in dict {
                     let localizationString = LocalizationString(key: key, value: value, message: nil)
                     localizationStrings.append(localizationString)
                 }
-                Log.debug?.message("Found \(localizationStrings.count) keys for in \(path).")
+                os_log("Found %d keys for in %@.", type: OSLogType.debug, localizationStrings.count, path.description)
                 return localizationStrings.sorted()
             } else {
-                Log.error?.message("Could not parse \(path) as dictionary.")
+                os_log("Could not parse %@ as dictionary.", type: OSLogType.error, path.description)
                 return []
             }
         }
