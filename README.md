@@ -30,13 +30,6 @@ To download and run the app
 - Unzip **LocalizationEditor.app.zip**
 - Right click on the extracted **LocalizationEditor.app** and choose Open (just a double-clicking will show a warning because the app is only signed with a development certificate)
 
-## Contributing
-
-### Prerequisites
-
-- Xcode 10.1+
-- [SwiftLint](https://github.com/realm/SwiftLint)
-
 ## Author
 
 - **Igor Kulman** - *Initial work* - igor@kulman.sk
