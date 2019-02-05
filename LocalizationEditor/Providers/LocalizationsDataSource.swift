@@ -21,7 +21,15 @@ final class LocalizationsDataSource: NSObject {
     private let localizationProvider = LocalizationProvider()
     private var localizationGroups: [LocalizationGroup] = []
     private var selectedLocalizationGroup: LocalizationGroup?
+
+    /**
+     Dictionary indexed by localization key on the first level and by language on the second level for easier access
+     */
     private var data: [String: [String: LocalizationString?]] = [:]
+
+    /**
+     Keys for the consumer. Depend on applied filter.
+     */
     private var filteredKeys: [String] = []
 
     // MARK: - Actions
