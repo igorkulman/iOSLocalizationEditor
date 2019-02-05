@@ -276,6 +276,7 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = F3D9C95220BEC7460081830A /* Build configuration list for PBXNativeTarget "LocalizationEditor" */;
 			buildPhases = (
+				F3EF22082209F25F000E8C80 /* Build number */,
 				F3BC11A421C40FAC001F396F /* SwiftLint */,
 				F3D9C93E20BEC7460081830A /* Sources */,
 				F3D9C93F20BEC7460081830A /* Frameworks */,
@@ -397,6 +398,24 @@
 			runOnlyForDeploymentPostprocessing = 0;
 			shellPath = /bin/sh;
 			shellScript = "if which swiftlint >/dev/null; then\nswiftlint\nelse\necho \"warning: SwiftLint not installed, download from https://github.com/realm/SwiftLint\"\nfi\n";
+		};
+		F3EF22082209F25F000E8C80 /* Build number */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputFileListPaths = (
+			);
+			inputPaths = (
+			);
+			name = "Build number";
+			outputFileListPaths = (
+			);
+			outputPaths = (
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "# Type a script or drag a script file from your workspace to insert its path.\nif [ \"${CONFIGURATION}\" = \"Release\" ]; then\nbuildNumber=$(git rev-list HEAD | wc -l | tr -d ' ')\n/usr/libexec/PlistBuddy -c \"Set :CFBundleVersion $buildNumber\" \"${PROJECT_DIR}/${INFOPLIST_FILE}\"\nfi\n";
 		};
 /* End PBXShellScriptBuildPhase section */
 
