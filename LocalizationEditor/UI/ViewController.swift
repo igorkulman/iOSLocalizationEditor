@@ -147,11 +147,7 @@ final class ViewController: NSViewController {
 
 extension ViewController: NSSearchFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
-        search(searchString: (obj.object as? NSSearchField)?.stringValue)
-    }
-
-    private func search(searchString: String?) {
-        dataSource.filter(by: searchString)
+        dataSource.filter(by: (obj.object as? NSSearchField)?.stringValue)
         tableView.reloadData()
     }
 }

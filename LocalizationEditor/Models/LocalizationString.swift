@@ -27,6 +27,8 @@ class LocalizationString {
     }
 }
 
+// MARK: Description
+
 extension LocalizationString: CustomStringConvertible {
     var description: String {
         return "\(key) = \(value)"
