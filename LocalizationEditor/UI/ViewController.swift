@@ -15,6 +15,7 @@ final class ViewController: NSViewController {
     @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var progressIndicator: NSProgressIndicator!
     @IBOutlet private var defaultSelectItem: NSMenuItem!
+    @IBOutlet private weak var searchField: NSSearchField!
 
     // MARK: - Properties
 
@@ -24,6 +25,7 @@ final class ViewController: NSViewController {
         super.viewDidLoad()
 
         setupMenu()
+        setupSearch()
         setupData()
     }
 
@@ -49,12 +51,21 @@ final class ViewController: NSViewController {
         tableView.usesAutomaticRowHeights = true
     }
 
+    private func setupSearch() {
+        searchField.delegate = self
+        searchField.stringValue = ""
+
+        _ = searchField.resignFirstResponder()
+    }
+
     private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
         selectButton.menu?.removeAllItems()
         files.map({ NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "") }).forEach({ selectButton.menu?.addItem($0) })
     }
 
     private func reloadData(with languages: [String], title: String?) {
+        setupSearch()
+
         let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
         view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
 
@@ -129,6 +140,15 @@ final class ViewController: NSViewController {
                 }
             }
         }
+    }
+}
+
+// MARK: - Search
+
+extension ViewController: NSSearchFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        dataSource.filter(by: (obj.object as? NSSearchField)?.stringValue)
+        tableView.reloadData()
     }
 }
 
