@@ -12,12 +12,6 @@ import os
 
 typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 
-enum Filter {
-    case none
-    case key(String)
-    case translation(String)
-}
-
 /**
  Data source for the NSTableView with localizations
  */
@@ -72,7 +66,7 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
             }
         }
 
-        filter(by: Filter.none)
+        filter(by: nil)
         return languages.map({ $0.language })
     }
 
@@ -88,21 +82,24 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
         return languages
     }
 
-    func filter(by filter: Filter) {
-        switch filter {
-        case .none:
+    func filter(by searchString: String?) {
+        guard let searchString = searchString, !searchString.isEmpty else {
             filteredKeys = data.keys.map({ $0 }).sorted(by: { $0<$1 })
-        case let .key(searchString):
-            filteredKeys = data.keys.map({ $0 }).filter({ $0.normalized.contains(searchString.normalized) }).sorted(by: { $0<$1 })
-        case let .translation(searchString):
-            var keys: [String] = []
-            for (key, value) in data {
-                if value.compactMap({ $0.value }).map({ $0.value }).contains(where: { $0.normalized.contains(searchString.normalized) }) {
-                    keys.append(key)
-                }
-            }
-            filteredKeys = keys.sorted(by: { $0<$1 })
+            return
         }
+
+        var keys: [String] = []
+        for (key, value) in data {
+            if key.normalized.contains(searchString.normalized) {
+                keys.append(key)
+                continue
+            }
+
+            if value.compactMap({ $0.value }).map({ $0.value }).contains(where: { $0.normalized.contains(searchString.normalized) }) {
+                keys.append(key)
+            }
+        }
+        filteredKeys = keys.sorted(by: { $0<$1 })
     }
 
     /**
