@@ -53,6 +53,28 @@ final class ViewController: NSViewController {
 
     private func setupSearch() {
         searchField.delegate = self
+        searchField.stringValue = ""
+
+        let menu = NSMenu()
+        menu.title = "Menu"
+
+        for title in ["Keys", "Translations"] {
+            let item = NSMenuItem()
+            item.title = title
+            item.target = self
+            item.action = #selector(ViewController.changeSearchFieldItem(_:))
+            menu.addItem(item)
+        }
+
+        changeSearchFieldItem(menu.items.first!)
+        searchField.searchMenuTemplate = menu
+
+        _ = searchField.resignFirstResponder()
+    }
+
+    @objc func changeSearchFieldItem(_ sender: AnyObject) {
+        (self.searchField.cell as? NSSearchFieldCell)?.placeholderString = sender.title
+        search(searchString: searchField.stringValue)
     }
 
     private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
@@ -61,6 +83,8 @@ final class ViewController: NSViewController {
     }
 
     private func reloadData(with languages: [String], title: String?) {
+        setupSearch()
+
         let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
         view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
 
@@ -142,13 +166,21 @@ final class ViewController: NSViewController {
 
 extension ViewController: NSSearchFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
-        guard let searchString = (obj.object as? NSSearchField)?.stringValue, !searchString.isEmpty else {
+        search(searchString: (obj.object as? NSSearchField)?.stringValue)
+    }
+
+    private func search(searchString: String?) {
+        guard let searchString = searchString, !searchString.isEmpty else {
             dataSource.filter(by: Filter.none)
             tableView.reloadData()
             return
         }
 
-        dataSource.filter(by: Filter.key(searchString))
+        if searchField.placeholderString == "Keys" {
+            dataSource.filter(by: Filter.key(searchString))
+        } else {
+            dataSource.filter(by: Filter.translation(searchString))
+        }
         tableView.reloadData()
     }
 }

@@ -27,7 +27,7 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     private let localizationProvider = LocalizationProvider()
     private var localizationGroups: [LocalizationGroup] = []
     private var selectedLocalizationGroup: LocalizationGroup?
-    private var data: [String: [String: LocalizationString!]] = [:]
+    private var data: [String: [String: LocalizationString?]] = [:]
     private var filteredKeys: [String] = []
 
     // MARK: - Actions
@@ -95,7 +95,13 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
         case let .key(searchString):
             filteredKeys = data.keys.map({ $0 }).filter({ $0.normalized.contains(searchString.normalized) }).sorted(by: { $0<$1 })
         case let .translation(searchString):
-            fatalError()
+            var keys: [String] = []
+            for (key, value) in data {
+                if value.compactMap({ $0.value }).map({ $0.value }).contains(where: { $0.normalized.contains(searchString.normalized) }) {
+                    keys.append(key)
+                }
+            }
+            filteredKeys = keys.sorted(by: { $0<$1 })
         }
     }
 
