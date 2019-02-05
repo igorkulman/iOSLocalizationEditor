@@ -15,6 +15,7 @@ final class ViewController: NSViewController {
     @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var progressIndicator: NSProgressIndicator!
     @IBOutlet private var defaultSelectItem: NSMenuItem!
+    @IBOutlet private weak var searchField: NSSearchField!
 
     // MARK: - Properties
 
@@ -24,6 +25,7 @@ final class ViewController: NSViewController {
         super.viewDidLoad()
 
         setupMenu()
+        setupSearch()
         setupData()
     }
 
@@ -47,6 +49,10 @@ final class ViewController: NSViewController {
         tableView.dataSource = dataSource
         tableView.allowsColumnResizing = true
         tableView.usesAutomaticRowHeights = true
+    }
+
+    private func setupSearch() {
+        searchField.delegate = self
     }
 
     private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
@@ -129,6 +135,21 @@ final class ViewController: NSViewController {
                 }
             }
         }
+    }
+}
+
+// MARK: - Search
+
+extension ViewController: NSSearchFieldDelegate {
+    func controlTextDidChange(_ obj: Notification) {
+        guard let searchString = (obj.object as? NSSearchField)?.stringValue, !searchString.isEmpty else {
+            dataSource.filter(by: Filter.none)
+            tableView.reloadData()
+            return
+        }
+
+        dataSource.filter(by: Filter.key(searchString))
+        tableView.reloadData()
     }
 }
 

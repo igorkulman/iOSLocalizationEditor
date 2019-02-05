@@ -12,18 +12,23 @@ import os
 
 typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 
+enum Filter {
+    case none
+    case key(String)
+    case translation(String)
+}
+
 /**
  Data source for the NSTableView with localizations
  */
 final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     // MARK: - Properties
 
+    private let localizationProvider = LocalizationProvider()
     private var localizationGroups: [LocalizationGroup] = []
     private var selectedLocalizationGroup: LocalizationGroup?
-    private var localizations: [Localization] = []
-    private var masterLocalization: Localization?
-    private let localizationProvider = LocalizationProvider()
-    private var numberOfKeys = 0
+    private var data: [String: [String: LocalizationString!]] = [:]
+    private var filteredKeys: [String] = []
 
     // MARK: - Actions
 
@@ -45,13 +50,30 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
             }
 
             self.localizationGroups = localizationGroups
-            self.selectedLocalizationGroup = group
-            let languages = self.getLanguages(for: group)
+            let languages = self.process(group: group)
 
             DispatchQueue.main.async {
                 onCompletion((languages, group.name, localizationGroups))
             }
         }
+    }
+
+    private func process(group: LocalizationGroup) -> [String] {
+        selectedLocalizationGroup = group
+        let numberOfKeys = group.localizations.map({ $0.translations.count }).max() ?? 0
+        let masterLocalization = group.localizations.first(where: { $0.translations.count == numberOfKeys })
+        let languages = group.localizations.sorted(by: { lhs, _ in return lhs.language == masterLocalization?.language })
+
+        data = [:]
+        for key in masterLocalization!.translations.map({ $0.key }) {
+            data[key] = [:]
+            for language in languages {
+                data[key]![language.language] = language.translations.first(where: { $0.key == key })
+            }
+        }
+
+        filter(by: Filter.none)
+        return languages.map({ $0.language })
     }
 
     /**
@@ -62,22 +84,19 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
      */
     func selectGroupAndGetLanguages(for group: String) -> [String] {
         let group = localizationGroups.first(where: { $0.name == group })!
-        selectedLocalizationGroup = group
-        return getLanguages(for: group)
+        let languages = process(group: group)
+        return languages
     }
 
-    /**
-     Gets available languges for given group
-
-     - Parameter group: localization group
-     - Returns: array of languages
-     */
-    private func getLanguages(for group: LocalizationGroup) -> [String] {
-        localizations = selectedLocalizationGroup?.localizations ?? []
-        numberOfKeys = localizations.map({ $0.translations.count }).max() ?? 0
-        masterLocalization = localizations.first(where: { $0.translations.count == numberOfKeys })
-
-        return localizations.map({ $0.language })
+    func filter(by filter: Filter) {
+        switch filter {
+        case .none:
+            filteredKeys = data.keys.map({ $0 }).sorted(by: { $0<$1 })
+        case let .key(searchString):
+            filteredKeys = data.keys.map({ $0 }).filter({ $0.normalized.contains(searchString.normalized) }).sorted(by: { $0<$1 })
+        case let .translation(searchString):
+            fatalError()
+        }
     }
 
     /**
@@ -87,10 +106,14 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
      - Returns: key if valid
      */
     func getKey(row: Int) -> String? {
-        return (row < masterLocalization?.translations.count ?? 0) ? masterLocalization?.translations[row].key : nil
+        return row < filteredKeys.count ? filteredKeys[row] : nil
     }
     func getMessage(row: Int) -> String? {
-        return (row < masterLocalization?.translations.count ?? 0) ? masterLocalization?.translations[row].message : nil
+        guard let key = getKey(row: row), let part = data[key], let firstKey = part.keys.map({ $0 }).first  else {
+            return nil
+        }
+
+        return part[firstKey]??.message
     }
 
     /**
@@ -101,10 +124,15 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
      - Returns: localiyation string
      */
     func getLocalization(language: String, row: Int) -> LocalizationString {
-        guard let localization = localizations.first(where: { $0.language == language }), let masterLocalization = masterLocalization else {
-            fatalError("Could not get localization for \(language) or master localization not present")
+        guard let key = getKey(row: row) else {
+            fatalError()
         }
-        return localization.translations.first(where: { $0.key == masterLocalization.translations[row].key }) ?? LocalizationString(key: masterLocalization.translations[row].key, value: "", message: "message")
+
+        guard let section = data[key], let data = section[language], let localization = data else {
+            return LocalizationString(key: key, value: "", message: "")
+        }
+
+        return localization
     }
 
     /**
@@ -115,7 +143,7 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
      - Parameter value: new value for the localization string
      */
     func updateLocalization(language: String, key: String, with value: String, message: String?) {
-        guard let localization = localizations.first(where: { $0.language == language }) else {
+        guard let localization = selectedLocalizationGroup?.localizations.first(where: { $0.language == language }) else {
             return
         }
         localizationProvider.updateLocalization(localization: localization, key: key, with: value, message: message)
@@ -124,6 +152,6 @@ final class LocalizationsDataSource: NSObject, NSTableViewDataSource {
     // MARK: - Delegate
 
     func numberOfRows(in _: NSTableView) -> Int {
-        return numberOfKeys
+        return filteredKeys.count
     }
 }
