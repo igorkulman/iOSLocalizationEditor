@@ -132,7 +132,7 @@ final class ViewController: NSViewController {
     @IBAction private func filterAll(_ sender: NSMenuItem) {
         filter()
     }
-    
+
     @IBAction private func filterMissing(_ sender: NSMenuItem) {
         filter()
     }
