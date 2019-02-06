@@ -78,7 +78,7 @@ final class LocalizationsDataSource: NSObject {
         let numberOfKeys = group.localizations.map({ $0.translations.count }).max() ?? 0
 
         // master localization is the one with the most translations
-        let masterLocalization = group.localizations.first(where: { $0.translations.count == numberOfKeys })
+        let masterLocalization = group.localizations.first(where: { $0.language.lowercased() == "base" || $0.translations.count == numberOfKeys })
 
         let languages = group.localizations.sorted(by: { lhs, _ in return lhs.language == masterLocalization?.language })
         languagesCount = languages.count
