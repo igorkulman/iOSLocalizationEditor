@@ -110,7 +110,7 @@ final class LocalizationsDataSource: NSObject {
     }
 
     /**
-     Filters the data by given string. Empty string means all data us included.
+     Filters the data by given filter and search string. Empty search string means all data us included.
 
      Filtering is done by setting the filteredKeys property. A key is included if it matches the search string or any of its translations matches.
      */
@@ -118,6 +118,7 @@ final class LocalizationsDataSource: NSObject {
         var data = self.data
 
         if filter == .missing {
+            // only data where a translation is missing in at least one language
             data = data.filter({ dict in
                 return dict.value.keys.count != self.languagesCount || !dict.value.values.allSatisfy({ $0?.value.isEmpty == false })
             })
@@ -175,7 +176,7 @@ final class LocalizationsDataSource: NSObject {
 
      - Parameter language: language to get the localization for
      - Parameter row: row number
-     - Returns: localiyation string
+     - Returns: localization string
      */
     func getLocalization(language: String, row: Int) -> LocalizationString {
         guard let key = getKey(row: row) else {
