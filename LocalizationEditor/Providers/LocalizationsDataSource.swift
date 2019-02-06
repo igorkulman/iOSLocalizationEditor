@@ -115,19 +115,20 @@ final class LocalizationsDataSource: NSObject {
      Filtering is done by setting the filteredKeys property. A key is included if it matches the search string or any of its translations matches.
      */
     func filter(by filter: Filter, searchString: String?) {
-        var data = self.data
+        os_log("Filtering by %@", type: OSLogType.debug, "\(filter)")
 
-        if filter == .missing {
-            // only data where a translation is missing in at least one language
-            data = data.filter({ dict in
-                return dict.value.keys.count != self.languagesCount || !dict.value.values.allSatisfy({ $0?.value.isEmpty == false })
-            })
-        }
+        // first use filter, missing translation is a translation that is missing in any language for the given key
+        let data = filter == .all ? self.data: self.data.filter({ dict in
+            return dict.value.keys.count != self.languagesCount || !dict.value.values.allSatisfy({ $0?.value.isEmpty == false })
+        })
 
+        // no search string, just use teh filtered data
         guard let searchString = searchString, !searchString.isEmpty else {
             filteredKeys = data.keys.map({ $0 }).sorted(by: { $0<$1 })
             return
         }
+
+        os_log("Searching for %@", type: OSLogType.debug, searchString)
 
         var keys: [String] = []
         for (key, value) in data {
