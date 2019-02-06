@@ -12,6 +12,11 @@ import os
 
 typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 
+enum Filter {
+    case all
+    case missing
+}
+
 /**
  Data source for the NSTableView with localizations
  */
@@ -21,6 +26,7 @@ final class LocalizationsDataSource: NSObject {
     private let localizationProvider = LocalizationProvider()
     private var localizationGroups: [LocalizationGroup] = []
     private var selectedLocalizationGroup: LocalizationGroup?
+    private var languagesCount: Int = 0
 
     /**
      Dictionary indexed by localization key on the first level and by language on the second level for easier access
@@ -75,6 +81,7 @@ final class LocalizationsDataSource: NSObject {
         let masterLocalization = group.localizations.first(where: { $0.translations.count == numberOfKeys })
 
         let languages = group.localizations.sorted(by: { lhs, _ in return lhs.language == masterLocalization?.language })
+        languagesCount = languages.count
 
         data = [:]
         for key in masterLocalization!.translations.map({ $0.key }) {
@@ -85,7 +92,7 @@ final class LocalizationsDataSource: NSObject {
         }
 
         // making sure filteredKeys are computed
-        filter(by: nil)
+        filter(by: Filter.all, searchString: nil)
 
         return languages.map({ $0.language })
     }
@@ -107,7 +114,15 @@ final class LocalizationsDataSource: NSObject {
 
      Filtering is done by setting the filteredKeys property. A key is included if it matches the search string or any of its translations matches.
      */
-    func filter(by searchString: String?) {
+    func filter(by filter: Filter, searchString: String?) {
+        var data = self.data
+
+        if filter == .missing {
+            data = data.filter({ dict in
+                return dict.value.keys.count != self.languagesCount || !dict.value.values.allSatisfy({ $0?.value.isEmpty == false })
+            })
+        }
+
         guard let searchString = searchString, !searchString.isEmpty else {
             filteredKeys = data.keys.map({ $0 }).sorted(by: { $0<$1 })
             return
