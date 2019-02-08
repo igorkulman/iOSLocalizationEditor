@@ -11,7 +11,7 @@ import Foundation
 /**
 Complete localization for a single language. Represents a single strings file for a single language
  */
-class Localization {
+final class Localization {
     let language: String
     private(set) var translations: [LocalizationString]
     let path: String
@@ -41,8 +41,18 @@ extension Localization: CustomStringConvertible {
     }
 }
 
+// MARK: Equality
+
 extension Localization: Equatable {
     static func == (lhs: Localization, rhs: Localization) -> Bool {
         return lhs.language == rhs.language && lhs.translations == rhs.translations && lhs.path == rhs.path
+    }
+}
+
+// MARK: Debug description
+
+extension Localization: CustomDebugStringConvertible {
+    var debugDescription: String {
+        return "\(language.uppercased()): \(translations.count) translations (\(path))"
     }
 }

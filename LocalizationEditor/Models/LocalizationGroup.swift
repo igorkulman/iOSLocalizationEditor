@@ -11,7 +11,7 @@ import Foundation
 /**
 Group of localizations, like Localizabe.strings, InfoPlist.strings, etc.
  */
-class LocalizationGroup {
+final class LocalizationGroup {
     let name: String
     let path: String
     let localizations: [Localization]
@@ -30,6 +30,8 @@ extension LocalizationGroup: CustomStringConvertible {
         return name
     }
 }
+
+// MARK: Comparison
 
 extension LocalizationGroup: Comparable {
     static func < (lhs: LocalizationGroup, rhs: LocalizationGroup) -> Bool {
