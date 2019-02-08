@@ -11,7 +11,7 @@ import Foundation
 /**
  Class representing single localization string in form of key: "value"; as found in strings files
  */
-class LocalizationString {
+final class LocalizationString {
     let key: String
     private(set) var value: String
     private (set) var message: String?
@@ -34,6 +34,8 @@ extension LocalizationString: CustomStringConvertible {
         return "\(key) = \(value)"
     }
 }
+
+// MARK: Comparison
 
 extension LocalizationString: Comparable {
     static func < (lhs: LocalizationString, rhs: LocalizationString) -> Bool {

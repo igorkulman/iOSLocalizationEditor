@@ -16,6 +16,7 @@ final class ViewController: NSViewController {
     @IBOutlet private weak var progressIndicator: NSProgressIndicator!
     @IBOutlet private var defaultSelectItem: NSMenuItem!
     @IBOutlet private weak var searchField: NSSearchField!
+    @IBOutlet private weak var filterButton: NSPopUpButton!
 
     // MARK: - Properties
 
@@ -26,6 +27,7 @@ final class ViewController: NSViewController {
 
         setupMenu()
         setupSearch()
+        setupFilter()
         setupData()
     }
 
@@ -58,6 +60,10 @@ final class ViewController: NSViewController {
         _ = searchField.resignFirstResponder()
     }
 
+    private func setupFilter() {
+        filterButton.select(filterButton.item(at: 0)!)
+    }
+
     private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
         selectButton.menu?.removeAllItems()
         files.map({ NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "") }).forEach({ selectButton.menu?.addItem($0) })
@@ -65,6 +71,7 @@ final class ViewController: NSViewController {
 
     private func reloadData(with languages: [String], title: String?) {
         setupSearch()
+        setupFilter()
 
         let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
         view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
@@ -107,6 +114,12 @@ final class ViewController: NSViewController {
         return string
     }
 
+    private func filter() {
+        let filter = filterButton.selectedItem?.tag == 1 ? Filter.missing : Filter.all
+        dataSource.filter(by: filter, searchString: searchField.stringValue)
+        tableView.reloadData()
+    }
+
     // MARK: - Actions
 
     @IBAction @objc private func selectAction(sender: NSMenuItem) {
@@ -114,6 +127,14 @@ final class ViewController: NSViewController {
         let languages = dataSource.selectGroupAndGetLanguages(for: groupName)
 
         reloadData(with: languages, title: title)
+    }
+
+    @IBAction private func filterAll(_ sender: NSMenuItem) {
+        filter()
+    }
+
+    @IBAction private func filterMissing(_ sender: NSMenuItem) {
+        filter()
     }
 
     @IBAction @objc private func openAction(sender _: NSMenuItem) {
@@ -147,8 +168,7 @@ final class ViewController: NSViewController {
 
 extension ViewController: NSSearchFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
-        dataSource.filter(by: (obj.object as? NSSearchField)?.stringValue)
-        tableView.reloadData()
+        filter()
     }
 }
 

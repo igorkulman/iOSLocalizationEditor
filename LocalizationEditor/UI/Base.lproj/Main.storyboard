@@ -163,21 +163,53 @@
                                 </textFieldCell>
                             </textField>
                             <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-c7-TYP">
-                                <rect key="frame" x="0.0" y="454" width="740" height="22"/>
+                                <rect key="frame" x="0.0" y="454" width="616" height="22"/>
                                 <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="e1J-1J-ZwC">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                 </searchFieldCell>
                             </searchField>
+                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d0D-FD-zC0">
+                                <rect key="frame" x="659" y="452" width="84" height="26"/>
+                                <popUpButtonCell key="cell" type="push" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="vei-Hf-jM5" id="FxE-28-pbT">
+                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="menu"/>
+                                    <menu key="menu" id="U6q-iB-Tv5">
+                                        <items>
+                                            <menuItem title="All" state="on" id="vei-Hf-jM5" userLabel="All">
+                                                <connections>
+                                                    <action selector="filterAll:" target="XfG-lQ-9wD" id="ct5-Gi-60t"/>
+                                                </connections>
+                                            </menuItem>
+                                            <menuItem title="Missing" tag="1" id="eGS-Eo-FeC" userLabel="Missing">
+                                                <connections>
+                                                    <action selector="filterMissing:" target="XfG-lQ-9wD" id="QBH-Er-Nvj"/>
+                                                </connections>
+                                            </menuItem>
+                                        </items>
+                                    </menu>
+                                </popUpButtonCell>
+                            </popUpButton>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pwY-8l-J54">
+                                <rect key="frame" x="622" y="457" width="39" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Filter:" id="J2F-cs-uXH">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
+                            <constraint firstItem="d0D-FD-zC0" firstAttribute="leading" secondItem="pwY-8l-J54" secondAttribute="trailing" constant="2" id="2vB-pH-vqs"/>
                             <constraint firstItem="ZFg-5m-6pC" firstAttribute="leading" secondItem="16j-oD-cAE" secondAttribute="trailing" constant="10" id="D6G-Vj-vzc"/>
+                            <constraint firstItem="pwY-8l-J54" firstAttribute="centerY" secondItem="d0D-FD-zC0" secondAttribute="centerY" id="G9P-EM-074"/>
                             <constraint firstItem="VNS-c7-TYP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="GLB-IV-JwS"/>
                             <constraint firstAttribute="trailing" secondItem="ZFg-5m-6pC" secondAttribute="trailing" id="I29-aq-1Lr"/>
                             <constraint firstItem="ZFg-5m-6pC" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="2" id="PJB-vg-X9o"/>
                             <constraint firstAttribute="trailing" secondItem="4ba-Nv-4Q4" secondAttribute="trailing" id="U2K-bp-ktM"/>
-                            <constraint firstAttribute="trailing" secondItem="VNS-c7-TYP" secondAttribute="trailing" id="Wxy-sg-cbz"/>
+                            <constraint firstItem="d0D-FD-zC0" firstAttribute="top" secondItem="ZFg-5m-6pC" secondAttribute="bottom" constant="4" id="V4G-wz-ZSx"/>
+                            <constraint firstItem="pwY-8l-J54" firstAttribute="leading" secondItem="VNS-c7-TYP" secondAttribute="trailing" constant="8" id="Wxy-sg-cbz"/>
                             <constraint firstItem="4ba-Nv-4Q4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="aFu-bj-BOT"/>
                             <constraint firstItem="orS-Om-jEF" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="cdU-Z2-VjR"/>
                             <constraint firstItem="4ba-Nv-4Q4" firstAttribute="top" secondItem="ZFg-5m-6pC" secondAttribute="bottom" constant="28" id="fUC-6L-ChH"/>
@@ -186,10 +218,12 @@
                             <constraint firstItem="orS-Om-jEF" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="p93-Be-Z2I"/>
                             <constraint firstItem="16j-oD-cAE" firstAttribute="centerY" secondItem="ZFg-5m-6pC" secondAttribute="centerY" id="rs9-h5-XO3"/>
                             <constraint firstItem="VNS-c7-TYP" firstAttribute="top" secondItem="ZFg-5m-6pC" secondAttribute="bottom" constant="4" id="vfr-7m-jdv"/>
+                            <constraint firstAttribute="trailing" secondItem="d0D-FD-zC0" secondAttribute="trailing" id="wa7-5T-wt3"/>
                         </constraints>
                     </view>
                     <connections>
                         <outlet property="defaultSelectItem" destination="NVn-GV-ID4" id="Ibj-ZN-bm2"/>
+                        <outlet property="filterButton" destination="d0D-FD-zC0" id="XOp-Xe-IXs"/>
                         <outlet property="progressIndicator" destination="orS-Om-jEF" id="W9q-Ft-3Pn"/>
                         <outlet property="searchField" destination="VNS-c7-TYP" id="HFL-5M-qfD"/>
                         <outlet property="selectButton" destination="ZFg-5m-6pC" id="uUm-fN-AZO"/>
