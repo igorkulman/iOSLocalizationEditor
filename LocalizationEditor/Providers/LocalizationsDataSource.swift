@@ -26,7 +26,8 @@ final class LocalizationsDataSource: NSObject {
     private let localizationProvider = LocalizationProvider()
     private var localizationGroups: [LocalizationGroup] = []
     private var selectedLocalizationGroup: LocalizationGroup?
-    private var languagesCount: Int = 0
+    private var languagesCount = 0
+    private var masterLocalization: Localization?
 
     /**
      Dictionary indexed by localization key on the first level and by language on the second level for easier access
@@ -75,26 +76,32 @@ final class LocalizationsDataSource: NSObject {
     private func select(group: LocalizationGroup) -> [String] {
         selectedLocalizationGroup = group
 
-        let numberOfKeys = group.localizations.map({ $0.translations.count }).max() ?? 0
+        let localizations = group.localizations.sorted(by: { lhs, rhs in
+            if lhs.language.lowercased() == "base" {
+                return true
+            }
 
-        // master localization is the one with the most translations
-        let masterLocalization = group.localizations.first(where: { $0.language.lowercased() == "base" || $0.translations.count == numberOfKeys })
+            if rhs.language.lowercased() == "base" {
+                return false
+            }
 
-        let languages = group.localizations.sorted(by: { lhs, _ in return lhs.language == masterLocalization?.language })
-        languagesCount = languages.count
+            return lhs.translations.count > rhs.translations.count
+        })
+        masterLocalization = localizations.first
+        languagesCount = group.localizations.count
 
         data = [:]
         for key in masterLocalization!.translations.map({ $0.key }) {
             data[key] = [:]
-            for language in languages {
-                data[key]![language.language] = language.translations.first(where: { $0.key == key })
+            for localization in localizations {
+                data[key]![localization.language] = localization.translations.first(where: { $0.key == key })
             }
         }
 
         // making sure filteredKeys are computed
         filter(by: Filter.all, searchString: nil)
 
-        return languages.map({ $0.language })
+        return localizations.map({ $0.language })
     }
 
     /**
