@@ -105,7 +105,7 @@ final class ViewController: NSViewController {
 
     private func emojiFlag(countryCode: String) -> String {
         var string = ""
-        var country = countryCode.uppercased()
+        var country = (countryCode == "en" ? "gb" : countryCode).uppercased()
         for unicodeScalar in country.unicodeScalars {
             if let scalar = UnicodeScalar(127397 + unicodeScalar.value) {
                 string.append(String(scalar))
