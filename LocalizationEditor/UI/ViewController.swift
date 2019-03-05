@@ -8,6 +8,12 @@
 
 import Cocoa
 
+protocol ViewControllerDelegate: AnyObject {
+    func setStringTableLocalizationGroups(groups: [LocalizationGroup])
+    func resetSearchAndFilter()
+    func setSelectedLocalizationGroup(title: String)
+}
+
 final class ViewController: NSViewController {
     enum FixedColumn: String {
         case key
@@ -17,22 +23,20 @@ final class ViewController: NSViewController {
     // MARK: - Outlets
 
     @IBOutlet private weak var tableView: NSTableView!
-    @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var progressIndicator: NSProgressIndicator!
-    @IBOutlet private var defaultSelectItem: NSMenuItem!
-    @IBOutlet private weak var searchField: NSSearchField!
-    @IBOutlet private weak var filterButton: NSPopUpButton!
 
     // MARK: - Properties
 
+    weak var delegate: ViewControllerDelegate?
+
+    private var currentFilter: Filter = .all
+    private var currentSearchTerm: String = ""
     private let dataSource = LocalizationsDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupMenu()
-        setupSearch()
-        setupFilter()
         setupData()
     }
 
@@ -41,8 +45,6 @@ final class ViewController: NSViewController {
     private func setupMenu() {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         appDelegate.openFolderMenuItem.action = #selector(ViewController.openAction(sender:))
-        selectButton.menu?.removeAllItems()
-        selectButton.menu?.addItem(defaultSelectItem)
     }
 
     private func setupData() {
@@ -58,25 +60,12 @@ final class ViewController: NSViewController {
         tableView.usesAutomaticRowHeights = true
     }
 
-    private func setupSearch() {
-        searchField.delegate = self
-        searchField.stringValue = ""
-
-        _ = searchField.resignFirstResponder()
-    }
-
-    private func setupFilter() {
-        filterButton.select(filterButton.item(at: 0)!)
-    }
-
     private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
-        selectButton.menu?.removeAllItems()
-        files.map({ NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "") }).forEach({ selectButton.menu?.addItem($0) })
+        delegate?.setStringTableLocalizationGroups(groups: files)
     }
 
     private func reloadData(with languages: [String], title: String?) {
-        setupSearch()
-        setupFilter()
+        delegate?.resetSearchAndFilter()
 
         let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
         view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
@@ -134,29 +123,15 @@ final class ViewController: NSViewController {
     }
 
     private func filter() {
-        let filter = filterButton.selectedItem?.tag == 1 ? Filter.missing : Filter.all
-        dataSource.filter(by: filter, searchString: searchField.stringValue)
+        dataSource.filter(by: currentFilter, searchString: currentSearchTerm)
         tableView.reloadData()
     }
 
-    // MARK: - Actions
-
-    @IBAction @objc private func selectAction(sender: NSMenuItem) {
-        let groupName = sender.title
-        let languages = dataSource.selectGroupAndGetLanguages(for: groupName)
-
-        reloadData(with: languages, title: title)
-    }
-
-    @IBAction private func filterAll(_ sender: NSMenuItem) {
-        filter()
-    }
-
-    @IBAction private func filterMissing(_ sender: NSMenuItem) {
-        filter()
-    }
-
     @IBAction @objc private func openAction(sender _: NSMenuItem) {
+        openFolder()
+    }
+
+    private func openFolder() {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = true
@@ -174,20 +149,12 @@ final class ViewController: NSViewController {
 
                 if let title = title {
                     self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
-                    self.selectButton.selectItem(at: self.selectButton.indexOfItem(withTitle: title))
+                    self.delegate?.setSelectedLocalizationGroup(title: title)
                 } else {
                     self.setupMenu()
                 }
             }
         }
-    }
-}
-
-// MARK: - Search
-
-extension ViewController: NSSearchFieldDelegate {
-    func controlTextDidChange(_ obj: Notification) {
-        filter()
     }
 }
 
@@ -249,5 +216,35 @@ extension ViewController: ActionsCellDelegate {
         let rect = tableView.visibleRect
         filter()
         tableView.scrollToVisible(rect)
+    }
+}
+
+extension ViewController: WindowControllerToolbarDelegate {
+    func userDidRequestFilterChange(filter: Filter) {
+        guard currentFilter != filter else {
+            return
+        }
+
+        currentFilter = filter
+        self.filter()
+    }
+
+    func userDidRequestSearch(searchTerm: String) {
+        guard currentSearchTerm != searchTerm else {
+            return
+        }
+
+        currentSearchTerm = searchTerm
+        filter()
+    }
+
+    func userDidRequestStringFileGroupChange(group: String) {
+        let languages = dataSource.selectGroupAndGetLanguages(for: group)
+
+        reloadData(with: languages, title: title)
+    }
+
+    func userDidRequestFolderOpen() {
+        openFolder()
     }
 }

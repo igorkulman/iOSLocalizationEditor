@@ -85,17 +85,91 @@
         <!--Window Controller-->
         <scene sceneID="R2V-B0-nI4">
             <objects>
-                <windowController id="B8D-0N-5wS" sceneMemberID="viewController">
+                <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="LocalizationEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <window key="window" title="Localization Editor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <toolbar key="toolbar" implicitIdentifier="EFBE995A-2B16-4C2A-B761-5C079EDB24B9" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="BMi-rL-Wdk">
+                            <allowedToolbarItems>
+                                <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Nt7-6c-UNu"/>
+                                <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="XEY-XQ-DCX"/>
+                                <toolbarItem implicitItemIdentifier="F5A3BEE7-CFFE-4498-A8D0-DA7EAE160B5F" label="Open folder" paletteLabel="Open" tag="-1" image="open-archive" id="gFH-hP-QmF">
+                                    <size key="minSize" width="48" height="48"/>
+                                    <size key="maxSize" width="48" height="48"/>
+                                    <connections>
+                                        <action selector="openFolder:" target="B8D-0N-5wS" id="fSl-hr-rQp"/>
+                                    </connections>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="D612B8EC-2DD0-4F6F-BC29-1459EE743142" label="String table" paletteLabel="String table" id="rRs-lz-dHI">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="100" height="24"/>
+                                    <size key="maxSize" width="500" height="24"/>
+                                    <popUpButton key="view" verticalHuggingPriority="750" id="0iO-g6-P1U">
+                                        <rect key="frame" x="0.0" y="14" width="100" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="roundTextured" title="Open folder first" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="ZYs-7U-5gn" id="aOQ-vO-her">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="glw-fD-iej">
+                                                <items>
+                                                    <menuItem title="Open folder first" state="on" id="ZYs-7U-5gn"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                    </popUpButton>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="D8E0FDD3-702B-41C9-BE39-964D516EE454" label="Search translations" paletteLabel="Search" id="Pb2-33-jin">
+                                    <nil key="toolTip"/>
+                                    <size key="minSize" width="60" height="22"/>
+                                    <size key="maxSize" width="96" height="22"/>
+                                    <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="44R-ph-qlU">
+                                        <rect key="frame" x="0.0" y="14" width="96" height="22"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="uO5-oO-Ep3">
+                                            <font key="font" metaFont="system"/>
+                                            <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                            <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                        </searchFieldCell>
+                                    </searchField>
+                                </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="13E9B60D-CBEC-4E7D-96C3-FE098E195C25" label="Filter" paletteLabel="Filter" sizingBehavior="auto" id="4TV-x9-bks">
+                                    <nil key="toolTip"/>
+                                    <popUpButton key="view" verticalHuggingPriority="750" id="CF5-IQ-Tcp">
+                                        <rect key="frame" x="0.0" y="14" width="100" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <popUpButtonCell key="cell" type="roundTextured" title="All" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="DQt-48-fwD" id="8th-lD-zUo">
+                                            <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                            <font key="font" metaFont="menu"/>
+                                            <menu key="menu" id="NFb-X0-5k3">
+                                                <items>
+                                                    <menuItem title="All" state="on" id="DQt-48-fwD"/>
+                                                    <menuItem title="Missing" id="Dqg-Nc-z6y"/>
+                                                </items>
+                                            </menu>
+                                        </popUpButtonCell>
+                                    </popUpButton>
+                                </toolbarItem>
+                            </allowedToolbarItems>
+                            <defaultToolbarItems>
+                                <toolbarItem reference="gFH-hP-QmF"/>
+                                <toolbarItem reference="XEY-XQ-DCX"/>
+                                <toolbarItem reference="rRs-lz-dHI"/>
+                                <toolbarItem reference="XEY-XQ-DCX"/>
+                                <toolbarItem reference="Pb2-33-jin"/>
+                                <toolbarItem reference="4TV-x9-bks"/>
+                            </defaultToolbarItems>
+                        </toolbar>
                         <connections>
                             <outlet property="delegate" destination="B8D-0N-5wS" id="98r-iN-zZc"/>
                         </connections>
                     </window>
                     <connections>
+                        <outlet property="filterButton" destination="CF5-IQ-Tcp" id="S1m-OB-mVY"/>
+                        <outlet property="openButton" destination="gFH-hP-QmF" id="SGd-9O-j73"/>
+                        <outlet property="searchField" destination="44R-ph-qlU" id="zFZ-gO-m7v"/>
+                        <outlet property="selectButton" destination="0iO-g6-P1U" id="mob-S4-Gl5"/>
                         <segue destination="XfG-lQ-9wD" kind="relationship" relationship="window.shadowedContentViewController" id="cq2-FE-JQM"/>
                     </connections>
                 </windowController>
@@ -112,13 +186,13 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ba-Nv-4Q4">
-                                <rect key="frame" x="0.0" y="0.0" width="740" height="452"/>
+                                <rect key="frame" x="0.0" y="0.0" width="740" height="503"/>
                                 <clipView key="contentView" id="xNj-vz-MO7">
-                                    <rect key="frame" x="1" y="0.0" width="738" height="451"/>
+                                    <rect key="frame" x="1" y="0.0" width="738" height="502"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" usesAutomaticRowHeights="YES" headerView="Bry-MY-OIY" id="ByO-mI-RPv">
-                                            <rect key="frame" x="0.0" y="0.0" width="738" height="428"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="738" height="479"/>
                                             <autoresizingMask key="autoresizingMask"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -142,91 +216,18 @@
                             <progressIndicator wantsLayer="YES" horizontalHuggingPriority="750" verticalHuggingPriority="750" maxValue="100" displayedWhenStopped="NO" bezeled="NO" indeterminate="YES" controlSize="small" style="spinning" translatesAutoresizingMaskIntoConstraints="NO" id="orS-Om-jEF">
                                 <rect key="frame" x="362" y="244" width="16" height="16"/>
                             </progressIndicator>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="ZFg-5m-6pC">
-                                <rect key="frame" x="84" y="477" width="659" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="Open folder first" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="border" inset="2" selectedItem="NVn-GV-ID4" id="4aK-eh-T5Y">
-                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="5W8-5b-o7R">
-                                        <items>
-                                            <menuItem title="Open folder first" state="on" id="NVn-GV-ID4"/>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                            </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="16j-oD-cAE">
-                                <rect key="frame" x="3" y="482" width="75" height="17"/>
-                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" sendsActionOnEndEditing="YES" title="String table" id="z8U-Ny-4JF">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
-                            <searchField wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" translatesAutoresizingMaskIntoConstraints="NO" id="VNS-c7-TYP">
-                                <rect key="frame" x="0.0" y="454" width="616" height="22"/>
-                                <searchFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" borderStyle="bezel" usesSingleLineMode="YES" bezelStyle="round" id="e1J-1J-ZwC">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </searchFieldCell>
-                            </searchField>
-                            <popUpButton verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="d0D-FD-zC0">
-                                <rect key="frame" x="659" y="452" width="84" height="26"/>
-                                <popUpButtonCell key="cell" type="push" title="All" bezelStyle="rounded" alignment="left" lineBreakMode="truncatingTail" state="on" borderStyle="borderAndBezel" imageScaling="proportionallyDown" inset="2" selectedItem="vei-Hf-jM5" id="FxE-28-pbT">
-                                    <behavior key="behavior" lightByBackground="YES" lightByGray="YES"/>
-                                    <font key="font" metaFont="menu"/>
-                                    <menu key="menu" id="U6q-iB-Tv5">
-                                        <items>
-                                            <menuItem title="All" state="on" id="vei-Hf-jM5" userLabel="All">
-                                                <connections>
-                                                    <action selector="filterAll:" target="XfG-lQ-9wD" id="ct5-Gi-60t"/>
-                                                </connections>
-                                            </menuItem>
-                                            <menuItem title="Missing" tag="1" id="eGS-Eo-FeC" userLabel="Missing">
-                                                <connections>
-                                                    <action selector="filterMissing:" target="XfG-lQ-9wD" id="QBH-Er-Nvj"/>
-                                                </connections>
-                                            </menuItem>
-                                        </items>
-                                    </menu>
-                                </popUpButtonCell>
-                            </popUpButton>
-                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="pwY-8l-J54">
-                                <rect key="frame" x="622" y="457" width="39" height="17"/>
-                                <textFieldCell key="cell" lineBreakMode="clipping" title="Filter:" id="J2F-cs-uXH">
-                                    <font key="font" metaFont="system"/>
-                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
-                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
-                                </textFieldCell>
-                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="d0D-FD-zC0" firstAttribute="leading" secondItem="pwY-8l-J54" secondAttribute="trailing" constant="2" id="2vB-pH-vqs"/>
-                            <constraint firstItem="ZFg-5m-6pC" firstAttribute="leading" secondItem="16j-oD-cAE" secondAttribute="trailing" constant="10" id="D6G-Vj-vzc"/>
-                            <constraint firstItem="pwY-8l-J54" firstAttribute="centerY" secondItem="d0D-FD-zC0" secondAttribute="centerY" id="G9P-EM-074"/>
-                            <constraint firstItem="VNS-c7-TYP" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="GLB-IV-JwS"/>
-                            <constraint firstAttribute="trailing" secondItem="ZFg-5m-6pC" secondAttribute="trailing" id="I29-aq-1Lr"/>
-                            <constraint firstItem="ZFg-5m-6pC" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" constant="2" id="PJB-vg-X9o"/>
+                            <constraint firstItem="4ba-Nv-4Q4" firstAttribute="top" secondItem="m2S-Jp-Qdl" secondAttribute="top" id="HNO-HR-GlC"/>
                             <constraint firstAttribute="trailing" secondItem="4ba-Nv-4Q4" secondAttribute="trailing" id="U2K-bp-ktM"/>
-                            <constraint firstItem="d0D-FD-zC0" firstAttribute="top" secondItem="ZFg-5m-6pC" secondAttribute="bottom" constant="4" id="V4G-wz-ZSx"/>
-                            <constraint firstItem="pwY-8l-J54" firstAttribute="leading" secondItem="VNS-c7-TYP" secondAttribute="trailing" constant="8" id="Wxy-sg-cbz"/>
                             <constraint firstItem="4ba-Nv-4Q4" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" id="aFu-bj-BOT"/>
                             <constraint firstItem="orS-Om-jEF" firstAttribute="centerY" secondItem="m2S-Jp-Qdl" secondAttribute="centerY" id="cdU-Z2-VjR"/>
-                            <constraint firstItem="4ba-Nv-4Q4" firstAttribute="top" secondItem="ZFg-5m-6pC" secondAttribute="bottom" constant="28" id="fUC-6L-ChH"/>
                             <constraint firstAttribute="bottom" secondItem="4ba-Nv-4Q4" secondAttribute="bottom" id="m5c-j8-Z7f"/>
-                            <constraint firstItem="16j-oD-cAE" firstAttribute="leading" secondItem="m2S-Jp-Qdl" secondAttribute="leading" constant="5" id="osA-pP-jh6"/>
                             <constraint firstItem="orS-Om-jEF" firstAttribute="centerX" secondItem="m2S-Jp-Qdl" secondAttribute="centerX" id="p93-Be-Z2I"/>
-                            <constraint firstItem="16j-oD-cAE" firstAttribute="centerY" secondItem="ZFg-5m-6pC" secondAttribute="centerY" id="rs9-h5-XO3"/>
-                            <constraint firstItem="VNS-c7-TYP" firstAttribute="top" secondItem="ZFg-5m-6pC" secondAttribute="bottom" constant="4" id="vfr-7m-jdv"/>
-                            <constraint firstAttribute="trailing" secondItem="d0D-FD-zC0" secondAttribute="trailing" id="wa7-5T-wt3"/>
                         </constraints>
                     </view>
                     <connections>
-                        <outlet property="defaultSelectItem" destination="NVn-GV-ID4" id="Ibj-ZN-bm2"/>
-                        <outlet property="filterButton" destination="d0D-FD-zC0" id="XOp-Xe-IXs"/>
                         <outlet property="progressIndicator" destination="orS-Om-jEF" id="W9q-Ft-3Pn"/>
-                        <outlet property="searchField" destination="VNS-c7-TYP" id="HFL-5M-qfD"/>
-                        <outlet property="selectButton" destination="ZFg-5m-6pC" id="uUm-fN-AZO"/>
                         <outlet property="tableView" destination="ByO-mI-RPv" id="HZj-sq-2j6"/>
                     </connections>
                 </viewController>
@@ -235,4 +236,7 @@
             <point key="canvasLocation" x="75" y="844"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="open-archive" width="48" height="48"/>
+    </resources>
 </document>

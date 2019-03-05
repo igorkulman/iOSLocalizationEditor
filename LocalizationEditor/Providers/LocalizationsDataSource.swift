@@ -12,7 +12,7 @@ import os
 
 typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 
-enum Filter {
+enum Filter: Int, CaseIterable {
     case all
     case missing
 }
