@@ -36,16 +36,10 @@ final class ViewController: NSViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupMenu()
         setupData()
     }
 
     // MARK: - Setup
-
-    private func setupMenu() {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        appDelegate.openFolderMenuItem.action = #selector(ViewController.openAction(sender:))
-    }
 
     private func setupData() {
         let cellIdentifiers = [KeyCell.identifier, LocalizationCell.identifier, ActionsCell.identifier]
@@ -127,10 +121,6 @@ final class ViewController: NSViewController {
         tableView.reloadData()
     }
 
-    @IBAction @objc private func openAction(sender _: NSMenuItem) {
-        openFolder()
-    }
-
     private func openFolder() {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = false
@@ -150,8 +140,6 @@ final class ViewController: NSViewController {
                 if let title = title {
                     self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
                     self.delegate?.setSelectedLocalizationGroup(title: title)
-                } else {
-                    self.setupMenu()
                 }
             }
         }

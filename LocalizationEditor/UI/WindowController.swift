@@ -29,6 +29,7 @@ class WindowController: NSWindowController {
 
         setupSearch()
         setupFilter()
+        setupMenu()
 
         openButton.image = NSImage(named: NSImage.folderName)
 
@@ -36,6 +37,11 @@ class WindowController: NSWindowController {
         mainViewController.delegate = self
 
         delegate = mainViewController
+    }
+
+    private func setupMenu() {
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+        appDelegate.openFolderMenuItem.action = #selector(WindowController.openAction(sender:))
     }
 
     private func setupSearch() {
@@ -72,6 +78,10 @@ class WindowController: NSWindowController {
 
     @IBAction private func openFolder(_ sender: Any) {
         delegate?.userDidRequestFolderOpen()
+    }
+
+    @objc private func openAction(sender _: NSMenuItem) {
+       delegate?.userDidRequestFolderOpen()
     }
 }
 
