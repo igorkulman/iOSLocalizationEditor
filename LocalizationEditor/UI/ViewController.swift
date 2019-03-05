@@ -238,5 +238,12 @@ extension ViewController: ActionsCellDelegate {
         guard alert.runModal() == .alertSecondButtonReturn else {
             return
         }
+
+        dataSource.deleteLocalization(key: key)
+
+        // reload keeping scroll position
+        let rect = tableView.visibleRect
+        filter()
+        tableView.scrollToVisible(rect)
     }
 }

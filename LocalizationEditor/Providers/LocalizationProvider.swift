@@ -37,27 +37,49 @@ final class LocalizationProvider {
 
         localization.update(key: key, value: value, message: message)
 
-        let data = localization.translations.map { string -> String in
+        writeToFile(translations: localization.translations, path: localization.path)
+    }
+
+    /**
+     Writes given translations to a file at given path
+
+     - Parameter translatins: trabslations to write
+     - Parameter path: file path
+     */
+    private func writeToFile(translations: [LocalizationString], path: String) {
+        let data = translations.map { string -> String in
             let stringForMessage: String
             if let newMessage = string.message {
                 stringForMessage = "/* \(newMessage) */"
             } else {
                 stringForMessage = ""
             }
+
             return """
             \(stringForMessage)
             \"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";\n
             """
         }.reduce("") { prev, next in
-                "\(prev)\n\(next)"
+            "\(prev)\n\(next)"
         }
 
         do {
-            try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
-            os_log("Localization file for %@ updated", type: OSLogType.debug, localization.description)
+            try data.write(toFile: path, atomically: false, encoding: .utf8)
+            os_log("Localization file for %@ updated", type: OSLogType.debug, path)
         } catch {
-            os_log("Writing localization file for %@ failed with %@", type: OSLogType.error, localization.description, error.localizedDescription)
+            os_log("Writing localization file for %@ failed with %@", type: OSLogType.error, path, error.localizedDescription)
         }
+    }
+
+    /**
+     Deletes key from given localization
+
+     - Parameter localization: localization to update
+     - Parameter key: key to delete
+     */
+    func deleteKeyFromLocalization(localization: Localization, key: String) {
+        let translations = localization.translations.filter({ $0.key != key })
+        writeToFile(translations: translations, path: localization.path)
     }
 
     /**
