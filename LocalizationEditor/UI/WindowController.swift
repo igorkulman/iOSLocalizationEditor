@@ -30,6 +30,8 @@ class WindowController: NSWindowController {
         setupSearch()
         setupFilter()
 
+        openButton.image = NSImage(named: NSImage.folderName)
+
         let mainViewController = window!.contentViewController as! ViewController
         mainViewController.delegate = self
 

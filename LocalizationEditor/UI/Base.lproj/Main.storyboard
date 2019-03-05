@@ -91,11 +91,11 @@
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
                         <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
-                        <toolbar key="toolbar" implicitIdentifier="EFBE995A-2B16-4C2A-B761-5C079EDB24B9" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconAndLabel" sizeMode="regular" id="BMi-rL-Wdk">
+                        <toolbar key="toolbar" implicitIdentifier="EFBE995A-2B16-4C2A-B761-5C079EDB24B9" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="BMi-rL-Wdk">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Nt7-6c-UNu"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="XEY-XQ-DCX"/>
-                                <toolbarItem implicitItemIdentifier="F5A3BEE7-CFFE-4498-A8D0-DA7EAE160B5F" label="Open folder" paletteLabel="Open" tag="-1" image="open-archive" id="gFH-hP-QmF">
+                                <toolbarItem implicitItemIdentifier="F5A3BEE7-CFFE-4498-A8D0-DA7EAE160B5F" label="Open folder" paletteLabel="Open" tag="-1" id="gFH-hP-QmF">
                                     <size key="minSize" width="48" height="48"/>
                                     <size key="maxSize" width="48" height="48"/>
                                     <connections>
@@ -236,7 +236,4 @@
             <point key="canvasLocation" x="75" y="844"/>
         </scene>
     </scenes>
-    <resources>
-        <image name="open-archive" width="48" height="48"/>
-    </resources>
 </document>
