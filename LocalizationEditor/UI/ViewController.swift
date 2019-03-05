@@ -9,6 +9,11 @@
 import Cocoa
 
 final class ViewController: NSViewController {
+    enum FixedColumn: String {
+        case key
+        case actions
+    }
+
     // MARK: - Outlets
 
     @IBOutlet private weak var tableView: NSTableView!
@@ -41,7 +46,7 @@ final class ViewController: NSViewController {
     }
 
     private func setupData() {
-        let cellIdentifiers = [KeyCell.identifier, LocalizationCell.identifier]
+        let cellIdentifiers = [KeyCell.identifier, LocalizationCell.identifier, ActionsCell.identifier]
         cellIdentifiers.forEach { identifier in
             let cell = NSNib(nibNamed: identifier, bundle: nil)
             tableView.register(cell, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: identifier))
@@ -81,8 +86,10 @@ final class ViewController: NSViewController {
             self.tableView.removeTableColumn($0)
         }
 
-        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("key"))
-        column.title = ""
+        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.key.rawValue))
+        column.title = "Key"
+        column.maxWidth = 460
+        column.minWidth = 50
         tableView.addTableColumn(column)
 
         languages.forEach { language in
@@ -97,10 +104,22 @@ final class ViewController: NSViewController {
             self.tableView.addTableColumn(column)
         }
 
+        let actionsColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.actions.rawValue))
+        actionsColumn.title = "Actions"
+        actionsColumn.maxWidth = 48
+        actionsColumn.minWidth = 48
+        tableView.addTableColumn(actionsColumn)
+
         tableView.reloadData()
 
         // Also resize the columns:
         tableView.sizeToFit()
+
+        // Needed to properly size the actions column
+        DispatchQueue.main.async {
+            self.tableView.sizeToFit()
+            self.tableView.layout()
+        }
     }
 
     private func emojiFlag(countryCode: String) -> String {
@@ -181,10 +200,15 @@ extension ViewController: NSTableViewDelegate {
         }
 
         switch identifier.rawValue {
-        case "key":
+        case FixedColumn.key.rawValue:
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: KeyCell.identifier), owner: self)! as! KeyCell
             cell.key = dataSource.getKey(row: row)
             cell.message = dataSource.getMessage(row: row)
+            return cell
+        case FixedColumn.actions.rawValue:
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: ActionsCell.identifier), owner: self)! as! ActionsCell
+            cell.delegate = self
+            cell.key = dataSource.getKey(row: row)
             return cell
         default:
             let language = identifier.rawValue
@@ -214,5 +238,16 @@ extension ViewController: NSTableViewClickableDelegate {
         }
 
         cell.focus()
+    }
+}
+
+extension ViewController: ActionsCellDelegate {
+    func userDidRequestRemoval(of key: String) {
+        dataSource.deleteLocalization(key: key)
+
+        // reload keeping scroll position
+        let rect = tableView.visibleRect
+        filter()
+        tableView.scrollToVisible(rect)
     }
 }

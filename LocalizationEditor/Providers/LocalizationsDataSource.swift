@@ -213,6 +213,21 @@ final class LocalizationsDataSource: NSObject {
         localizationProvider.updateLocalization(localization: localization, key: key, with: value, message: message)
     }
 
+    /**
+     Deletes given key from all the localizations
+
+     - Parameter key: key to delete
+     */
+    func deleteLocalization(key: String) {
+        guard let selectedLocalizationGroup = selectedLocalizationGroup else {
+            return
+        }
+
+        selectedLocalizationGroup.localizations.forEach({ localization in
+            self.localizationProvider.deleteKeyFromLocalization(localization: localization, key: key)
+        })
+        data.removeValue(forKey: key)
+    }
 }
 
 // MARK: - Delegate
