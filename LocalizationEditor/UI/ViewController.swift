@@ -87,7 +87,9 @@ final class ViewController: NSViewController {
         }
 
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.key.rawValue))
-        column.title = ""
+        column.title = "Key"
+        column.maxWidth = 460
+        column.minWidth = 50
         tableView.addTableColumn(column)
 
         languages.forEach { language in
@@ -104,12 +106,20 @@ final class ViewController: NSViewController {
 
         let actionsColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.actions.rawValue))
         actionsColumn.title = "Actions"
+        actionsColumn.maxWidth = 48
+        actionsColumn.minWidth = 48
         tableView.addTableColumn(actionsColumn)
 
         tableView.reloadData()
 
         // Also resize the columns:
         tableView.sizeToFit()
+
+        // Needed to properly size the actions column
+        DispatchQueue.main.async {
+            self.tableView.sizeToFit()
+            self.tableView.layout()
+        }
     }
 
     private func emojiFlag(countryCode: String) -> String {
