@@ -41,7 +41,7 @@ final class ViewController: NSViewController {
     }
 
     private func setupData() {
-        let cellIdentifiers = [KeyCell.identifier, LocalizationCell.identifier]
+        let cellIdentifiers = [KeyCell.identifier, LocalizationCell.identifier, ActionsCell.identifier]
         cellIdentifiers.forEach { identifier in
             let cell = NSNib(nibNamed: identifier, bundle: nil)
             tableView.register(cell, forIdentifier: NSUserInterfaceItemIdentifier(rawValue: identifier))
@@ -96,6 +96,10 @@ final class ViewController: NSViewController {
             column.minWidth = 50
             self.tableView.addTableColumn(column)
         }
+
+        let actionsColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("actions"))
+        actionsColumn.title = "Actions"
+        tableView.addTableColumn(actionsColumn)
 
         tableView.reloadData()
 
@@ -186,6 +190,11 @@ extension ViewController: NSTableViewDelegate {
             cell.key = dataSource.getKey(row: row)
             cell.message = dataSource.getMessage(row: row)
             return cell
+        case "actions":
+            let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: ActionsCell.identifier), owner: self)! as! ActionsCell
+            cell.delegate = self
+            cell.key = dataSource.getKey(row: row)
+            return cell
         default:
             let language = identifier.rawValue
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: LocalizationCell.identifier), owner: self)! as! LocalizationCell
@@ -214,5 +223,20 @@ extension ViewController: NSTableViewClickableDelegate {
         }
 
         cell.focus()
+    }
+}
+
+extension ViewController: ActionsCellDelegate {
+    func userDidRequestRemoval(of key: String) {
+        let alert = NSAlert()
+        alert.informativeText = "It will be deleted from all the languages"
+        alert.messageText = "Do you really want to delete \"(\(key))\""
+        alert.addButton(withTitle: "No")
+        alert.addButton(withTitle: "Yes")
+        alert.alertStyle = .warning
+
+        guard alert.runModal() == .alertSecondButtonReturn else {
+            return
+        }
     }
 }

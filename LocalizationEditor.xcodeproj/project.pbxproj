@@ -13,6 +13,8 @@
 		A15A5A4221D908C400D3C791 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4121D908C400D3C791 /* Parser.swift */; };
 		A15A5A4721D90AC600D3C791 /* ParserIsolationTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */; };
 		A15A5A4921DA249400D3C791 /* ParserTypes.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4821DA249400D3C791 /* ParserTypes.swift */; };
+		F3261F64222EA955006838C3 /* ActionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3261F63222EA955006838C3 /* ActionsCell.swift */; };
+		F3261F66222EA9BF006838C3 /* ActionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3261F65222EA9BF006838C3 /* ActionsCell.xib */; };
 		F3642CC421F715CB006C8685 /* EditableNSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3642CC321F715CB006C8685 /* EditableNSTextField.swift */; };
 		F3A5ABB8220448690077460D /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5ABB7220448690077460D /* FileManager+Extension.swift */; };
 		F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94520BEC7460081830A /* AppDelegate.swift */; };
@@ -79,6 +81,8 @@
 		A15A5A4121D908C400D3C791 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserIsolationTests.swift; sourceTree = "<group>"; };
 		A15A5A4821DA249400D3C791 /* ParserTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTypes.swift; sourceTree = "<group>"; };
+		F3261F63222EA955006838C3 /* ActionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsCell.swift; sourceTree = "<group>"; };
+		F3261F65222EA9BF006838C3 /* ActionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionsCell.xib; sourceTree = "<group>"; };
 		F3642CC321F715CB006C8685 /* EditableNSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableNSTextField.swift; sourceTree = "<group>"; };
 		F3A5ABB7220448690077460D /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		F3D9C94220BEC7460081830A /* LocalizationEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -197,6 +201,8 @@
 		F3D9C95F20BEDCFC0081830A /* Cells */ = {
 			isa = PBXGroup;
 			children = (
+				F3261F63222EA955006838C3 /* ActionsCell.swift */,
+				F3261F65222EA9BF006838C3 /* ActionsCell.xib */,
 				F3D9C96620BEDF640081830A /* KeyCell.swift */,
 				F3D9C96420BEDF580081830A /* KeyCell.xib */,
 				F3D9C96020BEDD0B0081830A /* LocalizationCell.swift */,
@@ -360,6 +366,7 @@
 				F3D9C96320BEDDE20081830A /* LocalizationCell.xib in Resources */,
 				F3D9C96520BEDF580081830A /* KeyCell.xib in Resources */,
 				F3D9C94A20BEC7460081830A /* Assets.xcassets in Resources */,
+				F3261F66222EA9BF006838C3 /* ActionsCell.xib in Resources */,
 				F3D9C94D20BEC7460081830A /* Main.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -437,6 +444,7 @@
 				F3EF22072209D650000E8C80 /* String+Extensions.swift in Sources */,
 				F3D9C96E20BEEAA10081830A /* LocalizationsDataSource.swift in Sources */,
 				F3D9C95920BECA270081830A /* Localization.swift in Sources */,
+				F3261F64222EA955006838C3 /* ActionsCell.swift in Sources */,
 				F3D9C96120BEDD0B0081830A /* LocalizationCell.swift in Sources */,
 				F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */,
 			);
