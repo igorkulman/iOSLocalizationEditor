@@ -9,6 +9,11 @@
 import Cocoa
 
 final class ViewController: NSViewController {
+    enum FixedColumn: String {
+        case key
+        case actions
+    }
+
     // MARK: - Outlets
 
     @IBOutlet private weak var tableView: NSTableView!
@@ -81,7 +86,7 @@ final class ViewController: NSViewController {
             self.tableView.removeTableColumn($0)
         }
 
-        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("key"))
+        let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.key.rawValue))
         column.title = ""
         tableView.addTableColumn(column)
 
@@ -97,7 +102,7 @@ final class ViewController: NSViewController {
             self.tableView.addTableColumn(column)
         }
 
-        let actionsColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier("actions"))
+        let actionsColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.actions.rawValue))
         actionsColumn.title = "Actions"
         tableView.addTableColumn(actionsColumn)
 
@@ -185,12 +190,12 @@ extension ViewController: NSTableViewDelegate {
         }
 
         switch identifier.rawValue {
-        case "key":
+        case FixedColumn.key.rawValue:
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: KeyCell.identifier), owner: self)! as! KeyCell
             cell.key = dataSource.getKey(row: row)
             cell.message = dataSource.getMessage(row: row)
             return cell
-        case "actions":
+        case FixedColumn.actions.rawValue:
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: ActionsCell.identifier), owner: self)! as! ActionsCell
             cell.delegate = self
             cell.key = dataSource.getKey(row: row)
