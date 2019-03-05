@@ -243,17 +243,6 @@ extension ViewController: NSTableViewClickableDelegate {
 
 extension ViewController: ActionsCellDelegate {
     func userDidRequestRemoval(of key: String) {
-        let alert = NSAlert()
-        alert.informativeText = "It will be deleted from all the languages"
-        alert.messageText = "Do you really want to delete \"(\(key))\""
-        alert.addButton(withTitle: "No")
-        alert.addButton(withTitle: "Yes")
-        alert.alertStyle = .warning
-
-        guard alert.runModal() == .alertSecondButtonReturn else {
-            return
-        }
-
         dataSource.deleteLocalization(key: key)
 
         // reload keeping scroll position
