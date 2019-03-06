@@ -12,4 +12,8 @@ extension String {
     var normalized: String {
         return folding(options: [.diacriticInsensitive, .caseInsensitive], locale: .current)
     }
+
+    var capitalizedFirstLetter: String {
+        return prefix(1).uppercased() + self.lowercased().dropFirst()
+    }
 }

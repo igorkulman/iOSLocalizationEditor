@@ -8,35 +8,76 @@
 
 import Cocoa
 
+/**
+Protocol for announcing user interaction with the toolbar
+ */
 protocol WindowControllerToolbarDelegate: AnyObject {
+    /**
+     Invoked when user requests opening a folder
+     */
     func userDidRequestFolderOpen()
+
+    /**
+     Invoked when user requests filter change
+
+     - Parameter filter: new filter setting
+     */
     func userDidRequestFilterChange(filter: Filter)
+
+    /**
+     Invoked when user requests searching
+
+     - Parameter searchTerm: new search term
+     */
     func userDidRequestSearch(searchTerm: String)
-    func userDidRequestStringFileGroupChange(group: String)
+
+    /**
+     Invoked when user request change of the selected localization group
+
+     - Parameter group: new localization group title
+     */
+    func userDidRequestLocalizationGroupChange(group: String)
 }
 
-class WindowController: NSWindowController {
+final class WindowController: NSWindowController {
+
+    // MARK: - Outlets
 
     @IBOutlet private weak var openButton: NSToolbarItem!
     @IBOutlet private weak var searchField: NSSearchField!
     @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var filterButton: NSPopUpButton!
 
+    // MARK: - Properties
+
     weak var delegate: WindowControllerToolbarDelegate?
 
     override func windowDidLoad() {
         super.windowDidLoad()
 
+        setupUI()
         setupSearch()
         setupFilter()
         setupMenu()
+        setupDelegates()
+    }
 
-        openButton.image = NSImage(named: NSImage.folderName)
+    // MARK: - Setup
 
-        let mainViewController = window!.contentViewController as! ViewController
+    private func setupDelegates() {
+        guard let contentViewController = window?.contentViewController, let mainViewController = contentViewController as? ViewController else {
+            fatalError("Broken window hierarchy")
+        }
+
+        // informing the window about toolbar appearence
         mainViewController.delegate = self
 
-        delegate = mainViewController
+        // informing the VC about user interacting with the toolbar
+        self.delegate = mainViewController
+    }
+
+    private func setupUI() {
+        openButton.image = NSImage(named: NSImage.folderName)
     }
 
     private func setupMenu() {
@@ -55,7 +96,7 @@ class WindowController: NSWindowController {
         filterButton.menu?.removeAllItems()
 
         for option in Filter.allCases {
-            let item = NSMenuItem(title: "\(option)", action: #selector(WindowController.filterAction(sender:)), keyEquivalent: "")
+            let item = NSMenuItem(title: "\(option)".capitalizedFirstLetter, action: #selector(WindowController.filterAction(sender:)), keyEquivalent: "")
             item.tag = option.rawValue
             filterButton.menu?.addItem(item)
         }
@@ -65,7 +106,7 @@ class WindowController: NSWindowController {
 
     @objc private func selectAction(sender: NSMenuItem) {
         let groupName = sender.title
-        delegate?.userDidRequestStringFileGroupChange(group: groupName)
+        delegate?.userDidRequestLocalizationGroupChange(group: groupName)
     }
 
     @objc private func filterAction(sender: NSMenuItem) {
@@ -85,7 +126,7 @@ class WindowController: NSWindowController {
     }
 }
 
-// MARK: - Search
+// MARK: - NSSearchFieldDelegate
 
 extension WindowController: NSSearchFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
@@ -93,15 +134,21 @@ extension WindowController: NSSearchFieldDelegate {
     }
 }
 
-// MARK: - ViewController delegate
+// MARK: - ViewControllerDelegate
 
 extension WindowController: ViewControllerDelegate {
-    func setStringTableLocalizationGroups(groups: [LocalizationGroup]) {
+    /**
+     Invoked when localization groups should be set in the toolbar's dropdown list
+     */
+    func shouldSetLocalizationGroups(groups: [LocalizationGroup]) {
         selectButton.menu?.removeAllItems()
         groups.map({ NSMenuItem(title: $0.name, action: #selector(WindowController.selectAction(sender:)), keyEquivalent: "") }).forEach({ selectButton.menu?.addItem($0) })
     }
 
-    func resetSearchAndFilter() {
+    /**
+     Invoiked when search and filter should be reset in the toolbar
+     */
+    func shouldResetSearchTermAndFilter() {
         setupSearch()
         setupFilter()
 
@@ -109,18 +156,10 @@ extension WindowController: ViewControllerDelegate {
         delegate?.userDidRequestFilterChange(filter: .all)
     }
 
-    func setSelectedLocalizationGroup(title: String) {
+    /**
+     Invoked when localization group should be selected in the toolbar's dropdown list
+     */
+    func shouldSelectLocalizationGroup(title: String) {
          selectButton.selectItem(at: selectButton.indexOfItem(withTitle: title))
-    }
-}
-
-extension Filter: CustomStringConvertible {
-    var description: String {
-        switch self {
-        case .all:
-            return "All"
-        case .missing:
-            return "Missing"
-        }
     }
 }

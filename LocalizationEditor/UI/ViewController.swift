@@ -8,10 +8,24 @@
 
 import Cocoa
 
+/**
+Protocol for announcing changes to the toolbar. Needed because the VC does not have direct access to the toolbar (handled by WindowController)
+ */
 protocol ViewControllerDelegate: AnyObject {
-    func setStringTableLocalizationGroups(groups: [LocalizationGroup])
-    func resetSearchAndFilter()
-    func setSelectedLocalizationGroup(title: String)
+    /**
+     Invoked when localization groups should be set in the toolbar's dropdown list
+     */
+    func shouldSetLocalizationGroups(groups: [LocalizationGroup])
+
+    /**
+     Invoiked when search and filter should be reset in the toolbar
+     */
+    func shouldResetSearchTermAndFilter()
+
+    /**
+     Invoked when localization group should be selected in the toolbar's dropdown list
+     */
+    func shouldSelectLocalizationGroup(title: String)
 }
 
 final class ViewController: NSViewController {
@@ -54,12 +68,8 @@ final class ViewController: NSViewController {
         tableView.usesAutomaticRowHeights = true
     }
 
-    private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
-        delegate?.setStringTableLocalizationGroups(groups: files)
-    }
-
     private func reloadData(with languages: [String], title: String?) {
-        delegate?.resetSearchAndFilter()
+        delegate?.shouldResetSearchTermAndFilter()
 
         let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
         view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
@@ -71,8 +81,6 @@ final class ViewController: NSViewController {
 
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.key.rawValue))
         column.title = "Key"
-        column.maxWidth = 460
-        column.minWidth = 50
         tableView.addTableColumn(column)
 
         languages.forEach { language in
@@ -90,7 +98,7 @@ final class ViewController: NSViewController {
         let actionsColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.actions.rawValue))
         actionsColumn.title = "Actions"
         actionsColumn.maxWidth = 48
-        actionsColumn.minWidth = 48
+        actionsColumn.minWidth = 32
         tableView.addTableColumn(actionsColumn)
 
         tableView.reloadData()
@@ -138,15 +146,15 @@ final class ViewController: NSViewController {
                 self.progressIndicator.stopAnimation(self)
 
                 if let title = title {
-                    self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
-                    self.delegate?.setSelectedLocalizationGroup(title: title)
+                    self.delegate?.shouldSetLocalizationGroups(groups: localizationFiles)
+                    self.delegate?.shouldSelectLocalizationGroup(title: title)
                 }
             }
         }
     }
 }
 
-// MARK: - Delegate
+// MARK: - NSTableViewDelegate
 
 extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -176,11 +184,15 @@ extension ViewController: NSTableViewDelegate {
     }
 }
 
+// MARK: - LocalizationCellDelegate
+
 extension ViewController: LocalizationCellDelegate {
     func userDidUpdateLocalizationString(language: String, key: String, with value: String, message: String?) {
         dataSource.updateLocalization(language: language, key: key, with: value, message: message)
     }
 }
+
+// MARK: - NSTableViewClickableDelegate
 
 extension ViewController: NSTableViewClickableDelegate {
     @nonobjc func tableView(_ tableView: NSTableView, didClickRow row: Int, didClickColumn column: Int) {
@@ -196,6 +208,8 @@ extension ViewController: NSTableViewClickableDelegate {
     }
 }
 
+// MARK: - ActionsCellDelegate
+
 extension ViewController: ActionsCellDelegate {
     func userDidRequestRemoval(of key: String) {
         dataSource.deleteLocalization(key: key)
@@ -207,7 +221,14 @@ extension ViewController: ActionsCellDelegate {
     }
 }
 
+// MARK: - WindowControllerToolbarDelegate
+
 extension ViewController: WindowControllerToolbarDelegate {
+    /**
+     Invoked when user requests filter change
+
+     - Parameter filter: new filter setting
+     */
     func userDidRequestFilterChange(filter: Filter) {
         guard currentFilter != filter else {
             return
@@ -217,6 +238,11 @@ extension ViewController: WindowControllerToolbarDelegate {
         self.filter()
     }
 
+    /**
+     Invoked when user requests searching
+
+     - Parameter searchTerm: new search term
+     */
     func userDidRequestSearch(searchTerm: String) {
         guard currentSearchTerm != searchTerm else {
             return
@@ -226,12 +252,19 @@ extension ViewController: WindowControllerToolbarDelegate {
         filter()
     }
 
-    func userDidRequestStringFileGroupChange(group: String) {
-        let languages = dataSource.selectGroupAndGetLanguages(for: group)
+    /**
+     Invoked when user request change of the selected localization group
 
+     - Parameter group: new localization group title
+     */
+    func userDidRequestLocalizationGroupChange(group: String) {
+        let languages = dataSource.selectGroupAndGetLanguages(for: group)
         reloadData(with: languages, title: title)
     }
 
+    /**
+     Invoked when user requests opening a folder
+     */
     func userDidRequestFolderOpen() {
         openFolder()
     }
