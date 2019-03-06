@@ -102,6 +102,12 @@ final class WindowController: NSWindowController {
         }
     }
 
+    private func enableControls() {
+        searchField.isEnabled = true
+        filterButton.isEnabled = true
+        selectButton.isEnabled = true
+    }
+
     // MARK: - Actions
 
     @objc private func selectAction(sender: NSMenuItem) {
@@ -160,6 +166,7 @@ extension WindowController: ViewControllerDelegate {
      Invoked when localization group should be selected in the toolbar's dropdown list
      */
     func shouldSelectLocalizationGroup(title: String) {
-         selectButton.selectItem(at: selectButton.indexOfItem(withTitle: title))
+        enableControls()
+        selectButton.selectItem(at: selectButton.indexOfItem(withTitle: title))
     }
 }
