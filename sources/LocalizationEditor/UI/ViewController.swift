@@ -8,6 +8,26 @@
 
 import Cocoa
 
+/**
+Protocol for announcing changes to the toolbar. Needed because the VC does not have direct access to the toolbar (handled by WindowController)
+ */
+protocol ViewControllerDelegate: AnyObject {
+    /**
+     Invoked when localization groups should be set in the toolbar's dropdown list
+     */
+    func shouldSetLocalizationGroups(groups: [LocalizationGroup])
+
+    /**
+     Invoiked when search and filter should be reset in the toolbar
+     */
+    func shouldResetSearchTermAndFilter()
+
+    /**
+     Invoked when localization group should be selected in the toolbar's dropdown list
+     */
+    func shouldSelectLocalizationGroup(title: String)
+}
+
 final class ViewController: NSViewController {
     enum FixedColumn: String {
         case key
@@ -17,33 +37,23 @@ final class ViewController: NSViewController {
     // MARK: - Outlets
 
     @IBOutlet private weak var tableView: NSTableView!
-    @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var progressIndicator: NSProgressIndicator!
-    @IBOutlet private var defaultSelectItem: NSMenuItem!
-    @IBOutlet private weak var searchField: NSSearchField!
-    @IBOutlet private weak var filterButton: NSPopUpButton!
 
     // MARK: - Properties
 
+    weak var delegate: ViewControllerDelegate?
+
+    private var currentFilter: Filter = .all
+    private var currentSearchTerm: String = ""
     private let dataSource = LocalizationsDataSource()
 
     override func viewDidLoad() {
         super.viewDidLoad()
 
-        setupMenu()
-        setupSearch()
-        setupFilter()
         setupData()
     }
 
     // MARK: - Setup
-
-    private func setupMenu() {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        appDelegate.openFolderMenuItem.action = #selector(ViewController.openAction(sender:))
-        selectButton.menu?.removeAllItems()
-        selectButton.menu?.addItem(defaultSelectItem)
-    }
 
     private func setupData() {
         let cellIdentifiers = [KeyCell.identifier, LocalizationCell.identifier, ActionsCell.identifier]
@@ -58,25 +68,8 @@ final class ViewController: NSViewController {
         tableView.usesAutomaticRowHeights = true
     }
 
-    private func setupSearch() {
-        searchField.delegate = self
-        searchField.stringValue = ""
-
-        _ = searchField.resignFirstResponder()
-    }
-
-    private func setupFilter() {
-        filterButton.select(filterButton.item(at: 0)!)
-    }
-
-    private func setupSetupLocalizationSelectionMenu(files: [LocalizationGroup]) {
-        selectButton.menu?.removeAllItems()
-        files.map({ NSMenuItem(title: $0.name, action: #selector(ViewController.selectAction(sender:)), keyEquivalent: "") }).forEach({ selectButton.menu?.addItem($0) })
-    }
-
     private func reloadData(with languages: [String], title: String?) {
-        setupSearch()
-        setupFilter()
+        delegate?.shouldResetSearchTermAndFilter()
 
         let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
         view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
@@ -88,8 +81,6 @@ final class ViewController: NSViewController {
 
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.key.rawValue))
         column.title = "Key"
-        column.maxWidth = 460
-        column.minWidth = 50
         tableView.addTableColumn(column)
 
         languages.forEach { language in
@@ -107,7 +98,7 @@ final class ViewController: NSViewController {
         let actionsColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.actions.rawValue))
         actionsColumn.title = "Actions"
         actionsColumn.maxWidth = 48
-        actionsColumn.minWidth = 48
+        actionsColumn.minWidth = 32
         tableView.addTableColumn(actionsColumn)
 
         tableView.reloadData()
@@ -134,29 +125,11 @@ final class ViewController: NSViewController {
     }
 
     private func filter() {
-        let filter = filterButton.selectedItem?.tag == 1 ? Filter.missing : Filter.all
-        dataSource.filter(by: filter, searchString: searchField.stringValue)
+        dataSource.filter(by: currentFilter, searchString: currentSearchTerm)
         tableView.reloadData()
     }
 
-    // MARK: - Actions
-
-    @IBAction @objc private func selectAction(sender: NSMenuItem) {
-        let groupName = sender.title
-        let languages = dataSource.selectGroupAndGetLanguages(for: groupName)
-
-        reloadData(with: languages, title: title)
-    }
-
-    @IBAction private func filterAll(_ sender: NSMenuItem) {
-        filter()
-    }
-
-    @IBAction private func filterMissing(_ sender: NSMenuItem) {
-        filter()
-    }
-
-    @IBAction @objc private func openAction(sender _: NSMenuItem) {
+    private func openFolder() {
         let openPanel = NSOpenPanel()
         openPanel.allowsMultipleSelection = false
         openPanel.canChooseDirectories = true
@@ -173,25 +146,15 @@ final class ViewController: NSViewController {
                 self.progressIndicator.stopAnimation(self)
 
                 if let title = title {
-                    self.setupSetupLocalizationSelectionMenu(files: localizationFiles)
-                    self.selectButton.selectItem(at: self.selectButton.indexOfItem(withTitle: title))
-                } else {
-                    self.setupMenu()
+                    self.delegate?.shouldSetLocalizationGroups(groups: localizationFiles)
+                    self.delegate?.shouldSelectLocalizationGroup(title: title)
                 }
             }
         }
     }
 }
 
-// MARK: - Search
-
-extension ViewController: NSSearchFieldDelegate {
-    func controlTextDidChange(_ obj: Notification) {
-        filter()
-    }
-}
-
-// MARK: - Delegate
+// MARK: - NSTableViewDelegate
 
 extension ViewController: NSTableViewDelegate {
     func tableView(_ tableView: NSTableView, viewFor tableColumn: NSTableColumn?, row: Int) -> NSView? {
@@ -221,11 +184,15 @@ extension ViewController: NSTableViewDelegate {
     }
 }
 
+// MARK: - LocalizationCellDelegate
+
 extension ViewController: LocalizationCellDelegate {
     func userDidUpdateLocalizationString(language: String, key: String, with value: String, message: String?) {
         dataSource.updateLocalization(language: language, key: key, with: value, message: message)
     }
 }
+
+// MARK: - NSTableViewClickableDelegate
 
 extension ViewController: NSTableViewClickableDelegate {
     @nonobjc func tableView(_ tableView: NSTableView, didClickRow row: Int, didClickColumn column: Int) {
@@ -241,6 +208,8 @@ extension ViewController: NSTableViewClickableDelegate {
     }
 }
 
+// MARK: - ActionsCellDelegate
+
 extension ViewController: ActionsCellDelegate {
     func userDidRequestRemoval(of key: String) {
         dataSource.deleteLocalization(key: key)
@@ -249,5 +218,54 @@ extension ViewController: ActionsCellDelegate {
         let rect = tableView.visibleRect
         filter()
         tableView.scrollToVisible(rect)
+    }
+}
+
+// MARK: - WindowControllerToolbarDelegate
+
+extension ViewController: WindowControllerToolbarDelegate {
+    /**
+     Invoked when user requests filter change
+
+     - Parameter filter: new filter setting
+     */
+    func userDidRequestFilterChange(filter: Filter) {
+        guard currentFilter != filter else {
+            return
+        }
+
+        currentFilter = filter
+        self.filter()
+    }
+
+    /**
+     Invoked when user requests searching
+
+     - Parameter searchTerm: new search term
+     */
+    func userDidRequestSearch(searchTerm: String) {
+        guard currentSearchTerm != searchTerm else {
+            return
+        }
+
+        currentSearchTerm = searchTerm
+        filter()
+    }
+
+    /**
+     Invoked when user request change of the selected localization group
+
+     - Parameter group: new localization group title
+     */
+    func userDidRequestLocalizationGroupChange(group: String) {
+        let languages = dataSource.selectGroupAndGetLanguages(for: group)
+        reloadData(with: languages, title: title)
+    }
+
+    /**
+     Invoked when user requests opening a folder
+     */
+    func userDidRequestFolderOpen() {
+        openFolder()
     }
 }
