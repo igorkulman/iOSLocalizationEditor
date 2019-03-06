@@ -18,6 +18,7 @@
 		F3261F74222ED5FF006838C3 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3261F73222ED5FF006838C3 /* WindowController.swift */; };
 		F3642CC421F715CB006C8685 /* EditableNSTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3642CC321F715CB006C8685 /* EditableNSTextField.swift */; };
 		F3A5ABB8220448690077460D /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5ABB7220448690077460D /* FileManager+Extension.swift */; };
+		F3C4FA7D222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FA7C222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift */; };
 		F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94520BEC7460081830A /* AppDelegate.swift */; };
 		F3D9C94820BEC7460081830A /* ViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3D9C94720BEC7460081830A /* ViewController.swift */; };
 		F3D9C94A20BEC7460081830A /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = F3D9C94920BEC7460081830A /* Assets.xcassets */; };
@@ -87,6 +88,7 @@
 		F3261F73222ED5FF006838C3 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
 		F3642CC321F715CB006C8685 /* EditableNSTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EditableNSTextField.swift; sourceTree = "<group>"; };
 		F3A5ABB7220448690077460D /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
+		F3C4FA7C222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProviderDeletingTests.swift; sourceTree = "<group>"; };
 		F3D9C94220BEC7460081830A /* LocalizationEditor.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = LocalizationEditor.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3D9C94520BEC7460081830A /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		F3D9C94720BEC7460081830A /* ViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ViewController.swift; sourceTree = "<group>"; };
@@ -239,6 +241,7 @@
 				F3DF02ED21C66C2500CEC6B6 /* Extensions */,
 				F3DF02CD21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift */,
 				A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */,
+				F3C4FA7C222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift */,
 				F3DF02EB21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift */,
 				F3DF02CF21C65F6800CEC6B6 /* Info.plist */,
 				F3DF02E321C6654900CEC6B6 /* TestFile.swift */,
@@ -459,6 +462,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				A15A5A4721D90AC600D3C791 /* ParserIsolationTests.swift in Sources */,
+				F3C4FA7D222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift in Sources */,
 				F3DF02EF21C66C3800CEC6B6 /* XCTestCase+Extensions.swift in Sources */,
 				F3DF02CE21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift in Sources */,
 				F3DF02EC21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift in Sources */,
