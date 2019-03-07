@@ -63,6 +63,33 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="Edit" id="5u8-tx-1fh">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Edit" id="oYd-vH-KNF">
+                                    <items>
+                                        <menuItem title="Cut" keyEquivalent="x" id="3sm-HN-6CE" userLabel="Cut">
+                                            <connections>
+                                                <action selector="cut:" target="Ady-hI-5gd" id="ucH-FC-hnm"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Copy" keyEquivalent="c" id="e0V-81-L66" userLabel="Copy">
+                                            <connections>
+                                                <action selector="copy:" target="Ady-hI-5gd" id="IED-fu-isa"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Paste" keyEquivalent="v" id="3ep-Gh-gzv" userLabel="Paste">
+                                            <connections>
+                                                <action selector="paste:" target="Ady-hI-5gd" id="mfx-O8-h65"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Select all" keyEquivalent="a" id="hB6-1k-SXh">
+                                            <connections>
+                                                <action selector="selectAll:" target="Ady-hI-5gd" id="cB3-ki-zei"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="View" id="zi9-yi-W5T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="View" id="XAB-cQ-ybl">

@@ -13,7 +13,7 @@
             <rect key="frame" x="0.0" y="0.0" width="480" height="22"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ZQ-E0-iUg" customClass="EditableNSTextField" customModule="LocalizationEditor" customModuleProvider="target">
+                <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2ZQ-E0-iUg">
                     <rect key="frame" x="0.0" y="0.0" width="480" height="22"/>
                     <textFieldCell key="cell" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" state="on" borderStyle="bezel" drawsBackground="YES" id="Eyu-KO-xhD">
                         <font key="font" metaFont="system"/>
