@@ -39,14 +39,19 @@ protocol SeperatingType: ControlCharacterType {}
 /// - messageBoundaryClose Ends a message.
 /// - quote Wraps a key or a value.
 enum EnclosingControlCharacters: String, EnclosingType, CaseIterable {
-    case messageBoundaryOpenSingleline = "//"
-    case messageBoundaryCloseSingleline = "\r"
-    case messageBoundaryOpenMultiline = "/*"
-    case messageBoundaryCloseMultiline = "*/"
+    case messageBoundaryOpen = "/*"
+    case messageBoundaryClose = "*/"
     case quote = "\""
 
     var skippingLength: Int {
-        return self.rawValue.count
+        switch self {
+        case .messageBoundaryOpen:
+            return EnclosingControlCharacters.messageBoundaryOpen.rawValue.count
+        case .messageBoundaryClose:
+            return EnclosingControlCharacters.messageBoundaryClose.rawValue.count
+        case .quote:
+            return EnclosingControlCharacters.quote.rawValue.count
+        }
     }
 }
 

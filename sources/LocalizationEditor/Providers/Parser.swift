@@ -25,8 +25,7 @@ class Parser {
     fileprivate enum ParserState {
         case readingKey
         case readingValue
-        case readingSinglelineMessage
-        case readingMultilineMessage
+        case readingMessage
         case other
     }
     /// The current state of the parser.
@@ -96,11 +95,10 @@ class Parser {
                 } else {
                     state = .other
                 }
-            case .readingSinglelineMessage, .readingMultilineMessage:
+            case .readingMessage:
                 // Text until value-end marker is a message.
                 // If the prior token as also a message, DO NOT append it since the prior message could be a license header.
-                let endType = state == .readingSinglelineMessage ? EnclosingControlCharacters.messageBoundaryCloseSingleline : EnclosingControlCharacters.messageBoundaryCloseMultiline
-                let currentMessageText = extractText(until: endType)
+                let currentMessageText = extractText(until: .messageBoundaryClose)
                 let newToken: Token = .message(currentMessageText)
                 tokens.append(newToken)
                 state = .other
@@ -172,7 +170,7 @@ class Parser {
             print("Badly formatted control characters! Maybe because the user has some \" in the comments that can not be handled, yet.")
 
             var recoveryIndex: String.Index
-            if let messageEndIndex = input.index(of: EnclosingControlCharacters.messageBoundaryCloseMultiline.rawValue) {
+            if let messageEndIndex = input.index(of: EnclosingControlCharacters.messageBoundaryClose.rawValue) {
                 recoveryIndex = messageEndIndex
             } else if let lineEndIndex = input.index(of: "\n") {
                 recoveryIndex = lineEndIndex
@@ -333,15 +331,11 @@ extension Parser {
         case EnclosingControlCharacters.quote:
             // Handle this case in a seperate function:
             prepareStateForCurrentQuoteToken()
-        case EnclosingControlCharacters.messageBoundaryOpenSingleline:
+        case EnclosingControlCharacters.messageBoundaryOpen:
             // A new message begins.
             // Set the state to expect a message.
-            state = .readingSinglelineMessage
-        case EnclosingControlCharacters.messageBoundaryOpenMultiline:
-            // A new message begins.
-            // Set the state to expect a message.
-            state = .readingMultilineMessage
-        case EnclosingControlCharacters.messageBoundaryCloseMultiline, EnclosingControlCharacters.messageBoundaryCloseSingleline:
+            state = .readingMessage
+        case EnclosingControlCharacters.messageBoundaryClose:
             // Message-end markers should only be detected when the lexer is reading a message. If they occure 'in the wild' the input must be ill formatted.
             break
         case SeperatingControlCharacters.equal:
