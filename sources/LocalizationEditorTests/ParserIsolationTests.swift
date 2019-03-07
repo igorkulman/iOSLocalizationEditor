@@ -61,7 +61,7 @@ class LocalizationEditor: XCTestCase {
         XCTAssertNil(escapingResult[2].message)
     }
     
-    func testInputValidWithMessage() {
+    func testInputValidWithMultilineMessage() {
         let inputString =
         """
 /* The string for "the art and culture category */
@@ -87,6 +87,35 @@ class LocalizationEditor: XCTestCase {
         
         XCTAssertEqual(result[0].message, "The string for \"the art and culture category")
         XCTAssertEqual(result[1].message, "String for back operation")
+        XCTAssertEqual(result[2].message, "Select your birhtday")
+    }
+
+    func testInputValidWithSinglelineMessage() {
+        let inputString =
+        """
+// e.g., "Start bouldering", "Start Top Range"
+"Start %@" = "Empieza a %@";
+
+// String for "back operation"
+"BACK" = "Zurück";
+
+// Select your birhtday
+"BIRTHDAY_SELECT" = "Bitte wähle deinen Geburtstag aus";
+"""
+        let parser = Parser(input: inputString)
+        let result = try! parser.parse()
+
+        XCTAssertEqual(result.count, 3)
+        XCTAssertEqual(result[0].key, "Start %@")
+        XCTAssertEqual(result[1].key, "BACK")
+        XCTAssertEqual(result[2].key, "BIRTHDAY_SELECT")
+
+        XCTAssertEqual(result[0].value, "Empieza a %@")
+        XCTAssertEqual(result[1].value, "Zurück")
+        XCTAssertEqual(result[2].value, "Bitte wähle deinen Geburtstag aus")
+
+        XCTAssertEqual(result[0].message, "e.g., \"Start bouldering\", \"Start Top Range\"")
+        XCTAssertEqual(result[1].message, "String for \"back operation\"")
         XCTAssertEqual(result[2].message, "Select your birhtday")
     }
     
