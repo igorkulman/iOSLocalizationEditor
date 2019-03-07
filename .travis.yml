@@ -5,7 +5,7 @@ before_install:
   - gem install xcpretty-travis-formatter
   - brew install swiftlint
 script:
-  - xcodebuild test -project LocalizationEditor.xcodeproj -scheme LocalizationEditor -destination 'platform=OS X,arch=x86_64' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -f `xcpretty-travis-formatter`
+  - xcodebuild test -project sources/LocalizationEditor.xcodeproj -scheme LocalizationEditor -destination 'platform=OS X,arch=x86_64' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty -f `xcpretty-travis-formatter`
 notifications:
   email:
     on_success: never
