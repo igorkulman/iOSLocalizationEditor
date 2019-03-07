@@ -85,11 +85,7 @@ final class ViewController: NSViewController {
 
         languages.forEach { language in
             let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(language))
-            if language.count == 2 || (language.count == 4 && language.contains("-")) { // country code
-                column.title = "\(emojiFlag(countryCode: language)) \(language.uppercased())"
-            } else {
-                column.title = language
-            }
+            column.title = Flag(languageCode: language).emoji
             column.maxWidth = 460
             column.minWidth = 50
             self.tableView.addTableColumn(column)
@@ -111,28 +107,6 @@ final class ViewController: NSViewController {
             self.tableView.sizeToFit()
             self.tableView.layout()
         }
-    }
-
-    private func emojiFlag(countryCode: String) -> String {
-        var string = ""
-        var country = (countryCode == "en" ? "gb" : countryCode).uppercased()
-        
-        // fix for #37
-        if country == "JA" {
-            return "🇯🇵"
-        }
-        
-        // fix for #36
-        if country == "AR" {
-            return "🇱🇧"
-        }
-        
-        for unicodeScalar in country.unicodeScalars {
-            if let scalar = UnicodeScalar(127397 + unicodeScalar.value) {
-                string.append(String(scalar))
-            }
-        }
-        return string
     }
 
     private func filter() {
