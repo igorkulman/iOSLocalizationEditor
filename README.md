@@ -30,6 +30,10 @@ To download and run the app
 - Unzip **LocalizationEditor.app.zip**
 - Right click on the extracted **LocalizationEditor.app** and choose Open (just a double-clicking will show a warning because the app is only signed with a development certificate)
 
+## Contributing
+
+All contributions are welcomed. Please read [CONTRIBUTING](CONTRIBUTING.md) for more details.
+
 ## Author
 
 - **Igor Kulman** - *Initial work* - igor@kulman.sk
