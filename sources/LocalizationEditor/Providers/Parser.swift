@@ -52,12 +52,18 @@ class Parser {
         return results
     }
 
-    private func skipSingleLineComments() {
+    /**
+     Special handling for single line comments to turn them into message tokens. Should only be called when state is other so // in a middle of value does not get caught
+     */
+    private func skipAndProcessSingleLineComments() {
         while !input.isEmpty, let character = String(input[input.startIndex]).unicodeScalars.first, CharacterSet.whitespacesAndNewlines.contains(character) {
             input.remove(at: input.index(input.startIndex, offsetBy: 0))
         }
 
         if input.hasPrefix("//"), let endIndex = input.index(of: "\n") {
+            let messageRange = input.index(input.startIndex, offsetBy: 2) ..< endIndex
+            tokens.append(.message(String(input[messageRange])))
+
             let rangeForRemoving = input.startIndex ..< endIndex
             input.removeSubrange(rangeForRemoving)
         }
@@ -75,7 +81,7 @@ class Parser {
             // Actions depend on the current state.
             switch state {
             case .other:
-                skipSingleLineComments()
+                skipAndProcessSingleLineComments()
 
                 // Extract the upcoming control character, also switch the current state and append the extracted token, if any.
                 if let extractedToken = try prepareNextState() {
