@@ -63,6 +63,44 @@
                                     </items>
                                 </menu>
                             </menuItem>
+                            <menuItem title="View" id="zi9-yi-W5T">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="View" id="XAB-cQ-ybl">
+                                    <items>
+                                        <menuItem title="Enter Full Screen" keyEquivalent="f" id="Ju1-QZ-OtX">
+                                            <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <connections>
+                                                <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="EjN-gY-NfH"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
+                            <menuItem title="Window" id="7PS-Kh-0ES" userLabel="Window">
+                                <modifierMask key="keyEquivalentModifierMask"/>
+                                <menu key="submenu" title="Window" id="Hbr-TU-yhw">
+                                    <items>
+                                        <menuItem title="Minimize" keyEquivalent="m" id="6RR-9u-NEg">
+                                            <connections>
+                                                <action selector="performMiniaturize:" target="Ady-hI-5gd" id="avX-aK-u4b"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem title="Zoom" id="z6e-9I-cc3" userLabel="Zoom">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="performZoom:" target="Ady-hI-5gd" id="k5e-fX-ZO6"/>
+                                            </connections>
+                                        </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="Z0T-pc-kfl"/>
+                                        <menuItem title="Bring All to Front" id="U8A-5T-cKr">
+                                            <modifierMask key="keyEquivalentModifierMask"/>
+                                            <connections>
+                                                <action selector="arrangeInFront:" target="Ady-hI-5gd" id="XdJ-3y-o4j"/>
+                                            </connections>
+                                        </menuItem>
+                                    </items>
+                                </menu>
+                            </menuItem>
                             <menuItem title="Select" id="3lY-JD-VuH">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                             </menuItem>
@@ -86,7 +124,7 @@
         <scene sceneID="R2V-B0-nI4">
             <objects>
                 <windowController id="B8D-0N-5wS" customClass="WindowController" customModule="LocalizationEditor" customModuleProvider="target" sceneMemberID="viewController">
-                    <window key="window" title="Localization Editor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" id="IQv-IB-iLA">
+                    <window key="window" title="Localization Editor" allowsToolTipsWhenApplicationIsInactive="NO" autorecalculatesKeyViewLoop="NO" releasedWhenClosed="NO" visibleAtLaunch="NO" animationBehavior="default" tabbingMode="disallowed" id="IQv-IB-iLA">
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
