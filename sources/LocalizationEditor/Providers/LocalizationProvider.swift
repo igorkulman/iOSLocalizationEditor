@@ -103,7 +103,7 @@ final class LocalizationProvider {
                 let parts = file.path.split(separator: "/")
                 let lang = String(parts[parts.count - 2]).replacingOccurrences(of: ".lproj", with: "")
                 return Localization(language: lang, translations: getLocalizationStrings(path: file.path), path: file.path)
-            }), path: path)
+            }).sorted(by: { $0.language < $1.language }), path: path)
         }).sorted()
     }
 
