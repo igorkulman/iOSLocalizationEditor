@@ -51,6 +51,18 @@ class Parser {
         try results = interpretTokens()
         return results
     }
+
+    private func skipSingleLineComments() {
+        while !input.isEmpty, let character = String(input[input.startIndex]).unicodeScalars.first, CharacterSet.whitespacesAndNewlines.contains(character) {
+            input.remove(at: input.index(input.startIndex, offsetBy: 0))
+        }
+
+        if input.hasPrefix("//"), let endIndex = input.index(of: "\n") {
+            let rangeForRemoving = input.startIndex ..< endIndex
+            input.removeSubrange(rangeForRemoving)
+        }
+    }
+
     /**
      This function reads through the input and populates an array of tokens.
      
@@ -63,6 +75,8 @@ class Parser {
             // Actions depend on the current state.
             switch state {
             case .other:
+                skipSingleLineComments()
+
                 // Extract the upcoming control character, also switch the current state and append the extracted token, if any.
                 if let extractedToken = try prepareNextState() {
                     tokens.append(extractedToken)
