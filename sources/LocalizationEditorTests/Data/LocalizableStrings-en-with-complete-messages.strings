@@ -27,7 +27,7 @@
 /* Commenting Message for Author's blog */
 "blog" = "Author's blog";
 
-/* Commenting Message */
+// Commenting Message with "quotes"
 "done" = "Done";
 
 /* Commenting Message for Feed */
