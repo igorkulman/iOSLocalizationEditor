@@ -16,13 +16,21 @@ struct Flag {
     }
 
     var emoji: String {
+        guard let flag = emojiFlag else {
+            return languageCode
+        }
+
+        return "\(flag) \(languageCode)"
+    }
+
+    private var emojiFlag: String? {
         // special cases for zh-Hant and zh-Hans
         if languageCode.hasPrefix("ZH-") && languageCode.count == 7 {
             return "🇨🇳"
         }
 
         guard languageCode.count == 2 || (languageCode.count == 5 && languageCode.contains("-")) else {
-            return languageCode
+            return nil
         }
 
         let parts = languageCode.split(separator: "-")
@@ -104,7 +112,7 @@ struct Flag {
         }
     }
 
-    private func emojiFlag(countryCode: String) -> String {
+    private func emojiFlag(countryCode: String) -> String? {
         var string = ""
 
         for unicodeScalar in countryCode.unicodeScalars {
@@ -113,6 +121,6 @@ struct Flag {
             }
         }
 
-        return string.isEmpty ? countryCode : string
+        return string.isEmpty ? nil : string
     }
 }
