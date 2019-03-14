@@ -149,7 +149,7 @@ class Parser {
                     throw ParserError.malformattedInput
                 }
                 let correctedMessage = removeLeadingTrailingSpaces(from: currentMessage)
-                let entry = LocalizationString(key: key, value: value, message: correctedMessage)
+                let entry = LocalizationString(key: key, value: value.replacingOccurrences(of: "\\\"", with: "\""), message: correctedMessage)
                 results.append(entry)
                 // Reset the properties to be ready for the next line.
                 currentValue = nil
