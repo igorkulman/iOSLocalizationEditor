@@ -82,6 +82,15 @@ final class LocalizationProvider {
         writeToFile(localization: localization)
     }
 
+    /**
+     Adds new key with a message to given localization
+
+     - Parameter localization: localization to add the data to
+     - Parameter key: new key to add
+     - Parameter message: message for the key
+
+     - Returns: new localization string
+     */
     func addKeyToLocalization(localization: Localization, key: String, message: String?) -> LocalizationString {
         let newTranslation = localization.add(key: key, message: message)
         writeToFile(localization: localization)

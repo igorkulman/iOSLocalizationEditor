@@ -230,7 +230,10 @@ final class LocalizationsDataSource: NSObject {
     }
 
     /**
+     Adds new localization key with a message to all the localizations
 
+     - Parameter key: key to add
+     - Parameter message: message (optional)
      */
     func addLocalizationKey(key: String, message: String?) {
         guard let selectedLocalizationGroup = selectedLocalizationGroup else {
