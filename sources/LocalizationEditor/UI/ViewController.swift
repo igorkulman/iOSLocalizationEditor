@@ -46,6 +46,7 @@ final class ViewController: NSViewController {
     private var currentFilter: Filter = .all
     private var currentSearchTerm: String = ""
     private let dataSource = LocalizationsDataSource()
+    private var presendedAddViewController: AddViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -209,9 +210,14 @@ extension ViewController: ActionsCellDelegate {
 // MARK: - WindowControllerToolbarDelegate
 
 extension ViewController: WindowControllerToolbarDelegate {
+    /**
+     Invoked when user requests adding a new translation
+     */
     func userDidRequestAddNewTranslation() {
-        let addVc = storyboard!.instantiateController(withIdentifier: "Add") as! NSViewController
-        presentAsSheet(addVc)
+        let addViewController = storyboard!.instantiateController(withIdentifier: "Add") as! AddViewController
+        addViewController.delegate = self
+        presendedAddViewController = addViewController
+        presentAsSheet(addViewController)
     }
 
     /**
@@ -257,5 +263,25 @@ extension ViewController: WindowControllerToolbarDelegate {
      */
     func userDidRequestFolderOpen() {
         openFolder()
+    }
+}
+
+// MARK: - AddViewControllerDelegate
+
+extension ViewController: AddViewControllerDelegate {
+    func userDidCancel() {
+        dismiss()
+    }
+
+    func userDidAddKey(key: String) {
+        dismiss()
+    }
+
+    private func dismiss() {
+        guard let presendedAddViewController = presendedAddViewController else {
+            return
+        }
+
+        dismiss(presendedAddViewController)
     }
 }

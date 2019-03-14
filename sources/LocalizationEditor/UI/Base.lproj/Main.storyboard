@@ -312,9 +312,71 @@
             <objects>
                 <viewController storyboardIdentifier="Add" id="ers-OE-kPR" customClass="AddViewController" customModule="LocalizationEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="LPw-o4-MY7">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="80"/>
                         <autoresizingMask key="autoresizingMask"/>
+                        <subviews>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EEY-nE-SYX">
+                                <rect key="frame" x="6" y="53" width="30" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Key:" id="xVP-DG-dEy">
+                                    <font key="font" usesAppearanceFont="YES"/>
+                                    <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-ws-aed">
+                                <rect key="frame" x="42" y="50" width="400" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="jrp-La-RWv">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cs7-7R-8O8">
+                                <rect key="frame" x="336" y="1" width="112" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="Wdn-J9-PDj"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ouS-ec-KwS">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="addAction:" target="ers-OE-kPR" id="IPp-gb-iVm"/>
+                                </connections>
+                            </button>
+                            <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-vL-lUd">
+                                <rect key="frame" x="2" y="1" width="112" height="32"/>
+                                <constraints>
+                                    <constraint firstAttribute="width" constant="100" id="lmu-sO-Ulg"/>
+                                </constraints>
+                                <buttonCell key="cell" type="push" title="Cancel" bezelStyle="rounded" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="q2m-Rj-ypE">
+                                    <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                    <font key="font" metaFont="system"/>
+                                    <string key="keyEquivalent" base64-UTF8="YES">
+Gw
+</string>
+                                </buttonCell>
+                                <connections>
+                                    <action selector="cancelAction:" target="ers-OE-kPR" id="m9p-5d-qYt"/>
+                                </connections>
+                            </button>
+                        </subviews>
+                        <constraints>
+                            <constraint firstItem="cS5-ws-aed" firstAttribute="leading" secondItem="EEY-nE-SYX" secondAttribute="trailing" constant="8" id="2sP-Fl-cyC"/>
+                            <constraint firstAttribute="bottom" secondItem="Cs7-7R-8O8" secondAttribute="bottom" constant="8" id="5kP-zk-L21"/>
+                            <constraint firstItem="EEY-nE-SYX" firstAttribute="top" secondItem="LPw-o4-MY7" secondAttribute="top" constant="10" id="6wx-3L-dcq"/>
+                            <constraint firstItem="EEY-nE-SYX" firstAttribute="leading" secondItem="LPw-o4-MY7" secondAttribute="leading" constant="8" id="Dmi-y0-Krc"/>
+                            <constraint firstItem="cS5-ws-aed" firstAttribute="top" secondItem="LPw-o4-MY7" secondAttribute="top" constant="8" id="DqJ-3h-K86"/>
+                            <constraint firstAttribute="bottom" secondItem="gxf-vL-lUd" secondAttribute="bottom" constant="8" id="NcY-n7-N35"/>
+                            <constraint firstAttribute="trailing" secondItem="Cs7-7R-8O8" secondAttribute="trailing" constant="8" id="h9X-Xf-vRp"/>
+                            <constraint firstAttribute="trailing" secondItem="cS5-ws-aed" secondAttribute="trailing" constant="8" id="wvi-Fm-YyK"/>
+                            <constraint firstItem="gxf-vL-lUd" firstAttribute="leading" secondItem="LPw-o4-MY7" secondAttribute="leading" constant="8" id="zhV-aa-Txk"/>
+                        </constraints>
                     </view>
+                    <connections>
+                        <outlet property="addButton" destination="Cs7-7R-8O8" id="QHt-OE-fp8"/>
+                        <outlet property="keyTextField" destination="cS5-ws-aed" id="Nre-wT-wre"/>
+                    </connections>
                 </viewController>
                 <customObject id="Gce-KM-Xgy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>

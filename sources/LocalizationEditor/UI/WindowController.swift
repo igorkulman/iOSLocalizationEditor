@@ -32,12 +32,15 @@ protocol WindowControllerToolbarDelegate: AnyObject {
     func userDidRequestSearch(searchTerm: String)
 
     /**
-     Invoked when user request change of the selected localization group
+     Invoked when user requests change of the selected localization group
 
      - Parameter group: new localization group title
      */
     func userDidRequestLocalizationGroupChange(group: String)
 
+    /**
+     Invoked when user requests adding a new translation
+     */
     func userDidRequestAddNewTranslation()
 }
 
