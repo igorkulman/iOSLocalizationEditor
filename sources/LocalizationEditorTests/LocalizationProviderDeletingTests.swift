@@ -17,13 +17,18 @@ class LocalizationProviderDeletingTests: XCTestCase {
         let groups = provider.getLocalizations(url: directoryUrl)
 
         let baseLocalization = groups[0].localizations[0]
-        provider.deleteKeyFromLocalization(localization: baseLocalization, key: baseLocalization.translations[2].key)
+        let count = groups[0].localizations[0].translations.count
+        let key = baseLocalization.translations[2].key
+        provider.deleteKeyFromLocalization(localization: baseLocalization, key: key)
         let updated = provider.getLocalizations(url: directoryUrl)
 
         XCTAssertEqual(updated.count, groups.count)
+        XCTAssertEqual(groups[0].localizations.count, groups[0].localizations.count)
+        XCTAssertEqual(groups[0].localizations[0].translations.count, count - 1)
+        XCTAssert(!groups[0].localizations[0].translations.contains(where: { $0.key ==  key}))
         XCTAssertEqual(updated[0].localizations.count, groups[0].localizations.count)
-        XCTAssertEqual(updated[0].localizations[0].translations.count, groups[0].localizations[0].translations.count - 1)
-        XCTAssert(!updated[0].localizations[0].translations.contains(where: { $0.key ==  baseLocalization.translations[2].key}))
+        XCTAssertEqual(updated[0].localizations[0].translations.count, count - 1)
+        XCTAssert(!updated[0].localizations[0].translations.contains(where: { $0.key ==  key}))
     }
 
     func testDeletingValuesInMultipleLanguage() {
@@ -32,13 +37,20 @@ class LocalizationProviderDeletingTests: XCTestCase {
         let groups = provider.getLocalizations(url: directoryUrl)
 
         let baseLocalization = groups[0].localizations[0]
-         provider.deleteKeyFromLocalization(localization: baseLocalization, key: baseLocalization.translations[2].key)
+        let key = baseLocalization.translations[2].key
+        let count = groups[0].localizations[0].translations.count
+        let countOther = groups[0].localizations[1].translations.count
+        provider.deleteKeyFromLocalization(localization: baseLocalization, key: baseLocalization.translations[2].key)
         let updated = provider.getLocalizations(url: directoryUrl)
 
         XCTAssertEqual(updated.count, groups.count)
+        XCTAssertEqual(groups[0].localizations.count, groups[0].localizations.count)
+        XCTAssertEqual(groups[0].localizations[0].translations.count, count - 1)
+        XCTAssertEqual(groups[0].localizations[1].translations.count, countOther)
+        XCTAssert(!updated[0].localizations[0].translations.contains(where: { $0.key ==  key}))
         XCTAssertEqual(updated[0].localizations.count, groups[0].localizations.count)
-        XCTAssertEqual(updated[0].localizations[0].translations.count, groups[0].localizations[0].translations.count - 1)
-        XCTAssertEqual(updated[0].localizations[1].translations.count, groups[0].localizations[1].translations.count)
-        XCTAssert(!updated[0].localizations[0].translations.contains(where: { $0.key ==  baseLocalization.translations[2].key}))
+        XCTAssertEqual(updated[0].localizations[0].translations.count, count - 1)
+        XCTAssertEqual(updated[0].localizations[1].translations.count, countOther)
+        XCTAssert(!updated[0].localizations[0].translations.contains(where: { $0.key ==  key}))
     }
 }
