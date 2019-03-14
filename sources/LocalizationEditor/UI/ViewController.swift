@@ -46,6 +46,7 @@ final class ViewController: NSViewController {
     private var currentFilter: Filter = .all
     private var currentSearchTerm: String = ""
     private let dataSource = LocalizationsDataSource()
+    private var presendedAddViewController: AddViewController?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -210,6 +211,16 @@ extension ViewController: ActionsCellDelegate {
 
 extension ViewController: WindowControllerToolbarDelegate {
     /**
+     Invoked when user requests adding a new translation
+     */
+    func userDidRequestAddNewTranslation() {
+        let addViewController = storyboard!.instantiateController(withIdentifier: "Add") as! AddViewController
+        addViewController.delegate = self
+        presendedAddViewController = addViewController
+        presentAsSheet(addViewController)
+    }
+
+    /**
      Invoked when user requests filter change
 
      - Parameter filter: new filter setting
@@ -252,5 +263,34 @@ extension ViewController: WindowControllerToolbarDelegate {
      */
     func userDidRequestFolderOpen() {
         openFolder()
+    }
+}
+
+// MARK: - AddViewControllerDelegate
+
+extension ViewController: AddViewControllerDelegate {
+    func userDidCancel() {
+        dismiss()
+    }
+
+    func userDidAddTranslation(key: String, message: String?) {
+        dismiss()
+
+        dataSource.addLocalizationKey(key: key, message: message)
+        filter()
+
+        if let row = dataSource.getRowForKey(key: key) {
+            DispatchQueue.main.async {
+                self.tableView.scrollRowToVisible(row)
+            }
+        }
+    }
+
+    private func dismiss() {
+        guard let presendedAddViewController = presendedAddViewController else {
+            return
+        }
+
+        dismiss(presendedAddViewController)
     }
 }

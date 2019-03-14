@@ -228,6 +228,34 @@ final class LocalizationsDataSource: NSObject {
         })
         data.removeValue(forKey: key)
     }
+
+    /**
+     Adds new localization key with a message to all the localizations
+
+     - Parameter key: key to add
+     - Parameter message: message (optional)
+     */
+    func addLocalizationKey(key: String, message: String?) {
+        guard let selectedLocalizationGroup = selectedLocalizationGroup else {
+            return
+        }
+
+        selectedLocalizationGroup.localizations.forEach({ localization in
+            let newTranslation = localizationProvider.addKeyToLocalization(localization: localization, key: key, message: message)
+            data[key] = [localization.language: newTranslation]
+        })
+    }
+
+    /**
+     Returns row number for given key
+
+     - Parameter key: key to check
+
+     - Returns: row number (if any)
+     */
+    func getRowForKey(key: String) -> Int? {
+        return filteredKeys.firstIndex(of: key)
+    }
 }
 
 // MARK: - Delegate

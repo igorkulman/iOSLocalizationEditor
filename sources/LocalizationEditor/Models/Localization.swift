@@ -31,6 +31,16 @@ final class Localization {
         let newTranslation = LocalizationString(key: key, value: value, message: message)
         translations = (translations + [newTranslation]).sorted()
     }
+
+    func add(key: String, message: String?) -> LocalizationString {
+        let newTranslation = LocalizationString(key: key, value: "", message: message)
+        translations = (translations.filter({ $0.key != key }) + [newTranslation]).sorted()
+        return newTranslation
+    }
+
+    func remove(key: String) {
+        translations = translations.filter({ $0.key != key })
+    }
 }
 
 // MARK: Description

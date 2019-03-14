@@ -17,6 +17,8 @@
 		F3261F64222EA955006838C3 /* ActionsCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3261F63222EA955006838C3 /* ActionsCell.swift */; };
 		F3261F66222EA9BF006838C3 /* ActionsCell.xib in Resources */ = {isa = PBXBuildFile; fileRef = F3261F65222EA9BF006838C3 /* ActionsCell.xib */; };
 		F3261F74222ED5FF006838C3 /* WindowController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3261F73222ED5FF006838C3 /* WindowController.swift */; };
+		F3960617223A4084006C7B16 /* AddViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3960616223A4084006C7B16 /* AddViewController.swift */; };
+		F396061E223A5B5A006C7B16 /* LocalizationProviderAddingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396061D223A5B5A006C7B16 /* LocalizationProviderAddingTests.swift */; };
 		F3A5ABB8220448690077460D /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5ABB7220448690077460D /* FileManager+Extension.swift */; };
 		F3BF7E6A223A8AE10043F2CB /* Special.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3BF7E69223A8AE10043F2CB /* Special.strings */; };
 		F3C4FA7D222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FA7C222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift */; };
@@ -88,6 +90,8 @@
 		F3261F63222EA955006838C3 /* ActionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsCell.swift; sourceTree = "<group>"; };
 		F3261F65222EA9BF006838C3 /* ActionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionsCell.xib; sourceTree = "<group>"; };
 		F3261F73222ED5FF006838C3 /* WindowController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = WindowController.swift; sourceTree = "<group>"; };
+		F3960616223A4084006C7B16 /* AddViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AddViewController.swift; sourceTree = "<group>"; };
+		F396061D223A5B5A006C7B16 /* LocalizationProviderAddingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProviderAddingTests.swift; sourceTree = "<group>"; };
 		F3A5ABB7220448690077460D /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		F3BF7E69223A8AE10043F2CB /* Special.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Special.strings; sourceTree = "<group>"; };
 		F3C4FA7C222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProviderDeletingTests.swift; sourceTree = "<group>"; };
@@ -214,6 +218,7 @@
 			children = (
 				F3D9C95F20BEDCFC0081830A /* Cells */,
 				F3D9C94B20BEC7460081830A /* Main.storyboard */,
+				F3960616223A4084006C7B16 /* AddViewController.swift */,
 				F3D9C94720BEC7460081830A /* ViewController.swift */,
 				F3261F73222ED5FF006838C3 /* WindowController.swift */,
 			);
@@ -235,6 +240,7 @@
 				F3DF02ED21C66C2500CEC6B6 /* Extensions */,
 				F3DF02CD21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift */,
 				A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */,
+				F396061D223A5B5A006C7B16 /* LocalizationProviderAddingTests.swift */,
 				F3C4FA7C222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift */,
 				F3DF02EB21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift */,
 				F3DF02CF21C65F6800CEC6B6 /* Info.plist */,
@@ -435,6 +441,7 @@
 			files = (
 				A15A5A4921DA249400D3C791 /* ParserTypes.swift in Sources */,
 				F3D9C94820BEC7460081830A /* ViewController.swift in Sources */,
+				F3960617223A4084006C7B16 /* AddViewController.swift in Sources */,
 				F3D9C96720BEDF640081830A /* KeyCell.swift in Sources */,
 				A15A5A4221D908C400D3C791 /* Parser.swift in Sources */,
 				F3A5ABB8220448690077460D /* FileManager+Extension.swift in Sources */,
@@ -459,6 +466,7 @@
 			files = (
 				A15A5A4721D90AC600D3C791 /* ParserIsolationTests.swift in Sources */,
 				F3C4FA7D222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift in Sources */,
+				F396061E223A5B5A006C7B16 /* LocalizationProviderAddingTests.swift in Sources */,
 				F3DF02EF21C66C3800CEC6B6 /* XCTestCase+Extensions.swift in Sources */,
 				F3DF02CE21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift in Sources */,
 				F3DF02EC21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift in Sources */,

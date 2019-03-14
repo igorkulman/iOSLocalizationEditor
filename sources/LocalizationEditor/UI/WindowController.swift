@@ -32,11 +32,16 @@ protocol WindowControllerToolbarDelegate: AnyObject {
     func userDidRequestSearch(searchTerm: String)
 
     /**
-     Invoked when user request change of the selected localization group
+     Invoked when user requests change of the selected localization group
 
      - Parameter group: new localization group title
      */
     func userDidRequestLocalizationGroupChange(group: String)
+
+    /**
+     Invoked when user requests adding a new translation
+     */
+    func userDidRequestAddNewTranslation()
 }
 
 final class WindowController: NSWindowController {
@@ -47,6 +52,7 @@ final class WindowController: NSWindowController {
     @IBOutlet private weak var searchField: NSSearchField!
     @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var filterButton: NSPopUpButton!
+    @IBOutlet private weak var newButton: NSToolbarItem!
 
     // MARK: - Properties
 
@@ -81,6 +87,7 @@ final class WindowController: NSWindowController {
         openButton.toolTip = "Open folder"
         filterButton.toolTip = "Filter"
         selectButton.toolTip = "String table"
+        newButton.toolTip = "New translation"
     }
 
     private func setupMenu() {
@@ -109,6 +116,7 @@ final class WindowController: NSWindowController {
         searchField.isEnabled = true
         filterButton.isEnabled = true
         selectButton.isEnabled = true
+        newButton.isEnabled = true
     }
 
     // MARK: - Actions
@@ -128,6 +136,14 @@ final class WindowController: NSWindowController {
 
     @IBAction private func openFolder(_ sender: Any) {
         delegate?.userDidRequestFolderOpen()
+    }
+
+    @IBAction private func addAction(_ sender: Any) {
+        guard newButton.isEnabled else {
+            return
+        }
+
+        delegate?.userDidRequestAddNewTranslation()
     }
 
     @objc private func openAction(sender _: NSMenuItem) {

@@ -37,7 +37,7 @@ final class LocalizationProvider {
 
         localization.update(key: key, value: value, message: message)
 
-        writeToFile(translations: localization.translations, path: localization.path)
+        writeToFile(localization: localization)
     }
 
     /**
@@ -46,8 +46,8 @@ final class LocalizationProvider {
      - Parameter translatins: trabslations to write
      - Parameter path: file path
      */
-    private func writeToFile(translations: [LocalizationString], path: String) {
-        let data = translations.map { string -> String in
+    private func writeToFile(localization: Localization) {
+        let data = localization.translations.map { string -> String in
             let stringForMessage: String
             if let newMessage = string.message {
                 stringForMessage = "/* \(newMessage) */"
@@ -64,10 +64,10 @@ final class LocalizationProvider {
         }
 
         do {
-            try data.write(toFile: path, atomically: false, encoding: .utf8)
-            os_log("Localization file for %@ updated", type: OSLogType.debug, path)
+            try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
+            os_log("Localization file for %@ updated", type: OSLogType.debug, localization.path)
         } catch {
-            os_log("Writing localization file for %@ failed with %@", type: OSLogType.error, path, error.localizedDescription)
+            os_log("Writing localization file for %@ failed with %@", type: OSLogType.error, localization.path, error.localizedDescription)
         }
     }
 
@@ -78,8 +78,23 @@ final class LocalizationProvider {
      - Parameter key: key to delete
      */
     func deleteKeyFromLocalization(localization: Localization, key: String) {
-        let translations = localization.translations.filter({ $0.key != key })
-        writeToFile(translations: translations, path: localization.path)
+        localization.remove(key: key)
+        writeToFile(localization: localization)
+    }
+
+    /**
+     Adds new key with a message to given localization
+
+     - Parameter localization: localization to add the data to
+     - Parameter key: new key to add
+     - Parameter message: message for the key
+
+     - Returns: new localization string
+     */
+    func addKeyToLocalization(localization: Localization, key: String, message: String?) -> LocalizationString {
+        let newTranslation = localization.add(key: key, message: message)
+        writeToFile(localization: localization)
+        return newTranslation
     }
 
     /**
