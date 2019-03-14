@@ -199,6 +199,21 @@
                                         </searchFieldCell>
                                     </searchField>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="8AA5A4E1-359F-4E3E-8BBA-D3AAAF529BE0" label="New translation" paletteLabel="New translation" image="NSAddTemplate" sizingBehavior="auto" id="1Cc-Nn-JQX">
+                                    <nil key="toolTip"/>
+                                    <imageView key="view" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LUP-5J-Wfe">
+                                        <rect key="frame" x="33" y="14" width="24" height="24"/>
+                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <gestureRecognizers>
+                                            <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="p2g-ox-RGE">
+                                                <connections>
+                                                    <action selector="addAction:" target="B8D-0N-5wS" id="elE-Aw-3Jg"/>
+                                                </connections>
+                                            </clickGestureRecognizer>
+                                        </gestureRecognizers>
+                                        <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSAddTemplate" id="6JK-EV-ulh"/>
+                                    </imageView>
+                                </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="13E9B60D-CBEC-4E7D-96C3-FE098E195C25" label="Filter" paletteLabel="Filter" sizingBehavior="auto" id="4TV-x9-bks">
                                     <nil key="toolTip"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" id="CF5-IQ-Tcp">
@@ -216,15 +231,10 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="5EDBDA4B-2A60-48E6-BB25-52FAA6B4041C" label="Toolbar Item" paletteLabel="Toolbar Item" tag="-1" id="0d6-RQ-fn7">
-                                    <connections>
-                                        <action selector="addAction:" target="B8D-0N-5wS" id="viP-nO-laL"/>
-                                    </connections>
-                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="gFH-hP-QmF"/>
-                                <toolbarItem reference="0d6-RQ-fn7"/>
+                                <toolbarItem reference="1Cc-Nn-JQX"/>
                                 <toolbarItem reference="XEY-XQ-DCX"/>
                                 <toolbarItem reference="rRs-lz-dHI"/>
                                 <toolbarItem reference="XEY-XQ-DCX"/>
@@ -238,7 +248,7 @@
                     </window>
                     <connections>
                         <outlet property="filterButton" destination="CF5-IQ-Tcp" id="S1m-OB-mVY"/>
-                        <outlet property="newButton" destination="0d6-RQ-fn7" id="sx4-s9-qrF"/>
+                        <outlet property="newButton" destination="1Cc-Nn-JQX" id="Nl1-1D-bIT"/>
                         <outlet property="openButton" destination="gFH-hP-QmF" id="SGd-9O-j73"/>
                         <outlet property="searchField" destination="44R-ph-qlU" id="zFZ-gO-m7v"/>
                         <outlet property="selectButton" destination="0iO-g6-P1U" id="mob-S4-Gl5"/>
@@ -247,7 +257,7 @@
                 </windowController>
                 <customObject id="Oky-zY-oP4" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="250"/>
+            <point key="canvasLocation" x="74" y="291"/>
         </scene>
         <!--View Controller-->
         <scene sceneID="hIz-AP-VOD">
@@ -305,7 +315,7 @@
                 </viewController>
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="75" y="844"/>
+            <point key="canvasLocation" x="74" y="894"/>
         </scene>
         <!--Add View Controller-->
         <scene sceneID="vf2-Uy-81d">
@@ -380,7 +390,10 @@ Gw
                 </viewController>
                 <customObject id="Gce-KM-Xgy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
-            <point key="canvasLocation" x="763" y="742"/>
+            <point key="canvasLocation" x="715" y="682"/>
         </scene>
     </scenes>
+    <resources>
+        <image name="NSAddTemplate" width="11" height="11"/>
+    </resources>
 </document>

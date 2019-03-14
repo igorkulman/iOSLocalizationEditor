@@ -87,7 +87,6 @@ final class WindowController: NSWindowController {
         openButton.toolTip = "Open folder"
         filterButton.toolTip = "Filter"
         selectButton.toolTip = "String table"
-        newButton.image = NSImage(named: NSImage.addTemplateName)
         newButton.toolTip = "New translation"
     }
 
@@ -140,6 +139,10 @@ final class WindowController: NSWindowController {
     }
 
     @IBAction private func addAction(_ sender: Any) {
+        guard newButton.isEnabled else {
+            return
+        }
+
         delegate?.userDidRequestAddNewTranslation()
     }
 
