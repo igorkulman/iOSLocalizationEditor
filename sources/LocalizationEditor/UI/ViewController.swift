@@ -273,8 +273,11 @@ extension ViewController: AddViewControllerDelegate {
         dismiss()
     }
 
-    func userDidAddKey(key: String) {
+        func userDidAddTranslation(key: String, message: String?) {
         dismiss()
+
+        dataSource.addLocalizationKey(key: key, message: message)
+        filter()
     }
 
     private func dismiss() {

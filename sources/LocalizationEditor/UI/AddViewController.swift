@@ -10,7 +10,7 @@ import Cocoa
 
 protocol AddViewControllerDelegate: AnyObject {
     func userDidCancel()
-    func userDidAddKey(key: String)
+    func userDidAddTranslation(key: String, message: String?)
 }
 
 final class AddViewController: NSViewController {
@@ -19,6 +19,7 @@ final class AddViewController: NSViewController {
 
     @IBOutlet private weak var keyTextField: NSTextField!
     @IBOutlet private weak var addButton: NSButton!
+    @IBOutlet private weak var messageTextField: NSTextField!
 
     // MARK: - Properties
 
@@ -47,7 +48,7 @@ final class AddViewController: NSViewController {
             return
         }
 
-        delegate?.userDidAddKey(key: keyTextField.stringValue)
+        delegate?.userDidAddTranslation(key: keyTextField.stringValue, message: messageTextField.stringValue.isEmpty ? nil : messageTextField.stringValue)
     }
 }
 

@@ -228,6 +228,20 @@ final class LocalizationsDataSource: NSObject {
         })
         data.removeValue(forKey: key)
     }
+
+    /**
+
+     */
+    func addLocalizationKey(key: String, message: String?) {
+        guard let selectedLocalizationGroup = selectedLocalizationGroup else {
+            return
+        }
+
+        selectedLocalizationGroup.localizations.forEach({ localization in
+            let newTranslation = localizationProvider.addKeyToLocalization(localization: localization, key: key, message: message)
+            data[key] = [localization.language: newTranslation]
+        })
+    }
 }
 
 // MARK: - Delegate

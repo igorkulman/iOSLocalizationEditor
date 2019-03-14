@@ -322,11 +322,11 @@
             <objects>
                 <viewController storyboardIdentifier="Add" id="ers-OE-kPR" customClass="AddViewController" customModule="LocalizationEditor" customModuleProvider="target" sceneMemberID="viewController">
                     <view key="view" id="LPw-o4-MY7">
-                        <rect key="frame" x="0.0" y="0.0" width="450" height="80"/>
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="120"/>
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EEY-nE-SYX">
-                                <rect key="frame" x="6" y="53" width="30" height="17"/>
+                                <rect key="frame" x="6" y="93" width="30" height="17"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Key:" id="xVP-DG-dEy">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -334,7 +334,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-ws-aed">
-                                <rect key="frame" x="42" y="50" width="400" height="22"/>
+                                <rect key="frame" x="76" y="90" width="366" height="22"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="jrp-La-RWv">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -370,15 +370,36 @@ Gw
                                     <action selector="cancelAction:" target="ers-OE-kPR" id="m9p-5d-qYt"/>
                                 </connections>
                             </button>
+                            <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-5P-xq8">
+                                <rect key="frame" x="6" y="63" width="67" height="17"/>
+                                <textFieldCell key="cell" lineBreakMode="clipping" title="Comment:" id="grt-rx-XjJ">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
+                            <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FcG-n5-36y">
+                                <rect key="frame" x="76" y="60" width="366" height="22"/>
+                                <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="VG9-3U-EQX">
+                                    <font key="font" metaFont="system"/>
+                                    <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
+                                    <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                </textFieldCell>
+                            </textField>
                         </subviews>
                         <constraints>
-                            <constraint firstItem="cS5-ws-aed" firstAttribute="leading" secondItem="EEY-nE-SYX" secondAttribute="trailing" constant="8" id="2sP-Fl-cyC"/>
                             <constraint firstAttribute="bottom" secondItem="Cs7-7R-8O8" secondAttribute="bottom" constant="8" id="5kP-zk-L21"/>
                             <constraint firstItem="EEY-nE-SYX" firstAttribute="top" secondItem="LPw-o4-MY7" secondAttribute="top" constant="10" id="6wx-3L-dcq"/>
                             <constraint firstItem="EEY-nE-SYX" firstAttribute="leading" secondItem="LPw-o4-MY7" secondAttribute="leading" constant="8" id="Dmi-y0-Krc"/>
                             <constraint firstItem="cS5-ws-aed" firstAttribute="top" secondItem="LPw-o4-MY7" secondAttribute="top" constant="8" id="DqJ-3h-K86"/>
+                            <constraint firstItem="FcG-n5-36y" firstAttribute="leading" secondItem="2x2-5P-xq8" secondAttribute="trailing" constant="5" id="I7d-25-6YO"/>
+                            <constraint firstItem="FcG-n5-36y" firstAttribute="top" secondItem="cS5-ws-aed" secondAttribute="bottom" constant="8" id="Jsr-2G-uNG"/>
                             <constraint firstAttribute="bottom" secondItem="gxf-vL-lUd" secondAttribute="bottom" constant="8" id="NcY-n7-N35"/>
+                            <constraint firstAttribute="trailing" secondItem="FcG-n5-36y" secondAttribute="trailing" constant="8" id="P1g-Ai-igg"/>
+                            <constraint firstItem="cS5-ws-aed" firstAttribute="leading" secondItem="FcG-n5-36y" secondAttribute="leading" id="Y4z-Qd-mdf"/>
                             <constraint firstAttribute="trailing" secondItem="Cs7-7R-8O8" secondAttribute="trailing" constant="8" id="h9X-Xf-vRp"/>
+                            <constraint firstItem="2x2-5P-xq8" firstAttribute="centerY" secondItem="FcG-n5-36y" secondAttribute="centerY" id="irc-EA-oEt"/>
+                            <constraint firstItem="2x2-5P-xq8" firstAttribute="leading" secondItem="LPw-o4-MY7" secondAttribute="leading" constant="8" id="vVo-FD-daN"/>
                             <constraint firstAttribute="trailing" secondItem="cS5-ws-aed" secondAttribute="trailing" constant="8" id="wvi-Fm-YyK"/>
                             <constraint firstItem="gxf-vL-lUd" firstAttribute="leading" secondItem="LPw-o4-MY7" secondAttribute="leading" constant="8" id="zhV-aa-Txk"/>
                         </constraints>
@@ -386,6 +407,7 @@ Gw
                     <connections>
                         <outlet property="addButton" destination="Cs7-7R-8O8" id="QHt-OE-fp8"/>
                         <outlet property="keyTextField" destination="cS5-ws-aed" id="Nre-wT-wre"/>
+                        <outlet property="messageTextField" destination="FcG-n5-36y" id="aht-rN-V3d"/>
                     </connections>
                 </viewController>
                 <customObject id="Gce-KM-Xgy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
