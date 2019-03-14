@@ -245,6 +245,17 @@ final class LocalizationsDataSource: NSObject {
             data[key] = [localization.language: newTranslation]
         })
     }
+
+    /**
+     Returns row number for given key
+
+     - Parameter key: key to check
+
+     - Returns: row number (if any)
+     */
+    func getRowForKey(key: String) -> Int? {
+        return filteredKeys.firstIndex(of: key)
+    }
 }
 
 // MARK: - Delegate

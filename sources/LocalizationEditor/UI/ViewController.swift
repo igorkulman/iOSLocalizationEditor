@@ -273,11 +273,17 @@ extension ViewController: AddViewControllerDelegate {
         dismiss()
     }
 
-        func userDidAddTranslation(key: String, message: String?) {
+    func userDidAddTranslation(key: String, message: String?) {
         dismiss()
 
         dataSource.addLocalizationKey(key: key, message: message)
         filter()
+
+        if let row = dataSource.getRowForKey(key: key) {
+            DispatchQueue.main.async {
+                self.tableView.scrollRowToVisible(row)
+            }
+        }
     }
 
     private func dismiss() {
