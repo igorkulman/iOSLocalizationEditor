@@ -1,0 +1,9 @@
+/* 
+  Special.strings
+  LocalizationEditor
+
+  Created by Igor Kulman on 14/03/2019.
+  Copyright © 2019 Igor Kulman. All rights reserved.
+*/
+
+"quoted" = "some \"quoted\" message";

@@ -69,4 +69,11 @@ class LocalizationProviderParsingTests: XCTestCase {
         XCTAssertEqual(groups[1].localizations[0].translations.count, 18)
         XCTAssertEqual(groups[1].localizations[1].translations.count, 18)
     }
+
+    func testQuotesParsing() {
+        let provider = LocalizationProvider()
+        let groups = provider.getLocalizations(url: createTestingDirectory(with: [TestFile(originalFileName: "Special.strings", destinationFileName: "LocalizableStrings.strings", destinationFolder: "Base.lproj")]))
+
+        XCTAssertEqual(groups[0].localizations[0].translations.first(where: {$0.key == "quoted"})?.value, "some \"quoted\" message")
+    }
 }
