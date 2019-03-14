@@ -216,9 +216,15 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
+                                <toolbarItem implicitItemIdentifier="5EDBDA4B-2A60-48E6-BB25-52FAA6B4041C" label="Toolbar Item" paletteLabel="Toolbar Item" tag="-1" id="0d6-RQ-fn7">
+                                    <connections>
+                                        <action selector="addAction:" target="B8D-0N-5wS" id="viP-nO-laL"/>
+                                    </connections>
+                                </toolbarItem>
                             </allowedToolbarItems>
                             <defaultToolbarItems>
                                 <toolbarItem reference="gFH-hP-QmF"/>
+                                <toolbarItem reference="0d6-RQ-fn7"/>
                                 <toolbarItem reference="XEY-XQ-DCX"/>
                                 <toolbarItem reference="rRs-lz-dHI"/>
                                 <toolbarItem reference="XEY-XQ-DCX"/>
@@ -232,6 +238,7 @@
                     </window>
                     <connections>
                         <outlet property="filterButton" destination="CF5-IQ-Tcp" id="S1m-OB-mVY"/>
+                        <outlet property="newButton" destination="0d6-RQ-fn7" id="sx4-s9-qrF"/>
                         <outlet property="openButton" destination="gFH-hP-QmF" id="SGd-9O-j73"/>
                         <outlet property="searchField" destination="44R-ph-qlU" id="zFZ-gO-m7v"/>
                         <outlet property="selectButton" destination="0iO-g6-P1U" id="mob-S4-Gl5"/>
@@ -299,6 +306,19 @@
                 <customObject id="rPt-NT-nkU" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
             </objects>
             <point key="canvasLocation" x="75" y="844"/>
+        </scene>
+        <!--Add View Controller-->
+        <scene sceneID="vf2-Uy-81d">
+            <objects>
+                <viewController storyboardIdentifier="Add" id="ers-OE-kPR" customClass="AddViewController" customModule="LocalizationEditor" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" id="LPw-o4-MY7">
+                        <rect key="frame" x="0.0" y="0.0" width="450" height="300"/>
+                        <autoresizingMask key="autoresizingMask"/>
+                    </view>
+                </viewController>
+                <customObject id="Gce-KM-Xgy" userLabel="First Responder" customClass="NSResponder" sceneMemberID="firstResponder"/>
+            </objects>
+            <point key="canvasLocation" x="763" y="742"/>
         </scene>
     </scenes>
 </document>

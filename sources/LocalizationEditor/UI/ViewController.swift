@@ -209,6 +209,11 @@ extension ViewController: ActionsCellDelegate {
 // MARK: - WindowControllerToolbarDelegate
 
 extension ViewController: WindowControllerToolbarDelegate {
+    func userDidRequestAddNewTranslation() {
+        let addVc = storyboard!.instantiateController(withIdentifier: "Add") as! NSViewController
+        presentAsSheet(addVc)
+    }
+
     /**
      Invoked when user requests filter change
 
