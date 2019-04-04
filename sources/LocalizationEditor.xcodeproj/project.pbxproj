@@ -44,7 +44,6 @@
 		F3DF02EC21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DF02EB21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift */; };
 		F3DF02EF21C66C3800CEC6B6 /* XCTestCase+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3DF02EE21C66C3800CEC6B6 /* XCTestCase+Extensions.swift */; };
 		F3EF22072209D650000E8C80 /* String+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3EF22062209D650000E8C80 /* String+Extensions.swift */; };
-		F3FC1F9021DCB9B700C936E8 /* NSTableView+Click.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXContainerItemProxy section */
@@ -123,7 +122,6 @@
 		F3DF02EB21C66C1000CEC6B6 /* LoalizationProviderUpdatingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LoalizationProviderUpdatingTests.swift; sourceTree = "<group>"; };
 		F3DF02EE21C66C3800CEC6B6 /* XCTestCase+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "XCTestCase+Extensions.swift"; sourceTree = "<group>"; };
 		F3EF22062209D650000E8C80 /* String+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "String+Extensions.swift"; sourceTree = "<group>"; };
-		F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSTableView+Click.swift"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -276,7 +274,6 @@
 			isa = PBXGroup;
 			children = (
 				F3A5ABB7220448690077460D /* FileManager+Extension.swift */,
-				F3FC1F8F21DCB9B700C936E8 /* NSTableView+Click.swift */,
 				F3EF22062209D650000E8C80 /* String+Extensions.swift */,
 			);
 			path = Extensions;
@@ -447,7 +444,6 @@
 				F3A5ABB8220448690077460D /* FileManager+Extension.swift in Sources */,
 				F3D9C95720BEC9F10081830A /* LocalizationString.swift in Sources */,
 				172274D420D933970036EA4E /* LocalizationGroup.swift in Sources */,
-				F3FC1F9021DCB9B700C936E8 /* NSTableView+Click.swift in Sources */,
 				F3D9C95C20BECDBF0081830A /* LocalizationProvider.swift in Sources */,
 				F3EF22072209D650000E8C80 /* String+Extensions.swift in Sources */,
 				F3D9C96E20BEEAA10081830A /* LocalizationsDataSource.swift in Sources */,
