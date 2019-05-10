@@ -5,6 +5,7 @@
 //  Created by Andreas Neusüß on 25.12.18.
 //  Copyright © 2018 Andreas Neusüß. All rights reserved.
 //
+// swiftlint:disable file_length
 
 import Foundation
 
@@ -94,7 +95,6 @@ class Parser {
                 // If the prior token was also a key, append it.
                 let newToken = tokenByConcatinatingwithPriorToken(potentialNewToken, seperatingString: EnclosingControlCharacters.quote.rawValue)
                 tokens.append(newToken)
-                // TODO: Inspect this with Swift version 5 and the improved String Literal:
                 // If the upcoming control character is also a key, do not stop reading a key. Otherwise a unescaped quote may exclude text from the key. Otherwise the state may be anything else.
                 if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false), case EnclosingControlCharacters.quote = nextControlCharacter {
                     state = .readingKey

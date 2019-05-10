@@ -70,8 +70,6 @@ enum SeperatingControlCharacters: String, SeperatingType, CaseIterable {
 
     case equal = "="
     case semicolon = ";"
-    // TODO: Swift 5.0 and its String literal functions may allow to manually escape characters by exposing the bachskash. We might look into this.
-    //    case escapingBackslash = "\\"
 }
 
 /// Errors that may occure during parsing.
