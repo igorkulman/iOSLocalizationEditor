@@ -21,6 +21,29 @@ enum Token {
     case key(String)
     case equal
     case semicolon
+    case newline
+    /// Checks if `self` is of the same type as `other` without taking the associated values into account.
+    ///
+    /// - Parameter other: The token to which self should be compared to.
+    /// - Returns: `true` when the type of `other` matches the type of `self` without taking associated values into account.
+    func isCaseEqual(to other: Token) -> Bool {
+        switch (self, other) {
+        case (.message(_), .message(_)):
+            return true
+        case (.value(_), .value(_)):
+            return true
+        case (.key(_), .key(_)):
+            return true
+        case (.equal, .equal):
+            return true
+        case (.semicolon, .semicolon):
+            return true
+        case (.newline, .newline):
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 /// Control characters define starting and end points of tokens. They can be for example ", /* or ;
@@ -65,11 +88,14 @@ enum SeperatingControlCharacters: String, SeperatingType, CaseIterable {
             return SeperatingControlCharacters.equal.rawValue.count
         case .semicolon:
             return SeperatingControlCharacters.semicolon.rawValue.count
+        case .newline:
+            return SeperatingControlCharacters.newline.rawValue.count
         }
     }
 
     case equal = "="
     case semicolon = ";"
+    case newline = "\n"
 }
 
 /// Errors that may occure during parsing.

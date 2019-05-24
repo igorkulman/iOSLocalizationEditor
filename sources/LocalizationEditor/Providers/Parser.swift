@@ -82,7 +82,7 @@ class Parser {
             // Actions depend on the current state.
             switch state {
             case .other:
-                skipAndProcessSingleLineComments()
+//                skipAndProcessSingleLineComments()
 
                 // Extract the upcoming control character, also switch the current state and append the extracted token, if any.
                 if let extractedToken = try prepareNextState() {
@@ -96,10 +96,18 @@ class Parser {
                 let newToken = tokenByConcatinatingwithPriorToken(potentialNewToken, seperatingString: EnclosingControlCharacters.quote.rawValue)
                 tokens.append(newToken)
                 // If the upcoming control character is also a key, do not stop reading a key. Otherwise a unescaped quote may exclude text from the key. Otherwise the state may be anything else.
-                if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false), case EnclosingControlCharacters.quote = nextControlCharacter {
-                    state = .readingKey
+                // Skip .newline token and just continue ready the key.
+                if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false) {
+                    switch nextControlCharacter {
+                    case SeperatingControlCharacters.newline, EnclosingControlCharacters.quote:
+                        state = .readingKey
+                    default:
+                        // Continue with next token
+                        state = .other
+                    }
                 } else {
-                  state = .other
+                    // Continue with next token
+                    state = .other
                 }
             case .readingValue:
                 // Text until value-end marker is a value.
@@ -110,9 +118,16 @@ class Parser {
                 let newToken = tokenByConcatinatingwithPriorToken(potentialNewToken, seperatingString: EnclosingControlCharacters.quote.rawValue)
                 tokens.append(newToken)
                 // If the upcoming control character is also a key, do not stop reading a value. Otherwise a unescaped quote may exclude text from the value. Otherwise the state may be anything else.
-                if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false), case EnclosingControlCharacters.quote = nextControlCharacter {
-                    state = .readingValue
+                if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false) {
+                    switch nextControlCharacter {
+                    case SeperatingControlCharacters.newline, EnclosingControlCharacters.quote:
+                        state = .readingValue
+                    default:
+                        // Continue with next token
+                        state = .other
+                    }
                 } else {
+                    // Continue with next token
                     state = .other
                 }
             case .readingMessage:
@@ -134,6 +149,25 @@ class Parser {
         var currentKey: String?
         var currentValue: String?
         var results = [LocalizationString]()
+        // The token that delimits an entry.
+        guard let endToken = entriesEndToken(for: tokens) else {
+            throw ParserError.malformattedInput
+        }
+        // Generates a result and appends it to the list of results if possible.
+        func generateResultIfPossible(from processedToken: Token) {
+            guard processedToken.isCaseEqual(to: endToken) else { return }
+            // Done with that line. Check if values are populated and append them to the results.
+            guard let key = currentKey, let value = currentValue else {
+                return
+            }
+            let correctedMessage = removeLeadingTrailingSpaces(from: currentMessage)
+            let entry = LocalizationString(key: key, value: value.replacingOccurrences(of: "\\\"", with: "\""), message: correctedMessage)
+            results.append(entry)
+            // Reset the properties to be ready for the next line.
+            currentValue = nil
+            currentKey = nil
+            currentMessage = nil
+        }
         // Iterate through the tokens and transform them into model objects.
         for token in tokens {
             switch token {
@@ -143,27 +177,35 @@ class Parser {
                 currentKey = containedText
             case .value(let containedText):
                 currentValue = containedText
-            case .semicolon:
-                // Done with that line. Check if values are populated and append them to the results.
-                guard let key = currentKey, let value = currentValue else {
-                    throw ParserError.malformattedInput
-                }
-                let correctedMessage = removeLeadingTrailingSpaces(from: currentMessage)
-                let entry = LocalizationString(key: key, value: value.replacingOccurrences(of: "\\\"", with: "\""), message: correctedMessage)
-                results.append(entry)
-                // Reset the properties to be ready for the next line.
-                currentValue = nil
-                currentKey = nil
-                currentMessage = nil
             default:
                 ()
             }
+            generateResultIfPossible(from: token)
         }
         // Throw an execption to indicate that something went wront when tokens are extracted but they could not be transferred into model objects:
         if !tokens.isEmpty && results.isEmpty {
             throw ParserError.malformattedInput
         }
         return results
+    }
+    /// Determines the token that ends an entry. An entry can either be ended by a semicolon (if no comment was provided or the comment is above the entry) or a comment located at the end of a line. In the second case the `.newline` token marks the end of the entry.
+    ///
+    /// - Parameter tokens: The tokens that were extracted during tokenization.
+    /// - Returns: The token that ends an entry.
+    private func entriesEndToken(for tokens: [Token]) -> Token? {
+        // Assumption: after the first semicolon comes a new line -> semicolon delimits entry
+        // After first semicolon comes a message, followed by a new line -> message delimits entry
+        guard let semicolonIndex = tokens.firstIndex(where: { $0.isCaseEqual(to: .semicolon) }) else {
+            return nil
+        }
+        guard let indexAfterSemicolon = tokens.index(semicolonIndex, offsetBy: 1, limitedBy: tokens.endIndex - 1) else { return nil }
+        let elementAfterSemicolon = tokens[indexAfterSemicolon]
+        switch elementAfterSemicolon {
+        case .newline:
+            return .semicolon
+        default:
+            return elementAfterSemicolon
+        }
     }
     /// This function removes leading and trailing spaces from the input.
     ///
@@ -366,6 +408,8 @@ extension Parser {
             // Extract semicolon as token. A quote or message-start mark will follow as next control character but for now the state remains .other in order to detect that quote.
             returnToken = .semicolon
             state = .other
+        case SeperatingControlCharacters.newline:
+            returnToken = .newline
         default:
             // New types need to be registered.
             throw ParserError.notParsable

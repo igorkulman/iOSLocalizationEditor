@@ -189,6 +189,44 @@ garbage garbage...
         XCTAssertEqual(result[2].message, "Select your birhtday")
     }
     
+    func testInputValidWithTrailingMessage() {
+        let inputString =
+        """
+//
+//  ParserIsolationTests.swift
+//  LocalizationEditor
+//
+//  Created by Andreas Neusüß on 30.12.18.
+//  Copyright © 2018 Igor Kulman. All rights reserved.
+//
+
+"ART_"AND"_CUL
+
+TURE" = "Kunst "und"
+
+Kultur"; /* The string for "the art and culture category */
+
+"BACK" = "Zurück"; /* String for back operation */
+
+"BIRTHDAY_SELECT" = "Bitte wähle deinen Geburtstag aus"; /* Select your birhtday */
+"""
+        let parser = Parser(input: inputString)
+        let result = try! parser.parse()
+        
+        XCTAssertEqual(result.count, 3)
+        XCTAssertEqual(result[0].key, "ART_\"AND\"_CUL\n\nTURE")
+        XCTAssertEqual(result[1].key, "BACK")
+        XCTAssertEqual(result[2].key, "BIRTHDAY_SELECT")
+        
+        XCTAssertEqual(result[0].value, "Kunst \"und\"\n\nKultur")
+        XCTAssertEqual(result[1].value, "Zurück")
+        XCTAssertEqual(result[2].value, "Bitte wähle deinen Geburtstag aus")
+        
+        XCTAssertEqual(result[0].message, "The string for \"the art and culture category")
+        XCTAssertEqual(result[1].message, "String for back operation")
+        XCTAssertEqual(result[2].message, "Select your birhtday")
+    }
+    
     func testMalformattedInput() {
         let inputString1 =
         """
