@@ -15,6 +15,7 @@ import Foundation
 /// - key: The key and its text.
 /// - equal: The equal sign that maps a key to a value: ".
 /// - semicolon: The semicolon that ends a line: ;
+/// - newline: A new line \n.
 enum Token {
     case message(String)
     case value(String)
@@ -58,9 +59,11 @@ protocol EnclosingType: ControlCharacterType {}
 protocol SeperatingType: ControlCharacterType {}
 
 /// Enclosing control characters that wrapp text. They may start or end a message or contain a value/key.
-/// - messageBoundaryOpen Opens a message.
-/// - messageBoundaryClose Ends a message.
-/// - quote Wraps a key or a value.
+/// - messageBoundaryOpen: Opens a message.
+/// - messageBoundaryClose: Ends a message.
+/// - quote: Wraps a key or a value.
+/// - singleLineMessageOpen: Opens a single line message.
+/// - singleLineMessageClose: Closes the single line message.
 enum EnclosingControlCharacters: String, EnclosingType, CaseIterable {
     case messageBoundaryOpen = "/*"
     case messageBoundaryClose = "*/"
@@ -85,8 +88,9 @@ enum EnclosingControlCharacters: String, EnclosingType, CaseIterable {
 }
 
 /// Seperating control characters do not wrap text. They function as position markers. For example they seperate a key from its value or end the line.
-/// - equal The equal sign that seperates a key from its value.
-/// - semicolon The semicolon that end a line.
+/// - equal: The equal sign that seperates a key from its value.
+/// - semicolon: The semicolon that end a line.
+/// - newline: A new line.
 enum SeperatingControlCharacters: String, SeperatingType, CaseIterable {
     var skippingLength: Int {
         switch self {

@@ -54,23 +54,6 @@ class Parser {
     }
 
     /**
-     Special handling for single line comments to turn them into message tokens. Should only be called when state is other so // in a middle of value does not get caught
-     */
-    private func skipAndProcessSingleLineComments() {
-        while !input.isEmpty, let character = String(input[input.startIndex]).unicodeScalars.first, CharacterSet.whitespacesAndNewlines.contains(character) {
-            input.remove(at: input.index(input.startIndex, offsetBy: 0))
-        }
-
-        if input.hasPrefix("//"), let endIndex = input.index(of: "\n") {
-            let messageRange = input.index(input.startIndex, offsetBy: 2) ..< endIndex
-            tokens.append(.message(String(input[messageRange])))
-
-            let rangeForRemoving = input.startIndex ..< endIndex
-            input.removeSubrange(rangeForRemoving)
-        }
-    }
-
-    /**
      This function reads through the input and populates an array of tokens.
      
      Implemented using a state machine. The state machine depends on ```ParserState```. When in .other, the next control character is used to determine the next state. When reading a key/value/message, upcoming text is interpreted as key/value/message until the corresponding closing control character is found.
@@ -82,8 +65,6 @@ class Parser {
             // Actions depend on the current state.
             switch state {
             case .other:
-//                skipAndProcessSingleLineComments()
-
                 // Extract the upcoming control character, also switch the current state and append the extracted token, if any.
                 if let extractedToken = try prepareNextState() {
                     tokens.append(extractedToken)
@@ -182,7 +163,7 @@ class Parser {
         }
         return results
     }
-    /// Determines the token that ends an entry. An entry can either be ended by a semicolon (if no comment was provided or the comment is above the entry) or a comment located at the end of a line. In the second case the `.newline` token marks the end of the entry.
+    /// Determines the token that ends an entry. An entry can either be ended by a semicolon (if no comment was provided or the comment is above the entry) or a comment located at the end of a line. In the second case the `.message` token marks the end of the entry.
     ///
     /// - Parameter tokens: The tokens that were extracted during tokenization.
     /// - Returns: The token that ends an entry.
