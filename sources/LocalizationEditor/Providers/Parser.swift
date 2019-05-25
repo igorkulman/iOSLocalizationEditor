@@ -26,7 +26,7 @@ class Parser {
     fileprivate enum ParserState {
         case readingKey
         case readingValue
-        case readingMessage
+        case readingMessage(isSingleLine: Bool)
         case other
     }
     /// The current state of the parser.
@@ -99,7 +99,7 @@ class Parser {
                 // Skip .newline token and just continue ready the key.
                 if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false) {
                     switch nextControlCharacter {
-                    case SeperatingControlCharacters.newline, EnclosingControlCharacters.quote:
+                    case SeperatingControlCharacters.newline, EnclosingControlCharacters.singleLineMessageClose, EnclosingControlCharacters.quote:
                         state = .readingKey
                     default:
                         // Continue with next token
@@ -120,7 +120,7 @@ class Parser {
                 // If the upcoming control character is also a key, do not stop reading a value. Otherwise a unescaped quote may exclude text from the value. Otherwise the state may be anything else.
                 if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false) {
                     switch nextControlCharacter {
-                    case SeperatingControlCharacters.newline, EnclosingControlCharacters.quote:
+                    case SeperatingControlCharacters.newline, EnclosingControlCharacters.singleLineMessageClose, EnclosingControlCharacters.quote:
                         state = .readingValue
                     default:
                         // Continue with next token
@@ -396,7 +396,7 @@ extension Parser {
         case EnclosingControlCharacters.messageBoundaryOpen:
             // A new message begins.
             // Set the state to expect a message.
-            state = .readingMessage
+            state = .readingMessage(isSingleLine: false)
         case EnclosingControlCharacters.messageBoundaryClose:
             // Message-end markers should only be detected when the lexer is reading a message. If they occure 'in the wild' the input must be ill formatted.
             break
@@ -409,6 +409,10 @@ extension Parser {
             returnToken = .semicolon
             state = .other
         case SeperatingControlCharacters.newline:
+            returnToken = .newline
+        case EnclosingControlCharacters.singleLineMessageOpen:
+            ()
+        case EnclosingControlCharacters.singleLineMessageClose:
             returnToken = .newline
         default:
             // New types need to be registered.

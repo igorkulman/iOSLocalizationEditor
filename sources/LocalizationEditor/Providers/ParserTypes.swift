@@ -28,11 +28,11 @@ enum Token {
     /// - Returns: `true` when the type of `other` matches the type of `self` without taking associated values into account.
     func isCaseEqual(to other: Token) -> Bool {
         switch (self, other) {
-        case (.message(_), .message(_)):
+        case (.message, .message):
             return true
-        case (.value(_), .value(_)):
+        case (.value, .value):
             return true
-        case (.key(_), .key(_)):
+        case (.key, .key):
             return true
         case (.equal, .equal):
             return true
@@ -65,6 +65,8 @@ enum EnclosingControlCharacters: String, EnclosingType, CaseIterable {
     case messageBoundaryOpen = "/*"
     case messageBoundaryClose = "*/"
     case quote = "\""
+    case singleLineMessageOpen = "//"
+    case singleLineMessageClose = "\n"
 
     var skippingLength: Int {
         switch self {
@@ -74,6 +76,10 @@ enum EnclosingControlCharacters: String, EnclosingType, CaseIterable {
             return EnclosingControlCharacters.messageBoundaryClose.rawValue.count
         case .quote:
             return EnclosingControlCharacters.quote.rawValue.count
+        case .singleLineMessageOpen:
+            return EnclosingControlCharacters.singleLineMessageOpen.rawValue.count
+        case .singleLineMessageClose:
+            return EnclosingControlCharacters.singleLineMessageClose.rawValue.count
         }
     }
 }
