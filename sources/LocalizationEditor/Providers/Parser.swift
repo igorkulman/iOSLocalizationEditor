@@ -89,56 +89,50 @@ class Parser {
                     tokens.append(extractedToken)
                 }
             case .readingKey:
-                // Until the key-end marker is reached, the text should be interpreted as key.
-                let currentKeyText = extractText(until: .quote)
-                let potentialNewToken: Token = .key(currentKeyText)
-                // If the prior token was also a key, append it.
-                let newToken = tokenByConcatinatingwithPriorToken(potentialNewToken, seperatingString: EnclosingControlCharacters.quote.rawValue)
-                tokens.append(newToken)
-                // If the upcoming control character is also a key, do not stop reading a key. Otherwise a unescaped quote may exclude text from the key. Otherwise the state may be anything else.
-                // Skip .newline token and just continue ready the key.
-                if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false) {
-                    switch nextControlCharacter {
-                    case SeperatingControlCharacters.newline, EnclosingControlCharacters.singleLineMessageClose, EnclosingControlCharacters.quote:
-                        state = .readingKey
-                    default:
-                        // Continue with next token
-                        state = .other
-                    }
-                } else {
-                    // Continue with next token
-                    state = .other
-                }
+                extractAndAppendIfPossible(for: .key(""), until: .quote)
             case .readingValue:
-                // Text until value-end marker is a value.
-                // If the prior token as also a value, append it.
-                let currentValueText = extractText(until: .quote)
-                let potentialNewToken: Token = .value(currentValueText)
-                // If the prior token was also a key, append it.
-                let newToken = tokenByConcatinatingwithPriorToken(potentialNewToken, seperatingString: EnclosingControlCharacters.quote.rawValue)
-                tokens.append(newToken)
-                // If the upcoming control character is also a key, do not stop reading a value. Otherwise a unescaped quote may exclude text from the value. Otherwise the state may be anything else.
-                if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false) {
-                    switch nextControlCharacter {
-                    case SeperatingControlCharacters.newline, EnclosingControlCharacters.singleLineMessageClose, EnclosingControlCharacters.quote:
-                        state = .readingValue
-                    default:
-                        // Continue with next token
-                        state = .other
-                    }
-                } else {
-                    // Continue with next token
-                    state = .other
-                }
-            case .readingMessage:
-                // Text until value-end marker is a message.
+                extractAndAppendIfPossible(for: .value(""), until: .quote)
+            case .readingMessage(let isReadingSingleLine):
                 // If the prior token as also a message, DO NOT append it since the prior message could be a license header.
-                let currentMessageText = extractText(until: .messageBoundaryClose)
+                let endMarker: EnclosingControlCharacters = isReadingSingleLine ? .singleLineMessageClose : .messageBoundaryClose
+                let currentMessageText = extractText(until: endMarker)
                 let newToken: Token = .message(currentMessageText)
                 tokens.append(newToken)
                 state = .other
             }
         }
+    }
+    /// Extracts text from the input until the end marker is reached. Uses that text to create a new token and appends it to a prior extracted token if possible. In any case it updates the current list of extracted tokens.
+    ///
+    /// - Parameters:
+    ///   - token: The type of token that should be created from the text before the end marker. The associated value of the input is ignored.
+    ///   - endMarker: Marks the end of the tokens content.
+    private func extractAndAppendIfPossible(for token: Token, until endMarker: EnclosingControlCharacters) {
+        let currentText = extractText(until: endMarker)
+        let potentialNewToken: Token
+        switch token {
+        case .key:
+            potentialNewToken = .key(currentText)
+        case .value:
+            potentialNewToken = .value(currentText)
+        default:
+            assertionFailure("Currently, only the .key and .value support joining.")
+            return
+        }
+        // Append to the prior token if possible.
+        let newToken = tokenByConcatinatingwithPriorToken(potentialNewToken, seperatingString: endMarker.rawValue)
+        tokens.append(newToken)
+        // Do not stop reading when a newline or a quote is the next control character. Otherwise an unescaped quote may exclude text from the value. Keep the state unchanged if any other control character follows.
+        if let nextControlCharacter = findNextControlCharacter(andExtractFromSource: false) {
+            switch nextControlCharacter {
+            case SeperatingControlCharacters.newline, EnclosingControlCharacters.singleLineMessageClose, EnclosingControlCharacters.quote:
+                // Do not change the state and just continue.
+                return
+            default:
+                break
+            }
+        }
+        state = .other
     }
     /// Call this method when the list of tokens is ready and model object can be created. It will iterate through the tokens and try to map their values into model objects. Whe the mapping failed, an error is thrown.
     ///
@@ -307,7 +301,7 @@ class Parser {
         // Extract the given range and remove it from the input string.
 
         let lengthOfControlCharacter: Int = includingControlCharacter.skippingLength
-        let endIndexOfExtraction = input.index(endindex, offsetBy: lengthOfControlCharacter)
+        let endIndexOfExtraction = input.index(endindex, offsetBy: lengthOfControlCharacter, limitedBy: input.endIndex) ?? input.endIndex
         // Remove the range that includes the control character. The input range is used for extracting the text before it.
         let rangeForRemoving = input.startIndex ..< endIndexOfExtraction
         let rangeForExtraction = input.startIndex ..< endindex
@@ -411,7 +405,7 @@ extension Parser {
         case SeperatingControlCharacters.newline:
             returnToken = .newline
         case EnclosingControlCharacters.singleLineMessageOpen:
-            ()
+            state = .readingMessage(isSingleLine: true)
         case EnclosingControlCharacters.singleLineMessageClose:
             returnToken = .newline
         default:
