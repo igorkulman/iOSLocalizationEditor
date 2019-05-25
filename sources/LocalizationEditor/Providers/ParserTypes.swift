@@ -15,12 +15,36 @@ import Foundation
 /// - key: The key and its text.
 /// - equal: The equal sign that maps a key to a value: ".
 /// - semicolon: The semicolon that ends a line: ;
+/// - newline: A new line \n.
 enum Token {
     case message(String)
     case value(String)
     case key(String)
     case equal
     case semicolon
+    case newline
+    /// Checks if `self` is of the same type as `other` without taking the associated values into account.
+    ///
+    /// - Parameter other: The token to which self should be compared to.
+    /// - Returns: `true` when the type of `other` matches the type of `self` without taking associated values into account.
+    func isCaseEqual(to other: Token) -> Bool {
+        switch (self, other) {
+        case (.message, .message):
+            return true
+        case (.value, .value):
+            return true
+        case (.key, .key):
+            return true
+        case (.equal, .equal):
+            return true
+        case (.semicolon, .semicolon):
+            return true
+        case (.newline, .newline):
+            return true
+        default:
+            return false
+        }
+    }
 }
 
 /// Control characters define starting and end points of tokens. They can be for example ", /* or ;
@@ -35,13 +59,17 @@ protocol EnclosingType: ControlCharacterType {}
 protocol SeperatingType: ControlCharacterType {}
 
 /// Enclosing control characters that wrapp text. They may start or end a message or contain a value/key.
-/// - messageBoundaryOpen Opens a message.
-/// - messageBoundaryClose Ends a message.
-/// - quote Wraps a key or a value.
+/// - messageBoundaryOpen: Opens a message.
+/// - messageBoundaryClose: Ends a message.
+/// - quote: Wraps a key or a value.
+/// - singleLineMessageOpen: Opens a single line message.
+/// - singleLineMessageClose: Closes the single line message.
 enum EnclosingControlCharacters: String, EnclosingType, CaseIterable {
     case messageBoundaryOpen = "/*"
     case messageBoundaryClose = "*/"
     case quote = "\""
+    case singleLineMessageOpen = "//"
+    case singleLineMessageClose = "\n"
 
     var skippingLength: Int {
         switch self {
@@ -51,13 +79,18 @@ enum EnclosingControlCharacters: String, EnclosingType, CaseIterable {
             return EnclosingControlCharacters.messageBoundaryClose.rawValue.count
         case .quote:
             return EnclosingControlCharacters.quote.rawValue.count
+        case .singleLineMessageOpen:
+            return EnclosingControlCharacters.singleLineMessageOpen.rawValue.count
+        case .singleLineMessageClose:
+            return EnclosingControlCharacters.singleLineMessageClose.rawValue.count
         }
     }
 }
 
 /// Seperating control characters do not wrap text. They function as position markers. For example they seperate a key from its value or end the line.
-/// - equal The equal sign that seperates a key from its value.
-/// - semicolon The semicolon that end a line.
+/// - equal: The equal sign that seperates a key from its value.
+/// - semicolon: The semicolon that end a line.
+/// - newline: A new line.
 enum SeperatingControlCharacters: String, SeperatingType, CaseIterable {
     var skippingLength: Int {
         switch self {
@@ -65,11 +98,14 @@ enum SeperatingControlCharacters: String, SeperatingType, CaseIterable {
             return SeperatingControlCharacters.equal.rawValue.count
         case .semicolon:
             return SeperatingControlCharacters.semicolon.rawValue.count
+        case .newline:
+            return SeperatingControlCharacters.newline.rawValue.count
         }
     }
 
     case equal = "="
     case semicolon = ";"
+    case newline = "\n"
 }
 
 /// Errors that may occure during parsing.
