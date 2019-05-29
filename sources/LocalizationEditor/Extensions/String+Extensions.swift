@@ -18,17 +18,22 @@ extension String {
     }
 
     var unescaped: String {
-        let entities = ["\0", "\t", "\n", "\r", "\"", "\'", "\\"]
+        let entities = [
+            "\\n": "\n",
+            "\\t": "\t",
+            "\\r": "\r",
+            "\\\"": "\"",
+            "\\\'": "\'",
+            "\\\\": "\\"
+        ]
         var current = self
-        for entity in entities {
-            let descriptionCharacters = entity.debugDescription.dropFirst().dropLast()
-            let description = String(descriptionCharacters)
-            current = current.replacingOccurrences(of: description, with: entity)
+        for (key, value) in entities {
+            current = current.replacingOccurrences(of: key, with: value)
         }
         return current
     }
 
     var escaped: String {
-        return self.replacingOccurrences(of: "\"", with: "\\\"").replacingOccurrences(of: "\n", with: "\\\n")
+        return self.replacingOccurrences(of: "\"", with: "\\\"").replacingOccurrences(of: "\n", with: "\\n")
     }
 }
