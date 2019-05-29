@@ -15,11 +15,11 @@ extension FileManager {
         }
 
         return enumerator.compactMap({ element -> URL? in
-            if let path = element as? String {
-                let fullUrl = url.appendingPathComponent(path, isDirectory: false)
-                 return fullUrl
+            guard let path = element as? String else {
+                return nil
             }
-            return nil
+
+            return url.appendingPathComponent(path, isDirectory: false)
         })
     }
 }
