@@ -135,7 +135,7 @@ final class LocalizationProvider {
             let contentOfFileAsString = try String(contentsOfFile: path)
             let parser = Parser(input: contentOfFileAsString)
             let localizationStrings = try parser.parse()
-            os_log("Found %d keys for in %@ using build in parser.", type: OSLogType.debug, localizationStrings.count, path.description)
+            os_log("Found %d keys for in %@ using built-in parser.", type: OSLogType.debug, localizationStrings.count, path.description)
             return localizationStrings.sorted()
         } catch {
             // The parser could not parse the input. Fallback to NSDictionary
