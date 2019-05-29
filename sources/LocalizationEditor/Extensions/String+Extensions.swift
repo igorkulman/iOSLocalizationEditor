@@ -16,4 +16,19 @@ extension String {
     var capitalizedFirstLetter: String {
         return prefix(1).uppercased() + self.lowercased().dropFirst()
     }
+
+    var unescaped: String {
+        let entities = ["\0", "\t", "\n", "\r", "\"", "\'", "\\"]
+        var current = self
+        for entity in entities {
+            let descriptionCharacters = entity.debugDescription.dropFirst().dropLast()
+            let description = String(descriptionCharacters)
+            current = current.replacingOccurrences(of: description, with: entity)
+        }
+        return current
+    }
+
+    var escaped: String {
+        return self.replacingOccurrences(of: "\"", with: "\\\"").replacingOccurrences(of: "\n", with: "\\\n")
+    }
 }
