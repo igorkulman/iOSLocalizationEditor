@@ -136,7 +136,7 @@ class Parser {
                 return
             }
             let correctedMessage = removeLeadingTrailingSpaces(from: currentMessage)
-            let entry = LocalizationString(key: key, value: value.replacingOccurrences(of: "\\\"", with: "\""), message: correctedMessage)
+            let entry = LocalizationString(key: key, value: value.unescaped, message: correctedMessage)
             results.append(entry)
             // Reset the properties to be ready for the next line.
             currentValue = nil
