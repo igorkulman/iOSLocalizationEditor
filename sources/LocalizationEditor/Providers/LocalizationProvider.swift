@@ -57,7 +57,7 @@ final class LocalizationProvider {
 
             return """
             \(stringForMessage)
-            \"\(string.key)\" = \"\(string.value.replacingOccurrences(of: "\"", with: "\\\""))\";\n
+            \"\(string.key)\" = \"\(string.value.escaped)\";\n
             """
         }.reduce("") { prev, next in
             "\(prev)\n\(next)"
