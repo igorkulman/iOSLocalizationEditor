@@ -1,6 +1,5 @@
 # Localization Editor
 
-[![Travis CI](https://api.travis-ci.com/igorkulman/iOSLocalizationEditor.svg?branch=master)](https://travis-ci.com/igorkulman/iOSLocalizationEditor)
 [![License: MIT](https://img.shields.io/badge/License-MIT-yellow.svg)](https://opensource.org/licenses/MIT)
 ![Platforms](https://img.shields.io/badge/platform-macOS-lightgrey.svg)
 [![Swift Version](https://img.shields.io/badge/Swift-5-F16D39.svg?style=flat)](https://developer.apple.com/swift)
