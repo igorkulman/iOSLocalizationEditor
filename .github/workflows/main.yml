@@ -11,5 +11,7 @@ jobs:
     - uses: actions/checkout@v1
       with:
        fetch-depth: 1
+    - name: Install needed software
+      run: gem install xcpretty
     - name: Run tests
-      run: xcodebuild test -project sources/LocalizationEditor.xcodeproj -scheme LocalizationEditor -destination 'platform=OS X,arch=x86_64' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO
+      run: xcodebuild test -project sources/LocalizationEditor.xcodeproj -scheme LocalizationEditor -destination 'platform=OS X,arch=x86_64' CODE_SIGN_IDENTITY="" CODE_SIGNING_REQUIRED=NO | xcpretty
