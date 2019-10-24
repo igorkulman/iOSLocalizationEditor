@@ -1,0 +1,156 @@
+
+/* Class = "NSToolbarItem"; label = "新的翻译"; ObjectID = "1Cc-Nn-JQX"; */
+"1Cc-Nn-JQX.label" = "新的翻译";
+
+/* Class = "NSToolbarItem"; paletteLabel = "新的翻译"; ObjectID = "1Cc-Nn-JQX"; */
+"1Cc-Nn-JQX.paletteLabel" = "新的翻译";
+
+/* Class = "NSToolbarItem"; toolTip = "新的翻译"; ObjectID = "1Cc-Nn-JQX"; */
+"1Cc-Nn-JQX.toolTip" = "新的翻译";
+
+/* Class = "NSMenuItem"; title = "LocalizationEditor"; ObjectID = "1Xt-HY-uBw"; */
+"1Xt-HY-uBw.title" = "LocalizationEditor";
+
+/* Class = "NSMenuItem"; title = "粘贴"; ObjectID = "3ep-Gh-gzv"; */
+"3ep-Gh-gzv.title" = "粘贴";
+
+/* Class = "NSMenuItem"; title = "选择"; ObjectID = "3lY-JD-VuH"; */
+"3lY-JD-VuH.title" = "选择";
+
+/* Class = "NSMenuItem"; title = "剪切"; ObjectID = "3sm-HN-6CE"; */
+"3sm-HN-6CE.title" = "剪切";
+
+/* Class = "NSToolbarItem"; label = "筛选"; ObjectID = "4TV-x9-bks"; */
+"4TV-x9-bks.label" = "筛选";
+
+/* Class = "NSToolbarItem"; paletteLabel = "筛选"; ObjectID = "4TV-x9-bks"; */
+"4TV-x9-bks.paletteLabel" = "筛选";
+
+/* Class = "NSToolbarItem"; toolTip = "筛选"; ObjectID = "4TV-x9-bks"; */
+"4TV-x9-bks.toolTip" = "筛选";
+
+/* Class = "NSMenuItem"; title = "退出 LocalizationEditor"; ObjectID = "4sb-4s-VLi"; */
+"4sb-4s-VLi.title" = "退出 LocalizationEditor";
+
+/* Class = "NSMenuItem"; title = "关于 LocalizationEditor"; ObjectID = "5kV-Vb-QxS"; */
+"5kV-Vb-QxS.title" = "关于 LocalizationEditor";
+
+/* Class = "NSMenuItem"; title = "编辑"; ObjectID = "5u8-tx-1fh"; */
+"5u8-tx-1fh.title" = "编辑";
+
+/* Class = "NSMenuItem"; title = "最小化"; ObjectID = "6RR-9u-NEg"; */
+"6RR-9u-NEg.title" = "最小化";
+
+/* Class = "NSMenuItem"; title = "窗口"; ObjectID = "7PS-Kh-0ES"; */
+"7PS-Kh-0ES.title" = "窗口";
+
+/* Class = "NSMenu"; title = "Main Menu"; ObjectID = "AYu-sK-qS6"; */
+"AYu-sK-qS6.title" = "Main Menu";
+
+/* Class = "NSMenuItem"; title = "全部"; ObjectID = "DQt-48-fwD"; */
+"DQt-48-fwD.title" = "全部";
+
+/* Class = "NSMenuItem"; title = "缺失"; ObjectID = "Dqg-Nc-z6y"; */
+"Dqg-Nc-z6y.title" = "缺失";
+
+/* Class = "NSMenu"; title = "窗口"; ObjectID = "Hbr-TU-yhw"; */
+"Hbr-TU-yhw.title" = "窗口";
+
+/* Class = "NSWindow"; title = "Localization Editor"; ObjectID = "IQv-IB-iLA"; */
+"IQv-IB-iLA.title" = "Localization Editor";
+
+/* Class = "NSMenuItem"; title = "进入全屏幕"; ObjectID = "Ju1-QZ-OtX"; */
+"Ju1-QZ-OtX.title" = "进入全屏幕";
+
+/* Class = "NSMenuItem"; title = "显示全部"; ObjectID = "Kd2-mp-pUS"; */
+"Kd2-mp-pUS.title" = "显示全部";
+
+/* Class = "NSMenuItem"; title = "服务"; ObjectID = "NMo-om-nkz"; */
+"NMo-om-nkz.title" = "服务";
+
+/* Class = "NSMenuItem"; title = "隐藏 LocalizationEditor"; ObjectID = "Olw-nP-bQN"; */
+"Olw-nP-bQN.title" = "隐藏 LocalizationEditor";
+
+/* Class = "NSToolbarItem"; label = "搜索"; ObjectID = "Pb2-33-jin"; */
+"Pb2-33-jin.label" = "搜索";
+
+/* Class = "NSToolbarItem"; paletteLabel = "搜索"; ObjectID = "Pb2-33-jin"; */
+"Pb2-33-jin.paletteLabel" = "搜索";
+
+/* Class = "NSToolbarItem"; toolTip = "搜索"; ObjectID = "Pb2-33-jin"; */
+"Pb2-33-jin.toolTip" = "搜索";
+
+/* Class = "NSMenuItem"; title = "前置全部窗口"; ObjectID = "U8A-5T-cKr"; */
+"U8A-5T-cKr.title" = "前置全部窗口";
+
+/* Class = "NSMenuItem"; title = "隐藏其他"; ObjectID = "Vdr-fp-XzO"; */
+"Vdr-fp-XzO.title" = "隐藏其他";
+
+/* Class = "NSMenu"; title = "视图"; ObjectID = "XAB-cQ-ybl"; */
+"XAB-cQ-ybl.title" = "视图";
+
+/* Class = "NSMenuItem"; title = "请先打开文件夹"; ObjectID = "ZYs-7U-5gn"; */
+"ZYs-7U-5gn.title" = "请先打开文件夹";
+
+/* Class = "NSMenu"; title = "文件"; ObjectID = "bib-Uj-vzu"; */
+"bib-Uj-vzu.title" = "文件";
+
+/* Class = "NSMenuItem"; title = "文件"; ObjectID = "dMs-cI-mzQ"; */
+"dMs-cI-mzQ.title" = "文件";
+
+/* Class = "NSMenuItem"; title = "复制"; ObjectID = "e0V-81-L66"; */
+"e0V-81-L66.title" = "复制";
+
+/* Class = "NSToolbarItem"; label = "打开文件夹"; ObjectID = "gFH-hP-QmF"; */
+"gFH-hP-QmF.label" = "打开文件夹";
+
+/* Class = "NSToolbarItem"; paletteLabel = "打开"; ObjectID = "gFH-hP-QmF"; */
+"gFH-hP-QmF.paletteLabel" = "打开";
+
+/* Class = "NSToolbarItem"; toolTip = "打开文件夹"; ObjectID = "gFH-hP-QmF"; */
+"gFH-hP-QmF.toolTip" = "打开文件夹";
+
+/* Class = "NSTextFieldCell"; title = "Comment:"; ObjectID = "grt-rx-XjJ"; */
+"grt-rx-XjJ.title" = "Comment:";
+
+/* Class = "NSMenuItem"; title = "选择全部"; ObjectID = "hB6-1k-SXh"; */
+"hB6-1k-SXh.title" = "选择全部";
+
+/* Class = "NSMenu"; title = "服务"; ObjectID = "hz9-B4-Xy5"; */
+"hz9-B4-Xy5.title" = "服务";
+
+/* Class = "NSMenu"; title = "编辑"; ObjectID = "oYd-vH-KNF"; */
+"oYd-vH-KNF.title" = "编辑";
+
+/* Class = "NSButtonCell"; title = "添加"; ObjectID = "ouS-ec-KwS"; */
+"ouS-ec-KwS.title" = "添加";
+
+/* Class = "NSMenuItem"; title = "打开带有本地化文件的文件夹..."; ObjectID = "pXV-BH-hD6"; */
+"pXV-BH-hD6.title" = "打开带有本地化文件的文件夹...";
+
+/* Class = "NSButtonCell"; title = "取消"; ObjectID = "q2m-Rj-ypE"; */
+"q2m-Rj-ypE.title" = "取消";
+
+/* Class = "NSToolbarItem"; label = "字符串表"; ObjectID = "rRs-lz-dHI"; */
+"rRs-lz-dHI.label" = "字符串表";
+
+/* Class = "NSToolbarItem"; paletteLabel = "字符串表"; ObjectID = "rRs-lz-dHI"; */
+"rRs-lz-dHI.paletteLabel" = "字符串表";
+
+/* Class = "NSToolbarItem"; toolTip = "字符串表"; ObjectID = "rRs-lz-dHI"; */
+"rRs-lz-dHI.toolTip" = "字符串表";
+
+/* Class = "NSSearchFieldCell"; title = "搜索"; ObjectID = "uO5-oO-Ep3"; */
+"uO5-oO-Ep3.title" = "搜索";
+
+/* Class = "NSMenu"; title = "LocalizationEditor"; ObjectID = "uQy-DD-JDr"; */
+"uQy-DD-JDr.title" = "LocalizationEditor";
+
+/* Class = "NSTextFieldCell"; title = "Key:"; ObjectID = "xVP-DG-dEy"; */
+"xVP-DG-dEy.title" = "Key:";
+
+/* Class = "NSMenuItem"; title = "缩放"; ObjectID = "z6e-9I-cc3"; */
+"z6e-9I-cc3.title" = "缩放";
+
+/* Class = "NSMenuItem"; title = "视图"; ObjectID = "zi9-yi-W5T"; */
+"zi9-yi-W5T.title" = "视图";

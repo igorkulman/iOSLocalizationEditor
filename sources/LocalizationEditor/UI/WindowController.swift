@@ -84,10 +84,6 @@ final class WindowController: NSWindowController {
 
     private func setupUI() {
         openButton.image = NSImage(named: NSImage.folderName)
-        openButton.toolTip = "Open folder"
-        filterButton.toolTip = "Filter"
-        selectButton.toolTip = "String table"
-        newButton.toolTip = "New translation"
     }
 
     private func setupMenu() {

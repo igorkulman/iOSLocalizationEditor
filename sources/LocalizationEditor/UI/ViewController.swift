@@ -83,7 +83,7 @@ final class ViewController: NSViewController {
         }
 
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.key.rawValue))
-        column.title = "Key"
+        column.title = NSLocalizedString("Key", comment: "Key")
         tableView.addTableColumn(column)
 
         languages.forEach { language in
@@ -95,7 +95,7 @@ final class ViewController: NSViewController {
         }
 
         let actionsColumn = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.actions.rawValue))
-        actionsColumn.title = "Actions"
+        actionsColumn.title = NSLocalizedString("Actions", comment: "Actions")
         actionsColumn.maxWidth = 48
         actionsColumn.minWidth = 32
         tableView.addTableColumn(actionsColumn)

@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -155,20 +155,19 @@
                         <windowStyleMask key="styleMask" titled="YES" closable="YES" miniaturizable="YES" resizable="YES"/>
                         <windowPositionMask key="initialPositionMask" leftStrut="YES" rightStrut="YES" topStrut="YES" bottomStrut="YES"/>
                         <rect key="contentRect" x="196" y="240" width="480" height="270"/>
-                        <rect key="screenRect" x="0.0" y="0.0" width="1680" height="1027"/>
+                        <rect key="screenRect" x="0.0" y="0.0" width="1920" height="1057"/>
                         <toolbar key="toolbar" implicitIdentifier="EFBE995A-2B16-4C2A-B761-5C079EDB24B9" autosavesConfiguration="NO" allowsUserCustomization="NO" displayMode="iconOnly" sizeMode="regular" id="BMi-rL-Wdk">
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Nt7-6c-UNu"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="XEY-XQ-DCX"/>
-                                <toolbarItem implicitItemIdentifier="F5A3BEE7-CFFE-4498-A8D0-DA7EAE160B5F" label="Open folder" paletteLabel="Open" tag="-1" id="gFH-hP-QmF">
+                                <toolbarItem implicitItemIdentifier="F5A3BEE7-CFFE-4498-A8D0-DA7EAE160B5F" label="Open folder" paletteLabel="Open" toolTip="Open folder" tag="-1" id="gFH-hP-QmF">
                                     <size key="minSize" width="48" height="48"/>
                                     <size key="maxSize" width="48" height="48"/>
                                     <connections>
                                         <action selector="openFolder:" target="B8D-0N-5wS" id="fSl-hr-rQp"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D612B8EC-2DD0-4F6F-BC29-1459EE743142" label="String table" paletteLabel="String table" id="rRs-lz-dHI">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="D612B8EC-2DD0-4F6F-BC29-1459EE743142" label="String table" paletteLabel="String table" toolTip="String table" id="rRs-lz-dHI">
                                     <size key="minSize" width="100" height="24"/>
                                     <size key="maxSize" width="500" height="24"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" id="0iO-g6-P1U">
@@ -176,7 +175,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="Open folder first" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="ZYs-7U-5gn" id="aOQ-vO-her">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
+                                            <font key="font" metaFont="system"/>
                                             <menu key="menu" id="glw-fD-iej">
                                                 <items>
                                                     <menuItem title="Open folder first" state="on" id="ZYs-7U-5gn"/>
@@ -185,8 +184,7 @@
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D8E0FDD3-702B-41C9-BE39-964D516EE454" label="Search translations" paletteLabel="Search" id="Pb2-33-jin">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="D8E0FDD3-702B-41C9-BE39-964D516EE454" label="Search translations" paletteLabel="Search" toolTip="Search" id="Pb2-33-jin">
                                     <size key="minSize" width="60" height="22"/>
                                     <size key="maxSize" width="96" height="22"/>
                                     <searchField key="view" wantsLayer="YES" verticalHuggingPriority="750" textCompletion="NO" id="44R-ph-qlU">
@@ -199,8 +197,7 @@
                                         </searchFieldCell>
                                     </searchField>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="8AA5A4E1-359F-4E3E-8BBA-D3AAAF529BE0" label="New translation" paletteLabel="New translation" image="NSAddTemplate" sizingBehavior="auto" id="1Cc-Nn-JQX">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="8AA5A4E1-359F-4E3E-8BBA-D3AAAF529BE0" label="New translation" paletteLabel="New translation" toolTip="New translation" image="NSAddTemplate" sizingBehavior="auto" id="1Cc-Nn-JQX">
                                     <imageView key="view" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LUP-5J-Wfe">
                                         <rect key="frame" x="33" y="14" width="24" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
@@ -214,14 +211,13 @@
                                         <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSAddTemplate" id="6JK-EV-ulh"/>
                                     </imageView>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="13E9B60D-CBEC-4E7D-96C3-FE098E195C25" label="Filter" paletteLabel="Filter" sizingBehavior="auto" id="4TV-x9-bks">
-                                    <nil key="toolTip"/>
+                                <toolbarItem implicitItemIdentifier="13E9B60D-CBEC-4E7D-96C3-FE098E195C25" label="Filter" paletteLabel="Filter" toolTip="Filter" sizingBehavior="auto" id="4TV-x9-bks">
                                     <popUpButton key="view" verticalHuggingPriority="750" id="CF5-IQ-Tcp">
                                         <rect key="frame" x="0.0" y="14" width="100" height="24"/>
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="All" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="DQt-48-fwD" id="8th-lD-zUo">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="menu"/>
+                                            <font key="font" metaFont="system"/>
                                             <menu key="menu" id="NFb-X0-5k3">
                                                 <items>
                                                     <menuItem title="All" state="on" id="DQt-48-fwD"/>
@@ -275,7 +271,7 @@
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" usesAutomaticRowHeights="YES" headerView="Bry-MY-OIY" id="ByO-mI-RPv">
                                             <rect key="frame" x="0.0" y="0.0" width="738" height="479"/>
-                                            <autoresizingMask key="autoresizingMask"/>
+                                            <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
                                             <color key="gridColor" name="gridColor" catalog="System" colorSpace="catalog"/>
@@ -326,7 +322,7 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EEY-nE-SYX">
-                                <rect key="frame" x="6" y="93" width="30" height="17"/>
+                                <rect key="frame" x="6" y="94" width="30" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Key:" id="xVP-DG-dEy">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
@@ -334,7 +330,7 @@
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-ws-aed">
-                                <rect key="frame" x="76" y="90" width="366" height="22"/>
+                                <rect key="frame" x="76" y="91" width="366" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="jrp-La-RWv">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -371,7 +367,7 @@ Gw
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-5P-xq8">
-                                <rect key="frame" x="6" y="63" width="67" height="17"/>
+                                <rect key="frame" x="6" y="65" width="67" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Comment:" id="grt-rx-XjJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
@@ -379,7 +375,7 @@ Gw
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FcG-n5-36y">
-                                <rect key="frame" x="76" y="60" width="366" height="22"/>
+                                <rect key="frame" x="76" y="62" width="366" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="VG9-3U-EQX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
