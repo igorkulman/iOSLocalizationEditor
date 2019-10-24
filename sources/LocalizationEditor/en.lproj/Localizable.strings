@@ -26,6 +26,7 @@
 "all" = "All";
 "missing" = "Missing";
 "actions" = "Actions";
+"delete" = "Delete";
 "open_folder" = "Open folder";
 "filter" = "Filter";
 "string_table" = "String table";

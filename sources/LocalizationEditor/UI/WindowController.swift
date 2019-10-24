@@ -85,6 +85,7 @@ final class WindowController: NSWindowController {
     private func setupUI() {
         openButton.image = NSImage(named: NSImage.folderName)
         openButton.toolTip = "open_folder".localized
+        searchField.toolTip = "search".localized
         filterButton.toolTip = "filter".localized
         selectButton.toolTip = "string_table".localized
         newButton.toolTip = "new_translation".localized

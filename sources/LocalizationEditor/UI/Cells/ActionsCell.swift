@@ -28,6 +28,7 @@ final class ActionsCell: NSTableCellView {
         super.awakeFromNib()
 
         deleteButton.image = NSImage(named: NSImage.stopProgressTemplateName)
+        deleteButton.toolTip = "delete".localized
     }
 
     @IBAction private func removalClicked(_ sender: NSButton) {
