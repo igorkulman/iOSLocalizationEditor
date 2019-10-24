@@ -31,7 +31,11 @@ To download and run the app
 
 ## Contributing
 
-All contributions are welcomed. Please read [CONTRIBUTING](CONTRIBUTING.md) for more details.
+All contributions are welcomed, including bug reports and pull requests with new features. Please read [CONTRIBUTING](CONTRIBUTING.md) for more details.
+
+### Localizing the app
+
+The app is currently localized into English and Chinese. If you want to add localization for your language, just translate the [Localizable.strings](https://github.com/igorkulman/iOSLocalizationEditor/blob/master/sources/LocalizationEditor/Resources/en.lproj/Localizable.strings) files. You can use this app do do it!
 
 ## Author
 
@@ -41,4 +45,4 @@ See also the list of [contributors](https://github.com/igorkulman/iOSLocalizatio
 
 ## License
 
-This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details
+This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
