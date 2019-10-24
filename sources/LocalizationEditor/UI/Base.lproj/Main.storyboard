@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="14490.70" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14490.70"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -18,6 +18,9 @@
                                     <items>
                                         <menuItem title="About LocalizationEditor" id="5kV-Vb-QxS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="about"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="orderFrontStandardAboutPanel:" target="Ady-hI-5gd" id="Exp-CZ-Vem"/>
                                             </connections>
@@ -26,28 +29,44 @@
                                         <menuItem isSeparatorItem="YES" id="wFC-TO-SCJ"/>
                                         <menuItem title="Services" id="NMo-om-nkz">
                                             <modifierMask key="keyEquivalentModifierMask"/>
-                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5"/>
+                                            <menu key="submenu" title="Services" systemMenu="services" id="hz9-B4-Xy5">
+                                                <userDefinedRuntimeAttributes>
+                                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="services"/>
+                                                </userDefinedRuntimeAttributes>
+                                            </menu>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="4je-JR-u6R"/>
                                         <menuItem title="Hide LocalizationEditor" keyEquivalent="h" id="Olw-nP-bQN">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="hide_editor"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="hide:" target="Ady-hI-5gd" id="PnN-Uc-m68"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Hide Others" keyEquivalent="h" id="Vdr-fp-XzO">
                                             <modifierMask key="keyEquivalentModifierMask" option="YES" command="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="hide_others"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="hideOtherApplications:" target="Ady-hI-5gd" id="VT4-aY-XCT"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Show All" id="Kd2-mp-pUS">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="show_all"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="unhideAllApplications:" target="Ady-hI-5gd" id="Dhg-Le-xox"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="kCx-OE-vgT"/>
                                         <menuItem title="Quit LocalizationEditor" keyEquivalent="q" id="4sb-4s-VLi">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="quit"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="terminate:" target="Ady-hI-5gd" id="Te7-pn-YzF"/>
                                             </connections>
@@ -59,36 +78,64 @@
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="File" id="bib-Uj-vzu">
                                     <items>
-                                        <menuItem title="Open folder with localization files..." keyEquivalent="o" id="pXV-BH-hD6"/>
+                                        <menuItem title="Open folder with localization files..." keyEquivalent="o" id="pXV-BH-hD6">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="open_folder_with"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </menuItem>
                                     </items>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="file"/>
+                                    </userDefinedRuntimeAttributes>
                                 </menu>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="file"/>
+                                </userDefinedRuntimeAttributes>
                             </menuItem>
                             <menuItem title="Edit" id="5u8-tx-1fh">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Edit" id="oYd-vH-KNF">
                                     <items>
                                         <menuItem title="Cut" keyEquivalent="x" id="3sm-HN-6CE" userLabel="Cut">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="cut"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="cut:" target="Ady-hI-5gd" id="ucH-FC-hnm"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Copy" keyEquivalent="c" id="e0V-81-L66" userLabel="Copy">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="copy"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="copy:" target="Ady-hI-5gd" id="IED-fu-isa"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Paste" keyEquivalent="v" id="3ep-Gh-gzv" userLabel="Paste">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="paste"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="paste:" target="Ady-hI-5gd" id="mfx-O8-h65"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Select All" keyEquivalent="a" id="hB6-1k-SXh">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="select_all"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="selectAll:" target="Ady-hI-5gd" id="cB3-ki-zei"/>
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="edit"/>
+                                    </userDefinedRuntimeAttributes>
                                 </menu>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="edit"/>
+                                </userDefinedRuntimeAttributes>
                             </menuItem>
                             <menuItem title="View" id="zi9-yi-W5T">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -96,24 +143,39 @@
                                     <items>
                                         <menuItem title="Enter Full Screen" keyEquivalent="f" id="Ju1-QZ-OtX">
                                             <modifierMask key="keyEquivalentModifierMask" control="YES" command="YES"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="enter_full_screen"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="toggleFullScreen:" target="Ady-hI-5gd" id="EjN-gY-NfH"/>
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="view"/>
+                                    </userDefinedRuntimeAttributes>
                                 </menu>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="view"/>
+                                </userDefinedRuntimeAttributes>
                             </menuItem>
                             <menuItem title="Window" id="7PS-Kh-0ES" userLabel="Window">
                                 <modifierMask key="keyEquivalentModifierMask"/>
                                 <menu key="submenu" title="Window" id="Hbr-TU-yhw">
                                     <items>
                                         <menuItem title="Minimize" keyEquivalent="m" id="6RR-9u-NEg">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="minimize"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="performMiniaturize:" target="Ady-hI-5gd" id="avX-aK-u4b"/>
                                             </connections>
                                         </menuItem>
                                         <menuItem title="Zoom" id="z6e-9I-cc3" userLabel="Zoom">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="zoom"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="performZoom:" target="Ady-hI-5gd" id="k5e-fX-ZO6"/>
                                             </connections>
@@ -121,12 +183,21 @@
                                         <menuItem isSeparatorItem="YES" id="Z0T-pc-kfl"/>
                                         <menuItem title="Bring All to Front" id="U8A-5T-cKr">
                                             <modifierMask key="keyEquivalentModifierMask"/>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="bring_all_to_front"/>
+                                            </userDefinedRuntimeAttributes>
                                             <connections>
                                                 <action selector="arrangeInFront:" target="Ady-hI-5gd" id="XdJ-3y-o4j"/>
                                             </connections>
                                         </menuItem>
                                     </items>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="window"/>
+                                    </userDefinedRuntimeAttributes>
                                 </menu>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="window"/>
+                                </userDefinedRuntimeAttributes>
                             </menuItem>
                             <menuItem title="Select" id="3lY-JD-VuH">
                                 <modifierMask key="keyEquivalentModifierMask"/>
@@ -182,6 +253,9 @@
                                                     <menuItem title="Open folder first" state="on" id="ZYs-7U-5gn"/>
                                                 </items>
                                             </menu>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="open_folder_first"/>
+                                            </userDefinedRuntimeAttributes>
                                         </popUpButtonCell>
                                     </popUpButton>
                                 </toolbarItem>
@@ -197,6 +271,9 @@
                                             <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
                                             <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
                                         </searchFieldCell>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="search"/>
+                                        </userDefinedRuntimeAttributes>
                                     </searchField>
                                 </toolbarItem>
                                 <toolbarItem implicitItemIdentifier="8AA5A4E1-359F-4E3E-8BBA-D3AAAF529BE0" label="New translation" paletteLabel="New translation" image="NSAddTemplate" sizingBehavior="auto" id="1Cc-Nn-JQX">
@@ -224,8 +301,16 @@
                                             <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="NFb-X0-5k3">
                                                 <items>
-                                                    <menuItem title="All" state="on" id="DQt-48-fwD"/>
-                                                    <menuItem title="Missing" id="Dqg-Nc-z6y"/>
+                                                    <menuItem title="All" state="on" id="DQt-48-fwD">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="all"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </menuItem>
+                                                    <menuItem title="Missing" id="Dqg-Nc-z6y">
+                                                        <userDefinedRuntimeAttributes>
+                                                            <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="missing"/>
+                                                        </userDefinedRuntimeAttributes>
+                                                    </menuItem>
                                                 </items>
                                             </menu>
                                         </popUpButtonCell>
@@ -326,15 +411,18 @@
                         <autoresizingMask key="autoresizingMask"/>
                         <subviews>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EEY-nE-SYX">
-                                <rect key="frame" x="6" y="93" width="30" height="17"/>
+                                <rect key="frame" x="6" y="94" width="30" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Key:" id="xVP-DG-dEy">
                                     <font key="font" usesAppearanceFont="YES"/>
                                     <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="key"/>
+                                    </userDefinedRuntimeAttributes>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="cS5-ws-aed">
-                                <rect key="frame" x="76" y="90" width="366" height="22"/>
+                                <rect key="frame" x="76" y="91" width="366" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="jrp-La-RWv">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>
@@ -349,6 +437,9 @@
                                 <buttonCell key="cell" type="push" title="Add" bezelStyle="rounded" alignment="center" enabled="NO" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="ouS-ec-KwS">
                                     <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
                                     <font key="font" metaFont="system"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="add"/>
+                                    </userDefinedRuntimeAttributes>
                                 </buttonCell>
                                 <connections>
                                     <action selector="addAction:" target="ers-OE-kPR" id="IPp-gb-iVm"/>
@@ -365,21 +456,27 @@
                                     <string key="keyEquivalent" base64-UTF8="YES">
 Gw
 </string>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="cancel"/>
+                                    </userDefinedRuntimeAttributes>
                                 </buttonCell>
                                 <connections>
                                     <action selector="cancelAction:" target="ers-OE-kPR" id="m9p-5d-qYt"/>
                                 </connections>
                             </button>
                             <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="2x2-5P-xq8">
-                                <rect key="frame" x="6" y="63" width="67" height="17"/>
+                                <rect key="frame" x="6" y="65" width="67" height="16"/>
                                 <textFieldCell key="cell" lineBreakMode="clipping" title="Comment:" id="grt-rx-XjJ">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" red="0.50196078430000002" green="0.50196078430000002" blue="0.50196078430000002" alpha="1" colorSpace="calibratedRGB"/>
                                     <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                                    <userDefinedRuntimeAttributes>
+                                        <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="comment"/>
+                                    </userDefinedRuntimeAttributes>
                                 </textFieldCell>
                             </textField>
                             <textField verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="FcG-n5-36y">
-                                <rect key="frame" x="76" y="60" width="366" height="22"/>
+                                <rect key="frame" x="76" y="62" width="366" height="21"/>
                                 <textFieldCell key="cell" scrollable="YES" lineBreakMode="clipping" selectable="YES" editable="YES" sendsActionOnEndEditing="YES" borderStyle="bezel" drawsBackground="YES" id="VG9-3U-EQX">
                                     <font key="font" metaFont="system"/>
                                     <color key="textColor" name="controlTextColor" catalog="System" colorSpace="catalog"/>

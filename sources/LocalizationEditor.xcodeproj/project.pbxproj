@@ -21,7 +21,7 @@
 		F396061E223A5B5A006C7B16 /* LocalizationProviderAddingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F396061D223A5B5A006C7B16 /* LocalizationProviderAddingTests.swift */; };
 		F3A5ABB8220448690077460D /* FileManager+Extension.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3A5ABB7220448690077460D /* FileManager+Extension.swift */; };
 		F3AD2CD4236190F400558765 /* NSView+Localization.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3AD2CD3236190F400558765 /* NSView+Localization.swift */; };
-		F3AD2CD62361935100558765 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3AD2CD52361935100558765 /* Localizable.strings */; };
+		F3AD2CDE23619E5C00558765 /* Localizable.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3AD2CDC23619E5C00558765 /* Localizable.strings */; };
 		F3BF7E6A223A8AE10043F2CB /* Special.strings in Resources */ = {isa = PBXBuildFile; fileRef = F3BF7E69223A8AE10043F2CB /* Special.strings */; };
 		F3C4FA7D222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift in Sources */ = {isa = PBXBuildFile; fileRef = F3C4FA7C222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift */; };
 		F3C5BF252299529D001BC8FB /* Credits.rtf in Resources */ = {isa = PBXBuildFile; fileRef = F3C5BF242299529D001BC8FB /* Credits.rtf */; };
@@ -96,7 +96,7 @@
 		F396061D223A5B5A006C7B16 /* LocalizationProviderAddingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProviderAddingTests.swift; sourceTree = "<group>"; };
 		F3A5ABB7220448690077460D /* FileManager+Extension.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "FileManager+Extension.swift"; sourceTree = "<group>"; };
 		F3AD2CD3236190F400558765 /* NSView+Localization.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "NSView+Localization.swift"; sourceTree = "<group>"; };
-		F3AD2CD52361935100558765 /* Localizable.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Localizable.strings; sourceTree = "<group>"; };
+		F3AD2CDD23619E5C00558765 /* en */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = en; path = Localizable.strings; sourceTree = "<group>"; };
 		F3BF7E69223A8AE10043F2CB /* Special.strings */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; path = Special.strings; sourceTree = "<group>"; };
 		F3C4FA7C222FBB9B00280EF4 /* LocalizationProviderDeletingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProviderDeletingTests.swift; sourceTree = "<group>"; };
 		F3C5BF242299529D001BC8FB /* Credits.rtf */ = {isa = PBXFileReference; lastKnownFileType = text.rtf; path = Credits.rtf; sourceTree = "<group>"; };
@@ -148,6 +148,22 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		F3AD2CDA23619E4B00558765 /* Resources */ = {
+			isa = PBXGroup;
+			children = (
+				F3AD2CDB23619E5C00558765 /* en.lproj */,
+			);
+			name = Resources;
+			sourceTree = "<group>";
+		};
+		F3AD2CDB23619E5C00558765 /* en.lproj */ = {
+			isa = PBXGroup;
+			children = (
+				F3AD2CDC23619E5C00558765 /* Localizable.strings */,
+			);
+			path = en.lproj;
+			sourceTree = "<group>";
+		};
 		F3D9C93920BEC7460081830A = {
 			isa = PBXGroup;
 			children = (
@@ -173,13 +189,13 @@
 				F3FC1F8E21DCB9AA00C936E8 /* Extensions */,
 				F3D9C95520BEC9E30081830A /* Models */,
 				F3D9C95A20BECDB20081830A /* Providers */,
+				F3AD2CDA23619E4B00558765 /* Resources */,
 				F3D9C96C20BEEA2F0081830A /* UI */,
 				F3D9C94520BEC7460081830A /* AppDelegate.swift */,
 				F3D9C94920BEC7460081830A /* Assets.xcassets */,
 				F3D9C94E20BEC7460081830A /* Info.plist */,
 				F3D9C94F20BEC7460081830A /* LocalizationEditor.entitlements */,
 				F3C5BF242299529D001BC8FB /* Credits.rtf */,
-				F3AD2CD52361935100558765 /* Localizable.strings */,
 			);
 			path = LocalizationEditor;
 			sourceTree = "<group>";
@@ -380,7 +396,7 @@
 				F3D9C96320BEDDE20081830A /* LocalizationCell.xib in Resources */,
 				F3C5BF252299529D001BC8FB /* Credits.rtf in Resources */,
 				F3D9C96520BEDF580081830A /* KeyCell.xib in Resources */,
-				F3AD2CD62361935100558765 /* Localizable.strings in Resources */,
+				F3AD2CDE23619E5C00558765 /* Localizable.strings in Resources */,
 				F3D9C94A20BEC7460081830A /* Assets.xcassets in Resources */,
 				F3261F66222EA9BF006838C3 /* ActionsCell.xib in Resources */,
 				F3D9C94D20BEC7460081830A /* Main.storyboard in Resources */,
@@ -494,6 +510,14 @@
 /* End PBXTargetDependency section */
 
 /* Begin PBXVariantGroup section */
+		F3AD2CDC23619E5C00558765 /* Localizable.strings */ = {
+			isa = PBXVariantGroup;
+			children = (
+				F3AD2CDD23619E5C00558765 /* en */,
+			);
+			name = Localizable.strings;
+			sourceTree = "<group>";
+		};
 		F3D9C94B20BEC7460081830A /* Main.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (

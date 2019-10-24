@@ -12,9 +12,18 @@ import os
 
 typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 
-enum Filter: Int, CaseIterable {
+enum Filter: Int, CaseIterable, CustomStringConvertible {
     case all
     case missing
+
+    var description: String {
+        switch self {
+        case .all:
+            return "all".localized
+        case .missing:
+            return "missing".localized
+        }
+    }
 }
 
 /**

@@ -84,10 +84,10 @@ final class WindowController: NSWindowController {
 
     private func setupUI() {
         openButton.image = NSImage(named: NSImage.folderName)
-        openButton.toolTip = "Open folder"
-        filterButton.toolTip = "Filter"
-        selectButton.toolTip = "String table"
-        newButton.toolTip = "New translation"
+        openButton.toolTip = "open_folder".localized
+        filterButton.toolTip = "filter".localized
+        selectButton.toolTip = "string_table".localized
+        newButton.toolTip = "new_translation".localized
     }
 
     private func setupMenu() {
@@ -106,7 +106,7 @@ final class WindowController: NSWindowController {
         filterButton.menu?.removeAllItems()
 
         for option in Filter.allCases {
-            let item = NSMenuItem(title: "\(option)".capitalizedFirstLetter, action: #selector(WindowController.filterAction(sender:)), keyEquivalent: "")
+            let item = NSMenuItem(title: "\(option.description)".capitalizedFirstLetter, action: #selector(WindowController.filterAction(sender:)), keyEquivalent: "")
             item.tag = option.rawValue
             filterButton.menu?.addItem(item)
         }
