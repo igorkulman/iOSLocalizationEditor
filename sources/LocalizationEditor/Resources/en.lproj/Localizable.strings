@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  LocalizationEditor
+
+  Created by Igor Kulman on 24/10/2019.
+  Copyright © 2019 Igor Kulman. All rights reserved.
+*/
+
+"key" = "Key";
+"comment" = "Comment";
+"cancel" = "Cancel";
+"add" = "Add";
+"view" = "View";
+"file" = "File";
+"open_folder_with" = "Open folder with localization files...";
+"edit" = "Edit";
+"cut" = "Cut";
+"copy" = "Copy";
+"paste" = "Paste";
+"select_all" = "Select All";
+"enter_full_screen" = "Enter Full Screen";
+"window" = "Window";
+"minimize" = "Minimize";
+"bring_all_to_front" = "Bring All to Front";
+"zoom" = "Zoom";
+"all" = "All";
+"missing" = "Missing";
+"actions" = "Actions";
+"delete" = "Delete";
+"open_folder" = "Open folder";
+"filter" = "Filter";
+"string_table" = "String table";
+"new_translation" = "New translation";
+"search" = "Search";
+"open_folder_first" = "Open folder first";
+"about" = "About LocalizationEditor";
+"quit" = "Quit LocalizationEditor";
+"show_all" = "Show All";
+"services" = "Services";
+"hide_others" = "Hide Others";
+"hide_editor" = "Hide LocalizationEditor";
