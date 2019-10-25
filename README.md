@@ -21,7 +21,15 @@ All the translations are sorted by their key (shown as first column) and you can
 
 When you change any of the translations the corresponding `Localizable.strings` gets updated.
 
-## Running the app
+## Installation
+
+### Homebrew
+
+```bash
+brew cask install localizationeditor
+```
+
+### Manual
 
 To download and run the app
 
