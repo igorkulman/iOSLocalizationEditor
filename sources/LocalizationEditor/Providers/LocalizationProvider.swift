@@ -16,7 +16,7 @@ final class LocalizationProvider {
     /**
      List of folder that should be ignored when searching for localization files
      */
-    private let ignoredDirectories: Set<String> = ["Pods", "Carthage", "build", ".framework"]
+    private let ignoredDirectories: Set<String> = ["Pods/", "Carthage/", "build/", ".framework"]
 
     // MARK: Actions
 
