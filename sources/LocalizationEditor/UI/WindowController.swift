@@ -16,6 +16,10 @@ protocol WindowControllerToolbarDelegate: AnyObject {
      Invoked when user requests opening a folder
      */
     func userDidRequestFolderOpen()
+    /**
+     Invoked when user requests apply Apple Glot Glossary (.lg XML dict)
+     */
+    func userDidRequestApplyGlossary()
 
     /**
      Invoked when user requests filter change
@@ -49,6 +53,7 @@ final class WindowController: NSWindowController {
     // MARK: - Outlets
 
     @IBOutlet private weak var openButton: NSToolbarItem!
+    @IBOutlet private weak var applyGlossary: NSToolbarItem!
     @IBOutlet private weak var searchField: NSSearchField!
     @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var filterButton: NSPopUpButton!
@@ -94,6 +99,7 @@ final class WindowController: NSWindowController {
     private func setupMenu() {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
         appDelegate.openFolderMenuItem.action = #selector(WindowController.openAction(sender:))
+        appDelegate.openLGMenuItem.action = #selector(WindowController.applyGlossary(sender:))
     }
 
     private func setupSearch() {
@@ -139,6 +145,10 @@ final class WindowController: NSWindowController {
         delegate?.userDidRequestFolderOpen()
     }
 
+    @IBAction private func applyGlossary(_ sender: Any) {
+        delegate?.userDidRequestApplyGlossary()
+    }
+
     @IBAction private func addAction(_ sender: Any) {
         guard newButton.isEnabled else {
             return
@@ -149,6 +159,10 @@ final class WindowController: NSWindowController {
 
     @objc private func openAction(sender _: NSMenuItem) {
        delegate?.userDidRequestFolderOpen()
+    }
+
+    @objc private func applyGlossary(sender _: NSMenuItem) {
+        delegate?.userDidRequestApplyGlossary()
     }
 }
 

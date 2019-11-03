@@ -7,7 +7,7 @@
 //
 
 import Cocoa
-
+import os
 /**
 Protocol for announcing changes to the toolbar. Needed because the VC does not have direct access to the toolbar (handled by WindowController)
  */
@@ -28,7 +28,7 @@ protocol ViewControllerDelegate: AnyObject {
     func shouldSelectLocalizationGroup(title: String)
 }
 
-final class ViewController: NSViewController {
+final class ViewController: NSViewController, XMLParserDelegate {
     enum FixedColumn: String {
         case key
         case actions
@@ -48,12 +48,111 @@ final class ViewController: NSViewController {
     private let dataSource = LocalizationsDataSource()
     private var presendedAddViewController: AddViewController?
 
+// XML Parser..
+    fileprivate var LGresults: [LocalizationString] = .init()
+    private var elementLGName: String = ""
+    private var eLGBase: String = ""
+    private var eLGBaseLocal: String = ""
+    private var eLGTran: String = ""
+    private var eLGTranLocal: String = ""
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
         setupData()
     }
 
+	// MARK: - XML of Apple Glossary (.lg)
+
+    private func openLGFile() {
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = false
+        openPanel.canCreateDirectories = false
+        openPanel.canChooseFiles = true
+        openPanel.begin { [unowned self] result -> Void in
+            guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
+                return
+            }
+
+            os_log("Selected LG file... %@ - %@", type: OSLogType.info, url.description, result as CVarArg)
+		  if let parser = XMLParser(contentsOf: url) {
+            parser.delegate = self
+            parser.parse()
+            self.LGresults = self.LGresults.sorted()
+            os_log("\n>>>\nLGresults... %d\n%@", type: OSLogType.info, self.LGresults.count, self.LGresults.description)
+            }
+
+        }
+    }
+
+// 1
+//  <TranslationSet>
+//  <base loc="en">%@’s Public Folder</base>
+//  <tran loc="ja">%@のパブリックフォルダ</tran>
+//  </TranslationSet>
+
+    internal func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String:String] = [:]) {
+
+    //    os_log("parser 1 %@ - %@", type: OSLogType.info, elementName, attributeDict.description)
+
+        self.elementLGName = elementName
+        if elementName == "TranslationSet" {
+          //  os_log("parser 1 qName - %@ - %@", type: OSLogType.info, qName!.description)
+            eLGBase = String()
+            eLGTran = String()
+
+        } else
+
+        if elementName == "Position" {
+         //   os_log("parser 1 %@ - %@", type: OSLogType.info, elementName, attributeDict.description)
+
+        } else
+            if elementName == "base" {
+                eLGBaseLocal = attributeDict["loc"] ??  "en"
+
+            } else
+                if elementName == "tran" {
+                    eLGTranLocal = attributeDict["loc"] ??  "en"
+
+            } else {
+         //   os_log("parser 1 started ignore - %@", type: OSLogType.info, elementName)
+
+            }
+
+}
+
+// 2
+    internal func parser(_ parser: XMLParser, didEndElement elementName: String, namespaceURI: String?, qualifiedName qName: String?) {
+
+    if elementName == "TranslationSet" {
+     //   os_log("parser 2 - TranslationSet\n\t%@ [%@] - %@ [%@]", type: OSLogType.info, eLGBase, eLGBaseLocal, eLGTran, eLGTranLocal  )
+        let entry = LocalizationString(key: eLGBase.unescaped, value: eLGTran.unescaped, message: eLGTranLocal)
+        LGresults.append(entry)
+
+    } else {
+    //    os_log("parser 2  - %@ Ended", type: OSLogType.info, elementName )
+        }
+}
+
+// 3
+    internal func parser(_ parser: XMLParser, foundCharacters string: String) {
+    let data = string.trimmingCharacters(in: CharacterSet.whitespacesAndNewlines)
+
+    if !data.isEmpty {
+        if self.elementLGName == "base" {
+            eLGBase += data
+        } else if self.elementLGName == "tran" {
+            eLGTran += data
+        }
+    }
+}
+
+// 4
+internal func parser(_ parser: XMLParser, foundAttributeDeclarationWithName attributeName: String, forElement elementName: String, type: String?, defaultValue: String?)
+ {
+        os_log("parser 4  foundAttributeDeclarationWithName - %@ - %@", type: OSLogType.info, elementName , attributeName)
+    }
     // MARK: - Setup
 
     private func setupData() {
@@ -196,6 +295,13 @@ extension ViewController: ActionsCellDelegate {
 // MARK: - WindowControllerToolbarDelegate
 
 extension ViewController: WindowControllerToolbarDelegate {
+    func userDidRequestApplyGlossary() {
+        // Not implemented yet..
+
+		openLGFile()
+
+    }
+
     /**
      Invoked when user requests adding a new translation
      */

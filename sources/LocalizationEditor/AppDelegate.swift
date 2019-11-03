@@ -11,6 +11,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var openFolderMenuItem: NSMenuItem!
+    @IBOutlet weak var openLGMenuItem: NSMenuItem!
 
     func applicationDidFinishLaunching(_: Notification) {}
 
