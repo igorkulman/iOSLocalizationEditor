@@ -114,6 +114,16 @@ final class LocalizationsDataSource: NSObject {
     }
 
     /**
+     Get Selected group
+     - Returns: LocalizationGroup
+     */
+    func getSelectedGroup() -> LocalizationGroup {
+     //   os_log("\ngetSelectedGroup", type: OSLogType.debug)
+     //   dump(selectedLocalizationGroup)
+        return (selectedLocalizationGroup )!
+    }
+
+    /**
      Selects given group and gets available languages
 
      - Parameter group: group name
@@ -186,6 +196,17 @@ final class LocalizationsDataSource: NSObject {
         }
 
         return part[firstKey]??.message
+    }
+
+    /**
+     Given loaded a Loaded Apple LG localization for specified language.
+     Locate localization that are  missing, and update them if they exist in Apple Glossary
+
+     - Parameter lg: Loaded Apple LG localization
+     - Returns: nothing
+     */
+    func applyLGtoLocalization(lg: [LocalizationString]) {
+
     }
 
     /**

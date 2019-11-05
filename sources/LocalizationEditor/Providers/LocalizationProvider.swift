@@ -21,7 +21,8 @@ final class LocalizationProvider {
     // MARK: Actions
 
     /**
-     Updates given localization values in given localization file. Basially regenerates the whole localization files changing the given value
+     Updates given localization values in given localization file.
+     Basially regenerates the whole localization files changing the given value
 
      - Parameter localization: localization to update
      - Parameter key: localization string key
@@ -65,7 +66,7 @@ final class LocalizationProvider {
 
         do {
             try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
-            os_log("Localization file for %@ updated", type: OSLogType.debug, localization.path)
+          //  os_log("Localization file for %@ updated", type: OSLogType.debug, localization.path)
         } catch {
             os_log("Writing localization file for %@ failed with %@", type: OSLogType.error, localization.path, error.localizedDescription)
         }

@@ -14,7 +14,7 @@ Group of localizations, like Localizabe.strings, InfoPlist.strings, etc.
 final class LocalizationGroup {
     let name: String
     let path: String
-    let localizations: [Localization]
+    let localizations: [Localization]   // array represents a single strings file for each language [en, ja, etc].
 
     init(name: String, localizations: [Localization], path: String) {
         self.name = name

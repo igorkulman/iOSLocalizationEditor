@@ -11,11 +11,15 @@ import Foundation
 /**
  Class representing single localization string in form of key: "value"; as found in strings files
  */
-final class LocalizationString {
+final class LocalizationString: Hashable {
     let key: String
     private(set) var value: String
     private (set) var message: String?
 
+    func hash(into hasher: inout Hasher) {
+        hasher.combine(key)
+        hasher.combine(value)
+    }
     init(key: String, value: String, message: String?) {
         self.key = key
         self.value = value

@@ -66,24 +66,78 @@ final class ViewController: NSViewController, XMLParserDelegate {
 
     private func openLGFile() {
         let openPanel = NSOpenPanel()
-        openPanel.allowsMultipleSelection = false
+        openPanel.allowsMultipleSelection = true
         openPanel.canChooseDirectories = false
         openPanel.canCreateDirectories = false
         openPanel.canChooseFiles = true
         openPanel.begin { [unowned self] result -> Void in
-            guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
+            guard result.rawValue == NSApplication.ModalResponse.OK.rawValue
+                else {
                 return
             }
+            os_log("\nSelected LG...", type: OSLogType.info)
 
-            os_log("Selected LG file... %@ - %@", type: OSLogType.info, url.description, result as CVarArg)
-		  if let parser = XMLParser(contentsOf: url) {
-            parser.delegate = self
-            parser.parse()
-            self.LGresults = self.LGresults.sorted()
-            os_log("\n>>>\nLGresults... %d\n%@", type: OSLogType.info, self.LGresults.count, self.LGresults.description)
+            openPanel.urls.forEach({ aUrl in // Process/merge all .lg files.
+                os_log("\n\t%@\n", type: OSLogType.info, aUrl.description)
+
+                if let parser = XMLParser(contentsOf: aUrl) {
+                    parser.delegate = self
+                    parser.parse()
+                   // self.LGresults = self.LGresults.uniques
+                    self.LGresults = self.LGresults.sorted()
+                    let tcnt = self.LGresults.count
+                    // remove duplicates from glossary
+                    let mySet = Set(self.LGresults)
+                    // dump(mySet)
+                    self.LGresults = Array(mySet)
+                    os_log("\n>>> LGresults %d terms, removed... %d duplicates", type: OSLogType.info, self.LGresults.count, tcnt - self.LGresults.count)
+                   // os_log("\n>>>\nLGresults... %d\n%@", type: OSLogType.info, self.LGresults.count, self.LGresults.description)
+                }
+             })
+
+            // dump(myArray)
+            // Apply to missing translations (set filtering?)
+            self.dataSource.filter(by: .missing, searchString: self.currentSearchTerm)
+            let theGroup: LocalizationGroup = self.dataSource.getSelectedGroup()
+            os_log("\n>>> [%@] -> [%@] appling to %@... %d", type: OSLogType.info, self.eLGBaseLocal, self.eLGTranLocal, theGroup.name, self.LGresults.count)
+
+            // confirm we have source and trans language and apply to missing.
+            let lang = self.dataSource.selectGroupAndGetLanguages(for: theGroup.name)
+            // dump(lang)
+            if lang.contains(self.eLGBaseLocal) && lang.contains(self.eLGTranLocal) {
+                let base = theGroup.localizations.first(where: { $0.language == self.eLGBaseLocal })!
+              // dump(base)
+
+                let toDo = theGroup.localizations.first(where: { $0.language == self.eLGTranLocal })!
+               // dump(toDo)
+                let rowcnt = self.dataSource.numberOfRows(in: self.tableView)
+                var row: Int = 0
+                while row < rowcnt {
+                    let akey = self.dataSource.getKey(row: row)
+                    let aMsg = self.dataSource.getMessage(row: row)
+                    let value: LocalizationString? =  self.LGresults.first(where: { $0.key == akey })
+                    if value != nil && akey != nil {
+                        self.dataSource.updateLocalization(language: self.eLGTranLocal, key: akey!, with: value!.value, message: aMsg)
+                    //    self.dataSource.updateLocalization(self.eLGTranLocal, key: String, with: value: String, message: String?)
+                      //  dump(akey)
+                      //   dump(value)
+                      //   dump(aMsg)
+                    }
+
+                 //   os_log("%d. [%@] -> [%@] %@", type: OSLogType.info, row, akey ?? "nil", aMsg  ?? "nil", (value?.value ?? nil) ??    )
+                    row += 1
+                }
+
+
+
+            } else {
+                os_log("\n>>>%@ not setup for this translation [%@] -> [%@]", type: OSLogType.error, theGroup.name, self.eLGBaseLocal,self.eLGTranLocal)
             }
 
-        }
+            self.dataSource.filter(by: self.currentFilter, searchString: self.currentSearchTerm)
+            self.tableView.reloadData()
+
+        } // end OpenPanel
     }
 
 // 1
@@ -92,34 +146,27 @@ final class ViewController: NSViewController, XMLParserDelegate {
 //  <tran loc="ja">%@のパブリックフォルダ</tran>
 //  </TranslationSet>
 
-    internal func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String:String] = [:]) {
+    internal func parser(_ parser: XMLParser, didStartElement elementName: String, namespaceURI: String?, qualifiedName qName: String?, attributes attributeDict: [String: String] = [ : ]) {
 
     //    os_log("parser 1 %@ - %@", type: OSLogType.info, elementName, attributeDict.description)
-
         self.elementLGName = elementName
         if elementName == "TranslationSet" {
           //  os_log("parser 1 qName - %@ - %@", type: OSLogType.info, qName!.description)
             eLGBase = String()
             eLGTran = String()
-
         } else
-
         if elementName == "Position" {
          //   os_log("parser 1 %@ - %@", type: OSLogType.info, elementName, attributeDict.description)
 
         } else
             if elementName == "base" {
                 eLGBaseLocal = attributeDict["loc"] ??  "en"
-
             } else
                 if elementName == "tran" {
                     eLGTranLocal = attributeDict["loc"] ??  "en"
-
             } else {
          //   os_log("parser 1 started ignore - %@", type: OSLogType.info, elementName)
-
             }
-
 }
 
 // 2
@@ -148,11 +195,6 @@ final class ViewController: NSViewController, XMLParserDelegate {
     }
 }
 
-// 4
-internal func parser(_ parser: XMLParser, foundAttributeDeclarationWithName attributeName: String, forElement elementName: String, type: String?, defaultValue: String?)
- {
-        os_log("parser 4  foundAttributeDeclarationWithName - %@ - %@", type: OSLogType.info, elementName , attributeName)
-    }
     // MARK: - Setup
 
     private func setupData() {
