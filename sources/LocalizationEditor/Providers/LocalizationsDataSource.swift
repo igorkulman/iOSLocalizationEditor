@@ -229,9 +229,6 @@ final class LocalizationsDataSource: NSObject {
             return
         }
         localizationProvider.updateLocalization(localization: localization, key: key, with: value, message: message)
-        if data[key] == nil {
-             data[key]![localization.language] = localization.translations.first(where: { $0.key == key })
-        }
     }
 
     /**
