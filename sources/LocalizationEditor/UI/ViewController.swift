@@ -50,11 +50,6 @@ final class ViewController: NSViewController, XMLParserDelegate {
 
 // XML Parser..
     fileprivate var LGresults: [LocalizationString] = .init()
- //   private var elementLGName: String = ""
-  //  private var eLGBase: String = ""
-  //  private var eLGBaseLocal: String = ""
-   // private var eLGTran: String = ""
-  //  private var eLGTranLocal: String = ""
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -90,11 +85,14 @@ final class ViewController: NSViewController, XMLParserDelegate {
             }
 
             os_log("\n>>> lgparser %@", type: OSLogType.info, lgparser)
-            lgparser.applytranslation(theGroup: theGroup, dataSource: self.dataSource)
+            let translatedCnt = lgparser.applytranslation(theGroup: theGroup, dataSource: self.dataSource)
+            os_log("\n>>> translated %d", type: OSLogType.info, translatedCnt)
 
+            self.progressIndicator.stopAnimation(self)
+
+            // force updated new transaltion to be displayed.
+            self.userDidRequestLocalizationGroupChange(group: theGroup.name)
             self.dataSource.filter(by: self.currentFilter, searchString: self.currentSearchTerm)
-            self.tableView.reloadData()
-            self.tableView.display()
         } // end OpenPanel
 
     }

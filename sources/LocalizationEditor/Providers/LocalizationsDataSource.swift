@@ -114,7 +114,7 @@ final class LocalizationsDataSource: NSObject {
     }
 
     /**
-     Get Selected group
+     Get Selected group  - used by LGParser
      - Returns: LocalizationGroup
      */
     func getSelectedGroup() -> LocalizationGroup {
@@ -124,7 +124,7 @@ final class LocalizationsDataSource: NSObject {
     }
 
     /**
-     Selects given group and gets available languages
+     Selects given group and gets available languages  - used by LGParser
 
      - Parameter group: group name
      - Returns: array of languages
@@ -155,7 +155,6 @@ final class LocalizationsDataSource: NSObject {
         }
 
         os_log("Searching for %@", type: OSLogType.debug, searchString)
-
         var keys: [String] = []
         for (key, value) in data {
             // include if key matches (no need to check further)
@@ -199,17 +198,6 @@ final class LocalizationsDataSource: NSObject {
     }
 
     /**
-     Given loaded a Loaded Apple LG localization for specified language.
-     Locate localization that are  missing, and update them if they exist in Apple Glossary
-
-     - Parameter lg: Loaded Apple LG localization
-     - Returns: nothing
-     */
-    func applyLGtoLocalization(lgGlossary: [LocalizationString]) {
-
-    }
-
-    /**
      Gets localization for specified language and row. The language should be always valid. The localization might be missing, returning it with empty value in that case
 
      - Parameter language: language to get the localization for
@@ -241,6 +229,9 @@ final class LocalizationsDataSource: NSObject {
             return
         }
         localizationProvider.updateLocalization(localization: localization, key: key, with: value, message: message)
+        if data[key] == nil {
+             data[key]![localization.language] = localization.translations.first(where: { $0.key == key })
+        }
     }
 
     /**
