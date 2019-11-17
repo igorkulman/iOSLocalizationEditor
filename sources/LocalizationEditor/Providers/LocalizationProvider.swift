@@ -34,7 +34,7 @@ final class LocalizationProvider {
             return
         }
 
-        os_log("Updating %@ in %@ with Message: %@)", type: OSLogType.debug, key, value, message ?? "No Message.")
+        os_log("Updating %@ to %@ with Message: %@)", type: OSLogType.debug, key, value, message ?? "No Message.")
 
         localization.update(key: key, value: value, message: message)
 
@@ -58,7 +58,7 @@ final class LocalizationProvider {
 
             return """
             \(stringForMessage)
-            \"\(string.key)\" = \"\(string.value.escaped)\";\n
+            \"\(string.key)\" = \"\(string.value.escaped)\";
             """
         }.reduce("") { prev, next in
             "\(prev)\n\(next)"
