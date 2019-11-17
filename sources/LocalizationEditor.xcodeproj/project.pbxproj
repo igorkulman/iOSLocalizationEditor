@@ -9,6 +9,7 @@
 /* Begin PBXBuildFile section */
 		172274D420D933970036EA4E /* LocalizationGroup.swift in Sources */ = {isa = PBXBuildFile; fileRef = 172274D320D933970036EA4E /* LocalizationGroup.swift */; };
 		1D7FED4A2370E61C00E2FBFC /* Array+Extensions.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1D7FED492370E61C00E2FBFC /* Array+Extensions.swift */; };
+		1DD021982378989B003DA6B1 /* LGParser.swift in Sources */ = {isa = PBXBuildFile; fileRef = 1DD021972378989A003DA6B1 /* LGParser.swift */; };
 		A117B6AD21D0FFC6008F10E4 /* LocalizableStrings-en-with-complete-messages.strings in Resources */ = {isa = PBXBuildFile; fileRef = A117B6AC21D0FFC0008F10E4 /* LocalizableStrings-en-with-complete-messages.strings */; };
 		A117B6AF21D10060008F10E4 /* LocalizableStrings-en-with-incomplete-messages.strings in Resources */ = {isa = PBXBuildFile; fileRef = A117B6AE21D10060008F10E4 /* LocalizableStrings-en-with-incomplete-messages.strings */; };
 		A15A5A4221D908C400D3C791 /* Parser.swift in Sources */ = {isa = PBXBuildFile; fileRef = A15A5A4121D908C400D3C791 /* Parser.swift */; };
@@ -86,6 +87,7 @@
 		172274D320D933970036EA4E /* LocalizationGroup.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LocalizationGroup.swift; sourceTree = "<group>"; };
 		1D7FED492370E61C00E2FBFC /* Array+Extensions.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Array+Extensions.swift"; sourceTree = "<group>"; };
 		1D7FED4B2371410000E2FBFC /* ja */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = ja; path = ja.lproj/Localizable.strings; sourceTree = "<group>"; };
+		1DD021972378989A003DA6B1 /* LGParser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LGParser.swift; sourceTree = "<group>"; };
 		A117B6AC21D0FFC0008F10E4 /* LocalizableStrings-en-with-complete-messages.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = "LocalizableStrings-en-with-complete-messages.strings"; sourceTree = "<group>"; };
 		A117B6AE21D10060008F10E4 /* LocalizableStrings-en-with-incomplete-messages.strings */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.strings; path = "LocalizableStrings-en-with-incomplete-messages.strings"; sourceTree = "<group>"; };
 		A15A5A4121D908C400D3C791 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
@@ -212,6 +214,7 @@
 			children = (
 				F3D9C95B20BECDBF0081830A /* LocalizationProvider.swift */,
 				F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */,
+				1DD021972378989A003DA6B1 /* LGParser.swift */,
 				A15A5A4121D908C400D3C791 /* Parser.swift */,
 				A15A5A4821DA249400D3C791 /* ParserTypes.swift */,
 			);
@@ -480,6 +483,7 @@
 				F3D9C95920BECA270081830A /* Localization.swift in Sources */,
 				F3261F64222EA955006838C3 /* ActionsCell.swift in Sources */,
 				F3D9C96120BEDD0B0081830A /* LocalizationCell.swift in Sources */,
+				1DD021982378989B003DA6B1 /* LGParser.swift in Sources */,
 				1D7FED4A2370E61C00E2FBFC /* Array+Extensions.swift in Sources */,
 				F3D9C94620BEC7460081830A /* AppDelegate.swift in Sources */,
 			);

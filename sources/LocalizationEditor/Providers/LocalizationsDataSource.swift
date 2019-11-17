@@ -205,7 +205,7 @@ final class LocalizationsDataSource: NSObject {
      - Parameter lg: Loaded Apple LG localization
      - Returns: nothing
      */
-    func applyLGtoLocalization(lg: [LocalizationString]) {
+    func applyLGtoLocalization(lgGlossary: [LocalizationString]) {
 
     }
 
