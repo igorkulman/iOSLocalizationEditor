@@ -12,10 +12,11 @@
 
 // Language and Locale IDs (two-letter ISO 639-1 standard)
 // https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/LanguageandLocaleIDs/LanguageandLocaleIDs.html#//apple_ref/doc/uid/10000171i-CH15-SW1
+
 // There is a nice step-by-step instruction (see 'Localizing Strings Files Using AppleGlot')
 // Adding Languages.
 // https://developer.apple.com/library/archive/documentation/MacOSX/Conceptual/BPInternational/LocalizingYourApp/LocalizingYourApp.html#//apple_ref/doc/uid/10000171i-CH5-SW2
-// Extracting form source file strings.
+// Extracting from source file strings.
 // https://rderik.com/blog/text-extraction-tools-for-macos-and-ios-app-localization/
 // google translate
 // https://translate.google.ca/?hl=%@&tab=kT#view=home&op=translate&sl=auto&tl=%@&text=%@
