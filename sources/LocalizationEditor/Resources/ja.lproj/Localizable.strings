@@ -1,0 +1,52 @@
+
+/*
+  Localizable.strings
+  LocalizationEditor
+
+  Created by Mark fleming and initially translation from Apple Glossary's.
+  Note: Some Application specific terms still need translated.
+ */
+
+"about" = "情報";
+
+"actions" = "動作";
+
+"add" = "追加";
+
+"all" = "すべての条件";
+
+"cancel" = "キャンセル";
+
+"comment" = "コメント,メモ,注釈,説明,補足,comment";
+
+"copy" = "コピー";
+
+"cut" = "カット";
+
+"delete" = "削除";
+
+"edit" = "編集";
+
+"file" = "ファイル";
+
+"filter" = "フィルタ：";
+
+"key" = "キー";
+
+"minimize" = "しまう";
+
+"missing" = "見つかりません";
+
+"paste" = "ペースト";
+
+"quit" = "終了";
+
+"search" = "検索";
+
+"services" = "サービス";
+
+"view" = "View";
+
+"window" = "ウィンドウ";
+
+"zoom" = "縮小/拡大";
