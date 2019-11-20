@@ -98,7 +98,7 @@ struct Flag {
         case "UK":
             return "🇺🇦"
         case "CA":
-            return "CA" // no emoji flag
+            return "🇨🇦"
         case "RO":
             return "🇷🇴"
         case "HR":
