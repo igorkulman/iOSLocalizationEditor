@@ -251,7 +251,13 @@ final class LocalizationsDataSource: NSObject {
 
         selectedLocalizationGroup.localizations.forEach({ localization in
             let newTranslation = localizationProvider.addKeyToLocalization(localization: localization, key: key, message: message)
-            data[key] = [localization.language: newTranslation]
+            // If we already created the entry in the data dict, do not overwrite the entry entirely.
+            // Instead just add the data to the already present entry.
+            if data[key] != nil {
+                data[key]?[localization.language] = newTranslation
+            } else {
+                data[key] = [localization.language: newTranslation]
+            }
         })
     }
 
