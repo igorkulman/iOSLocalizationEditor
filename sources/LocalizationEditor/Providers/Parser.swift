@@ -192,19 +192,53 @@ class Parser {
         }
         return nil
     }
-    /// This function finds the index where a given enclosing control character can be found. This index determies where this token may be terminated.
+
+    /// Returns the first unescaped index where the control character was found in the input string.
+    /// - Parameters:
+    ///   - control: The enclosing control character whose first appearance should be found.
+    ///   - input: The string to search for the control character in.
+    ///   - escape: The escape character to check for when searching the input string.
+    /// - Returns: The input's first index where the control character was found.
+    private func firstUnescapedInstance(of control: EnclosingControlCharacters, in input: String, escape: Character = "\\") -> String.Index? {
+        let controlString = control.rawValue
+
+        // If the control is a single character in length, then check for the escape character. This allows for value strings to contain an escaped quote.
+        if controlString.count == 1 {
+            let controlCharacter = controlString[controlString.startIndex]
+            var iterator = input.indices.makeIterator()
+            while let index = iterator.next() {
+                switch input[index] {
+                // We've found an unescaped instance of the control character.
+                case controlCharacter:
+                    return index
+                // If we find the escape character then we should skip a character.
+                case escape:
+                    _ = iterator.next()
+                default:
+                    break
+                }
+            }
+
+            return nil
+        // Otherwise just do a simple substring search.
+        } else {
+            return input.index(of: controlString)
+        }
+    }
+
+    /// This function finds the index where a given enclosing control character can be found. This index determines where this token may be terminated.
     ///
     /// - Parameter control: The enclosing control character whose first appearance should be found.
     /// - Returns: The index of the input control character relative to the start index of the input string.
     private func endIndex(for control: EnclosingControlCharacters) -> String.Index {
         // Search for the end of the command.
         let endIndex: String.Index
-        if let closeIndex = input.index(of: control.rawValue) {
+        if let closeIndex = firstUnescapedInstance(of: control, in: input) {
             // Closing index found.
             endIndex = closeIndex
         } else {
             // Find another way to end the enclosed text. Most likely the input is not well formatted. Keep on trying.
-            print("Badly formatted control characters! Maybe because the user has some \" in the comments that can not be handled, yet.")
+            print("Badly formatted control characters!")
 
             var recoveryIndex: String.Index
             if let messageEndIndex = input.index(of: EnclosingControlCharacters.messageBoundaryClose.rawValue) {

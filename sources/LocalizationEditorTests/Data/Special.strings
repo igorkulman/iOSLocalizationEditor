@@ -6,4 +6,7 @@
   Copyright © 2019 Igor Kulman. All rights reserved.
 */
 
-"quoted" = "some \"quoted\" message";
+/* The presence of a non-quoted string and a quoted string would previously cause the quoted string to be dropped. This string is here to check for regressions in quoted string parsing. */
+"regression_test" = "DO NOT DELETE";
+
+"quoted" = "\"http://\" or \"https://\"";
