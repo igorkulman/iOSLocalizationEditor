@@ -74,6 +74,6 @@ class LocalizationProviderParsingTests: XCTestCase {
         let provider = LocalizationProvider()
         let groups = provider.getLocalizations(url: createTestingDirectory(with: [TestFile(originalFileName: "Special.strings", destinationFileName: "LocalizableStrings.strings", destinationFolder: "Base.lproj")]))
 
-        XCTAssertEqual(groups[0].localizations[0].translations.first(where: {$0.key == "quoted"})?.value, "some \"quoted\" message")
+        XCTAssertEqual(groups[0].localizations[0].translations.first(where: {$0.key == "quoted"})?.value, "\"http://\" or \"https://\"")
     }
 }
