@@ -6,6 +6,8 @@
 //  Copyright © 2019 Igor Kulman. All rights reserved.
 //
 // Inspired by https://github.com/PiXeL16/IBLocalizable for iOS
+//
+// swiftlint:disable unused_setter_value
 
 import AppKit
 import Foundation

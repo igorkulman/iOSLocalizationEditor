@@ -5,6 +5,7 @@
 //  Created by Igor Kulman on 30/05/2018.
 //  Copyright © 2018 Igor Kulman. All rights reserved.
 //
+// swiftlint:disable private_outlet
 
 import Cocoa
 
