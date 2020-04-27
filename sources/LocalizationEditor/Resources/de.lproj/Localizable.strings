@@ -1,0 +1,42 @@
+/* 
+  Localizable.strings
+  LocalizationEditor
+
+  Created by Igor Kulman on 24/10/2019.
+  Copyright © 2019 Igor Kulman. All rights reserved.
+  German translation: Milo Ivir <mail@milotype.de>, 2020.
+*/
+
+"key" = "Schlüssel";
+"comment" = "Komemntar";
+"cancel" = "Abbrechen";
+"add" = "Hinzufügen";
+"view" = "Ansicht";
+"file" = "Datei";
+"open_folder_with" = "Öffne einen Ordner mit Übersetzungsdateien …";
+"edit" = "Bearbeiten";
+"cut" = "Ausschneiden";
+"copy" = "Kopieren";
+"paste" = "Einfügen";
+"select_all" = "Alle auswählen";
+"enter_full_screen" = "Vollbildmodus ein";
+"window" = "Fenster";
+"minimize" = "Verkleinern";
+"bring_all_to_front" = "Alle nach vorne";
+"zoom" = "Zoomen";
+"all" = "Alle";
+"missing" = "Fehlt";
+"actions" = "Aktionen";
+"delete" = "Löschen";
+"open_folder" = "Ordner öffnen";
+"filter" = "Filter";
+"string_table" = "Zeichenketten-Tabelle";
+"new_translation" = "Neue Übersetzung";
+"search" = "Suchen";
+"open_folder_first" = "Öffne zuerst einen Ordner";
+"about" = "Über LocalizationEditor";
+"quit" = "Schließe LocalizationEditor";
+"show_all" = "Alle einblenden";
+"services" = "Dienste";
+"hide_others" = "Andere ausblenden";
+"hide_editor" = "LocalizationEditor ausblenden";
