@@ -117,6 +117,8 @@
 		F3D9C96620BEDF640081830A /* KeyCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = KeyCell.swift; sourceTree = "<group>"; };
 		F3D9C96D20BEEAA10081830A /* LocalizationsDataSource.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationsDataSource.swift; sourceTree = "<group>"; };
 		F3D9C97020BEF0740081830A /* Files.framework */ = {isa = PBXFileReference; lastKnownFileType = wrapper.framework; name = Files.framework; path = Carthage/Build/Mac/Files.framework; sourceTree = "<group>"; };
+		F3DBD1842456CD54003D0BCC /* de */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = de; path = de.lproj/Localizable.strings; sourceTree = "<group>"; };
+		F3DBD1852456CD7D003D0BCC /* hr */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = hr; path = hr.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F3DF02CB21C65F6800CEC6B6 /* LocalizationEditorTests.xctest */ = {isa = PBXFileReference; explicitFileType = wrapper.cfbundle; includeInIndex = 0; path = LocalizationEditorTests.xctest; sourceTree = BUILT_PRODUCTS_DIR; };
 		F3DF02CD21C65F6800CEC6B6 /* LocalizationProviderParsingTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = LocalizationProviderParsingTests.swift; sourceTree = "<group>"; };
 		F3DF02CF21C65F6800CEC6B6 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -370,6 +372,8 @@
 				en,
 				Base,
 				"zh-Hans",
+				de,
+				hr,
 			);
 			mainGroup = F3D9C93920BEC7460081830A;
 			productRefGroup = F3D9C94320BEC7460081830A /* Products */;
@@ -509,6 +513,8 @@
 			children = (
 				F3AD2CE12361A8CF00558765 /* zh-Hans */,
 				F3AD2CE22361A8CF00558765 /* en */,
+				F3DBD1842456CD54003D0BCC /* de */,
+				F3DBD1852456CD7D003D0BCC /* hr */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
