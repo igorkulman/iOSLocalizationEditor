@@ -241,7 +241,7 @@ extension ViewController: WindowControllerToolbarDelegate {
      */
     func userDidRequestLocalizationGroupChange(group: String) {
         let languages = dataSource.selectGroupAndGetLanguages(for: group)
-        reloadData(with: languages, title: title)
+        reloadData(with: languages, title: group)
     }
 
     /**
