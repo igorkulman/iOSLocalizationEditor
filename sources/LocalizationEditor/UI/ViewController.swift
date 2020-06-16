@@ -82,6 +82,9 @@ final class ViewController: NSViewController {
             self.tableView.removeTableColumn($0)
         }
 
+        // not sure why this is needed but without it autolayout crashes and the whole tableview breaks visually
+        tableView.reloadData()
+
         let column = NSTableColumn(identifier: NSUserInterfaceItemIdentifier(FixedColumn.key.rawValue))
         column.title = "key".localized
         tableView.addTableColumn(column)
