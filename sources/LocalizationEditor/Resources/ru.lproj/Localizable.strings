@@ -1,0 +1,41 @@
+/* 
+  Localizable.strings
+  LocalizationEditor
+
+  Created by Igor Kulman on 24/10/2019.
+  Copyright © 2019 Igor Kulman. All rights reserved.
+*/
+
+"key" = "Ключ";
+"comment" = "Комментарий";
+"cancel" = "Отмена";
+"add" = "Добавить";
+"view" = "Вид";
+"file" = "Файл";
+"open_folder_with" = "Открыть папку с файлами локализации ...";
+"edit" = "Правка";
+"cut" = "Вырезать";
+"copy" = "Скопировать";
+"paste" = "Вставить";
+"select_all" = "Выбрать все";
+"enter_full_screen" = "Полноэкранный Режим";
+"window" = "Окно";
+"minimize" = "Убрать в Dock";
+"bring_all_to_front" = "Все окна - на передний план";
+"zoom" = "Изменить масштаб";
+"all" = "Все";
+"missing" = "Отсутствующий";
+"actions" = "Действия";
+"delete" = "Удалить";
+"open_folder" = "Открыть папку";
+"filter" = "Фильтр";
+"string_table" = "Таблица строк";
+"new_translation" = "Новый перевод";
+"search" = "Поиск";
+"open_folder_first" = "Сначала откройте папку";
+"about" = "О LocalizationEditor";
+"quit" = "Завершить LocalizationEditor";
+"show_all" = "Показать Все";
+"services" = "Сервисы";
+"hide_others" = "Скрыть остальные";
+"hide_editor" = "Скрыть LocalizationEditor";
