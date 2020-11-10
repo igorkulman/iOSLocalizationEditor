@@ -36,7 +36,7 @@ final class LocalizationsDataSource: NSObject {
     private var localizationGroups: [LocalizationGroup] = []
     private var selectedLocalizationGroup: LocalizationGroup?
     private var languagesCount = 0
-    private var masterLocalization: Localization?
+    private var mainLocalization: Localization?
 
     /**
      Dictionary indexed by localization key on the first level and by language on the second level for easier access
@@ -96,11 +96,11 @@ final class LocalizationsDataSource: NSObject {
 
             return lhs.translations.count > rhs.translations.count
         })
-        masterLocalization = localizations.first
+        mainLocalization = localizations.first
         languagesCount = group.localizations.count
 
         data = [:]
-        for key in masterLocalization!.translations.map({ $0.key }) {
+        for key in mainLocalization!.translations.map({ $0.key }) {
             data[key] = [:]
             for localization in localizations {
                 data[key]![localization.language] = localization.translations.first(where: { $0.key == key })
