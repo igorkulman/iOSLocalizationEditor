@@ -89,6 +89,7 @@
 		A15A5A4121D908C400D3C791 /* Parser.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = Parser.swift; sourceTree = "<group>"; };
 		A15A5A4521D90AC600D3C791 /* ParserIsolationTests.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserIsolationTests.swift; sourceTree = "<group>"; };
 		A15A5A4821DA249400D3C791 /* ParserTypes.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ParserTypes.swift; sourceTree = "<group>"; };
+		E9CD53DA255B27AD0054EF79 /* es */ = {isa = PBXFileReference; lastKnownFileType = text.plist.strings; name = es; path = es.lproj/Localizable.strings; sourceTree = "<group>"; };
 		F31FA2062231025C00E20A3F /* Flag.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Flag.swift; sourceTree = "<group>"; };
 		F3261F63222EA955006838C3 /* ActionsCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ActionsCell.swift; sourceTree = "<group>"; };
 		F3261F65222EA9BF006838C3 /* ActionsCell.xib */ = {isa = PBXFileReference; lastKnownFileType = file.xib; path = ActionsCell.xib; sourceTree = "<group>"; };
@@ -376,6 +377,7 @@
 				de,
 				hr,
 				ru,
+				es,
 			);
 			mainGroup = F3D9C93920BEC7460081830A;
 			productRefGroup = F3D9C94320BEC7460081830A /* Products */;
@@ -518,6 +520,7 @@
 				F3DBD1842456CD54003D0BCC /* de */,
 				F3DBD1852456CD7D003D0BCC /* hr */,
 				526D844525529105008BCD4B /* ru */,
+				E9CD53DA255B27AD0054EF79 /* es */,
 			);
 			name = Localizable.strings;
 			sourceTree = "<group>";
