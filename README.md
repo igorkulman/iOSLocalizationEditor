@@ -54,3 +54,7 @@ See also the list of [contributors](https://github.com/igorkulman/iOSLocalizatio
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
+
+## Icon
+
+App icon created by [@sergeykushner](https://github.com/sergeykushner)
