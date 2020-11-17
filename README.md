@@ -17,6 +17,7 @@
     <a href="https://twitter.com/igorkulman">
         <img src="https://img.shields.io/badge/twitter-@igorkulman-blue.svg" alt="Twitter: @igorkulman" />
     </a>
+  <a href="https://www.buymeacoffee.com/igorkulman" target="_blank"><img height="22" src="https://www.buymeacoffee.com/assets/img/custom_images/orange_img.png" alt="Buy Me A Coffee"></a>
 </p>
 
 Simple macOS editor app to help you manage iOS app localizations by allowing you to edit all the translations side by side, highlighting missing translations
