@@ -41,7 +41,7 @@ When you change any of the translations the corresponding `Localizable.strings` 
 ### Homebrew
 
 ```bash
-brew cask install localizationeditor
+brew install --cask localizationeditor
 ```
 
 ### Manual
