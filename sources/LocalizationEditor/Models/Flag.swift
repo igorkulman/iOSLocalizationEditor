@@ -25,8 +25,14 @@ struct Flag {
 
     private var emojiFlag: String? {
         // special cases for zh-Hant and zh-Hans
-        if languageCode.hasPrefix("ZH-") && languageCode.count == 7 {
-            return "🇨🇳"
+        if languageCode.hasPrefix("ZH-") {
+            if languageCode.hasSuffix("HK") {
+                return "🇭🇰"
+            } else if languageCode.hasSuffix("TW") || languageCode.uppercased().hasSuffix("HANT") {
+                return "🇹🇼"
+            } else {
+                return "🇨🇳"
+            }
         }
 
         guard languageCode.count == 2 || (languageCode.count == 5 && languageCode.contains("-")) else {
