@@ -113,6 +113,8 @@ struct Flag {
             return "🇮🇱"
         case "AR":
             return "🇱🇧"
+        case "KO":
+            return "🇰🇷"
         default:
             return emojiFlag(countryCode: language)
         }
