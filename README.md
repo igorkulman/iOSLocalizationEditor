@@ -62,7 +62,7 @@ All contributions are welcomed, including bug reports and pull requests with new
 
 ### Localizing the app
 
-The app is currently localized into English and Chinese. If you want to add localization for your language, just translate the [Localizable.strings](https://github.com/igorkulman/iOSLocalizationEditor/blob/master/sources/LocalizationEditor/Resources/en.lproj/Localizable.strings) files. You can use this app do do it!
+The app is currently localized into English and Chinese. If you want to add localization for your language, just translate the [Localizable.strings](https://github.com/igorkulman/iOSLocalizationEditor/blob/master/sources/LocalizationEditor/Resources/en.lproj/Localizable.strings) files. You can use this app to do it!
 
 ## Author
 
