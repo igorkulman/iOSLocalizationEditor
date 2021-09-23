@@ -67,3 +67,4 @@ fastlane/Preview.html
 fastlane/screenshots/**/*.png
 fastlane/test_output
 /Carthage
+.DS_Store

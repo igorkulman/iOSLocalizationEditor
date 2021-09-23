@@ -42,6 +42,11 @@ protocol WindowControllerToolbarDelegate: AnyObject {
      Invoked when user requests adding a new translation
      */
     func userDidRequestAddNewTranslation()
+
+    /**
+     Invoked when user requests generating new translations
+     */
+    func userDidRequestGenerateTranslations()
 }
 
 final class WindowController: NSWindowController {
@@ -53,6 +58,7 @@ final class WindowController: NSWindowController {
     @IBOutlet private weak var selectButton: NSPopUpButton!
     @IBOutlet private weak var filterButton: NSPopUpButton!
     @IBOutlet private weak var newButton: NSToolbarItem!
+    @IBOutlet private weak var generateTranslButton: NSToolbarItem!
 
     // MARK: - Properties
 
@@ -83,12 +89,15 @@ final class WindowController: NSWindowController {
     }
 
     private func setupUI() {
-        openButton.image = NSImage(named: NSImage.folderName)
         openButton.toolTip = "open_folder".localized
         searchField.toolTip = "search".localized
         filterButton.toolTip = "filter".localized
         selectButton.toolTip = "string_table".localized
         newButton.toolTip = "new_translation".localized
+        generateTranslButton.toolTip = "generate_translation".localized
+
+        newButton.isEnabled = false
+        generateTranslButton.isEnabled = false
     }
 
     private func setupMenu() {
@@ -118,6 +127,7 @@ final class WindowController: NSWindowController {
         filterButton.isEnabled = true
         selectButton.isEnabled = true
         newButton.isEnabled = true
+        generateTranslButton.isEnabled = true
     }
 
     // MARK: - Actions
@@ -140,15 +150,15 @@ final class WindowController: NSWindowController {
     }
 
     @IBAction private func addAction(_ sender: Any) {
-        guard newButton.isEnabled else {
-            return
-        }
-
         delegate?.userDidRequestAddNewTranslation()
     }
 
     @objc private func openAction(sender _: NSMenuItem) {
        delegate?.userDidRequestFolderOpen()
+    }
+
+    @IBAction private func generateTranslationsAction(_ sender: Any) {
+        delegate?.userDidRequestGenerateTranslations()
     }
 }
 
@@ -157,6 +167,12 @@ final class WindowController: NSWindowController {
 extension WindowController: NSSearchFieldDelegate {
     func controlTextDidChange(_ obj: Notification) {
         delegate?.userDidRequestSearch(searchTerm: searchField.stringValue)
+    }
+}
+
+extension WindowController: NSToolbarItemValidation {
+    func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
+        item.isEnabled
     }
 }
 

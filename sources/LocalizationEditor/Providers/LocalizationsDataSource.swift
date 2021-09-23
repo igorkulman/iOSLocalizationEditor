@@ -273,6 +273,14 @@ final class LocalizationsDataSource: NSObject {
     }
 }
 
+extension LocalizationsDataSource {
+    func getIncompleteLocalizations() -> [String: [String: LocalizationString?]] {
+        return data.filter { locKey, locPair in
+            (locPair.contains { lang, loc in loc == nil || (loc?.value.isEmpty ?? true) })
+        }
+    }
+}
+
 // MARK: - Delegate
 
 extension LocalizationsDataSource: NSTableViewDataSource {

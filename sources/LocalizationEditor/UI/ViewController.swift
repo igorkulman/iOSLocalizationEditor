@@ -47,6 +47,7 @@ final class ViewController: NSViewController {
     private var currentSearchTerm: String = ""
     private let dataSource = LocalizationsDataSource()
     private var presendedAddViewController: AddViewController?
+    private let autoTranslator = AutoTranslator()
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -252,6 +253,23 @@ extension ViewController: WindowControllerToolbarDelegate {
      */
     func userDidRequestFolderOpen() {
         openFolder()
+    }
+
+    func userDidRequestGenerateTranslations() {
+        self.progressIndicator.startAnimation(self)
+        let incompleteLocalizations = dataSource.getIncompleteLocalizations()
+        autoTranslator.makeTranslations(for: incompleteLocalizations) { [weak self] pack in
+            for (locKey, locPair) in pack {
+                for (locLang, locString) in locPair {
+                    guard let locString = locString else { continue }
+                    self?.dataSource.updateLocalization(language: locLang, key: locKey, with: locString.value, message: locString.message)
+                }
+            }
+            self?.progressIndicator.stopAnimation(self)
+        } onError: { [weak self] error in
+            self?.progressIndicator.stopAnimation(self)
+        }
+
     }
 }
 
