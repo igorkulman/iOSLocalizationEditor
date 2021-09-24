@@ -1,41 +1,123 @@
+
+
+"about" = "关于 LocalizationEditor";
+
+
+"actions" = "动作";
+
+
+"add" = "添加";
+
+
+"all" = "全部";
+
+/*  #autotranslated */
+"autotranslated" = "带自动翻译";
+
+
+"bring_all_to_front" = "前置全部窗口";
+
+
+"cancel" = "取消";
+
+
+"comment" = "Comment";
+
+
+"copy" = "复制";
+
+
+"cut" = "剪切";
+
+
+"delete" = "删除";
+
+
+"edit" = "编辑";
+
+
+"enter_full_screen" = "进入全屏幕";
+
+/*  #autotranslated */
+"everything_localized_text" = "你所有的文字都已经翻译过了";
+
+/*  #autotranslated */
+"everything_localized_title" = "一切都好";
+
+
+"file" = "文件";
+
+
+"filter" = "筛选";
+
+/*  #autotranslated */
+"generate_translation" = "生成自动翻译";
+
+
+"hide_editor" = "隐藏 LocalizationEditor";
+
+
+"hide_others" = "隐藏其他";
+
 /* 
   Localizable.strings
   LocalizationEditor
 
   Created by Igor Kulman on 24/10/2019.
   Copyright © 2019 Igor Kulman. All rights reserved.
-*/
-
+ */
 "key" = "Key";
-"comment" = "Comment";
-"cancel" = "取消";
-"add" = "添加";
-"view" = "视图";
-"file" = "文件";
-"open_folder_with" = "打开带有本地化文件的文件夹...";
-"edit" = "编辑";
-"cut" = "剪切";
-"copy" = "复制";
-"paste" = "粘贴";
-"select_all" = "选择全部";
-"enter_full_screen" = "进入全屏幕";
-"window" = "窗口";
+
+
 "minimize" = "最小化";
-"bring_all_to_front" = "前置全部窗口";
-"zoom" = "缩放";
-"all" = "全部";
+
+
 "missing" = "缺失";
-"actions" = "动作";
-"delete" = "删除";
-"open_folder" = "打开文件夹";
-"filter" = "筛选";
-"string_table" = "字符串表";
+
+/*  #autotranslated */
+"need_google_api_key_text" = "为了生成自动翻译，您必须提供来自 Google 服务的 API 密钥";
+
+/*  #autotranslated */
+"need_google_api_key_title" = "输入您的 Google API 密钥";
+
+
 "new_translation" = "新的翻译";
-"search" = "搜索";
+
+
+"open_folder" = "打开文件夹";
+
+
 "open_folder_first" = "请先打开文件夹";
-"about" = "关于 LocalizationEditor";
+
+
+"open_folder_with" = "打开带有本地化文件的文件夹...";
+
+
+"paste" = "粘贴";
+
+
 "quit" = "退出 LocalizationEditor";
-"show_all" = "显示全部";
+
+
+"search" = "搜索";
+
+
+"select_all" = "选择全部";
+
+
 "services" = "服务";
-"hide_others" = "隐藏其他";
-"hide_editor" = "隐藏 LocalizationEditor";
+
+
+"show_all" = "显示全部";
+
+
+"string_table" = "字符串表";
+
+
+"view" = "视图";
+
+
+"window" = "窗口";
+
+
+"zoom" = "缩放";

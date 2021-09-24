@@ -1,3 +1,64 @@
+
+
+"about" = "Über LocalizationEditor";
+
+
+"actions" = "Aktionen";
+
+
+"add" = "Hinzufügen";
+
+
+"all" = "Alle";
+
+/*  #autotranslated */
+"autotranslated" = "Mit automatischer Übersetzung";
+
+
+"bring_all_to_front" = "Alle nach vorne";
+
+
+"cancel" = "Abbrechen";
+
+
+"comment" = "Kommentar";
+
+
+"copy" = "Kopieren";
+
+
+"cut" = "Ausschneiden";
+
+
+"delete" = "Löschen";
+
+
+"edit" = "Bearbeiten";
+
+
+"enter_full_screen" = "Vollbildmodus ein";
+
+/*  #autotranslated */
+"everything_localized_text" = "Alle Ihre Texte wurden bereits übersetzt";
+
+/*  #autotranslated */
+"everything_localized_title" = "Alles ok";
+
+
+"file" = "Datei";
+
+
+"filter" = "Filter";
+
+/*  #autotranslated */
+"generate_translation" = "Automatische Übersetzung erstellen";
+
+
+"hide_editor" = "LocalizationEditor ausblenden";
+
+
+"hide_others" = "Andere ausblenden";
+
 /* 
   Localizable.strings
   LocalizationEditor
@@ -5,38 +66,59 @@
   Created by Igor Kulman on 24/10/2019.
   Copyright © 2019 Igor Kulman. All rights reserved.
   German translation: Milo Ivir <mail@milotype.de>, 2020.
-*/
-
+ */
 "key" = "Schlüssel";
-"comment" = "Kommentar";
-"cancel" = "Abbrechen";
-"add" = "Hinzufügen";
-"view" = "Ansicht";
-"file" = "Datei";
-"open_folder_with" = "Öffne einen Ordner mit Übersetzungsdateien …";
-"edit" = "Bearbeiten";
-"cut" = "Ausschneiden";
-"copy" = "Kopieren";
-"paste" = "Einfügen";
-"select_all" = "Alle auswählen";
-"enter_full_screen" = "Vollbildmodus ein";
-"window" = "Fenster";
+
+
 "minimize" = "Verkleinern";
-"bring_all_to_front" = "Alle nach vorne";
-"zoom" = "Zoomen";
-"all" = "Alle";
+
+
 "missing" = "Fehlt";
-"actions" = "Aktionen";
-"delete" = "Löschen";
-"open_folder" = "Ordner öffnen";
-"filter" = "Filter";
-"string_table" = "Zeichenketten-Tabelle";
+
+/*  #autotranslated */
+"need_google_api_key_text" = "Um automatische Übersetzungen zu generieren, müssen Sie einen API-Schlüssel von Google-Diensten bereitstellen";
+
+/*  #autotranslated */
+"need_google_api_key_title" = "Geben Sie Ihren Google API-Schlüssel ein";
+
+
 "new_translation" = "Neue Übersetzung";
-"search" = "Suchen";
+
+
+"open_folder" = "Ordner öffnen";
+
+
 "open_folder_first" = "Öffne zuerst einen Ordner";
-"about" = "Über LocalizationEditor";
+
+
+"open_folder_with" = "Öffne einen Ordner mit Übersetzungsdateien …";
+
+
+"paste" = "Einfügen";
+
+
 "quit" = "Schließe LocalizationEditor";
-"show_all" = "Alle einblenden";
+
+
+"search" = "Suchen";
+
+
+"select_all" = "Alle auswählen";
+
+
 "services" = "Dienste";
-"hide_others" = "Andere ausblenden";
-"hide_editor" = "LocalizationEditor ausblenden";
+
+
+"show_all" = "Alle einblenden";
+
+
+"string_table" = "Zeichenketten-Tabelle";
+
+
+"view" = "Ansicht";
+
+
+"window" = "Fenster";
+
+
+"zoom" = "Zoomen";

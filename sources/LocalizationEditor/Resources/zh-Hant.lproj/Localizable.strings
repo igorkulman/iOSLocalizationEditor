@@ -1,41 +1,123 @@
-/*
+
+/* 
   Localizable.strings
   LocalizationEditor
 
   Created by Igor Kulman on 24/10/2019.
   Copyright © 2019 Igor Kulman. All rights reserved.
-*/
-
+ */
 "about" = "關於 LocalizationEditor";
+
+
 "actions" = "動作";
+
+
 "add" = "增加";
+
+
 "all" = "全部語言";
+
+/*  #autotranslated */
+"autotranslated" = "带自动翻译";
+
+
 "bring_all_to_front" = "全部視窗往前";
+
+
 "cancel" = "取消";
+
+
 "comment" = "註解";
+
+
 "copy" = "複製";
+
+
 "cut" = "剪下";
+
+
 "delete" = "刪除";
+
+
 "edit" = "編輯";
+
+
 "enter_full_screen" = "全螢幕";
+
+/*  #autotranslated */
+"everything_localized_text" = "你所有的文字都已经翻译过了";
+
+/*  #autotranslated */
+"everything_localized_title" = "一切都好";
+
+
 "file" = "檔案";
+
+
 "filter" = "過濾內容";
+
+/*  #autotranslated */
+"generate_translation" = "生成自动翻译";
+
+
 "hide_editor" = "隱藏 LocalizationEditor";
+
+
 "hide_others" = "隱藏其他應用程式視窗";
+
+
 "key" = "Key";
+
+
 "minimize" = "縮到最小";
+
+
 "missing" = "內容缺少";
+
+/*  #autotranslated */
+"need_google_api_key_text" = "为了生成自动翻译，您必须提供来自 Google 服务的 API 密钥";
+
+/*  #autotranslated */
+"need_google_api_key_title" = "输入您的 Google API 密钥";
+
+
 "new_translation" = "建立新的翻譯";
+
+
 "open_folder" = "開啟資料夾";
+
+
 "open_folder_first" = "請先開啟資料夾";
+
+
 "open_folder_with" = "請開啟帶有多國文件的資料夾...";
+
+
 "paste" = "貼上";
+
+
 "quit" = "離開 LocalizationEditor";
+
+
 "search" = "搜尋";
+
+
 "select_all" = "搜尋全部";
+
+
 "services" = "服務";
+
+
 "show_all" = "顯示全部應用程式視窗";
+
+
 "string_table" = "字元列表";
+
+
 "view" = "顯示方式";
+
+
 "window" = "視窗";
+
+
 "zoom" = "縮放";

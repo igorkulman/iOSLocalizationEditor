@@ -1,41 +1,123 @@
+
+
+"about" = "Sobre LocalizationEditor";
+
+
+"actions" = "Acciones";
+
+
+"add" = "Añadir";
+
+
+"all" = "Todo";
+
+/*  #autotranslated */
+"autotranslated" = "Con traducción automática";
+
+
+"bring_all_to_front" = "Traer todo al frente";
+
+
+"cancel" = "Cancelar";
+
+
+"comment" = "Comentario";
+
+
+"copy" = "Copiar";
+
+
+"cut" = "Cortar";
+
+
+"delete" = "Borrar";
+
+
+"edit" = "Editar";
+
+
+"enter_full_screen" = "Entrar en pantalla completa";
+
+/*  #autotranslated */
+"everything_localized_text" = "Todos tus textos ya han sido traducidos";
+
+/*  #autotranslated */
+"everything_localized_title" = "Todo bien";
+
+
+"file" = "Fichero";
+
+
+"filter" = "Filtrar";
+
+/*  #autotranslated */
+"generate_translation" = "Generar traducción automática";
+
+
+"hide_editor" = "Ocultar LocalizationEditor";
+
+
+"hide_others" = "Ocultar otros";
+
 /* 
   Localizable.strings
   LocalizationEditor
 
   Created by Igor Kulman on 24/10/2019.
   Copyright © 2019 Igor Kulman. All rights reserved.
-*/
-
+ */
 "key" = "Clave";
-"comment" = "Comentario";
-"cancel" = "Cancelar";
-"add" = "Añadir";
-"view" = "Vista";
-"file" = "Fichero";
-"open_folder_with" = "Abrir carpeta con ficheros de traducción...";
-"edit" = "Editar";
-"cut" = "Cortar";
-"copy" = "Copiar";
-"paste" = "Pegar";
-"select_all" = "Seleccionar todo";
-"enter_full_screen" = "Entrar en pantalla completa";
-"window" = "Ventana";
+
+
 "minimize" = "Minimizar";
-"bring_all_to_front" = "Traer todo al frente";
-"zoom" = "Ampliar";
-"all" = "Todo";
+
+
 "missing" = "Sin traduccir";
-"actions" = "Acciones";
-"delete" = "Borrar";
-"open_folder" = "Abrir carpeta";
-"filter" = "Filtrar";
-"string_table" = "Tabla de cadenas";
+
+/*  #autotranslated */
+"need_google_api_key_text" = "Para generar traducciones automáticas, debe proporcionar una clave API de los servicios de Google";
+
+/*  #autotranslated */
+"need_google_api_key_title" = "Ingrese su clave API de Google";
+
+
 "new_translation" = "Nueva traducción";
-"search" = "Buscar";
+
+
+"open_folder" = "Abrir carpeta";
+
+
 "open_folder_first" = "Abrir primera carpeta";
-"about" = "Sobre LocalizationEditor";
+
+
+"open_folder_with" = "Abrir carpeta con ficheros de traducción...";
+
+
+"paste" = "Pegar";
+
+
 "quit" = "Cerrar LocalizationEditor";
-"show_all" = "Mostrar todo";
+
+
+"search" = "Buscar";
+
+
+"select_all" = "Seleccionar todo";
+
+
 "services" = "Servicios";
-"hide_others" = "Ocultar otros";
-"hide_editor" = "Ocultar LocalizationEditor";
+
+
+"show_all" = "Mostrar todo";
+
+
+"string_table" = "Tabla de cadenas";
+
+
+"view" = "Vista";
+
+
+"window" = "Ventana";
+
+
+"zoom" = "Ampliar";

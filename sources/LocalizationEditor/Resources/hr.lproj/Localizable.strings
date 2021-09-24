@@ -1,3 +1,64 @@
+
+
+"about" = "O programu LocalizationEditor";
+
+
+"actions" = "Radnje";
+
+
+"add" = "Dodaj";
+
+
+"all" = "Sve";
+
+/*  #autotranslated */
+"autotranslated" = "S automatskim prijevodom";
+
+
+"bring_all_to_front" = "Postavi sve naprijed";
+
+
+"cancel" = "Odustani";
+
+
+"comment" = "Komentar";
+
+
+"copy" = "Kopiraj";
+
+
+"cut" = "Izreži";
+
+
+"delete" = "Izbriši";
+
+
+"edit" = "Uredi";
+
+
+"enter_full_screen" = "Cjeloekranski prikaz";
+
+/*  #autotranslated */
+"everything_localized_text" = "Svi su vaši tekstovi već prevedeni";
+
+/*  #autotranslated */
+"everything_localized_title" = "Sve u redu";
+
+
+"file" = "Datoteka";
+
+
+"filter" = "Filtar";
+
+/*  #autotranslated */
+"generate_translation" = "Generirajte automatski prijevod";
+
+
+"hide_editor" = "Sakrij LocalizationEditor";
+
+
+"hide_others" = "Sakrij ostalo";
+
 /* 
   Localizable.strings
   LocalizationEditor
@@ -5,38 +66,59 @@
   Created by Igor Kulman on 24/10/2019.
   Copyright © 2019 Igor Kulman. All rights reserved.
   Croatian translation: Milo Ivir <mail@milotype.de>, 2020.
-*/
-
+ */
 "key" = "Ključ";
-"comment" = "Komentar";
-"cancel" = "Odustani";
-"add" = "Dodaj";
-"view" = "Prikaz";
-"file" = "Datoteka";
-"open_folder_with" = "Otvori mapu s prevodilačkim datotekama …";
-"edit" = "Uredi";
-"cut" = "Izreži";
-"copy" = "Kopiraj";
-"paste" = "Umetni";
-"select_all" = "Odaberi sve";
-"enter_full_screen" = "Cjeloekranski prikaz";
-"window" = "Prozor";
+
+
 "minimize" = "Smanji";
-"bring_all_to_front" = "Postavi sve naprijed";
-"zoom" = "Zumiraj";
-"all" = "Sve";
+
+
 "missing" = "Nedostaje";
-"actions" = "Radnje";
-"delete" = "Izbriši";
-"open_folder" = "Otvori mapu";
-"filter" = "Filtar";
-"string_table" = "Tablica nizova";
+
+/*  #autotranslated */
+"need_google_api_key_text" = "Da biste generirali automatske prijevode, morate navesti API ključ od Googleovih usluga";
+
+/*  #autotranslated */
+"need_google_api_key_title" = "Unesite svoj Google API ključ";
+
+
 "new_translation" = "Novi prijevod";
-"search" = "Traži";
+
+
+"open_folder" = "Otvori mapu";
+
+
 "open_folder_first" = "Najprije otvori mapu";
-"about" = "O programu LocalizationEditor";
+
+
+"open_folder_with" = "Otvori mapu s prevodilačkim datotekama …";
+
+
+"paste" = "Umetni";
+
+
 "quit" = "Zatvori LocalizationEditor";
-"show_all" = "Prikaži sve";
+
+
+"search" = "Traži";
+
+
+"select_all" = "Odaberi sve";
+
+
 "services" = "Usluge";
-"hide_others" = "Sakrij ostalo";
-"hide_editor" = "Sakrij LocalizationEditor";
+
+
+"show_all" = "Prikaži sve";
+
+
+"string_table" = "Tablica nizova";
+
+
+"view" = "Prikaz";
+
+
+"window" = "Prozor";
+
+
+"zoom" = "Zumiraj";

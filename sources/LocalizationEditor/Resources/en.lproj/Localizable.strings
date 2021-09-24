@@ -1,41 +1,123 @@
+
+
+"about" = "About LocalizationEditor";
+
+
+"actions" = "Actions";
+
+
+"add" = "Add";
+
+
+"all" = "All";
+
+/*  */
+"autotranslated" = "With auto-translation";
+
+
+"bring_all_to_front" = "Bring All to Front";
+
+
+"cancel" = "Cancel";
+
+
+"comment" = "Comment";
+
+
+"copy" = "Copy";
+
+
+"cut" = "Cut";
+
+
+"delete" = "Delete";
+
+
+"edit" = "Edit";
+
+
+"enter_full_screen" = "Enter Full Screen";
+
+/*  */
+"everything_localized_text" = "All your texts have already been translated";
+
+/*  */
+"everything_localized_title" = "All OK";
+
+
+"file" = "File";
+
+
+"filter" = "Filter";
+
+/*  */
+"generate_translation" = "Generate auto-translation";
+
+
+"hide_editor" = "Hide LocalizationEditor";
+
+
+"hide_others" = "Hide Others";
+
 /* 
   Localizable.strings
   LocalizationEditor
 
   Created by Igor Kulman on 24/10/2019.
   Copyright © 2019 Igor Kulman. All rights reserved.
-*/
-
+ */
 "key" = "Key";
-"comment" = "Comment";
-"cancel" = "Cancel";
-"add" = "Add";
-"view" = "View";
-"file" = "File";
-"open_folder_with" = "Open folder with localization files...";
-"edit" = "Edit";
-"cut" = "Cut";
-"copy" = "Copy";
-"paste" = "Paste";
-"select_all" = "Select All";
-"enter_full_screen" = "Enter Full Screen";
-"window" = "Window";
+
+
 "minimize" = "Minimize";
-"bring_all_to_front" = "Bring All to Front";
-"zoom" = "Zoom";
-"all" = "All";
+
+
 "missing" = "Missing";
-"actions" = "Actions";
-"delete" = "Delete";
-"open_folder" = "Open folder";
-"filter" = "Filter";
-"string_table" = "String table";
+
+/*  */
+"need_google_api_key_text" = "In order to generate automatic translations, you need to provide an API key from Google services";
+
+/*  #autotranslated */
+"need_google_api_key_title" = "Enter your Google API key";
+
+
 "new_translation" = "New translation";
-"search" = "Search";
+
+
+"open_folder" = "Open folder";
+
+
 "open_folder_first" = "Open folder first";
-"about" = "About LocalizationEditor";
+
+
+"open_folder_with" = "Open folder with localization files...";
+
+
+"paste" = "Paste";
+
+
 "quit" = "Quit LocalizationEditor";
-"show_all" = "Show All";
+
+
+"search" = "Search";
+
+
+"select_all" = "Select All";
+
+
 "services" = "Services";
-"hide_others" = "Hide Others";
-"hide_editor" = "Hide LocalizationEditor";
+
+
+"show_all" = "Show All";
+
+
+"string_table" = "String table";
+
+
+"view" = "View";
+
+
+"window" = "Window";
+
+
+"zoom" = "Zoom";
