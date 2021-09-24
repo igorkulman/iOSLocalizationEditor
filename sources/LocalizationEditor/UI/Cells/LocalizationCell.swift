@@ -64,6 +64,7 @@ extension LocalizationCell: NSTextFieldDelegate {
         }
 
         setStateUI()
+        value.update(newValue: valueTextField.stringValue)
         delegate?.userDidUpdateLocalizationString(language: language, key: value.key, with: valueTextField.stringValue, message: value.message)
     }
 }

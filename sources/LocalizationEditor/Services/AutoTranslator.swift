@@ -37,6 +37,10 @@ class AutoTranslator {
                 for (locLang, locString) in locPair {
                     if baseLocation.key == locLang {
                         translated[locKey]?[locLang] = .init(key: locKey, value: stringToTranslate, message: baseLocation.value?.message)
+                    } else if let locString = locString,
+                              !locString.value.isEmpty {
+                        // Do nothing, because we already have translation
+                        continue
                     } else {
                         let res = try translator.translateSync(text: stringToTranslate, targetLang: locLang)
                         translated[locKey]?[locLang] = .init(key: locKey, value: res, message: locString?.message)
