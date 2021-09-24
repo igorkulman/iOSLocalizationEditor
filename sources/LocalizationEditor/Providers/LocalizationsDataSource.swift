@@ -15,6 +15,7 @@ typealias LocalizationsDataSourceData = ([String], String?, [LocalizationGroup])
 enum Filter: Int, CaseIterable, CustomStringConvertible {
     case all
     case missing
+    case autotranslated
 
     var description: String {
         switch self {
@@ -22,6 +23,8 @@ enum Filter: Int, CaseIterable, CustomStringConvertible {
             return "all".localized
         case .missing:
             return "missing".localized
+        case .autotranslated:
+            return "autotranslated".localized
         }
     }
 }
@@ -135,10 +138,19 @@ final class LocalizationsDataSource: NSObject {
     func filter(by filter: Filter, searchString: String?) {
         os_log("Filtering by %@", type: OSLogType.debug, "\(filter)")
 
-        // first use filter, missing translation is a translation that is missing in any language for the given key
-        let data = filter == .all ? self.data: self.data.filter({ dict in
-            return dict.value.keys.count != self.languagesCount || !dict.value.values.allSatisfy({ $0?.value.isEmpty == false })
-        })
+        let data: [String: [String: LocalizationString?]]
+        switch filter {
+            // no filtering
+            case .all: data = self.data
+            // filter all locKeys, that have missing localizations
+            case .missing: data = self.data.filter { dict in
+                return dict.value.keys.count != self.languagesCount || !dict.value.values.allSatisfy({ $0?.value.isEmpty == false })
+            }
+            // filter all locKeys that have autotranslated tag in message
+            case .autotranslated: data = self.data.filter { (locKey, locPairs) in
+                locPairs.contains { $0.value?.message?.contains(kAutotranslatedTag) ?? false }
+            }
+        }
 
         // no search string, just use teh filtered data
         guard let searchString = searchString, !searchString.isEmpty else {

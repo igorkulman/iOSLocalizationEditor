@@ -8,6 +8,8 @@
 
 import AppKit
 
+let kAutotranslatedTag = "#autotranslated"
+
 class AutoTranslator {
     typealias TranslationsPack = [String: [String: LocalizationString?]]
 
@@ -43,7 +45,11 @@ class AutoTranslator {
                         continue
                     } else {
                         let res = try translator.translateSync(text: stringToTranslate, targetLang: locLang)
-                        translated[locKey]?[locLang] = .init(key: locKey, value: res, message: locString?.message)
+                        var message = locString?.message ?? ""
+                        if !message.contains(kAutotranslatedTag) {
+                            message = [message, kAutotranslatedTag].joined(separator: " ")
+                        }
+                        translated[locKey]?[locLang] = .init(key: locKey, value: res, message: message)
                     }
                 }
             }
