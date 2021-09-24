@@ -49,6 +49,19 @@ final class ViewController: NSViewController {
     private var presendedAddViewController: AddViewController?
     private let autoTranslator = AutoTranslator()
 
+    private(set) var autoTranslationInProgress: Bool = false {
+        didSet {
+            tableView.isEnabled = !autoTranslationInProgress
+            tableView.alphaValue = autoTranslationInProgress ? 0.3 : 1
+            if autoTranslationInProgress {
+                progressIndicator.startAnimation(self)
+            } else {
+                progressIndicator.stopAnimation(self)
+            }
+            view.window?.toolbar?.validateVisibleItems()
+        }
+    }
+
     override func viewDidLoad() {
         super.viewDidLoad()
 
@@ -256,20 +269,38 @@ extension ViewController: WindowControllerToolbarDelegate {
     }
 
     func userDidRequestGenerateTranslations() {
-        self.progressIndicator.startAnimation(self)
         let incompleteLocalizations = dataSource.getIncompleteLocalizations()
-        autoTranslator.makeTranslations(for: incompleteLocalizations) { [weak self] pack in
-            for (locKey, locPair) in pack {
-                for (locLang, locString) in locPair {
-                    guard let locString = locString else { continue }
-                    self?.dataSource.updateLocalization(language: locLang, key: locKey, with: locString.value, message: locString.message)
-                }
-            }
-            self?.progressIndicator.stopAnimation(self)
-        } onError: { [weak self] error in
-            self?.progressIndicator.stopAnimation(self)
+        guard !incompleteLocalizations.isEmpty else {
+            let alert = NSAlert()
+            alert.alertStyle = .informational
+            alert.messageText = "everything_localized_title".localized
+            alert.informativeText = "everything_localized_text".localized
+            alert.runModal()
+            return
         }
 
+        autoTranslationInProgress = true
+        autoTranslator.makePreparations(on: self) { translator in
+            translator.makeTranslations(for: incompleteLocalizations) { [weak self] pack in
+                for (locKey, locPair) in pack {
+                    for (locLang, locString) in locPair {
+                        guard let locString = locString else { continue }
+                        self?.dataSource.updateLocalization(language: locLang, key: locKey, with: locString.value, message: locString.message)
+                    }
+                }
+                self?.autoTranslationInProgress = false
+                if let locGroupName = self?.dataSource.currentLocalizationGroupName(),
+                   let languages = self?.dataSource.selectGroupAndGetLanguages(for: locGroupName) {
+                    self?.reloadData(with: languages, title: locGroupName)
+                }
+            } onError: { [weak self] error in
+                self?.autoTranslationInProgress = false
+                NSAlert(error: error).runModal()
+            }
+        } onError: { [weak self] error in
+            self?.autoTranslationInProgress = false
+            NSAlert(error: error).runModal()
+        }
     }
 }
 

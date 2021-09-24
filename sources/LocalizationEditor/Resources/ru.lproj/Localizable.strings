@@ -1,41 +1,120 @@
+
+
+"about" = "О LocalizationEditor";
+
+
+"actions" = "Действия";
+
+
+"add" = "Добавить";
+
+
+"all" = "Все";
+
+
+"bring_all_to_front" = "Все окна - на передний план";
+
+
+"cancel" = "Отмена";
+
+
+"comment" = "Комментарий";
+
+
+"copy" = "Скопировать";
+
+
+"cut" = "Вырезать";
+
+
+"delete" = "Удалить";
+
+
+"edit" = "Правка";
+
+
+"enter_full_screen" = "Полноэкранный Режим";
+
+
+"everything_localized_text" = "Все ваши тексты уже переведены";
+
+
+"everything_localized_title" = "Все ок";
+
+
+"file" = "Файл";
+
+
+"filter" = "Фильтр";
+
+
+"generate_translation" = "Сгенерировать автоперевод";
+
+
+"hide_editor" = "Скрыть LocalizationEditor";
+
+
+"hide_others" = "Скрыть остальные";
+
 /* 
   Localizable.strings
   LocalizationEditor
 
   Created by Igor Kulman on 24/10/2019.
   Copyright © 2019 Igor Kulman. All rights reserved.
-*/
-
+ */
 "key" = "Ключ";
-"comment" = "Комментарий";
-"cancel" = "Отмена";
-"add" = "Добавить";
-"view" = "Вид";
-"file" = "Файл";
-"open_folder_with" = "Открыть папку с файлами локализации ...";
-"edit" = "Правка";
-"cut" = "Вырезать";
-"copy" = "Скопировать";
-"paste" = "Вставить";
-"select_all" = "Выбрать все";
-"enter_full_screen" = "Полноэкранный Режим";
-"window" = "Окно";
+
+
 "minimize" = "Убрать в Dock";
-"bring_all_to_front" = "Все окна - на передний план";
-"zoom" = "Изменить масштаб";
-"all" = "Все";
+
+
 "missing" = "Отсутствующий";
-"actions" = "Действия";
-"delete" = "Удалить";
-"open_folder" = "Открыть папку";
-"filter" = "Фильтр";
-"string_table" = "Таблица строк";
+
+
+"need_google_api_key_text" = "Для того, чтобы генерировать автоматические переводы, необходимо предоставить API ключ от сервисов Google";
+
+
+"need_google_api_key_title" = "Введите ключ API от Google";
+
+
 "new_translation" = "Новый перевод";
-"search" = "Поиск";
+
+
+"open_folder" = "Открыть папку";
+
+
 "open_folder_first" = "Сначала откройте папку";
-"about" = "О LocalizationEditor";
+
+
+"open_folder_with" = "Открыть папку с файлами локализации ...";
+
+
+"paste" = "Вставить";
+
+
 "quit" = "Завершить LocalizationEditor";
-"show_all" = "Показать Все";
+
+
+"search" = "Поиск";
+
+
+"select_all" = "Выбрать все";
+
+
 "services" = "Сервисы";
-"hide_others" = "Скрыть остальные";
-"hide_editor" = "Скрыть LocalizationEditor";
+
+
+"show_all" = "Показать Все";
+
+
+"string_table" = "Таблица строк";
+
+
+"view" = "Вид";
+
+
+"window" = "Окно";
+
+
+"zoom" = "Изменить масштаб";

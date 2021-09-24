@@ -6,7 +6,7 @@
 //  Copyright © 2021 Igor Kulman. All rights reserved.
 //
 
-import Foundation
+import AppKit
 
 class AutoTranslator {
     typealias TranslationsPack = [String: [String: LocalizationString?]]
@@ -47,5 +47,13 @@ class AutoTranslator {
         } catch {
             onError?(error)
         }
+    }
+
+    func makePreparations(on vc: NSViewController,
+                          onComplete: ((AutoTranslator) -> Void)?,
+                          onError: ((Error) -> Void)?) {
+        translator.makePreparations(on: vc) { [weak self] _ in
+            self.map { onComplete?($0) }
+        } onError: { onError?($0) }
     }
 }

@@ -125,6 +125,8 @@ final class LocalizationsDataSource: NSObject {
         return languages
     }
 
+    func currentLocalizationGroupName() -> String? { selectedLocalizationGroup?.name }
+
     /**
      Filters the data by given filter and search string. Empty search string means all data us included.
 

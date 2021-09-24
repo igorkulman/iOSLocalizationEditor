@@ -97,7 +97,6 @@ final class WindowController: NSWindowController {
         generateTranslButton.toolTip = "generate_translation".localized
 
         newButton.isEnabled = false
-        generateTranslButton.isEnabled = false
     }
 
     private func setupMenu() {
@@ -127,7 +126,6 @@ final class WindowController: NSWindowController {
         filterButton.isEnabled = true
         selectButton.isEnabled = true
         newButton.isEnabled = true
-        generateTranslButton.isEnabled = true
     }
 
     // MARK: - Actions
@@ -172,7 +170,15 @@ extension WindowController: NSSearchFieldDelegate {
 
 extension WindowController: NSToolbarItemValidation {
     func validateToolbarItem(_ item: NSToolbarItem) -> Bool {
-        item.isEnabled
+        if item == generateTranslButton {
+            guard let contentViewController = window?.contentViewController,
+                  let mainViewController = contentViewController as? ViewController else {
+                fatalError("Broken window hierarchy")
+            }
+            return !mainViewController.autoTranslationInProgress
+                && selectButton.isEnabled
+        }
+        return item.isEnabled
     }
 }
 
