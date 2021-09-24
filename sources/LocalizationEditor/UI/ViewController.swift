@@ -176,7 +176,10 @@ extension ViewController: NSTableViewDelegate {
         case FixedColumn.actions.rawValue:
             let cell = tableView.makeView(withIdentifier: NSUserInterfaceItemIdentifier(rawValue: ActionsCell.identifier), owner: self)! as! ActionsCell
             cell.delegate = self
-            cell.key = dataSource.getKey(row: row)
+            let key = dataSource.getKey(row: row)
+            cell.key = key
+            cell.hasAutotranslations = dataSource.getLocalizations(forKey: key ?? "")?
+                .contains { $0.value?.message?.contains(kAutotranslatedTag) ?? false } ?? false
             return cell
         default:
             let language = identifier.rawValue
@@ -202,6 +205,15 @@ extension ViewController: LocalizationCellDelegate {
 extension ViewController: ActionsCellDelegate {
     func userDidRequestRemoval(of key: String) {
         dataSource.deleteLocalization(key: key)
+
+        // reload keeping scroll position
+        let rect = tableView.visibleRect
+        filter()
+        tableView.scrollToVisible(rect)
+    }
+
+    func userDidRequestAutotranslateRemoval(of key: String) {
+        dataSource.deleteAutotranslations(forKey: key)
 
         // reload keeping scroll position
         let rect = tableView.visibleRect

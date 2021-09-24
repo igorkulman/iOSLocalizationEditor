@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="14460.31" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="18122" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="14460.31"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="18122"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <objects>
@@ -13,29 +13,62 @@
             <rect key="frame" x="0.0" y="0.0" width="231" height="107"/>
             <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
             <subviews>
-                <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EMh-tc-AYh">
-                    <rect key="frame" x="96" y="29" width="40" height="47"/>
-                    <constraints>
-                        <constraint firstAttribute="height" constant="36" id="0bc-hZ-sQr"/>
-                        <constraint firstAttribute="width" constant="28" id="qU0-9O-pJY"/>
-                    </constraints>
-                    <buttonCell key="cell" type="push" bezelStyle="rounded" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uNU-t4-742">
-                        <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                        <font key="font" metaFont="system"/>
-                    </buttonCell>
-                    <connections>
-                        <action selector="removalClicked:" target="c22-O7-iKe" id="oh4-Hn-jSp"/>
-                    </connections>
-                </button>
+                <stackView distribution="fill" orientation="horizontal" alignment="top" horizontalStackHuggingPriority="249.99998474121094" verticalStackHuggingPriority="249.99998474121094" detachesHiddenViews="YES" translatesAutoresizingMaskIntoConstraints="NO" id="8lF-Ce-ivM">
+                    <rect key="frame" x="84" y="36" width="64" height="36"/>
+                    <subviews>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="EMh-tc-AYh">
+                            <rect key="frame" x="-7" y="-7" width="42" height="48"/>
+                            <constraints>
+                                <constraint firstAttribute="height" constant="36" id="0bc-hZ-sQr"/>
+                                <constraint firstAttribute="width" constant="28" id="qU0-9O-pJY"/>
+                            </constraints>
+                            <buttonCell key="cell" type="push" bezelStyle="rounded" image="trash" catalog="system" imagePosition="overlaps" alignment="center" borderStyle="border" imageScaling="proportionallyDown" inset="2" id="uNU-t4-742">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <connections>
+                                <action selector="removalClicked:" target="c22-O7-iKe" id="oh4-Hn-jSp"/>
+                            </connections>
+                        </button>
+                        <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="C8z-uE-Vdb">
+                            <rect key="frame" x="36" y="-3" width="28" height="42"/>
+                            <constraints>
+                                <constraint firstAttribute="height" priority="750" constant="36" id="PeW-mf-HRA"/>
+                                <constraint firstAttribute="width" priority="750" constant="28" id="hLO-9z-WFl"/>
+                            </constraints>
+                            <buttonCell key="cell" type="bevel" bezelStyle="rounded" image="globe" catalog="system" imagePosition="only" alignment="center" lineBreakMode="truncatingTail" state="on" imageScaling="proportionallyDown" inset="2" id="dPf-ft-eGz">
+                                <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
+                                <font key="font" metaFont="system"/>
+                            </buttonCell>
+                            <color key="contentTintColor" name="systemRedColor" catalog="System" colorSpace="catalog"/>
+                            <connections>
+                                <action selector="deleteAutotranslateClicked:" target="c22-O7-iKe" id="ycs-cE-7Qa"/>
+                            </connections>
+                        </button>
+                    </subviews>
+                    <visibilityPriorities>
+                        <integer value="1000"/>
+                        <integer value="1000"/>
+                    </visibilityPriorities>
+                    <customSpacing>
+                        <real value="3.4028234663852886e+38"/>
+                        <real value="3.4028234663852886e+38"/>
+                    </customSpacing>
+                </stackView>
             </subviews>
             <constraints>
-                <constraint firstItem="EMh-tc-AYh" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="kIp-Dc-9et"/>
-                <constraint firstItem="EMh-tc-AYh" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="txw-8v-8GZ"/>
+                <constraint firstItem="8lF-Ce-ivM" firstAttribute="centerY" secondItem="c22-O7-iKe" secondAttribute="centerY" id="7hT-Sa-xDT"/>
+                <constraint firstItem="8lF-Ce-ivM" firstAttribute="centerX" secondItem="c22-O7-iKe" secondAttribute="centerX" id="IWf-lK-fFd"/>
             </constraints>
             <connections>
+                <outlet property="deleteAutotranslationsButton" destination="C8z-uE-Vdb" id="76H-il-mjN"/>
                 <outlet property="deleteButton" destination="EMh-tc-AYh" id="e6p-6B-koQ"/>
             </connections>
             <point key="canvasLocation" x="14.5" y="195.5"/>
         </customView>
     </objects>
+    <resources>
+        <image name="globe" catalog="system" width="15" height="15"/>
+        <image name="trash" catalog="system" width="15" height="17"/>
+    </resources>
 </document>

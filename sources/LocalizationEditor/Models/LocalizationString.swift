@@ -25,6 +25,10 @@ final class LocalizationString {
     func update(newValue: String) {
         value = newValue
     }
+
+    func updateMessage(_ message: String?) {
+        self.message = message
+    }
 }
 
 // MARK: Description

@@ -222,6 +222,8 @@ final class LocalizationsDataSource: NSObject {
         return localization
     }
 
+    func getLocalizations(forKey locKey: String) -> [String: LocalizationString?]? { data[locKey] }
+
     /**
      Updates given localization values in given language
 
@@ -246,10 +248,23 @@ final class LocalizationsDataSource: NSObject {
             return
         }
 
-        selectedLocalizationGroup.localizations.forEach({ localization in
+        selectedLocalizationGroup.localizations.forEach { localization in
             self.localizationProvider.deleteKeyFromLocalization(localization: localization, key: key)
-        })
+        }
         data.removeValue(forKey: key)
+    }
+
+    func deleteAutotranslations(forKey locKey: String) {
+        (data[locKey]?.filter { $0.value?.message?.contains(kAutotranslatedTag) ?? false })?
+            .forEach { (locLang, locString) in
+                guard locString?.message?.contains(kAutotranslatedTag) ?? false else { return }
+                updateLocalization(language: locLang,
+                                   key: locKey,
+                                   with: "",
+                                   message: locString?.message?.replacingOccurrences(of: kAutotranslatedTag, with: ""))
+                locString?.update(newValue: "")
+                locString?.updateMessage(locString?.message?.replacingOccurrences(of: kAutotranslatedTag, with: ""))
+        }
     }
 
     /**
