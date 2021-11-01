@@ -53,9 +53,20 @@ class GoogleTranslator: Translator {
 
     // MARK: - public
     func translate(text: String, targetLang: String, onComplete: ((String) -> Void)?, onError: ((Error) -> Void)?) {
+        func prepareText(_ inputText: String) -> String {
+            return inputText.replacingOccurrences(of: "%@", with: "@%")
+        }
+
+        func cleanResultTranslation(_ dirtyTranslation: String) -> String {
+            return dirtyTranslation
+                .replacingOccurrences(of: "@%", with: "%@")
+                .stringByDecodingHTMLEntities
+        }
+
         var requestURLComponents = URLComponents(string: "https://translation.googleapis.com/language/translate/v2")
+
         requestURLComponents!.queryItems = [
-            URLQueryItem(name: "q", value: text),
+            URLQueryItem(name: "q", value: prepareText(text)),
             URLQueryItem(name: "target", value: getLangCode(forLocalizationId: targetLang)),
             URLQueryItem(name: "key", value: apiKey)
         ]
@@ -76,7 +87,7 @@ class GoogleTranslator: Translator {
                 guard let translatedText = res.data.translations.first?.translatedText else {
                     throw TranslatorError.noTranslationsInResponse
                 }
-                onComplete?(translatedText)
+                onComplete?(cleanResultTranslation(translatedText))
             } catch {
                 onError?(error)
             }
