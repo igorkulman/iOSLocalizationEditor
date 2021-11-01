@@ -14,7 +14,7 @@ import Foundation
 final class LocalizationString {
     let key: String
     private(set) var value: String
-    private (set) var message: String?
+    private(set) var message: String?
 
     init(key: String, value: String, message: String?) {
         self.key = key
@@ -23,10 +23,10 @@ final class LocalizationString {
     }
 
     func update(newValue: String) {
-        value = newValue
+        self.value = newValue
     }
 
-    func updateMessage(_ message: String?) {
+    func update(message: String?) {
         self.message = message
     }
 }

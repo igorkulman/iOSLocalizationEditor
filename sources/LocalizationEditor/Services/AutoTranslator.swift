@@ -47,7 +47,9 @@ class AutoTranslator {
                         let res = try translator.translateSync(text: stringToTranslate, targetLang: locLang)
                         var message = locString?.message ?? ""
                         if !message.contains(kAutotranslatedTag) {
-                            message = [message, kAutotranslatedTag].joined(separator: " ")
+                            message = [message, kAutotranslatedTag]
+                                .joined(separator: " ")
+                                .trimmingCharacters(in: .whitespaces)
                         }
                         translated[locKey]?[locLang] = .init(key: locKey, value: res, message: message)
                     }

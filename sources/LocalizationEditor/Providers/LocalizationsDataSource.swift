@@ -263,7 +263,7 @@ final class LocalizationsDataSource: NSObject {
                                    with: "",
                                    message: locString?.message?.replacingOccurrences(of: kAutotranslatedTag, with: ""))
                 locString?.update(newValue: "")
-                locString?.updateMessage(locString?.message?.replacingOccurrences(of: kAutotranslatedTag, with: ""))
+                locString?.update(message: locString?.message?.replacingOccurrences(of: kAutotranslatedTag, with: ""))
         }
     }
 

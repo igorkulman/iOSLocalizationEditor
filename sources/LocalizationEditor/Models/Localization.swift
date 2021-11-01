@@ -25,6 +25,7 @@ final class Localization {
     func update(key: String, value: String, message: String?) {
         if let existing = translations.first(where: { $0.key == key }) {
             existing.update(newValue: value)
+            existing.update(message: message)
             return
         }
 
