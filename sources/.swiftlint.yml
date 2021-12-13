@@ -9,7 +9,7 @@ disabled_rules:
 
 analyzer_rules:
     - unused_import
-    - unused_private_declaration
+    - unused_declaration
 
 number_separator:
     minimum_length: 7
