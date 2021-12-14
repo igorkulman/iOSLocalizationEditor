@@ -13,6 +13,7 @@
 "view" = "Vista";
 "file" = "Fichero";
 "open_folder_with" = "Abrir carpeta con ficheros de traducción...";
+"close" = "Cerrar";
 "edit" = "Editar";
 "cut" = "Cortar";
 "copy" = "Copiar";

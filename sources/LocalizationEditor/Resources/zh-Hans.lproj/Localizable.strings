@@ -13,6 +13,7 @@
 "view" = "视图";
 "file" = "文件";
 "open_folder_with" = "打开带有本地化文件的文件夹...";
+"close" = "关闭";
 "edit" = "编辑";
 "cut" = "剪切";
 "copy" = "复制";

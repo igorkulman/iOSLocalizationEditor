@@ -83,6 +83,15 @@
                                                 <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="open_folder_with"/>
                                             </userDefinedRuntimeAttributes>
                                         </menuItem>
+                                        <menuItem isSeparatorItem="YES" id="LVj-0e-nvV"/>
+                                        <menuItem title="Close" keyEquivalent="w" id="v5v-W3-iIa">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="close"/>
+                                            </userDefinedRuntimeAttributes>
+                                            <connections>
+                                                <action selector="performClose:" target="Ady-hI-5gd" id="VLN-3G-rEe"/>
+                                            </connections>
+                                        </menuItem>
                                     </items>
                                     <userDefinedRuntimeAttributes>
                                         <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="file"/>
