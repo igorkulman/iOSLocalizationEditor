@@ -14,6 +14,7 @@
 "view" = "Prikaz";
 "file" = "Datoteka";
 "open_folder_with" = "Otvori mapu s prevodilačkim datotekama …";
+"close" = "Zatvori";
 "edit" = "Uredi";
 "cut" = "Izreži";
 "copy" = "Kopiraj";

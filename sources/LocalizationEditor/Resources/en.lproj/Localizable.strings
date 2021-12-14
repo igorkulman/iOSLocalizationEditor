@@ -13,6 +13,7 @@
 "view" = "View";
 "file" = "File";
 "open_folder_with" = "Open folder with localization files...";
+"close" = "Close";
 "edit" = "Edit";
 "cut" = "Cut";
 "copy" = "Copy";

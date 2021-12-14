@@ -14,6 +14,7 @@
 "view" = "Ansicht";
 "file" = "Datei";
 "open_folder_with" = "Öffne einen Ordner mit Übersetzungsdateien …";
+"close" = "Schließen";
 "edit" = "Bearbeiten";
 "cut" = "Ausschneiden";
 "copy" = "Kopieren";
