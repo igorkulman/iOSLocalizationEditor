@@ -13,7 +13,7 @@ import Cocoa
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var openFolderMenuItem: NSMenuItem!
 
-    private static var editorWindow: NSWindow? {
+    private var editorWindow: NSWindow? {
         return NSApp.windows.first(where: { $0.windowController is WindowController })
     }
 
@@ -28,22 +28,24 @@ class AppDelegate: NSObject, NSApplicationDelegate {
 
     func application(_ sender: NSApplication, openFile filename: String) -> Bool {
         var isDirectory: ObjCBool = false
-        if FileManager.default.fileExists(atPath: filename, isDirectory: &isDirectory), isDirectory.boolValue == true {
-            showEditorWindow()
-            let windowController = (Self.editorWindow?.windowController) as! WindowController
-            windowController.openFolder(withPath: filename)
-            return true
+        guard FileManager.default.fileExists(atPath: filename, isDirectory: &isDirectory),
+              isDirectory.boolValue == true
+        else {
+            return false
         }
-        return false
+        showEditorWindow()
+        let windowController = (editorWindow?.windowController) as! WindowController
+        windowController.openFolder(withPath: filename)
+        return true
     }
 
     private func showEditorWindow() {
-        if let editorWindow = Self.editorWindow {
-            editorWindow.makeKeyAndOrderFront(nil)
-        } else {
+        guard let editorWindow = editorWindow else {
             let mainStoryboard = NSStoryboard(name: NSStoryboard.Name("Main"), bundle: nil)
             let editorWindowController = mainStoryboard.instantiateInitialController() as! WindowController
             editorWindowController.showWindow(self)
+            return
         }
+        editorWindow.makeKeyAndOrderFront(nil)
     }
 }

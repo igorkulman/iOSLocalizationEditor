@@ -136,18 +136,19 @@ final class ViewController: NSViewController {
 
         if let path = path {
             handleOpenFolder(URL(fileURLWithPath: path))
-        } else {
-            let openPanel = NSOpenPanel()
-            openPanel.allowsMultipleSelection = false
-            openPanel.canChooseDirectories = true
-            openPanel.canCreateDirectories = true
-            openPanel.canChooseFiles = false
-            openPanel.begin { result -> Void in
-                guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
-                    return
-                }
-                handleOpenFolder(url)
+            return
+        }
+
+        let openPanel = NSOpenPanel()
+        openPanel.allowsMultipleSelection = false
+        openPanel.canChooseDirectories = true
+        openPanel.canCreateDirectories = true
+        openPanel.canChooseFiles = false
+        openPanel.begin { result -> Void in
+            guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
+                return
             }
+            handleOpenFolder(url)
         }
     }
 }
