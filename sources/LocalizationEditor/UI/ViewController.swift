@@ -120,17 +120,8 @@ final class ViewController: NSViewController {
         tableView.reloadData()
     }
 
-    private func openFolder() {
-        let openPanel = NSOpenPanel()
-        openPanel.allowsMultipleSelection = false
-        openPanel.canChooseDirectories = true
-        openPanel.canCreateDirectories = true
-        openPanel.canChooseFiles = false
-        openPanel.begin { [unowned self] result -> Void in
-            guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
-                return
-            }
-
+    private func openFolder(forPath path: String? = nil) {
+        let handleOpenFolder: (URL) -> Void = { url in
             self.progressIndicator.startAnimation(self)
             self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
                 self.reloadData(with: languages, title: title)
@@ -140,6 +131,22 @@ final class ViewController: NSViewController {
                     self.delegate?.shouldSetLocalizationGroups(groups: localizationFiles)
                     self.delegate?.shouldSelectLocalizationGroup(title: title)
                 }
+            }
+        }
+
+        if let path = path {
+            handleOpenFolder(URL(fileURLWithPath: path))
+        } else {
+            let openPanel = NSOpenPanel()
+            openPanel.allowsMultipleSelection = false
+            openPanel.canChooseDirectories = true
+            openPanel.canCreateDirectories = true
+            openPanel.canChooseFiles = false
+            openPanel.begin { result -> Void in
+                guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
+                    return
+                }
+                handleOpenFolder(url)
             }
         }
     }
@@ -252,6 +259,13 @@ extension ViewController: WindowControllerToolbarDelegate {
      */
     func userDidRequestFolderOpen() {
         openFolder()
+    }
+
+    /**
+     Invoked when user requests opening a folder for specific path
+     */
+    func userDidRequestFolderOpen(withPath path: String) {
+        openFolder(forPath: path)
     }
 }
 

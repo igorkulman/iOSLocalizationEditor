@@ -26,6 +26,17 @@ class AppDelegate: NSObject, NSApplicationDelegate {
         return true
     }
 
+    func application(_ sender: NSApplication, openFile filename: String) -> Bool {
+        var isDirectory: ObjCBool = false
+        if FileManager.default.fileExists(atPath: filename, isDirectory: &isDirectory), isDirectory.boolValue == true {
+            showEditorWindow()
+            let windowController = (Self.editorWindow?.windowController) as! WindowController
+            windowController.openFolder(withPath: filename)
+            return true
+        }
+        return false
+    }
+
     private func showEditorWindow() {
         if let editorWindow = Self.editorWindow {
             editorWindow.makeKeyAndOrderFront(nil)

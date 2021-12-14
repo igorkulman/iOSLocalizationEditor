@@ -18,6 +18,11 @@ protocol WindowControllerToolbarDelegate: AnyObject {
     func userDidRequestFolderOpen()
 
     /**
+     Invoked when user requests opening a folder for a specific path
+     */
+    func userDidRequestFolderOpen(withPath: String)
+
+    /**
      Invoked when user requests filter change
 
      - Parameter filter: new filter setting
@@ -66,6 +71,12 @@ final class WindowController: NSWindowController {
         setupFilter()
         setupMenu()
         setupDelegates()
+    }
+
+    // MAKR: - Interfaces
+
+    func openFolder(withPath path: String) {
+        delegate?.userDidRequestFolderOpen(withPath: path)
     }
 
     // MARK: - Setup
