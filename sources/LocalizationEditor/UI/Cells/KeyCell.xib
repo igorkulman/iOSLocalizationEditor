@@ -18,7 +18,7 @@
                     <constraints>
                         <constraint firstAttribute="height" relation="greaterThanOrEqual" constant="17" id="7vH-UA-4O8"/>
                     </constraints>
-                    <textFieldCell key="cell" sendsActionOnEndEditing="YES" title="Key" id="DsA-f5-s8p">
+                    <textFieldCell key="cell" selectable="YES" sendsActionOnEndEditing="YES" title="Key" id="DsA-f5-s8p">
                         <font key="font" metaFont="system"/>
                         <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
                         <color key="backgroundColor" name="controlColor" catalog="System" colorSpace="catalog"/>
