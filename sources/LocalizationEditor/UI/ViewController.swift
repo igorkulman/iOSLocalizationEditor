@@ -75,7 +75,12 @@ final class ViewController: NSViewController {
         delegate?.shouldResetSearchTermAndFilter()
 
         let appName = Bundle.main.infoDictionary![kCFBundleNameKey as String] as! String
-        view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
+        if #available(macOS 11, *) {
+            view.window?.title = appName
+            view.window?.subtitle = title ?? ""
+        } else {
+            view.window?.title = title.flatMap({ "\(appName) [\($0)]" }) ?? appName
+        }
 
         let columns = tableView.tableColumns
         columns.forEach {
