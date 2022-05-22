@@ -1,0 +1,43 @@
+/*
+  Localizable.strings
+  LocalizationEditor
+
+  Created by Igor Kulman on 24/10/2019.
+  Copyright © 2019 Igor Kulman. All rights reserved.
+  Japanese translation: Fus1onDev, 2022.
+*/
+
+"about" = "LocalizationEditorについて";
+"actions" = "アクション";
+"add" = "追加";
+"all" = "すべて";
+"bring_all_to_front" = "すべてを手前に移動";
+"cancel" = "キャンセル";
+"close" = "閉じる";
+"comment" = "コメント";
+"copy" = "コピー";
+"cut" = "カット";
+"delete" = "削除";
+"edit" = "編集";
+"enter_full_screen" = "フルスクリーンにする";
+"file" = "ファイル";
+"filter" = "フィルター";
+"hide_editor" = "LocalizationEditorを非表示";
+"hide_others" = "ほかを非表示";
+"key" = "キー";
+"minimize" = "しまう";
+"missing" = "不足";
+"new_translation" = "新規";
+"open_folder" = "フォルダを開く";
+"open_folder_first" = "最初にフォルダを開く";
+"open_folder_with" = "翻訳ファイルのフォルダを開く...";
+"paste" = "ペースト";
+"quit" = "LocalizationEditorを終了";
+"search" = "検索";
+"select_all" = "すべてを選択";
+"services" = "サービス";
+"show_all" = "すべてを表示";
+"string_table" = "文字列テーブル";
+"view" = "表示";
+"window" = "ウインドウ";
+"zoom" = "拡大";
