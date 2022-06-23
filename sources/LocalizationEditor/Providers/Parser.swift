@@ -49,7 +49,7 @@ class Parser {
     /// - Throws: A ```ParserError``` when the input string could not be parsed.
     func parse() throws -> [LocalizationString] {
         try tokenize()
-        try results = interpretTokens()
+        results = try interpretTokens()
         return results
     }
 

@@ -31,7 +31,7 @@ final class LocalizationString {
 
 extension LocalizationString: CustomStringConvertible {
     var description: String {
-        return "\(key) = \(value)"
+        return "\(key) = \(value)" + (message.map { "/* \($0) */" } ?? "")
     }
 }
 

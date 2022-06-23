@@ -97,7 +97,7 @@ final class LocalizationsDataSource: NSObject {
             return lhs.translations.count > rhs.translations.count
         })
         mainLocalization = localizations.first
-        languagesCount = group.localizations.count
+        languagesCount = localizations.count
 
         data = [:]
         for key in mainLocalization!.translations.map({ $0.key }) {
@@ -181,11 +181,10 @@ final class LocalizationsDataSource: NSObject {
      - Returns: message if any
      */
     func getMessage(row: Int) -> String? {
-        guard let key = getKey(row: row), let part = data[key], let firstKey = part.keys.map({ $0 }).first  else {
+        guard let key = getKey(row: row), let part = data[key], let languageKey = mainLocalization?.language else {
             return nil
         }
-
-        return part[firstKey]??.message
+        return part[languageKey]??.message
     }
 
     /**

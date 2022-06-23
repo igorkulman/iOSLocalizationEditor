@@ -125,20 +125,22 @@ final class ViewController: NSViewController {
         tableView.reloadData()
     }
 
-    private func openFolder(forPath path: String? = nil) {
-        let handleOpenFolder: (URL) -> Void = { url in
-            self.progressIndicator.startAnimation(self)
-            self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
-                self.reloadData(with: languages, title: title)
-                self.progressIndicator.stopAnimation(self)
+    private var currentOpenFolderUrl: URL?
+    private func handleOpenFolder(_ url: URL) {
+        self.progressIndicator.startAnimation(self)
+        self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
+            self.currentOpenFolderUrl = url
+            self.reloadData(with: languages, title: title)
+            self.progressIndicator.stopAnimation(self)
 
-                if let title = title {
-                    self.delegate?.shouldSetLocalizationGroups(groups: localizationFiles)
-                    self.delegate?.shouldSelectLocalizationGroup(title: title)
-                }
+            if let title = title {
+                self.delegate?.shouldSetLocalizationGroups(groups: localizationFiles)
+                self.delegate?.shouldSelectLocalizationGroup(title: title)
             }
         }
+    }
 
+    private func openFolder(forPath path: String? = nil) {
         if let path = path {
             handleOpenFolder(URL(fileURLWithPath: path))
             return
@@ -153,7 +155,7 @@ final class ViewController: NSViewController {
             guard result.rawValue == NSApplication.ModalResponse.OK.rawValue, let url = openPanel.url else {
                 return
             }
-            handleOpenFolder(url)
+            self.handleOpenFolder(url)
         }
     }
 }
@@ -272,6 +274,14 @@ extension ViewController: WindowControllerToolbarDelegate {
      */
     func userDidRequestFolderOpen(withPath path: String) {
         openFolder(forPath: path)
+    }
+
+    func userDidRequestReloadData() {
+        guard let currentOpenFolderUrl = currentOpenFolderUrl else {
+            return
+        }
+        handleOpenFolder(currentOpenFolderUrl)
+
     }
 }
 

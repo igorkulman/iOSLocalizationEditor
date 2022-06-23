@@ -47,6 +47,8 @@ protocol WindowControllerToolbarDelegate: AnyObject {
      Invoked when user requests adding a new translation
      */
     func userDidRequestAddNewTranslation()
+
+    func userDidRequestReloadData()
 }
 
 final class WindowController: NSWindowController {
@@ -81,18 +83,6 @@ final class WindowController: NSWindowController {
 
     // MARK: - Setup
 
-    private func setupDelegates() {
-        guard let contentViewController = window?.contentViewController, let mainViewController = contentViewController as? ViewController else {
-            fatalError("Broken window hierarchy")
-        }
-
-        // informing the window about toolbar appearence
-        mainViewController.delegate = self
-
-        // informing the VC about user interacting with the toolbar
-        self.delegate = mainViewController
-    }
-
     private func setupUI() {
         openButton.image = NSImage(named: NSImage.folderName)
         openButton.toolTip = "open_folder".localized
@@ -100,11 +90,6 @@ final class WindowController: NSWindowController {
         filterButton.toolTip = "filter".localized
         selectButton.toolTip = "string_table".localized
         newButton.toolTip = "new_translation".localized
-    }
-
-    private func setupMenu() {
-        let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        appDelegate.openFolderMenuItem.action = #selector(WindowController.openAction(sender:))
     }
 
     private func setupSearch() {
@@ -124,11 +109,29 @@ final class WindowController: NSWindowController {
         }
     }
 
+    private func setupMenu() {
+        let appDelegate = NSApplication.shared.delegate as! AppDelegate
+        appDelegate.openFolderMenuItem.action = #selector(WindowController.openFolder(_:))
+        appDelegate.reloadMenuItem.action = #selector(WindowController.reloadData(_:))
+    }
+
     private func enableControls() {
         searchField.isEnabled = true
         filterButton.isEnabled = true
         selectButton.isEnabled = true
         newButton.isEnabled = true
+    }
+
+    private func setupDelegates() {
+        guard let mainViewController = window?.contentViewController as? ViewController else {
+            fatalError("Broken window hierarchy")
+        }
+
+        // informing the window about toolbar appearence
+        mainViewController.delegate = self
+
+        // informing the VC about user interacting with the toolbar
+        self.delegate = mainViewController
     }
 
     // MARK: - Actions
@@ -158,8 +161,8 @@ final class WindowController: NSWindowController {
         delegate?.userDidRequestAddNewTranslation()
     }
 
-    @objc private func openAction(sender _: NSMenuItem) {
-       delegate?.userDidRequestFolderOpen()
+    @objc private func reloadData(_ sender: NSMenuItem) {
+        delegate?.userDidRequestReloadData()
     }
 }
 
