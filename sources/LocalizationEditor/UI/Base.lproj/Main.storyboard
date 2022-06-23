@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="UTF-8"?>
-<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="15400" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
+<document type="com.apple.InterfaceBuilder3.Cocoa.Storyboard.XIB" version="3.0" toolsVersion="20037" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" initialViewController="B8D-0N-5wS">
     <dependencies>
         <deployment identifier="macosx"/>
-        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15400"/>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="20037"/>
         <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
     </dependencies>
     <scenes>
@@ -80,6 +80,11 @@
                                         <menuItem title="Open folder with localization files..." keyEquivalent="o" id="pXV-BH-hD6">
                                             <userDefinedRuntimeAttributes>
                                                 <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="open_folder_with"/>
+                                            </userDefinedRuntimeAttributes>
+                                        </menuItem>
+                                        <menuItem title="Reload table" keyEquivalent="r" id="FXy-oH-qqv">
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="string" keyPath="localizableString" value="reload_folder"/>
                                             </userDefinedRuntimeAttributes>
                                         </menuItem>
                                         <menuItem isSeparatorItem="YES" id="LVj-0e-nvV"/>
@@ -219,6 +224,7 @@
                 <customObject id="Voe-Tx-rLC" customClass="AppDelegate" customModule="LocalizationEditor" customModuleProvider="target">
                     <connections>
                         <outlet property="openFolderMenuItem" destination="pXV-BH-hD6" id="9EJ-PN-yBL"/>
+                        <outlet property="reloadMenuItem" destination="FXy-oH-qqv" id="SNs-QM-g6w"/>
                     </connections>
                 </customObject>
                 <customObject id="YLy-65-1bz" customClass="NSFontManager"/>
@@ -239,14 +245,14 @@
                             <allowedToolbarItems>
                                 <toolbarItem implicitItemIdentifier="NSToolbarSpaceItem" id="Nt7-6c-UNu"/>
                                 <toolbarItem implicitItemIdentifier="NSToolbarFlexibleSpaceItem" id="XEY-XQ-DCX"/>
-                                <toolbarItem implicitItemIdentifier="F5A3BEE7-CFFE-4498-A8D0-DA7EAE160B5F" label="Open folder" paletteLabel="Open" tag="-1" id="gFH-hP-QmF">
+                                <toolbarItem implicitItemIdentifier="F5A3BEE7-CFFE-4498-A8D0-DA7EAE160B5F" label="Open folder" paletteLabel="Open" tag="-1" image="NSFolder" id="gFH-hP-QmF">
                                     <size key="minSize" width="48" height="48"/>
                                     <size key="maxSize" width="48" height="48"/>
                                     <connections>
                                         <action selector="openFolder:" target="B8D-0N-5wS" id="fSl-hr-rQp"/>
                                     </connections>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="D612B8EC-2DD0-4F6F-BC29-1459EE743142" label="String table" paletteLabel="String table" id="rRs-lz-dHI">
+                                <toolbarItem implicitItemIdentifier="D612B8EC-2DD0-4F6F-BC29-1459EE743142" label="String table" paletteLabel="String table" title="Open folder first" id="rRs-lz-dHI">
                                     <nil key="toolTip"/>
                                     <size key="minSize" width="100" height="24"/>
                                     <size key="maxSize" width="500" height="24"/>
@@ -255,7 +261,7 @@
                                         <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="Open folder first" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="ZYs-7U-5gn" id="aOQ-vO-her">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="glw-fD-iej">
                                                 <items>
                                                     <menuItem title="Open folder first" state="on" id="ZYs-7U-5gn"/>
@@ -287,8 +293,8 @@
                                 <toolbarItem implicitItemIdentifier="8AA5A4E1-359F-4E3E-8BBA-D3AAAF529BE0" label="New translation" paletteLabel="New translation" image="NSAddTemplate" sizingBehavior="auto" id="1Cc-Nn-JQX">
                                     <nil key="toolTip"/>
                                     <imageView key="view" horizontalHuggingPriority="251" verticalHuggingPriority="251" id="LUP-5J-Wfe">
-                                        <rect key="frame" x="33" y="14" width="24" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <rect key="frame" x="37" y="14.5" width="14.5" height="13"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <gestureRecognizers>
                                             <clickGestureRecognizer delaysPrimaryMouseButtonEvents="YES" numberOfClicksRequired="1" id="p2g-ox-RGE">
                                                 <connections>
@@ -299,14 +305,14 @@
                                         <imageCell key="cell" enabled="NO" refusesFirstResponder="YES" alignment="left" imageScaling="proportionallyDown" image="NSAddTemplate" id="6JK-EV-ulh"/>
                                     </imageView>
                                 </toolbarItem>
-                                <toolbarItem implicitItemIdentifier="13E9B60D-CBEC-4E7D-96C3-FE098E195C25" label="Filter" paletteLabel="Filter" sizingBehavior="auto" id="4TV-x9-bks">
+                                <toolbarItem implicitItemIdentifier="13E9B60D-CBEC-4E7D-96C3-FE098E195C25" label="Filter" paletteLabel="Filter" title="All" sizingBehavior="auto" id="4TV-x9-bks">
                                     <nil key="toolTip"/>
                                     <popUpButton key="view" verticalHuggingPriority="750" id="CF5-IQ-Tcp">
-                                        <rect key="frame" x="0.0" y="14" width="100" height="24"/>
-                                        <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+                                        <rect key="frame" x="0.0" y="14" width="82" height="25"/>
+                                        <autoresizingMask key="autoresizingMask"/>
                                         <popUpButtonCell key="cell" type="roundTextured" title="All" bezelStyle="texturedRounded" alignment="left" lineBreakMode="truncatingTail" enabled="NO" state="on" borderStyle="border" imageScaling="proportionallyDown" inset="2" selectedItem="DQt-48-fwD" id="8th-lD-zUo">
                                             <behavior key="behavior" pushIn="YES" lightByBackground="YES" lightByGray="YES"/>
-                                            <font key="font" metaFont="system"/>
+                                            <font key="font" metaFont="menu"/>
                                             <menu key="menu" id="NFb-X0-5k3">
                                                 <items>
                                                     <menuItem title="All" state="on" id="DQt-48-fwD">
@@ -363,11 +369,11 @@
                             <scrollView autohidesScrollers="YES" horizontalLineScroll="19" horizontalPageScroll="10" verticalLineScroll="19" verticalPageScroll="10" usesPredominantAxisScrolling="NO" translatesAutoresizingMaskIntoConstraints="NO" id="4ba-Nv-4Q4">
                                 <rect key="frame" x="0.0" y="0.0" width="740" height="503"/>
                                 <clipView key="contentView" id="xNj-vz-MO7">
-                                    <rect key="frame" x="1" y="0.0" width="738" height="502"/>
+                                    <rect key="frame" x="1" y="1" width="738" height="501"/>
                                     <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                     <subviews>
                                         <tableView verticalHuggingPriority="750" allowsExpansionToolTips="YES" alternatingRowBackgroundColors="YES" columnReordering="NO" columnResizing="NO" multipleSelection="NO" autosaveColumns="NO" typeSelect="NO" usesAutomaticRowHeights="YES" headerView="Bry-MY-OIY" id="ByO-mI-RPv">
-                                            <rect key="frame" x="0.0" y="0.0" width="738" height="479"/>
+                                            <rect key="frame" x="0.0" y="0.0" width="738" height="478"/>
                                             <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                                             <size key="intercellSpacing" width="3" height="2"/>
                                             <color key="backgroundColor" name="controlBackgroundColor" catalog="System" colorSpace="catalog"/>
@@ -383,7 +389,7 @@
                                     <rect key="frame" x="224" y="17" width="15" height="102"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </scroller>
-                                <tableHeaderView key="headerView" id="Bry-MY-OIY">
+                                <tableHeaderView key="headerView" wantsLayer="YES" id="Bry-MY-OIY">
                                     <rect key="frame" x="0.0" y="0.0" width="738" height="23"/>
                                     <autoresizingMask key="autoresizingMask"/>
                                 </tableHeaderView>
@@ -438,7 +444,7 @@
                                 </textFieldCell>
                             </textField>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Cs7-7R-8O8">
-                                <rect key="frame" x="336" y="1" width="112" height="32"/>
+                                <rect key="frame" x="335" y="1" width="114" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="EuN-4A-HE8"/>
                                 </constraints>
@@ -454,7 +460,7 @@
                                 </connections>
                             </button>
                             <button verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="gxf-vL-lUd">
-                                <rect key="frame" x="2" y="1" width="112" height="32"/>
+                                <rect key="frame" x="1" y="1" width="114" height="32"/>
                                 <constraints>
                                     <constraint firstAttribute="width" relation="greaterThanOrEqual" constant="100" id="kFb-vL-odm"/>
                                 </constraints>
@@ -523,6 +529,7 @@ Gw
         </scene>
     </scenes>
     <resources>
-        <image name="NSAddTemplate" width="11" height="11"/>
+        <image name="NSAddTemplate" width="14" height="13"/>
+        <image name="NSFolder" width="32" height="32"/>
     </resources>
 </document>

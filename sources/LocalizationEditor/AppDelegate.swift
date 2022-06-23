@@ -12,6 +12,7 @@ import Cocoa
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
     @IBOutlet weak var openFolderMenuItem: NSMenuItem!
+    @IBOutlet weak var reloadMenuItem: NSMenuItem!
 
     private var editorWindow: NSWindow? {
         return NSApp.windows.first(where: { $0.windowController is WindowController })
