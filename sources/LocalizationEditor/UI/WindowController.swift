@@ -48,6 +48,9 @@ protocol WindowControllerToolbarDelegate: AnyObject {
      */
     func userDidRequestAddNewTranslation()
 
+    /**
+     Invoked when user requests reload selected folder
+     */
     func userDidRequestReloadData()
 }
 
@@ -111,8 +114,8 @@ final class WindowController: NSWindowController {
 
     private func setupMenu() {
         let appDelegate = NSApplication.shared.delegate as! AppDelegate
-        appDelegate.openFolderMenuItem.action = #selector(WindowController.openFolder(_:))
-        appDelegate.reloadMenuItem.action = #selector(WindowController.reloadData(_:))
+        appDelegate.openFolderMenuItem.action = #selector(WindowController.openFolderAction(_:))
+        appDelegate.reloadMenuItem.action = #selector(WindowController.reloadDataAction(_:))
     }
 
     private func enableControls() {
@@ -161,7 +164,11 @@ final class WindowController: NSWindowController {
         delegate?.userDidRequestAddNewTranslation()
     }
 
-    @objc private func reloadData(_ sender: NSMenuItem) {
+    @objc private func openFolderAction(_ sender: NSMenuItem) {
+        delegate?.userDidRequestFolderOpen()
+    }
+
+    @objc private func reloadDataAction(_ sender: NSMenuItem) {
         delegate?.userDidRequestReloadData()
     }
 }

@@ -276,6 +276,9 @@ extension ViewController: WindowControllerToolbarDelegate {
         openFolder(forPath: path)
     }
 
+    /**
+     Invoked when user requests reload selected folder
+     */
     func userDidRequestReloadData() {
         guard let currentOpenFolderUrl = currentOpenFolderUrl else {
             return
