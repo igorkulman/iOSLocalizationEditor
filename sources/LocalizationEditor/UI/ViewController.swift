@@ -47,6 +47,7 @@ final class ViewController: NSViewController {
     private var currentSearchTerm: String = ""
     private let dataSource = LocalizationsDataSource()
     private var presendedAddViewController: AddViewController?
+    private var currentOpenFolderUrl: URL?
 
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -125,7 +126,6 @@ final class ViewController: NSViewController {
         tableView.reloadData()
     }
 
-    private var currentOpenFolderUrl: URL?
     private func handleOpenFolder(_ url: URL) {
         self.progressIndicator.startAnimation(self)
         self.dataSource.load(folder: url) { [unowned self] languages, title, localizationFiles in
