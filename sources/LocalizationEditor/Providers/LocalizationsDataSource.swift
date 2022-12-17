@@ -134,13 +134,13 @@ final class LocalizationsDataSource: NSObject {
         os_log("Filtering by %@", type: OSLogType.debug, "\(filter)")
 
         // first use filter, missing translation is a translation that is missing in any language for the given key
-        let data = filter == .all ? self.data: self.data.filter({ dict in
+        let data = filter == .all ? self.data : self.data.filter({ dict in
             return dict.value.keys.count != self.languagesCount || !dict.value.values.allSatisfy({ $0?.value.isEmpty == false })
         })
 
         // no search string, just use teh filtered data
         guard let searchString = searchString, !searchString.isEmpty else {
-            filteredKeys = data.keys.map({ $0 }).sorted(by: { $0<$1 })
+            filteredKeys = data.keys.map({ $0 }).sorted(by: { $0 < $1 })
             return
         }
 
@@ -161,11 +161,11 @@ final class LocalizationsDataSource: NSObject {
         }
 
         // sorting because the dictionary does not keep the sort
-        filteredKeys = keys.sorted(by: { $0<$1 })
+        filteredKeys = keys.sorted(by: { $0 < $1 })
     }
 
     /**
-     Gets key for speficied row
+     Gets key for specified row
 
      - Parameter row: row number
      - Returns: key if valid
