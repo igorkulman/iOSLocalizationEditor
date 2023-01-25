@@ -26,8 +26,8 @@ final class Localization {
         if let object = translations.first(where: { string in
             string.message != nil && string.message!.contains("\n ")
         }), let index = translations.firstIndex(of: object) {
-            let object = translations[index]
-            translations.insert(object, at: 0)
+            let setObject = LocalizationString(key: object.key, value: object.value, message: "/*[Header]\(object.message!.replacingOccurrences(of: "/*", with: "").replacingOccurrences(of: "*/", with: ""))*/")
+            translations.insert(setObject, at: 0)
             translations.remove(at: index + 1)
         }
         if let existing = translations.first(where: { $0.key == key }) {

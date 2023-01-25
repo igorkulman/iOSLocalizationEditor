@@ -54,8 +54,8 @@ final class LocalizationProvider {
             } else {
                 stringForMessage = ""
             }
-            if let message = string.message, message.contains("/*\n") {
-                let topFormat = string.value.slice(from: "/*", to: "*/")!
+            if let originalMessage = string.message, originalMessage.contains("[Header]") {
+                let topFormat = originalMessage.replacingOccurrences(of: "[Header]", with: "")
                 let message = string.value.replacingOccurrences(of: topFormat, with: "")
                 return "\(topFormat)\n\n\"\(string.key)\" = \"\(message.escaped)\";\n"
             } else {
@@ -63,7 +63,7 @@ final class LocalizationProvider {
             }
         }.reduce("") { prev, next in
             "\(prev)\n\(next)"
-        }
+        }.replacingOccurrences(of: "\n/*", with: "/*")
 
         do {
             try data.write(toFile: localization.path, atomically: false, encoding: .utf8)
