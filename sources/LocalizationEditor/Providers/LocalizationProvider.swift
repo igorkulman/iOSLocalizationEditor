@@ -49,16 +49,18 @@ final class LocalizationProvider {
     private func writeToFile(localization: Localization) {
         let data = localization.translations.map { string -> String in
             let stringForMessage: String
-            if let newMessage = string.message {
-                stringForMessage = "/* \(newMessage) */"
+            if let newMessage = string.message, newMessage.replacingOccurrences(of: " ", with: "") != "" {
+                stringForMessage = "/* \(newMessage) */\n"
             } else {
                 stringForMessage = ""
             }
-
-            return """
-            \(stringForMessage)
-            \"\(string.key)\" = \"\(string.value.escaped)\";\n
-            """
+            if let message = string.message, message.contains("/*\n") {
+                let topFormat = string.value.slice(from: "/*", to: "*/")!
+                let message = string.value.replacingOccurrences(of: topFormat, with: "")
+                return "\(topFormat)\n\n\"\(string.key)\" = \"\(message.escaped)\";\n"
+            } else {
+                return "\(stringForMessage)\"\(string.key)\" = \"\(string.value.escaped)\";"
+            }
         }.reduce("") { prev, next in
             "\(prev)\n\(next)"
         }
