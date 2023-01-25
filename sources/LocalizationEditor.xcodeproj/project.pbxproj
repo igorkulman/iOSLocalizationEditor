@@ -667,6 +667,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = LocalizationEditor/Info.plist;
@@ -674,8 +675,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.9;
-				PRODUCT_BUNDLE_IDENTIFIER = sk.kulman.LocalizationEditor;
+				MARKETING_VERSION = 2.9.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Mcrich23.LocalizationEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
@@ -689,6 +690,7 @@
 				CODE_SIGN_IDENTITY = "-";
 				CODE_SIGN_STYLE = Automatic;
 				COMBINE_HIDPI_IMAGES = YES;
+				CURRENT_PROJECT_VERSION = 1;
 				DEVELOPMENT_TEAM = "";
 				FRAMEWORK_SEARCH_PATHS = "$(inherited)";
 				INFOPLIST_FILE = LocalizationEditor/Info.plist;
@@ -696,8 +698,8 @@
 					"$(inherited)",
 					"@executable_path/../Frameworks",
 				);
-				MARKETING_VERSION = 2.9;
-				PRODUCT_BUNDLE_IDENTIFIER = sk.kulman.LocalizationEditor;
+				MARKETING_VERSION = 2.9.1;
+				PRODUCT_BUNDLE_IDENTIFIER = com.Mcrich23.LocalizationEditor;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 5.0;
 			};
