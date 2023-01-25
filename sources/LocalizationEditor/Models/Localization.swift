@@ -23,11 +23,17 @@ final class Localization {
     }
 
     func update(key: String, value: String, message: String?) {
+        if let object = translations.first(where: { string in
+            string.message != nil && string.message!.contains("\n ")
+        }), let index = translations.firstIndex(of: object) {
+            let object = translations[index]
+            translations.insert(object, at: 0)
+            translations.remove(at: index + 1)
+        }
         if let existing = translations.first(where: { $0.key == key }) {
             existing.update(newValue: value)
             return
         }
-
         let newTranslation = LocalizationString(key: key, value: value, message: message)
         translations.append(newTranslation)
     }
