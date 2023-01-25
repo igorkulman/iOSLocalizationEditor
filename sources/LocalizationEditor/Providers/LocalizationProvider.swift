@@ -50,7 +50,7 @@ final class LocalizationProvider {
         let data = localization.translations.map { string -> String in
             let stringForMessage: String
             if let newMessage = string.message, newMessage.replacingOccurrences(of: " ", with: "") != "" {
-                stringForMessage = "/* \(newMessage) */\n"
+                stringForMessage = "\n/* \(newMessage) */\n"
             } else {
                 stringForMessage = ""
             }
