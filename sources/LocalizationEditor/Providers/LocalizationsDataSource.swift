@@ -184,7 +184,10 @@ final class LocalizationsDataSource: NSObject {
         guard let key = getKey(row: row), let part = data[key], let languageKey = mainLocalization?.language else {
             return nil
         }
-        return part[languageKey]??.message
+        guard let message = part[languageKey]??.message, !message.contains("\n ") else {
+            return nil
+        }
+        return message
     }
 
     /**
