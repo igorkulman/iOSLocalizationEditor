@@ -57,7 +57,7 @@ final class LocalizationProvider {
             if let originalMessage = string.message, originalMessage.contains("[Header]") {
                 let topFormat = originalMessage.replacingOccurrences(of: "[Header]", with: "")
                 let message = string.value.replacingOccurrences(of: topFormat, with: "")
-                return "\(topFormat)\n\n\"\(string.key)\" = \"\(message.escaped)\";\n"
+                return "\(topFormat)\n\n\"\(string.key)\" = \"\(message.escaped)\";"
             } else {
                 return "\(stringForMessage)\"\(string.key)\" = \"\(string.value.escaped)\";"
             }
