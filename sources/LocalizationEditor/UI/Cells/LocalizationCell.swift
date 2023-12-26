@@ -9,6 +9,7 @@
 import Cocoa
 
 protocol LocalizationCellDelegate: AnyObject {
+    func controlTextDidEndEditing(_ obj: Notification)
     func userDidUpdateLocalizationString(language: String, key: String, with value: String, message: String?)
 }
 
@@ -58,7 +59,8 @@ final class LocalizationCell: NSTableCellView {
 // MARK: - Delegate
 
 extension LocalizationCell: NSTextFieldDelegate {
-    func controlTextDidEndEditing(_: Notification) {
+    func controlTextDidEndEditing(_ obj: Notification) {
+        delegate?.controlTextDidEndEditing(obj)
         guard let language = language, let value = value else {
             return
         }

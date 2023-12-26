@@ -196,6 +196,49 @@ extension ViewController: LocalizationCellDelegate {
     func userDidUpdateLocalizationString(language: String, key: String, with value: String, message: String?) {
         dataSource.updateLocalization(language: language, key: key, with: value, message: message)
     }
+
+    func controlTextDidEndEditing(_ obj: Notification) {
+        guard let view = obj.object as? NSView, let textMovementInt = obj.userInfo?["NSTextMovement"] as? Int, let textMovement = NSTextMovement(rawValue: textMovementInt) else {
+            return
+        }
+
+        let columnIndex = tableView.column(for: view)
+        let rowIndex = tableView.row(for: view)
+
+        let newRowIndex: Int
+        let newColumnIndex: Int
+
+        switch textMovement {
+        case .tab:
+            if columnIndex + 1 >= tableView.numberOfColumns - 1 {
+                newRowIndex = rowIndex + 1
+                newColumnIndex = 1
+            } else {
+                newColumnIndex = columnIndex + 1
+                newRowIndex = rowIndex
+            }
+            if newRowIndex >= tableView.numberOfRows {
+                return
+            }
+        case .backtab:
+            if columnIndex - 1 <= 0 {
+                newRowIndex = rowIndex - 1
+                newColumnIndex = tableView.numberOfColumns - 2
+            } else {
+                newColumnIndex = columnIndex - 1
+                newRowIndex = rowIndex
+            }
+            if newRowIndex < 0 {
+                return
+            }
+        default:
+            return
+        }
+
+        DispatchQueue.main.async { [weak self] in
+            self?.tableView.editColumn(newColumnIndex, row: newRowIndex, with: nil, select: true)
+        }
+    }
 }
 
 // MARK: - ActionsCellDelegate
