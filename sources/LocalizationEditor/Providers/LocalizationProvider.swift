@@ -49,7 +49,7 @@ final class LocalizationProvider {
     private func writeToFile(localization: Localization) {
         let data = localization.translations.map { string -> String in
             let stringForMessage: String
-            if let newMessage = string.message, newMessage.replacingOccurrences(of: " ", with: "") != "" {
+            if let newMessage = string.message, !newMessage.replacingOccurrences(of: " ", with: "").isEmpty {
                 stringForMessage = "\n/* \(newMessage) */\n"
             } else {
                 stringForMessage = ""

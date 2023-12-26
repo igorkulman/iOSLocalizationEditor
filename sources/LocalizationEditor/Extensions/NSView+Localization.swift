@@ -7,7 +7,6 @@
 //
 // Inspired by https://github.com/PiXeL16/IBLocalizable for iOS
 //
-// swiftlint:disable unused_setter_value
 
 import AppKit
 import Foundation
@@ -45,7 +44,9 @@ extension NSCell: Localizable {
         get {
             return ""
         }
+        // swiftlint:disable unused_setter_value
         set {}
+        // swiftlint:enable unused_setter_value
     }
 
     /// Applies the localizable string to the localizable field of the supported view

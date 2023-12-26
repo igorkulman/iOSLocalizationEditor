@@ -5,14 +5,16 @@
 //  Created by Igor Kulman on 30/05/2018.
 //  Copyright © 2018 Igor Kulman. All rights reserved.
 //
-// swiftlint:disable private_outlet
 
 import Cocoa
 
 @NSApplicationMain
 class AppDelegate: NSObject, NSApplicationDelegate {
+
+    // swiftlint:disable private_outlet
     @IBOutlet weak var openFolderMenuItem: NSMenuItem!
     @IBOutlet weak var reloadMenuItem: NSMenuItem!
+    // swiftlint:enable private_outlet
 
     private var editorWindow: NSWindow? {
         return NSApp.windows.first(where: { $0.windowController is WindowController })

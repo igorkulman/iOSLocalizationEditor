@@ -14,8 +14,7 @@ analyzer_rules:
 number_separator:
     minimum_length: 7
 
-opt_in_rules:
-    - anyobject_protocol    
+opt_in_rules:    
     - closure_end_indentation
     - closure_spacing
     - collection_alignment
